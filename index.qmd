@@ -11,4 +11,4 @@ Esta es la web con los materiales del curso:
 * **Tema 5:** Modelos jerarquicos de comunidades de especies.
 
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Para saber más sobre páginas web creadas con Quarto visita <https://quarto.org/docs/websites>.

@@ -6,13 +6,15 @@ website:
     left:
       - href: index.qmd
         text: AEMeR
+      - href: https://dnietolugilde.com
+        text: Autor
     right:
       - href: index.qmd
         text: "![](img/logos.png){height=1in}"
 
 format:
   html:
-    theme: cosmo
+    theme: flatly
     css: styles.css
     toc: true
     lang: es
