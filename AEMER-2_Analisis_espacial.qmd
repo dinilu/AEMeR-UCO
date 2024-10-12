@@ -130,10 +130,9 @@ pols
 plot(pols)
 ```
 
-## Lo más normal es usar datos generados con un SIG. 
+## Lo más normal es usar datos generados con un SIG.
 
 Podemos descargar datos de internet (v.gr. [GADM](https://gadm.org)) y cargarlos desde nuestro disco duro.
-
 
 ```{r}
 #| echo: true
@@ -144,9 +143,9 @@ arg <- vect("gadm/gadm41_ARG_1.shp")
 arg
 ```
 
-## Lo más normal es usar datos generados con un SIG. 
+## Lo más normal es usar datos generados con un SIG.
 
-Pero hay paquetes que dan acceso a datos vectoriales directamente en R (v.gr. geodata)
+Pero hay paquetes que dan acceso a datos vectoriales directamente en R (v.gr. `geodata`)
 
 ```{r}
 #| echo: true
@@ -305,23 +304,26 @@ r2 <- stck[[2]]
 r2
 ```
 
-## Cargar datos raster
+## Como con datos vectoriales, lo normal es cargar datos ya generados en SIG.
+
+Para ello podemos descargar datos de distintas fuentes (v.gr. [WorldClim](https://worldclim.org))...
 
 ```{r}
 #| echo: true
-#| eval: false
-
-tavg <- geodata::worldclim_country("ARG", "tavg", path = ".")
-tavg
-```
-
-```{r}
-#| echo: false
-#| eval: true
 
 tavg <- rast("tavg_arg.tif")
 tavg
 ```
+
+## ... o podemos usar el paquete `geodata` para acceder directamente a esa información
+```{r}
+#| echo: true
+#| eval: false
+
+tavg <- worldclim_country("ARG", "tavg", path = ".")
+tavg
+```
+
 ## Veamos si se parece a lo que conocemos...
 
 ```{r}
@@ -329,7 +331,7 @@ tavg
 plot(tavg)
 ```
 
-## Escribir fichero de datos raster
+## Si queremos reutilizar los datos y no tener que volver a descargarlos, también podemos escribirlos en un fichero de datos raster
 
 ```{r}
 #| echo: true
@@ -356,22 +358,22 @@ plot(tavg_utm19s[[1]])
 ```
 
 ::: asides
-Notad que los píxeles no tienen un tamaño regular
+Notad que no hay una correspondencia exacta de píxeles. 
 :::
 
-## Para controlar el número de pixeles y su resolución debemos crear antes una plantilla
+## Para controlar el número de pixeles y su resolución lo normal es crear antes una plantilla
 
 ```{r}
 #| echo: true
 x <- rast(tavg_utm19s)
-res(x) <- 500
+res(x) <- 800
 x
 ```
 
 ```{r}
 #| echo: true
 
-tavg_utm19s_2 <- project(tavg_utm19s, x)
+tavg_utm19s_2 <- project(tavg, x)
 tavg_utm19s_2
 ```
 
@@ -391,59 +393,118 @@ tavg[[2]]
 tavg_utm19s[[2]]
 tavg_utm19s_2[[2]]
 ```
+
+## Momento de practicar por vuestra cuenta
+
+Ejercicios de clase
+
+Parte 2. Manejo de datos raster
+
 # Manipular datos espaciales
 
-plot(arg, "NAME_2")
+## Podemos dibujar los mapas con colores en base a alguna información de los atributos.
 
-d <- as.data.frame(arg) 
+```{r}
+plot(arg, "NAME_1")
+```
 
+## También se puede extraer la información de los atributos en formato `data.frame` para trabajar con ella de forma estadística.
+
+```{r}
+d <- as.data.frame(arg)
 head(d)
+```
 
-g <- geom(arg) head(g)
+## O puedo extraer la información de un sólo campo de los atributos.
 
-g <- geom(arg, wkt = TRUE) substr(g, 1, 50)
+```{r}
+arg$NAME_1
+arg[, "NAME_1"]
+```
 
-arg$NAME_2
+::: asides
+Notad que en este caso, las dos formas de extraer información no se comportan exactamente igual.
+:::
 
-arg[, "NAME_2"]
+## También podemos extraer las características geográficas (espaciales)
 
-set.seed(0) arg$lets <- sample(letters, nrow(arg)) arg
+```{r}
+g <- geom(arg_utm19s) 
+head(g)
+```
 
-perim(arg) arg$perimetro <- perim(arg)
+## A veces, necesitamos incorporar información a nuestros datos vectoriales.
 
-arg\$lets \<- sample(LETTERS, nrow(arg)) head(arg)
+```{r}
+arg_utm19s$lets <- sample(letters, nrow(arg_utm19s)) 
+arg_utm19s
+```
 
-arg\$lets \<- NULL
+```{r}
+perim(arg_utm19s)
+arg_utm19s$perimetro <- perim(arg_utm19s)
+```
 
-dfr \<- data.frame(District = arg$NAME_1, Canton = arg$NAME_2, Value = round(runif(length(arg), 100, 1000))) dfr \<- dfr\[order(dfr\$Canton), \] pm \<- merge(arg, dfr, by.x = c('NAME_1', 'NAME_2'), by.y = c('District', 'Canton')) pm
+```{r}
+expanse(arg_utm19s)
+arg_utm19s$area <- expanse(arg_utm19s)
+```
 
-head(pm)
+## ¿Qué pasa si quiero borrar una columna?
 
-i \<- which(p\$NAME_1 == 'Grevenmacher') g \<- p\[i,\] g
+```{r}
+arg$lets <- NULL
+```
 
-z \<- rast(p) dim(z) \<- c(2,2) values(z) \<- 1:4 names(z) \<- 'Zone'
+## A veces tenemos los datos en una tabla aparte. Podemos vincularla con los datos de los atributos vectoriales, pero necesitamos un campo en común.
 
-z \<- as.polygons(z) z
+Me descargué datos del [censo poblacional del país](https://censo.gob.ar/index.php/datos_definitivos_total_pais/) 
 
-z2 \<- z\[2,\] plot(p) plot(z, add = TRUE, border = 'blue', lwd = 5) plot(z2, add = TRUE, border = 'red', lwd = 2, col = 'red')
+```{r}
+d <- read.csv("data/c2022_tp_c_resumen.csv", header = TRUE, encoding = "latin1")
+arg_pop <- merge(arg, d, by.x = 'NAME_1', by.y = 'provincia')
+arg_pop
+```
 
-b \<- rbind(p, z) head(b)
+## Veamos como se ve la población argentina por provincias...
+
+```{r}
+plot(arg_pop, "poblacion", type = "continuous")
+```
+
+## También se puede filtrar la información para una o varias entidades dentro de los datos.
+
+```{r}
+which(arg_pop$NAME_1 == 'Buenos Aires')
+i <- which(arg_pop$NAME_1 %in% c("Buenos Aires", "Río Negro"))
+g <- arg_pop[i,]
+plot(g)
+```
+
+
+z <- rast(p) dim(z) <- c(2,2) values(z) <- 1:4 names(z) <- 'Zone'
+
+z <- as.polygons(z) z
+
+z2 <- z[2,] plot(p) plot(z, add = TRUE, border = 'blue', lwd = 5) plot(z2, add = TRUE, border = 'red', lwd = 2, col = 'red')
+
+b <- rbind(p, z) head(b)
 
 tail(b)
 
-pa \<- aggregate(p, by = 'NAME_1') za \<- aggregate(z) plot(za, col = 'light gray', border = 'light gray', lwd = 5) plot(pa, add = TRUE, col = rainbow(3), lwd = 3, border = 'white')
+pa <- aggregate(p, by = 'NAME_1') za <- aggregate(z) plot(za, col = 'light gray', border = 'light gray', lwd = 5) plot(pa, add = TRUE, col = rainbow(3), lwd = 3, border = 'white')
 
-e \<- erase(p, z2) plot(e)
+e <- erase(p, z2) plot(e)
 
-i \<- intersect(p, z2) plot(i)
+i <- intersect(p, z2) plot(i)
 
-e \<- ext(6, 6.4, 49.7, 50) pe \<- crop(p, z2) plot(p) plot(e, add = TRUE, lwd = 3, col = "red") plot(i, col = 'light green', add = TRUE) plot(pe, col = 'light blue', add = TRUE) plot(e, add = TRUE, lwd = 3, border = "blue")
+e <- ext(6, 6.4, 49.7, 50) pe <- crop(p, z2) plot(p) plot(e, add = TRUE, lwd = 3, col = "red") plot(i, col = 'light green', add = TRUE) plot(pe, col = 'light blue', add = TRUE) plot(e, add = TRUE, lwd = 3, border = "blue")
 
-u \<- union(p, z) u
+u <- union(p, z) u
 
 set.seed(5) plot(u, col = sample(rainbow(length(u))))
 
-dif \<- symdif(z,p) plot(dif, col = rainbow(length(dif)))
+dif <- symdif(z,p) plot(dif, col = rainbow(length(dif)))
 
 extract(spts, p)
 
