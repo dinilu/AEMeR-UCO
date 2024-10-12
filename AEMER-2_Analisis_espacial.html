@@ -407,6 +407,17 @@ Diego Nieto Lugilde
 
 </section>
 <section>
+<section id="manejando-datos-espaciales" class="title-slide slide level1 center">
+<h1>Manejando datos espaciales</h1>
+
+</section>
+<section id="para-ello-usaremos-el-paquete-terra" class="slide level2">
+<h2>Para ello usaremos el paquete Terra</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(terra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
 <section id="manejando-datos-vectoriales" class="title-slide slide level1 center">
 <h1>Manejando datos vectoriales</h1>
 
@@ -414,13 +425,11 @@ Diego Nieto Lugilde
 <section id="crear-datos-vectoriales-desde-cero" class="slide level2">
 <h2>Crear datos vectoriales desde cero</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="3-4|5|6-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(terra)</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>lon <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">116.7</span>, <span class="sc">-</span><span class="fl">120.4</span>, <span class="sc">-</span><span class="fl">116.7</span>, <span class="sc">-</span><span class="fl">113.5</span>, <span class="sc">-</span><span class="fl">115.5</span>, <span class="sc">-</span><span class="fl">120.8</span>, <span class="sc">-</span><span class="fl">119.5</span>, <span class="sc">-</span><span class="fl">113.7</span>, <span class="sc">-</span><span class="fl">113.7</span>, <span class="sc">-</span><span class="fl">110.7</span>) </span>
-<span id="cb1-4"><a href="#cb1-4"></a>lat <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">45.3</span>, <span class="fl">42.6</span>, <span class="fl">38.9</span>, <span class="fl">42.1</span>, <span class="fl">35.7</span>, <span class="fl">38.9</span>, <span class="fl">36.2</span>, <span class="dv">39</span>, <span class="fl">41.6</span>, <span class="fl">36.9</span>) </span>
-<span id="cb1-5"><a href="#cb1-5"></a>lonlat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(lon, lat) </span>
-<span id="cb1-6"><a href="#cb1-6"></a>pts <span class="ot">&lt;-</span> <span class="fu">vect</span>(lonlat) </span>
-<span id="cb1-7"><a href="#cb1-7"></a>pts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="1-2|3|4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>lon <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">116.7</span>, <span class="sc">-</span><span class="fl">120.4</span>, <span class="sc">-</span><span class="fl">116.7</span>, <span class="sc">-</span><span class="fl">113.5</span>, <span class="sc">-</span><span class="fl">115.5</span>, <span class="sc">-</span><span class="fl">120.8</span>, <span class="sc">-</span><span class="fl">119.5</span>, <span class="sc">-</span><span class="fl">113.7</span>, <span class="sc">-</span><span class="fl">113.7</span>, <span class="sc">-</span><span class="fl">110.7</span>) </span>
+<span id="cb2-2"><a href="#cb2-2"></a>lat <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">45.3</span>, <span class="fl">42.6</span>, <span class="fl">38.9</span>, <span class="fl">42.1</span>, <span class="fl">35.7</span>, <span class="fl">38.9</span>, <span class="fl">36.2</span>, <span class="dv">39</span>, <span class="fl">41.6</span>, <span class="fl">36.9</span>) </span>
+<span id="cb2-3"><a href="#cb2-3"></a>lonlat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(lon, lat) </span>
+<span id="cb2-4"><a href="#cb2-4"></a>pts <span class="ot">&lt;-</span> <span class="fu">vect</span>(lonlat) </span>
+<span id="cb2-5"><a href="#cb2-5"></a>pts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> class       : SpatVector 
  geometry    : points 
@@ -436,7 +445,7 @@ Diego Nieto Lugilde
 <section id="revisar" class="slide level2">
 <h2>Revisar</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">class</span> (pts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">class</span> (pts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "SpatVector"
 attr(,"package")
@@ -444,7 +453,7 @@ attr(,"package")
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">geom</span>(pts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">geom</span>(pts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      geom part      x    y hole
  [1,]    1    1 -116.7 45.3    0
@@ -463,16 +472,16 @@ attr(,"package")
 <section id="visualizar" class="slide level2">
 <h2>Visualizar</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">plot</span>(pts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">plot</span>(pts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
 <section id="establecer-sistema-de-referencia-de-coordenadas-crs" class="slide level2">
 <h2>Establecer sistema de referencia de coordenadas (CRS)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>crdref <span class="ot">&lt;-</span> <span class="st">"+proj=longlat +datum=WGS84"</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>pts <span class="ot">&lt;-</span> <span class="fu">vect</span>(lonlat, <span class="at">crs=</span>crdref)</span>
-<span id="cb8-3"><a href="#cb8-3"></a>pts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>crdref <span class="ot">&lt;-</span> <span class="st">"+proj=longlat +datum=WGS84"</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>pts <span class="ot">&lt;-</span> <span class="fu">vect</span>(lonlat, <span class="at">crs=</span>crdref)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>pts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> class       : SpatVector 
  geometry    : points 
@@ -485,7 +494,7 @@ attr(,"package")
 <section id="podemos-comprobar-sólo-el-crs-de-un-archivo-vectorial" class="slide level2">
 <h2>Podemos comprobar sólo el CRS de un archivo vectorial</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">crs</span>(pts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">crs</span>(pts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "GEOGCRS[\"unknown\",\n    DATUM[\"World Geodetic System 1984\",\n        ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n            LENGTHUNIT[\"metre\",1]],\n        ID[\"EPSG\",6326]],\n    PRIMEM[\"Greenwich\",0,\n        ANGLEUNIT[\"degree\",0.0174532925199433],\n        ID[\"EPSG\",8901]],\n    CS[ellipsoidal,2],\n        AXIS[\"longitude\",east,\n            ORDER[1],\n            ANGLEUNIT[\"degree\",0.0174532925199433,\n                ID[\"EPSG\",9122]]],\n        AXIS[\"latitude\",north,\n            ORDER[2],\n            ANGLEUNIT[\"degree\",0.0174532925199433,\n                ID[\"EPSG\",9122]]]]"</code></pre>
 </div>
@@ -493,12 +502,12 @@ attr(,"package")
 </section>
 <section id="la-ubicación-sola-no-es-muy-interesante" class="slide level2">
 <h2>La ubicación sola no es muy interesante…</h2>
-<p>Vamos a generar a simular valores de precipitación al azar, un valor para cada punto.</p>
+<p>Vamos a simular valores de precipitación al azar, un valor para cada punto.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>precipvalue <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="fu">nrow</span>(lonlat), <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">100</span>))</span>
-<span id="cb12-2"><a href="#cb12-2"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(lonlat), <span class="at">precip=</span>precipvalue)</span>
-<span id="cb12-3"><a href="#cb12-3"></a>pts <span class="ot">&lt;-</span> <span class="fu">vect</span>(lonlat, <span class="at">atts=</span>df, <span class="at">crs=</span>crdref)</span>
-<span id="cb12-4"><a href="#cb12-4"></a>pts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>precipvalue <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="fu">nrow</span>(lonlat), <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">100</span>))</span>
+<span id="cb13-2"><a href="#cb13-2"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(lonlat), <span class="at">precip=</span>precipvalue)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>pts <span class="ot">&lt;-</span> <span class="fu">vect</span>(lonlat, <span class="at">atts=</span>df, <span class="at">crs=</span>crdref)</span>
+<span id="cb13-4"><a href="#cb13-4"></a>pts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> class       : SpatVector 
  geometry    : points 
@@ -507,26 +516,26 @@ attr(,"package")
  coord. ref. : +proj=longlat +datum=WGS84 +no_defs 
  names       :    ID precip
  type        : &lt;int&gt;  &lt;num&gt;
- values      :     1     55
-                   2     39
-                   3      6</code></pre>
+ values      :     1     28
+                   2     33
+                   3     92</code></pre>
 </div>
 </div>
 </section>
 <section id="graficar-precipitaciones" class="slide level2">
 <h2>Graficar precipitaciones</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">plot</span>(pts, <span class="at">cex =</span> precip<span class="sc">/</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">plot</span>(pts, <span class="at">cex =</span> precip<span class="sc">/</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
-<section id="genera-un-segundo-conjunto-de-puntos" class="slide level2">
-<h2>Genera un segundo conjunto de puntos…</h2>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<section id="vamos-a-genera-un-segundo-conjunto-de-puntos" class="slide level2">
+<h2>Vamos a genera un segundo conjunto de puntos…</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>lon2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">116.8</span>, <span class="sc">-</span><span class="fl">114.2</span>, <span class="sc">-</span><span class="fl">112.9</span>, <span class="sc">-</span><span class="fl">111.9</span>, <span class="sc">-</span><span class="fl">114.2</span>, <span class="sc">-</span><span class="fl">115.4</span>, <span class="sc">-</span><span class="fl">117.7</span>)</span>
-<span id="cb15-2"><a href="#cb15-2"></a>lat2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">41.3</span>, <span class="fl">42.9</span>, <span class="fl">42.4</span>, <span class="fl">39.8</span>, <span class="fl">37.6</span>, <span class="fl">38.3</span>, <span class="fl">37.6</span>)</span>
-<span id="cb15-3"><a href="#cb15-3"></a>lonlat2 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">id=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">part=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), lon2, lat2)</span>
-<span id="cb15-4"><a href="#cb15-4"></a>lonlat2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>lon2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">116.8</span>, <span class="sc">-</span><span class="fl">114.2</span>, <span class="sc">-</span><span class="fl">112.9</span>, <span class="sc">-</span><span class="fl">111.9</span>, <span class="sc">-</span><span class="fl">114.2</span>, <span class="sc">-</span><span class="fl">115.4</span>, <span class="sc">-</span><span class="fl">117.7</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a>lat2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">41.3</span>, <span class="fl">42.9</span>, <span class="fl">42.4</span>, <span class="fl">39.8</span>, <span class="fl">37.6</span>, <span class="fl">38.3</span>, <span class="fl">37.6</span>)</span>
+<span id="cb16-3"><a href="#cb16-3"></a>lonlat2 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">id=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">part=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), lon2, lat2)</span>
+<span id="cb16-4"><a href="#cb16-4"></a>lonlat2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     id part   lon2 lat2
 [1,]  1    1 -116.8 41.3
@@ -539,11 +548,11 @@ attr(,"package")
 </div>
 </div>
 </section>
-<section id="para-crear-un-conjunto-de-datos-de-líneas" class="slide level2">
-<h2>… para crear un conjunto de datos de líneas…</h2>
+<section id="pero-para-crear-datos-de-líneas" class="slide level2">
+<h2>… pero para crear datos de líneas…</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>lns <span class="ot">&lt;-</span> <span class="fu">vect</span>(lonlat2, <span class="at">type=</span><span class="st">"lines"</span>, <span class="at">crs=</span>crdref)</span>
-<span id="cb17-2"><a href="#cb17-2"></a>lns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>lns <span class="ot">&lt;-</span> <span class="fu">vect</span>(lonlat2, <span class="at">type=</span><span class="st">"lines"</span>, <span class="at">crs=</span>crdref)</span>
+<span id="cb18-2"><a href="#cb18-2"></a>lns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> class       : SpatVector 
  geometry    : lines 
@@ -552,12 +561,16 @@ attr(,"package")
  coord. ref. : +proj=longlat +datum=WGS84 +no_defs </code></pre>
 </div>
 </div>
-</section>
-<section id="o-para-generar-un-conjunto-de-datos-de-polígonos." class="slide level2">
-<h2>… o para generar un conjunto de datos de polígonos.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>pols <span class="ot">&lt;-</span> <span class="fu">vect</span>(lonlat2, <span class="at">type=</span><span class="st">"polygons"</span>, <span class="at">crs=</span>crdref)</span>
-<span id="cb19-2"><a href="#cb19-2"></a>pols</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">plot</span>(lns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<section id="o-un-datos-de-polígonos." class="slide level2">
+<h2>… o un datos de polígonos.</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>pols <span class="ot">&lt;-</span> <span class="fu">vect</span>(lonlat2, <span class="at">type=</span><span class="st">"polygons"</span>, <span class="at">crs=</span>crdref)</span>
+<span id="cb21-2"><a href="#cb21-2"></a>pols</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> class       : SpatVector 
  geometry    : polygons 
@@ -566,21 +579,18 @@ attr(,"package")
  coord. ref. : +proj=longlat +datum=WGS84 +no_defs </code></pre>
 </div>
 </div>
-</section>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">plot</span>(pols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
 <section id="cargando-datos-ya-existentes" class="slide level2">
 <h2>Cargando datos ya existentes</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">"ex/lux.shp"</span>, <span class="at">package=</span><span class="st">"terra"</span>)</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">basename</span>(filename)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "lux.shp"</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># install.packages("geodata")</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">library</span>(geodata)</span>
-<span id="cb23-3"><a href="#cb23-3"></a>arg <span class="ot">&lt;-</span> <span class="fu">gadm</span>(<span class="st">"ARG"</span>, <span class="at">level =</span> <span class="dv">1</span>, <span class="at">path =</span> <span class="st">"."</span>)</span>
-<span id="cb23-4"><a href="#cb23-4"></a>arg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># install.packages("geodata")</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">library</span>(geodata)</span>
+<span id="cb24-3"><a href="#cb24-3"></a>arg <span class="ot">&lt;-</span> <span class="fu">gadm</span>(<span class="st">"ARG"</span>, <span class="at">level =</span> <span class="dv">1</span>, <span class="at">path =</span> <span class="st">"."</span>)</span>
+<span id="cb24-4"><a href="#cb24-4"></a>arg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> class       : SpatVector 
  geometry    : polygons 
@@ -603,7 +613,7 @@ attr(,"package")
 <section id="escribir-ficheros-vectoriales" class="slide level2">
 <h2>Escribir ficheros vectoriales</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">writeVector</span>(arg, <span class="st">"arg.shp"</span>, <span class="at">overwrite=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">writeVector</span>(arg, <span class="st">"arg.shp"</span>, <span class="at">overwrite=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -614,8 +624,8 @@ attr(,"package")
 <section id="crear-datos-raster" class="slide level2">
 <h2>Crear datos raster</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>r <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="at">ncol=</span><span class="dv">10</span>, <span class="at">nrow=</span><span class="dv">10</span>, <span class="at">xmin=</span><span class="sc">-</span><span class="dv">150</span>, <span class="at">xmax=</span><span class="sc">-</span><span class="dv">80</span>, <span class="at">ymin=</span><span class="dv">20</span>, <span class="at">ymax=</span><span class="dv">60</span>)</span>
-<span id="cb26-2"><a href="#cb26-2"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>r <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="at">ncol=</span><span class="dv">10</span>, <span class="at">nrow=</span><span class="dv">10</span>, <span class="at">xmin=</span><span class="sc">-</span><span class="dv">150</span>, <span class="at">xmax=</span><span class="sc">-</span><span class="dv">80</span>, <span class="at">ymin=</span><span class="dv">20</span>, <span class="at">ymax=</span><span class="dv">60</span>)</span>
+<span id="cb27-2"><a href="#cb27-2"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 10, 10, 1  (nrow, ncol, nlyr)
@@ -625,8 +635,8 @@ coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">values</span>(r) <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">ncell</span>(r))</span>
-<span id="cb28-2"><a href="#cb28-2"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">values</span>(r) <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">ncell</span>(r))</span>
+<span id="cb29-2"><a href="#cb29-2"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 10, 10, 1  (nrow, ncol, nlyr)
@@ -634,14 +644,14 @@ resolution  : 7, 4  (x, y)
 extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
-name        :      lyr.1 
-min value   : 0.02259022 
-max value   : 0.94596964 </code></pre>
+name        :       lyr.1 
+min value   : 0.008342978 
+max value   : 0.998458780 </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">values</span>(r) <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncell</span>(r)</span>
-<span id="cb30-2"><a href="#cb30-2"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">values</span>(r) <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncell</span>(r)</span>
+<span id="cb31-2"><a href="#cb31-2"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 10, 10, 1  (nrow, ncol, nlyr)
@@ -658,31 +668,31 @@ max value   :   100 </code></pre>
 <section id="graficar-datos-raster" class="slide level2">
 <h2>Graficar datos raster</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">plot</span>(r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">plot</span>(r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"></section>
 <section id="añadir-información-vectorial-sobre-el-gráfico" class="slide level2">
 <h2>Añadir información vectorial sobre el gráfico</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">plot</span>(r)</span>
-<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">points</span>(pts, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">pch=</span><span class="dv">20</span>, <span class="at">cex=</span><span class="dv">3</span>)</span>
-<span id="cb33-3"><a href="#cb33-3"></a><span class="fu">lines</span>(pols, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">plot</span>(r)</span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="fu">points</span>(pts, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">pch=</span><span class="dv">20</span>, <span class="at">cex=</span><span class="dv">3</span>)</span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="fu">lines</span>(pols, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section>
 <section id="operar-con-datos-raster" class="slide level2">
 <h2>Operar con datos raster</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>r2 <span class="ot">&lt;-</span> r <span class="sc">*</span> r</span>
-<span id="cb34-2"><a href="#cb34-2"></a>r3  <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>r2 <span class="ot">&lt;-</span> r <span class="sc">*</span> r</span>
+<span id="cb35-2"><a href="#cb35-2"></a>r3  <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="combinar-raster-para-crear-un-objeto-multicapa" class="slide level2">
 <h2>Combinar raster para crear un objeto multicapa</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>stck <span class="ot">&lt;-</span> <span class="fu">c</span>(r, r2, r3)</span>
-<span id="cb35-2"><a href="#cb35-2"></a>stck</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>stck <span class="ot">&lt;-</span> <span class="fu">c</span>(r, r2, r3)</span>
+<span id="cb36-2"><a href="#cb36-2"></a>stck</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 10, 10, 3  (nrow, ncol, nlyr)
@@ -699,15 +709,15 @@ max values  :   100, 10000,    10 </code></pre>
 <section id="graficar-datos-multicapa" class="slide level2">
 <h2>Graficar datos multicapa</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">plot</span>(stck)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">plot</span>(stck)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch"></section>
 <section id="extraer-capas-sueltas-de-objetos-multicapa" class="slide level2">
 <h2>Extraer capas sueltas de objetos multicapa</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>r2 <span class="ot">&lt;-</span> stck[[<span class="dv">2</span>]]</span>
-<span id="cb38-2"><a href="#cb38-2"></a>r2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>r2 <span class="ot">&lt;-</span> stck[[<span class="dv">2</span>]]</span>
+<span id="cb39-2"><a href="#cb39-2"></a>r2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 10, 10, 1  (nrow, ncol, nlyr)
@@ -724,15 +734,15 @@ max value   : 10000 </code></pre>
 <section id="cargar-datos-raster" class="slide level2">
 <h2>Cargar datos raster</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>f <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">"ex/logo.tif"</span>, <span class="at">package=</span><span class="st">"terra"</span>)</span>
-<span id="cb40-2"><a href="#cb40-2"></a><span class="fu">basename</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>f <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">"ex/logo.tif"</span>, <span class="at">package=</span><span class="st">"terra"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2"></a><span class="fu">basename</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "logo.tif"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>r <span class="ot">&lt;-</span> <span class="fu">rast</span>(f)</span>
-<span id="cb42-2"><a href="#cb42-2"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>r <span class="ot">&lt;-</span> <span class="fu">rast</span>(f)</span>
+<span id="cb43-2"><a href="#cb43-2"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 77, 101, 3  (nrow, ncol, nlyr)
@@ -750,8 +760,8 @@ max values  : 255,   255,  255 </code></pre>
 <section id="escribir-fichero-de-datos-raster" class="slide level2">
 <h2>Escribir fichero de datos raster</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>x <span class="ot">&lt;-</span> <span class="fu">writeRaster</span>(r[[<span class="dv">2</span>]], <span class="st">"test_output.tif"</span>, <span class="at">overwrite=</span><span class="cn">TRUE</span>)</span>
-<span id="cb44-2"><a href="#cb44-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>x <span class="ot">&lt;-</span> <span class="fu">writeRaster</span>(r[[<span class="dv">2</span>]], <span class="st">"test_output.tif"</span>, <span class="at">overwrite=</span><span class="cn">TRUE</span>)</span>
+<span id="cb45-2"><a href="#cb45-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 77, 101, 1  (nrow, ncol, nlyr)
@@ -773,7 +783,7 @@ max value   :   255 </code></pre>
 <section id="comprobamos-el-crs-de-alguno-de-nuestros-datos" class="slide level2">
 <h2>Comprobamos el CRS de alguno de nuestros datos</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">crs</span>(arg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">crs</span>(arg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "GEOGCRS[\"WGS 84\",\n    DATUM[\"World Geodetic System 1984\",\n        ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n            LENGTHUNIT[\"metre\",1]]],\n    PRIMEM[\"Greenwich\",0,\n        ANGLEUNIT[\"degree\",0.0174532925199433]],\n    CS[ellipsoidal,2],\n        AXIS[\"geodetic latitude (Lat)\",north,\n            ORDER[1],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n        AXIS[\"geodetic longitude (Lon)\",east,\n            ORDER[2],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n    ID[\"EPSG\",4326]]"</code></pre>
 </div>
@@ -782,9 +792,9 @@ max value   :   255 </code></pre>
 <section id="se-puede-borrar-el-crs-del-conjunto-de-datos" class="slide level2">
 <h2>Se puede borrar el CRS del conjunto de datos</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>pp <span class="ot">&lt;-</span> arg</span>
-<span id="cb48-2"><a href="#cb48-2"></a><span class="fu">crs</span>(pp) <span class="ot">&lt;-</span> <span class="st">""</span></span>
-<span id="cb48-3"><a href="#cb48-3"></a><span class="fu">crs</span>(pp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>pp <span class="ot">&lt;-</span> arg</span>
+<span id="cb49-2"><a href="#cb49-2"></a><span class="fu">crs</span>(pp) <span class="ot">&lt;-</span> <span class="st">""</span></span>
+<span id="cb49-3"><a href="#cb49-3"></a><span class="fu">crs</span>(pp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] ""</code></pre>
 </div>
@@ -793,8 +803,8 @@ max value   :   255 </code></pre>
 <section id="o-se-puede-especificar-a-mano-estandar-proj.4" class="slide level2">
 <h2>O se puede especificar a mano (estandar PROJ.4)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="fu">crs</span>(pp) <span class="ot">&lt;-</span> <span class="st">"+proj=longlat +datum=WGS84"</span></span>
-<span id="cb50-2"><a href="#cb50-2"></a><span class="fu">crs</span>(pp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">crs</span>(pp) <span class="ot">&lt;-</span> <span class="st">"+proj=longlat +datum=WGS84"</span></span>
+<span id="cb51-2"><a href="#cb51-2"></a><span class="fu">crs</span>(pp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "GEOGCRS[\"unknown\",\n    DATUM[\"World Geodetic System 1984\",\n        ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n            LENGTHUNIT[\"metre\",1]],\n        ID[\"EPSG\",6326]],\n    PRIMEM[\"Greenwich\",0,\n        ANGLEUNIT[\"degree\",0.0174532925199433],\n        ID[\"EPSG\",8901]],\n    CS[ellipsoidal,2],\n        AXIS[\"longitude\",east,\n            ORDER[1],\n            ANGLEUNIT[\"degree\",0.0174532925199433,\n                ID[\"EPSG\",9122]]],\n        AXIS[\"latitude\",north,\n            ORDER[2],\n            ANGLEUNIT[\"degree\",0.0174532925199433,\n                ID[\"EPSG\",9122]]]]"</code></pre>
 </div>
@@ -803,8 +813,8 @@ max value   :   255 </code></pre>
 <section id="o-se-puede-especificar-con-los-códigos-epsg" class="slide level2">
 <h2>O se puede especificar con los códigos EPSG</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="fu">crs</span>(pp) <span class="ot">&lt;-</span> <span class="st">"EPSG:4326"</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a><span class="fu">crs</span>(pp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="fu">crs</span>(pp) <span class="ot">&lt;-</span> <span class="st">"EPSG:4326"</span></span>
+<span id="cb53-2"><a href="#cb53-2"></a><span class="fu">crs</span>(pp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "GEOGCRS[\"WGS 84\",\n    ENSEMBLE[\"World Geodetic System 1984 ensemble\",\n        MEMBER[\"World Geodetic System 1984 (Transit)\"],\n        MEMBER[\"World Geodetic System 1984 (G730)\"],\n        MEMBER[\"World Geodetic System 1984 (G873)\"],\n        MEMBER[\"World Geodetic System 1984 (G1150)\"],\n        MEMBER[\"World Geodetic System 1984 (G1674)\"],\n        MEMBER[\"World Geodetic System 1984 (G1762)\"],\n        MEMBER[\"World Geodetic System 1984 (G2139)\"],\n        ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n            LENGTHUNIT[\"metre\",1]],\n        ENSEMBLEACCURACY[2.0]],\n    PRIMEM[\"Greenwich\",0,\n        ANGLEUNIT[\"degree\",0.0174532925199433]],\n    CS[ellipsoidal,2],\n        AXIS[\"geodetic latitude (Lat)\",north,\n            ORDER[1],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n        AXIS[\"geodetic longitude (Lon)\",east,\n            ORDER[2],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n    USAGE[\n        SCOPE[\"Horizontal component of 3D system.\"],\n        AREA[\"World.\"],\n        BBOX[-90,-180,90,180]],\n    ID[\"EPSG\",4326]]"</code></pre>
 </div>
@@ -813,32 +823,32 @@ max value   :   255 </code></pre>
 <section id="notad-que-eso-cambia-el-sistema-de-referencia-pero-no-las-coordenadas-en-si" class="slide level2">
 <h2>Notad que eso cambia el sistema de referencia pero no las coordenadas en si</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb54-2"><a href="#cb54-2"></a><span class="fu">plot</span>(arg)</span>
-<span id="cb54-3"><a href="#cb54-3"></a><span class="fu">plot</span>(pp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb55-2"><a href="#cb55-2"></a><span class="fu">plot</span>(arg)</span>
+<span id="cb55-3"><a href="#cb55-3"></a><span class="fu">plot</span>(pp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"></section>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-33-1.png" width="960" class="r-stretch"></section>
 <section id="si-queremos-convertir-coordenadas-entre-crs-tenemos-que-proyectar-los-datos" class="slide level2">
 <h2>Si queremos convertir coordenadas entre CRS tenemos que proyectar los datos</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>newcrs <span class="ot">&lt;-</span> <span class="st">"+proj=robin +datum=WGS84"</span></span>
-<span id="cb55-2"><a href="#cb55-2"></a></span>
-<span id="cb55-3"><a href="#cb55-3"></a>arg_rob <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">project</span>(arg, newcrs)</span>
-<span id="cb55-4"><a href="#cb55-4"></a></span>
-<span id="cb55-5"><a href="#cb55-5"></a>arg_4326 <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">project</span>(arg_rob, <span class="st">"EPSG:4326"</span>)</span>
-<span id="cb55-6"><a href="#cb55-6"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb55-7"><a href="#cb55-7"></a><span class="fu">plot</span>(arg)</span>
-<span id="cb55-8"><a href="#cb55-8"></a><span class="fu">plot</span>(arg_rob)</span>
-<span id="cb55-9"><a href="#cb55-9"></a><span class="fu">plot</span>(arg_4326)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>newcrs <span class="ot">&lt;-</span> <span class="st">"+proj=robin +datum=WGS84"</span></span>
+<span id="cb56-2"><a href="#cb56-2"></a></span>
+<span id="cb56-3"><a href="#cb56-3"></a>arg_rob <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">project</span>(arg, newcrs)</span>
+<span id="cb56-4"><a href="#cb56-4"></a></span>
+<span id="cb56-5"><a href="#cb56-5"></a>arg_4326 <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">project</span>(arg_rob, <span class="st">"EPSG:4326"</span>)</span>
+<span id="cb56-6"><a href="#cb56-6"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb56-7"><a href="#cb56-7"></a><span class="fu">plot</span>(arg)</span>
+<span id="cb56-8"><a href="#cb56-8"></a><span class="fu">plot</span>(arg_rob)</span>
+<span id="cb56-9"><a href="#cb56-9"></a><span class="fu">plot</span>(arg_4326)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-32-1.png" width="960" class="r-stretch"></section>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-34-1.png" width="960" class="r-stretch"></section>
 <section id="también-se-pueden-proyectar-datos-raster" class="slide level2">
 <h2>También se pueden proyectar datos raster</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>stck_rob <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">project</span>(stck, newcrs)</span>
-<span id="cb56-2"><a href="#cb56-2"></a><span class="fu">crs</span>(stck_rob)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>stck_rob <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">project</span>(stck, newcrs)</span>
+<span id="cb57-2"><a href="#cb57-2"></a><span class="fu">crs</span>(stck_rob)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "PROJCRS[\"unknown\",\n    BASEGEOGCRS[\"unknown\",\n        DATUM[\"World Geodetic System 1984\",\n            ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n                LENGTHUNIT[\"metre\",1]],\n            ID[\"EPSG\",6326]],\n        PRIMEM[\"Greenwich\",0,\n            ANGLEUNIT[\"degree\",0.0174532925199433],\n            ID[\"EPSG\",8901]]],\n    CONVERSION[\"unknown\",\n        METHOD[\"Robinson\"],\n        PARAMETER[\"Longitude of natural origin\",0,\n            ANGLEUNIT[\"degree\",0.0174532925199433],\n            ID[\"EPSG\",8802]],\n        PARAMETER[\"False easting\",0,\n            LENGTHUNIT[\"metre\",1],\n            ID[\"EPSG\",8806]],\n        PARAMETER[\"False northing\",0,\n            LENGTHUNIT[\"metre\",1],\n            ID[\"EPSG\",8807]]],\n    CS[Cartesian,2],\n        AXIS[\"(E)\",east,\n            ORDER[1],\n            LENGTHUNIT[\"metre\",1,\n                ID[\"EPSG\",9001]]],\n        AXIS[\"(N)\",north,\n            ORDER[2],\n            LENGTHUNIT[\"metre\",1,\n                ID[\"EPSG\",9001]]]]"</code></pre>
 </div>
@@ -847,21 +857,21 @@ max value   :   255 </code></pre>
 <section id="ahora-si-que-las-coordenadas-aparecen-desplazadas" class="slide level2">
 <h2>Ahora si que las coordenadas aparecen “desplazadas”</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb58-2"><a href="#cb58-2"></a><span class="fu">plot</span>(stck[[<span class="dv">1</span>]])</span>
-<span id="cb58-3"><a href="#cb58-3"></a><span class="fu">plot</span>(stck_rob[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb59-2"><a href="#cb59-2"></a><span class="fu">plot</span>(stck[[<span class="dv">1</span>]])</span>
+<span id="cb59-3"><a href="#cb59-3"></a><span class="fu">plot</span>(stck_rob[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-34-1.png" width="960" class="r-stretch"><div class="asides">
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-36-1.png" width="960" class="r-stretch"><div class="asides">
 <p>Notad que los píxeles no tienen un tamaño regular</p>
 </div>
 </section>
 <section id="para-controlar-el-número-de-pixeles-y-su-resolución-debemos-crear-antes-una-plantilla" class="slide level2">
 <h2>Para controlar el número de pixeles y su resolución debemos crear antes una plantilla</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rast</span>(stck_rob)</span>
-<span id="cb59-2"><a href="#cb59-2"></a><span class="fu">res</span>(x) <span class="ot">&lt;-</span> <span class="dv">200000</span></span>
-<span id="cb59-3"><a href="#cb59-3"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rast</span>(stck_rob)</span>
+<span id="cb60-2"><a href="#cb60-2"></a><span class="fu">res</span>(x) <span class="ot">&lt;-</span> <span class="dv">200000</span></span>
+<span id="cb60-3"><a href="#cb60-3"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 20, 38, 3  (nrow, ncol, nlyr)
@@ -871,8 +881,8 @@ coord. ref. : +proj=robin +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs 
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a>stck_rob_2 <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">project</span>(stck, x)</span>
-<span id="cb61-2"><a href="#cb61-2"></a>stck_rob_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>stck_rob_2 <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">project</span>(stck, x)</span>
+<span id="cb62-2"><a href="#cb62-2"></a>stck_rob_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 20, 38, 3  (nrow, ncol, nlyr)
@@ -889,13 +899,13 @@ max values  : 99.18499, 9845.148, 9.958177 </code></pre>
 <section id="veamos-el-resultado" class="slide level2">
 <h2>Veamos el resultado</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb63-2"><a href="#cb63-2"></a><span class="fu">plot</span>(stck[[<span class="dv">2</span>]])</span>
-<span id="cb63-3"><a href="#cb63-3"></a><span class="fu">plot</span>(stck_rob[[<span class="dv">2</span>]])</span>
-<span id="cb63-4"><a href="#cb63-4"></a><span class="fu">plot</span>(stck_rob_2[[<span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb64-2"><a href="#cb64-2"></a><span class="fu">plot</span>(stck[[<span class="dv">2</span>]])</span>
+<span id="cb64-3"><a href="#cb64-3"></a><span class="fu">plot</span>(stck_rob[[<span class="dv">2</span>]])</span>
+<span id="cb64-4"><a href="#cb64-4"></a><span class="fu">plot</span>(stck_rob_2[[<span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-37-1.png" width="960" class="r-stretch"></section></section>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-39-1.png" width="960" class="r-stretch"></section></section>
 <section id="manipular-datos-espaciales" class="title-slide slide level1 center">
 <h1>Manipular datos espaciales</h1>
 <p>plot(arg, “NAME_2”)</p>
