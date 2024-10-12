@@ -4,13 +4,13 @@ subtitle: "Manejo de datos espaciales en R"
 author: "Diego Nieto Lugilde"
 institute: "Universidad de Córdoba (España)"
 slide-number: true
-editor: source
 format:
   revealjs:
     logo: img/logos.png
     footer: "[AEMeR](https://dnietolugilde.com/AEMeR)"
     scrollable: true
     theme: dark
+editor: source
 ---
 
 # Manejando datos espaciales
