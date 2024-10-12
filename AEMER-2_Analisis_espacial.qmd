@@ -363,6 +363,12 @@ plot(tavg_utm19s[[2]])
 plot(tavg_utm19s_2[[2]])
 ```
 
+```{r}
+#| echo: true
+tavg[[2]]
+tavg_utm19s[[2]]
+tavg_utm19s_2[[2]]
+```
 # Manipular datos espaciales
 
 plot(arg, "NAME_2")
