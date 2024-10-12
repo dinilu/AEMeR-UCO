@@ -516,8 +516,8 @@ attr(,"package")
  coord. ref. : +proj=longlat +datum=WGS84 +no_defs 
  names       :    ID precip
  type        : &lt;int&gt;  &lt;int&gt;
- values      :     1     67
-                   2     64
+ values      :     1     44
+                   2     41
                    3     62</code></pre>
 </div>
 </div>
@@ -735,8 +735,8 @@ extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
 name        :       lyr.1 
-min value   : 0.002236615 
-max value   : 0.995328320 </code></pre>
+min value   : 0.005708071 
+max value   : 0.980688525 </code></pre>
 </div>
 </div>
 </section>
@@ -776,8 +776,8 @@ extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
 names       :       lyr.1,        lyr.1,      lyr.1 
-min values  : 0.002236615, 5.002446e-06, 0.04729286 
-max values  : 0.995328320, 9.906785e-01, 0.99766143 </code></pre>
+min values  : 0.005708071, 3.258208e-05, 0.07555178 
+max values  : 0.980688525, 9.617500e-01, 0.99029719 </code></pre>
 </div>
 </div>
 </section>
@@ -801,8 +801,8 @@ extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
 name        :        lyr.1 
-min value   : 5.002446e-06 
-max value   : 9.906785e-01 </code></pre>
+min value   : 3.258208e-05 
+max value   : 9.617500e-01 </code></pre>
 </div>
 </div>
 </section>
@@ -850,10 +850,7 @@ max values  :        29.2,        28.4,        27.3,        25.0,        22.2,  
 <div class="cell">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>tavg_utm19s <span class="ot">&lt;-</span> <span class="fu">project</span>(tavg, <span class="st">"EPSG:32719"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-|---------|---------|---------|---------|
-=========================================
-                                          </code></pre>
+<pre><code>|---------|---------|---------|---------|=========================================                                          </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>tavg_utm19s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -862,10 +859,10 @@ dimensions  : 4455, 2454, 12  (nrow, ncol, nlyr)
 resolution  : 871.5251, 871.5251  (x, y)
 extent      : -18378.29, 2120344, 3739870, 7622514  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_460014138d9_17920.tif 
+source      : spat_2018765d6e7c_8216.tif 
 names       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... 
-min values  :    -10.0615,   -10.73773,   -11.50045,   -13.56316,   -15.83311,   -19.14288, ... 
-max values  :     29.2000,    28.40000,    27.30000,    25.00000,    22.20000,    20.99198, ... </code></pre>
+min values  :   -10.06518,     -10.738,   -11.50069,   -13.56338,   -15.83648,   -19.14608, ... 
+max values  :    29.20000,      28.400,    27.30000,    25.00000,    22.20000,    20.99198, ... </code></pre>
 </div>
 </div>
 </section>
@@ -898,10 +895,7 @@ coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) </code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>tavg_utm19s_2 <span class="ot">&lt;-</span> <span class="fu">project</span>(tavg, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-|---------|---------|---------|---------|
-=========================================
-                                          </code></pre>
+<pre><code>|---------|---------|---------|---------|=========================================                                          </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>tavg_utm19s_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -910,7 +904,7 @@ dimensions  : 4853, 2673, 12  (nrow, ncol, nlyr)
 resolution  : 800, 800  (x, y)
 extent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_4600623f6882_17920.tif 
+source      : spat_201849876c85_8216.tif 
 names       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... 
 min values  :   -10.77633,   -11.47463,   -12.17463,   -14.20292,   -16.40292,   -19.51049, ... 
 max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.95641, ... </code></pre>
@@ -946,10 +940,10 @@ dimensions  : 4455, 2454, 1  (nrow, ncol, nlyr)
 resolution  : 871.5251, 871.5251  (x, y)
 extent      : -18378.29, 2120344, 3739870, 7622514  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_460014138d9_17920.tif 
+source      : spat_2018765d6e7c_8216.tif 
 name        : ARG_wc2.1_30s_tavg_2 
-min value   :            -10.73773 
-max value   :             28.40000 </code></pre>
+min value   :              -10.738 
+max value   :               28.400 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a>tavg_utm19s_2[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -958,7 +952,7 @@ dimensions  : 4853, 2673, 1  (nrow, ncol, nlyr)
 resolution  : 800, 800  (x, y)
 extent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_4600623f6882_17920.tif 
+source      : spat_201849876c85_8216.tif 
 name        : ARG_wc2.1_30s_tavg_2 
 min value   :            -11.47463 
 max value   :             28.40000 </code></pre>
@@ -1067,9 +1061,9 @@ max value   :             28.40000 </code></pre>
                ARG.3_1   ARG Argentina        Chaco El Chaco|Presi~        NA
     TYPE_1 ENGTYPE_1  CC_1 HASC_1 ISO_1  lets
      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
- Provincia  Province    NA  AR.BA  AR-B     m
- Provincia  Province    NA  AR.CT  AR-K     q
- Provincia  Province    NA  AR.CC  AR-H     v</code></pre>
+ Provincia  Province    NA  AR.BA  AR-B     y
+ Provincia  Province    NA  AR.CT  AR-K     v
+ Provincia  Province    NA  AR.CC  AR-H     k</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1361,44 +1355,6 @@ max value   :             28.40000 </code></pre>
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
