@@ -5,13 +5,17 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
+        text: AEMeR
     right:
       - href: index.qmd
         text: "![](img/logos.png){height=1in}"
+
+language: es
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
+    
+
