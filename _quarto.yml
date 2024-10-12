@@ -10,12 +10,10 @@ website:
       - href: index.qmd
         text: "![](img/logos.png){height=1in}"
 
-language: es
-
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
     
-
+lang: "es"
