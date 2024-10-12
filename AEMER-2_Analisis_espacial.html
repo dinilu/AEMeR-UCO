@@ -438,10 +438,10 @@ Diego Nieto Lugilde
  coord. ref. :  </code></pre>
 </div>
 </div>
-
-<aside><div>
+<div class="asides">
 <p>Fijaros que el apartado “coord. ref.” está vacío.</p>
-</div></aside></section>
+</div>
+</section>
 <section id="revisamos-el-tipo-de-datos" class="slide level2">
 <h2>Revisamos el tipo de datos</h2>
 <div class="cell">
@@ -516,9 +516,9 @@ attr(,"package")
  coord. ref. : +proj=longlat +datum=WGS84 +no_defs 
  names       :    ID precip
  type        : &lt;int&gt;  &lt;int&gt;
- values      :     1      1
-                   2     53
-                   3     94</code></pre>
+ values      :     1     29
+                   2     70
+                   3     57</code></pre>
 </div>
 </div>
 </section>
@@ -735,8 +735,8 @@ extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
 name        :      lyr.1 
-min value   : 0.02789235 
-max value   : 0.99381157 </code></pre>
+min value   : 0.01257991 
+max value   : 0.99585753 </code></pre>
 </div>
 </div>
 </section>
@@ -747,27 +747,18 @@ max value   : 0.99381157 </code></pre>
 
 </div>
 <img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section>
-<section id="añadir-información-vectorial-sobre-el-gráfico" class="slide level2">
-<h2>Añadir información vectorial sobre el gráfico</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">plot</span>(r)</span>
-<span id="cb44-2"><a href="#cb44-2"></a><span class="fu">plot</span>(pols, <span class="at">border =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb44-3"><a href="#cb44-3"></a><span class="fu">plot</span>(pts, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">pch=</span><span class="dv">20</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch"></section>
 <section id="operar-con-datos-raster" class="slide level2">
 <h2>Operar con datos raster</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>r2 <span class="ot">&lt;-</span> r <span class="sc">*</span> r</span>
-<span id="cb45-2"><a href="#cb45-2"></a>r3  <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>r2 <span class="ot">&lt;-</span> r <span class="sc">*</span> r</span>
+<span id="cb44-2"><a href="#cb44-2"></a>r3  <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="combinar-raster-para-crear-un-objeto-multicapa" class="slide level2">
 <h2>Combinar raster para crear un objeto multicapa</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>stck <span class="ot">&lt;-</span> <span class="fu">c</span>(r, r2, r3)</span>
-<span id="cb46-2"><a href="#cb46-2"></a>stck</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>stck <span class="ot">&lt;-</span> <span class="fu">c</span>(r, r2, r3)</span>
+<span id="cb45-2"><a href="#cb45-2"></a>stck</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 10, 10, 3  (nrow, ncol, nlyr)
@@ -775,24 +766,24 @@ resolution  : 7, 4  (x, y)
 extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
-names       :      lyr.1,        lyr.1,    lyr.1 
-min values  : 0.02789235, 0.0007779833, 0.167010 
-max values  : 0.99381157, 0.9876614466, 0.996901 </code></pre>
+names       :      lyr.1,        lyr.1,     lyr.1 
+min values  : 0.01257991, 0.0001582542, 0.1121602 
+max values  : 0.99585753, 0.9917322155, 0.9979266 </code></pre>
 </div>
 </div>
 </section>
 <section id="graficar-datos-multicapa" class="slide level2">
 <h2>Graficar datos multicapa</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">plot</span>(stck)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">plot</span>(stck)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"></section>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch"></section>
 <section id="extraer-capas-sueltas-de-objetos-multicapa" class="slide level2">
 <h2>Extraer capas sueltas de objetos multicapa</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>r2 <span class="ot">&lt;-</span> stck[[<span class="dv">2</span>]]</span>
-<span id="cb49-2"><a href="#cb49-2"></a>r2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>r2 <span class="ot">&lt;-</span> stck[[<span class="dv">2</span>]]</span>
+<span id="cb48-2"><a href="#cb48-2"></a>r2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 10, 10, 1  (nrow, ncol, nlyr)
@@ -801,8 +792,8 @@ extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
 name        :        lyr.1 
-min value   : 0.0007779833 
-max value   : 0.9876614466 </code></pre>
+min value   : 0.0001582542 
+max value   : 0.9917322155 </code></pre>
 </div>
 </div>
 </section>
@@ -810,8 +801,8 @@ max value   : 0.9876614466 </code></pre>
 <h2>Como con datos vectoriales, lo normal es cargar datos ya generados en SIG.</h2>
 <p>Para ello podemos descargar datos de distintas fuentes (v.gr. <a href="https://worldclim.org">WorldClim</a>)…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>tavg <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"tavg_arg.tif"</span>)</span>
-<span id="cb51-2"><a href="#cb51-2"></a>tavg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>tavg <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"tavg_arg.tif"</span>)</span>
+<span id="cb50-2"><a href="#cb50-2"></a>tavg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 4080, 2460, 12  (nrow, ncol, nlyr)
@@ -828,65 +819,65 @@ max values  :        29.2,        28.4,        27.3,        25.0,        22.2,  
 <section id="o-podemos-usar-el-paquete-geodata-para-acceder-directamente-a-esa-información" class="slide level2">
 <h2>… o podemos usar el paquete <code>geodata</code> para acceder directamente a esa información</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>tavg <span class="ot">&lt;-</span> <span class="fu">worldclim_country</span>(<span class="st">"ARG"</span>, <span class="st">"tavg"</span>, <span class="at">path =</span> <span class="st">"."</span>)</span>
-<span id="cb53-2"><a href="#cb53-2"></a>tavg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>tavg <span class="ot">&lt;-</span> <span class="fu">worldclim_country</span>(<span class="st">"ARG"</span>, <span class="st">"tavg"</span>, <span class="at">path =</span> <span class="st">"."</span>)</span>
+<span id="cb52-2"><a href="#cb52-2"></a>tavg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="veamos-si-se-parece-a-lo-que-conocemos-1" class="slide level2">
 <h2>Veamos si se parece a lo que conocemos…</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">plot</span>(tavg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="fu">plot</span>(tavg, <span class="at">range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">30</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-35-1.png" width="960" class="r-stretch"></section>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-34-1.png" width="960" class="r-stretch"></section>
 <section id="si-queremos-reutilizar-los-datos-y-no-tener-que-volver-a-descargarlos-también-podemos-escribirlos-en-un-fichero-de-datos-raster" class="slide level2">
 <h2>Si queremos reutilizar los datos y no tener que volver a descargarlos, también podemos escribirlos en un fichero de datos raster</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">writeRaster</span>(tavg_arg.tif, <span class="st">"raster_tavg_arg.tif"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">writeRaster</span>(tavg_arg.tif, <span class="st">"raster_tavg_arg.tif"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="también-se-pueden-proyectar-datos-raster" class="slide level2">
 <h2>También se pueden proyectar datos raster</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>tavg_utm19s <span class="ot">&lt;-</span> <span class="fu">project</span>(tavg, <span class="st">"EPSG:32719"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>tavg_utm19s <span class="ot">&lt;-</span> <span class="fu">project</span>(tavg, <span class="st">"EPSG:32719"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 |---------|---------|---------|---------|
 =========================================
                                           </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>tavg_utm19s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>tavg_utm19s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 4455, 2454, 12  (nrow, ncol, nlyr)
 resolution  : 871.5251, 871.5251  (x, y)
 extent      : -18378.29, 2120344, 3739870, 7622514  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_5fd46bc224ec_24532.tif 
+source      : spat_38886f4919d4_14472.tif 
 names       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... 
-min values  :    -10.0593,   -10.73757,    -11.5003,   -13.56304,   -15.83108,   -19.14096, ... 
-max values  :     29.2000,    28.40000,     27.3000,    25.00000,    22.20000,    20.98893, ... </code></pre>
+min values  :   -10.03863,   -10.73863,   -11.50125,   -13.56388,   -15.81209,   -19.12294, ... 
+max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.99198, ... </code></pre>
 </div>
 </div>
 </section>
 <section id="ahora-si-que-las-coordenadas-aparecen-desplazadas" class="slide level2">
 <h2>Ahora si que las coordenadas aparecen “desplazadas”</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb60-2"><a href="#cb60-2"></a><span class="fu">plot</span>(tavg[[<span class="dv">1</span>]])</span>
-<span id="cb60-3"><a href="#cb60-3"></a><span class="fu">plot</span>(tavg_utm19s[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb59-2"><a href="#cb59-2"></a><span class="fu">plot</span>(tavg[[<span class="dv">1</span>]])</span>
+<span id="cb59-3"><a href="#cb59-3"></a><span class="fu">plot</span>(tavg_utm19s[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-38-1.png" width="960" class="r-stretch"><div class="asides">
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-37-1.png" width="960" class="r-stretch"><div class="asides">
 <p>Notad que no hay una correspondencia exacta de píxeles.</p>
 </div>
 </section>
 <section id="para-controlar-el-número-de-pixeles-y-su-resolución-lo-normal-es-crear-antes-una-plantilla" class="slide level2">
 <h2>Para controlar el número de pixeles y su resolución lo normal es crear antes una plantilla</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rast</span>(tavg_utm19s)</span>
-<span id="cb61-2"><a href="#cb61-2"></a><span class="fu">res</span>(x) <span class="ot">&lt;-</span> <span class="dv">800</span></span>
-<span id="cb61-3"><a href="#cb61-3"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rast</span>(tavg_utm19s)</span>
+<span id="cb60-2"><a href="#cb60-2"></a><span class="fu">res</span>(x) <span class="ot">&lt;-</span> <span class="dv">800</span></span>
+<span id="cb60-3"><a href="#cb60-3"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 4853, 2673, 12  (nrow, ncol, nlyr)
@@ -896,21 +887,21 @@ coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>tavg_utm19s_2 <span class="ot">&lt;-</span> <span class="fu">project</span>(tavg, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>tavg_utm19s_2 <span class="ot">&lt;-</span> <span class="fu">project</span>(tavg, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 |---------|---------|---------|---------|
 =========================================
                                           </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>tavg_utm19s_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a>tavg_utm19s_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 4853, 2673, 12  (nrow, ncol, nlyr)
 resolution  : 800, 800  (x, y)
 extent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_5fd45df1323f_24532.tif 
+source      : spat_3888731e53d4_14472.tif 
 names       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... 
 min values  :   -10.77633,   -11.47463,   -12.17463,   -14.20292,   -16.40292,   -19.51049, ... 
 max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.95641, ... </code></pre>
@@ -920,14 +911,14 @@ max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,  
 <section id="veamos-el-resultado" class="slide level2">
 <h2>Veamos el resultado</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb67-2"><a href="#cb67-2"></a><span class="fu">plot</span>(tavg[[<span class="dv">2</span>]])</span>
-<span id="cb67-3"><a href="#cb67-3"></a><span class="fu">plot</span>(tavg_utm19s[[<span class="dv">2</span>]])</span>
-<span id="cb67-4"><a href="#cb67-4"></a><span class="fu">plot</span>(tavg_utm19s_2[[<span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb66-2"><a href="#cb66-2"></a><span class="fu">plot</span>(tavg[[<span class="dv">2</span>]])</span>
+<span id="cb66-3"><a href="#cb66-3"></a><span class="fu">plot</span>(tavg_utm19s[[<span class="dv">2</span>]])</span>
+<span id="cb66-4"><a href="#cb66-4"></a><span class="fu">plot</span>(tavg_utm19s_2[[<span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-41-1.png" width="960" class="r-stretch"><div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a>tavg[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-40-1.png" width="960" class="r-stretch"><div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a>tavg[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 4080, 2460, 1  (nrow, ncol, nlyr)
@@ -939,26 +930,26 @@ name        : ARG_wc2.1_30s_tavg_2
 min value   :                -11.8 
 max value   :                 28.4 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>tavg_utm19s[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a>tavg_utm19s[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 4455, 2454, 1  (nrow, ncol, nlyr)
 resolution  : 871.5251, 871.5251  (x, y)
 extent      : -18378.29, 2120344, 3739870, 7622514  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_5fd46bc224ec_24532.tif 
+source      : spat_38886f4919d4_14472.tif 
 name        : ARG_wc2.1_30s_tavg_2 
-min value   :            -10.73757 
+min value   :            -10.73863 
 max value   :             28.40000 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a>tavg_utm19s_2[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a>tavg_utm19s_2[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 4853, 2673, 1  (nrow, ncol, nlyr)
 resolution  : 800, 800  (x, y)
 extent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_5fd45df1323f_24532.tif 
+source      : spat_3888731e53d4_14472.tif 
 name        : ARG_wc2.1_30s_tavg_2 
 min value   :            -11.47463 
 max value   :             28.40000 </code></pre>
@@ -978,7 +969,15 @@ max value   :             28.40000 </code></pre>
 <section id="podemos-dibujar-los-mapas-con-colores-en-base-a-alguna-información-de-los-atributos." class="slide level2">
 <h2>Podemos dibujar los mapas con colores en base a alguna información de los atributos.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="fu">plot</span>(arg, <span class="st">"NAME_1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="fu">plot</span>(arg, <span class="st">"NAME_1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-42-1.png" width="960" class="r-stretch"></section>
+<section id="podemos-combinar-información-raster-y-vectorial-en-el-mismo-mapa" class="slide level2">
+<h2>Podemos combinar información raster y vectorial en el mismo mapa</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="fu">plot</span>(tavg[[<span class="dv">1</span>]])</span>
+<span id="cb74-2"><a href="#cb74-2"></a><span class="fu">plot</span>(arg, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-43-1.png" width="960" class="r-stretch"></section>
@@ -1078,9 +1077,9 @@ max value   :             28.40000 </code></pre>
                ARG.3_1   ARG Argentina        Chaco El Chaco|Presi~        NA
     TYPE_1 ENGTYPE_1  CC_1 HASC_1 ISO_1  lets
      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
- Provincia  Province    NA  AR.BA  AR-B     c
- Provincia  Province    NA  AR.CT  AR-K     m
- Provincia  Province    NA  AR.CC  AR-H     q</code></pre>
+ Provincia  Province    NA  AR.BA  AR-B     e
+ Provincia  Province    NA  AR.CT  AR-K     l
+ Provincia  Province    NA  AR.CC  AR-H     k</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1158,22 +1157,32 @@ max value   :             28.40000 </code></pre>
 
 </div>
 <img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-53-1.png" width="960" class="r-stretch"></section>
-<section id="a-veces-necesitamos-combinar-información-de-varios-vectoriales" class="slide level2">
-<h2>A veces necesitamos combinar información de varios vectoriales</h2>
+<section id="a-veces-necesitamos-combinar-información-de-varios-polígonos-en-uno-de-mayor-tamaño" class="slide level2">
+<h2>A veces necesitamos combinar información de varios polígonos en uno de mayor tamaño</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1"></a>arg_0 <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(arg, <span class="at">by =</span> <span class="st">"COUNTRY"</span>) </span>
 <span id="cb98-2"><a href="#cb98-2"></a><span class="fu">plot</span>(arg_0, <span class="at">col =</span> <span class="st">"white"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">border =</span> <span class="st">"cyan"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-54-1.png" width="960" class="r-stretch"></section>
+<section id="en-los-objetos-raster-también-se-pueden-hacer-agregaciones-pero-normalmente-para-cambiar-la-resolución-de-los-datos" class="slide level2">
+<h2>En los objetos raster también se pueden hacer agregaciones, pero normalmente para cambiar la resolución de los datos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1"></a>tavg_10 <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(tavg, <span class="at">fact =</span> <span class="dv">100</span>, <span class="at">fun =</span> <span class="st">"mean"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb99-2"><a href="#cb99-2"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb99-3"><a href="#cb99-3"></a><span class="fu">plot</span>(tavg[[<span class="dv">1</span>]])</span>
+<span id="cb99-4"><a href="#cb99-4"></a><span class="fu">plot</span>(tavg_10[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-55-1.png" width="960" class="r-stretch"></section>
 <section id="en-otras-ocasiones-tenemos-dos-capas-vectoriales-y-necesitamos-quedarnos-sólo-con-datos-que-quedan-dentro-de-una-de-ellas" class="slide level2">
 <h2>En otras ocasiones tenemos dos capas vectoriales y necesitamos quedarnos sólo con datos que quedan dentro de una de ellas</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1"></a>clip <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="at">ext =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">70</span>, <span class="sc">-</span><span class="dv">60</span>, <span class="sc">-</span><span class="dv">47</span>, <span class="sc">-</span><span class="dv">30</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb99-2"><a href="#cb99-2"></a><span class="fu">values</span>(clip) <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
-<span id="cb99-3"><a href="#cb99-3"></a><span class="fu">names</span>(clip) <span class="ot">&lt;-</span> <span class="st">"Zona"</span></span>
-<span id="cb99-4"><a href="#cb99-4"></a>clip <span class="ot">&lt;-</span> <span class="fu">as.polygons</span>(clip)</span>
-<span id="cb99-5"><a href="#cb99-5"></a>clip </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1"></a>clip <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="at">ext =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">70</span>, <span class="sc">-</span><span class="dv">60</span>, <span class="sc">-</span><span class="dv">47</span>, <span class="sc">-</span><span class="dv">30</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb100-2"><a href="#cb100-2"></a><span class="fu">values</span>(clip) <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb100-3"><a href="#cb100-3"></a><span class="fu">names</span>(clip) <span class="ot">&lt;-</span> <span class="st">"Zona"</span></span>
+<span id="cb100-4"><a href="#cb100-4"></a>clip <span class="ot">&lt;-</span> <span class="fu">as.polygons</span>(clip)</span>
+<span id="cb100-5"><a href="#cb100-5"></a>clip </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> class       : SpatVector 
  geometry    : polygons 
@@ -1188,88 +1197,956 @@ max value   :             28.40000 </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1"></a><span class="fu">plot</span>(arg) </span>
-<span id="cb101-2"><a href="#cb101-2"></a><span class="fu">plot</span>(clip, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">border =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-56-1.png" width="960"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1"></a>arg_clip <span class="ot">&lt;-</span> <span class="fu">intersect</span>(arg, clip) </span>
-<span id="cb102-2"><a href="#cb102-2"></a><span class="fu">plot</span>(arg_clip)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1"></a><span class="fu">plot</span>(arg) </span>
+<span id="cb102-2"><a href="#cb102-2"></a><span class="fu">plot</span>(clip, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">border =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-57-1.png" width="960"></p>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1"></a>arg_clip <span class="ot">&lt;-</span> <span class="fu">intersect</span>(arg, clip) </span>
+<span id="cb103-2"><a href="#cb103-2"></a><span class="fu">plot</span>(arg_clip)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-58-1.png" width="960"></p>
+</div>
+</div>
 </section>
+<section id="los-objetos-raster-también-se-pueden-cortar-con-un-vectorial" class="slide level2">
+<h2>Los objetos raster también se pueden cortar con un vectorial</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1"></a>tavg_arg <span class="ot">&lt;-</span> <span class="fu">mask</span>(tavg, arg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+|---------|---------|---------|---------|
+=========================================
+                                          </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb106-2"><a href="#cb106-2"></a><span class="fu">plot</span>(tavg[[<span class="dv">1</span>]])</span>
+<span id="cb106-3"><a href="#cb106-3"></a><span class="fu">plot</span>(tavg_arg[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-59-1.png" width="960" class="r-stretch"></section>
 <section id="otras-veces-necesitamos-combinar-los-vectores-de-dos-ficheros-diferentes" class="slide level2">
 <h2>Otras veces necesitamos combinar los vectores de dos ficheros diferentes</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1"></a>u <span class="ot">&lt;-</span> <span class="fu">union</span>(arg, clip)</span>
-<span id="cb103-2"><a href="#cb103-2"></a><span class="fu">plot</span>(u, <span class="at">col =</span> <span class="fu">sample</span>(<span class="fu">rainbow</span>(<span class="fu">length</span>(u))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1"></a>u <span class="ot">&lt;-</span> <span class="fu">union</span>(arg, clip)</span>
+<span id="cb107-2"><a href="#cb107-2"></a><span class="fu">plot</span>(u, <span class="at">col =</span> <span class="fu">sample</span>(<span class="fu">rainbow</span>(<span class="fu">length</span>(u))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-58-1.png" width="960" class="r-stretch"></section>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-60-1.png" width="960" class="r-stretch"></section>
 <section id="en-estudios-de-biodiversidad-es-muy-frecuente-necesitar-extraer-información-de-una-capa-vectorial-en-los-puntos-líneas-o-polígonos-de-otra-capa-vectorial" class="slide level2">
 <h2>En estudios de biodiversidad, es muy frecuente necesitar extraer información de una capa vectorial en los puntos, líneas o polígonos de otra capa vectorial</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1"></a>pnts <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">lon =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">65</span>, <span class="sc">-</span><span class="dv">60</span>, <span class="sc">-</span><span class="dv">70</span>), </span>
-<span id="cb104-2"><a href="#cb104-2"></a>              <span class="at">lat =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">35</span>, <span class="sc">-</span><span class="dv">25</span>, <span class="sc">-</span><span class="dv">45</span>))</span>
-<span id="cb104-3"><a href="#cb104-3"></a>pnts <span class="ot">&lt;-</span> <span class="fu">vect</span>(pnts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1"></a>pnts <span class="ot">&lt;-</span> <span class="fu">spatSample</span>(arg, <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1"></a><span class="fu">plot</span>(arg)</span>
-<span id="cb105-2"><a href="#cb105-2"></a><span class="fu">plot</span>(pnts, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-60-1.png" width="960"></p>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1"></a><span class="fu">plot</span>(arg)</span>
+<span id="cb109-2"><a href="#cb109-2"></a><span class="fu">plot</span>(clip, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">border =</span> <span class="st">"cyan"</span>)</span>
+<span id="cb109-3"><a href="#cb109-3"></a><span class="fu">plot</span>(pnts, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1"></a><span class="fu">extract</span>(pnts, arg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-62-1.png" width="960" class="r-stretch"><div class="cell">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1"></a>pnts_arg <span class="ot">&lt;-</span> <span class="fu">extract</span>(arg, pnts)</span>
+<span id="cb110-2"><a href="#cb110-2"></a>pnts_arg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      id.y id.x
- [1,]    1  NaN
- [2,]    2  NaN
- [3,]    3  NaN
- [4,]    4  NaN
- [5,]    5  NaN
- [6,]    6  NaN
- [7,]    7  NaN
- [8,]    8  NaN
- [9,]    9  NaN
-[10,]   10  NaN
-[11,]   11  NaN
-[12,]   12  NaN
-[13,]   13  NaN
-[14,]   14  NaN
-[15,]   15  NaN
-[16,]   16  NaN
-[17,]   17  NaN
-[18,]   18  NaN
-[19,]   19  NaN
-[20,]   20  NaN
-[21,]   21  NaN
-[22,]   22  NaN
-[23,]   23  NaN
-[24,]   24  NaN</code></pre>
+<pre><code>    id.y              NAME_1    GID_1 GID_0   COUNTRY
+1      1        Buenos Aires  ARG.1_1   ARG Argentina
+2      2           Río Negro ARG.16_1   ARG Argentina
+3      3        Buenos Aires  ARG.1_1   ARG Argentina
+4      4              Chubut  ARG.4_1   ARG Argentina
+5      5            Santa Fe ARG.21_1   ARG Argentina
+6      6              Chubut  ARG.4_1   ARG Argentina
+7      7           Catamarca  ARG.2_1   ARG Argentina
+8      8          Entre Ríos  ARG.8_1   ARG Argentina
+9      9               Salta ARG.17_1   ARG Argentina
+10    10        Buenos Aires  ARG.1_1   ARG Argentina
+11    11          Santa Cruz ARG.20_1   ARG Argentina
+12    12             Formosa  ARG.9_1   ARG Argentina
+13    13             Mendoza ARG.13_1   ARG Argentina
+14    14            Santa Fe ARG.21_1   ARG Argentina
+15    15               Salta ARG.17_1   ARG Argentina
+16    16            Santa Fe ARG.21_1   ARG Argentina
+17    17 Santiago del Estero ARG.22_1   ARG Argentina
+18    18        Buenos Aires  ARG.1_1   ARG Argentina
+19    19             Tucumán ARG.24_1   ARG Argentina
+20    20           Catamarca  ARG.2_1   ARG Argentina
+21    21               Salta ARG.17_1   ARG Argentina
+22    22               Salta ARG.17_1   ARG Argentina
+23    23            Santa Fe ARG.21_1   ARG Argentina
+24    24             Mendoza ARG.13_1   ARG Argentina
+25    25               Chaco  ARG.3_1   ARG Argentina
+26    26            San Juan ARG.18_1   ARG Argentina
+27    27          Santa Cruz ARG.20_1   ARG Argentina
+28    28               Chaco  ARG.3_1   ARG Argentina
+29    29            Santa Fe ARG.21_1   ARG Argentina
+30    30        Buenos Aires  ARG.1_1   ARG Argentina
+31    31            La Pampa ARG.11_1   ARG Argentina
+32    32             Neuquén ARG.15_1   ARG Argentina
+33    33 Santiago del Estero ARG.22_1   ARG Argentina
+34    34            La Pampa ARG.11_1   ARG Argentina
+35    35           Río Negro ARG.16_1   ARG Argentina
+36    36           Catamarca  ARG.2_1   ARG Argentina
+37    37              Chubut  ARG.4_1   ARG Argentina
+38    38        Buenos Aires  ARG.1_1   ARG Argentina
+39    39              Chubut  ARG.4_1   ARG Argentina
+40    40             Mendoza ARG.13_1   ARG Argentina
+41    41          Santa Cruz ARG.20_1   ARG Argentina
+42    42             Mendoza ARG.13_1   ARG Argentina
+43    43 Santiago del Estero ARG.22_1   ARG Argentina
+44    44           Río Negro ARG.16_1   ARG Argentina
+45    45            Santa Fe ARG.21_1   ARG Argentina
+46    46        Buenos Aires  ARG.1_1   ARG Argentina
+47    47        Buenos Aires  ARG.1_1   ARG Argentina
+48    48             Córdoba  ARG.6_1   ARG Argentina
+49    49        Buenos Aires  ARG.1_1   ARG Argentina
+50    50              Chubut  ARG.4_1   ARG Argentina
+51    51        Buenos Aires  ARG.1_1   ARG Argentina
+52    52            San Luis ARG.19_1   ARG Argentina
+53    53            La Pampa ARG.11_1   ARG Argentina
+54    54           Catamarca  ARG.2_1   ARG Argentina
+55    55          Santa Cruz ARG.20_1   ARG Argentina
+56    56        Buenos Aires  ARG.1_1   ARG Argentina
+57    57             Neuquén ARG.15_1   ARG Argentina
+58    58             Mendoza ARG.13_1   ARG Argentina
+59    59               Salta ARG.17_1   ARG Argentina
+60    60           Catamarca  ARG.2_1   ARG Argentina
+61    61           Río Negro ARG.16_1   ARG Argentina
+62    62            La Pampa ARG.11_1   ARG Argentina
+63    63               Salta ARG.17_1   ARG Argentina
+64    64               Salta ARG.17_1   ARG Argentina
+65    65            Santa Fe ARG.21_1   ARG Argentina
+66    66            La Pampa ARG.11_1   ARG Argentina
+67    67           Río Negro ARG.16_1   ARG Argentina
+68    68           Río Negro ARG.16_1   ARG Argentina
+69    69          Santa Cruz ARG.20_1   ARG Argentina
+70    70        Buenos Aires  ARG.1_1   ARG Argentina
+71    71             Mendoza ARG.13_1   ARG Argentina
+72    72          Santa Cruz ARG.20_1   ARG Argentina
+73    73        Buenos Aires  ARG.1_1   ARG Argentina
+74    74        Buenos Aires  ARG.1_1   ARG Argentina
+75    75        Buenos Aires  ARG.1_1   ARG Argentina
+76    76            La Pampa ARG.11_1   ARG Argentina
+77    77            La Pampa ARG.11_1   ARG Argentina
+78    78              Chubut  ARG.4_1   ARG Argentina
+79    79               Chaco  ARG.3_1   ARG Argentina
+80    80             Neuquén ARG.15_1   ARG Argentina
+81    81            La Rioja ARG.12_1   ARG Argentina
+82    82        Buenos Aires  ARG.1_1   ARG Argentina
+83    83          Santa Cruz ARG.20_1   ARG Argentina
+84    84            La Pampa ARG.11_1   ARG Argentina
+85    85           Catamarca  ARG.2_1   ARG Argentina
+86    86        Buenos Aires  ARG.1_1   ARG Argentina
+87    87             Mendoza ARG.13_1   ARG Argentina
+88    88            La Pampa ARG.11_1   ARG Argentina
+89    89             Formosa  ARG.9_1   ARG Argentina
+90    90          Santa Cruz ARG.20_1   ARG Argentina
+91    91            Misiones ARG.14_1   ARG Argentina
+92    92               Chaco  ARG.3_1   ARG Argentina
+93    93            La Rioja ARG.12_1   ARG Argentina
+94    94             Formosa  ARG.9_1   ARG Argentina
+95    95          Santa Cruz ARG.20_1   ARG Argentina
+96    96              Chubut  ARG.4_1   ARG Argentina
+97    97             Tucumán ARG.24_1   ARG Argentina
+98    98          Entre Ríos  ARG.8_1   ARG Argentina
+99    99           Catamarca  ARG.2_1   ARG Argentina
+100  100            La Pampa ARG.11_1   ARG Argentina
+                         VARNAME_1 NL_NAME_1    TYPE_1 ENGTYPE_1 CC_1 HASC_1
+1              Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+2                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+3              Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+4                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+5                         Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
+6                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+7                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
+8                       Entre-Rios      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.ER
+9                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
+10             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+11                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+12                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.FM
+13                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
+14                        Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
+15                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
+16                        Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
+17                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SE
+18             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+19                         Tucumão      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.TM
+20                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
+21                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
+22                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
+23                        Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
+24                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
+25  El Chaco|Presidente Juan Peron      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CC
+26                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SJ
+27                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+28  El Chaco|Presidente Juan Peron      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CC
+29                        Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
+30             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+31              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+32                         Neuquén      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.NQ
+33                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SE
+34              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+35                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+36                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
+37                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+38             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+39                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+40                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
+41                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+42                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
+43                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SE
+44                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+45                        Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
+46             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+47             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+48                         Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB
+49             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+50                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+51             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+52                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SL
+53              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+54                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
+55                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+56             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+57                         Neuquén      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.NQ
+58                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
+59                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
+60                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
+61                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+62              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+63                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
+64                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
+65                        Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
+66              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+67                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+68                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+69                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+70             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+71                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
+72                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+73             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+74             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+75             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+76              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+77              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+78                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+79  El Chaco|Presidente Juan Peron      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CC
+80                         Neuquén      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.NQ
+81                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LR
+82             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+83                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+84              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+85                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
+86             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+87                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
+88              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+89                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.FM
+90                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+91                         Missões      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MN
+92  El Chaco|Presidente Juan Peron      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CC
+93                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LR
+94                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.FM
+95                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+96                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+97                         Tucumão      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.TM
+98                      Entre-Rios      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.ER
+99                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
+100             El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+    ISO_1 perimetro         area poblacion
+1    AR-B 6542992.7 307005689751  17523996
+2    &lt;NA&gt; 2829645.1 202539975187    750768
+3    AR-B 6542992.7 307005689751  17523996
+4    AR-U 4072813.0 224358261357    592621
+5    AR-S 2159600.8 133097028860   3544908
+6    AR-U 4072813.0 224358261357    592621
+7    AR-K 2141772.8 101325015569    429562
+8    &lt;NA&gt; 1391962.6  78008027779   1425578
+9    AR-A 3018996.9 155196050532   1441351
+10   AR-B 6542992.7 307005689751  17523996
+11   AR-Z 3552443.5 242892543838    337226
+12   AR-P 1887284.9  75592720001    607419
+13   AR-M 2160729.2 148772281932   2043540
+14   AR-S 2159600.8 133097028860   3544908
+15   AR-A 3018996.9 155196050532   1441351
+16   AR-S 2159600.8 133097028860   3544908
+17   AR-G 1709915.4 136911867268   1060906
+18   AR-B 6542992.7 307005689751  17523996
+19   &lt;NA&gt;  814874.3  22539627987   1731820
+20   AR-K 2141772.8 101325015569    429562
+21   AR-A 3018996.9 155196050532   1441351
+22   AR-A 3018996.9 155196050532   1441351
+23   AR-S 2159600.8 133097028860   3544908
+24   AR-M 2160729.2 148772281932   2043540
+25   AR-H 1833193.6  99764195922   1129606
+26   AR-J 1897253.6  88821613819    822853
+27   AR-Z 3552443.5 242892543838    337226
+28   AR-H 1833193.6  99764195922   1129606
+29   AR-S 2159600.8 133097028860   3544908
+30   AR-B 6542992.7 307005689751  17523996
+31   AR-L 1816741.6 142947760813    361859
+32   &lt;NA&gt; 2006884.0  94504843837    710814
+33   AR-G 1709915.4 136911867268   1060906
+34   AR-L 1816741.6 142947760813    361859
+35   &lt;NA&gt; 2829645.1 202539975187    750768
+36   AR-K 2141772.8 101325015569    429562
+37   AR-U 4072813.0 224358261357    592621
+38   AR-B 6542992.7 307005689751  17523996
+39   AR-U 4072813.0 224358261357    592621
+40   AR-M 2160729.2 148772281932   2043540
+41   AR-Z 3552443.5 242892543838    337226
+42   AR-M 2160729.2 148772281932   2043540
+43   AR-G 1709915.4 136911867268   1060906
+44   &lt;NA&gt; 2829645.1 202539975187    750768
+45   AR-S 2159600.8 133097028860   3544908
+46   AR-B 6542992.7 307005689751  17523996
+47   AR-B 6542992.7 307005689751  17523996
+48   &lt;NA&gt; 1898966.0 164663835095   3840905
+49   AR-B 6542992.7 307005689751  17523996
+50   AR-U 4072813.0 224358261357    592621
+51   AR-B 6542992.7 307005689751  17523996
+52   AR-D 1379291.3  75844534099    542069
+53   AR-L 1816741.6 142947760813    361859
+54   AR-K 2141772.8 101325015569    429562
+55   AR-Z 3552443.5 242892543838    337226
+56   AR-B 6542992.7 307005689751  17523996
+57   &lt;NA&gt; 2006884.0  94504843837    710814
+58   AR-M 2160729.2 148772281932   2043540
+59   AR-A 3018996.9 155196050532   1441351
+60   AR-K 2141772.8 101325015569    429562
+61   &lt;NA&gt; 2829645.1 202539975187    750768
+62   AR-L 1816741.6 142947760813    361859
+63   AR-A 3018996.9 155196050532   1441351
+64   AR-A 3018996.9 155196050532   1441351
+65   AR-S 2159600.8 133097028860   3544908
+66   AR-L 1816741.6 142947760813    361859
+67   &lt;NA&gt; 2829645.1 202539975187    750768
+68   &lt;NA&gt; 2829645.1 202539975187    750768
+69   AR-Z 3552443.5 242892543838    337226
+70   AR-B 6542992.7 307005689751  17523996
+71   AR-M 2160729.2 148772281932   2043540
+72   AR-Z 3552443.5 242892543838    337226
+73   AR-B 6542992.7 307005689751  17523996
+74   AR-B 6542992.7 307005689751  17523996
+75   AR-B 6542992.7 307005689751  17523996
+76   AR-L 1816741.6 142947760813    361859
+77   AR-L 1816741.6 142947760813    361859
+78   AR-U 4072813.0 224358261357    592621
+79   AR-H 1833193.6  99764195922   1129606
+80   &lt;NA&gt; 2006884.0  94504843837    710814
+81   AR-F 1613964.8  91104159966    383865
+82   AR-B 6542992.7 307005689751  17523996
+83   AR-Z 3552443.5 242892543838    337226
+84   AR-L 1816741.6 142947760813    361859
+85   AR-K 2141772.8 101325015569    429562
+86   AR-B 6542992.7 307005689751  17523996
+87   AR-M 2160729.2 148772281932   2043540
+88   AR-L 1816741.6 142947760813    361859
+89   AR-P 1887284.9  75592720001    607419
+90   AR-Z 3552443.5 242892543838    337226
+91   AR-N 1272355.6  29980009644   1278873
+92   AR-H 1833193.6  99764195922   1129606
+93   AR-F 1613964.8  91104159966    383865
+94   AR-P 1887284.9  75592720001    607419
+95   AR-Z 3552443.5 242892543838    337226
+96   AR-U 4072813.0 224358261357    592621
+97   &lt;NA&gt;  814874.3  22539627987   1731820
+98   &lt;NA&gt; 1391962.6  78008027779   1425578
+99   AR-K 2141772.8 101325015569    429562
+100  AR-L 1816741.6 142947760813    361859</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1"></a><span class="fu">extract</span>(pnts, clip)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1"></a>pnts_clip <span class="ot">&lt;-</span> <span class="fu">extract</span>(clip, pnts)</span>
+<span id="cb112-2"><a href="#cb112-2"></a>pnts_clip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     id.y id.x
-[1,]    1  NaN
-[2,]    2  NaN
-[3,]    3  NaN
-[4,]    4  NaN</code></pre>
+<pre><code>    id.y Zona
+1      1    2
+2      2    3
+3      3    2
+4      4    3
+5      5    2
+6      6    3
+7      7   NA
+8      8   NA
+9      9   NA
+10    10   NA
+11    11   NA
+12    12   NA
+13    13    1
+14    14   NA
+15    15   NA
+16    16    2
+17    17   NA
+18    18    2
+19    19   NA
+20    20   NA
+21    21   NA
+22    22   NA
+23    23   NA
+24    24    1
+25    25   NA
+26    26    1
+27    27   NA
+28    28   NA
+29    29   NA
+30    30   NA
+31    31    2
+32    32    1
+33    33   NA
+34    34    2
+35    35    4
+36    36   NA
+37    37    3
+38    38   NA
+39    39   NA
+40    40   NA
+41    41   NA
+42    42    1
+43    43   NA
+44    44   NA
+45    45   NA
+46    46   NA
+47    47   NA
+48    48    2
+49    49   NA
+50    50   NA
+51    51   NA
+52    52    1
+53    53    1
+54    54   NA
+55    55   NA
+56    56    4
+57    57   NA
+58    58    1
+59    59   NA
+60    60   NA
+61    61    3
+62    62    1
+63    63   NA
+64    64   NA
+65    65    2
+66    66    1
+67    67   NA
+68    68    3
+69    69   NA
+70    70    2
+71    71    1
+72    72   NA
+73    73   NA
+74    74   NA
+75    75    2
+76    76    1
+77    77    1
+78    78   NA
+79    79   NA
+80    80   NA
+81    81   NA
+82    82    2
+83    83   NA
+84    84    1
+85    85   NA
+86    86    2
+87    87    1
+88    88    1
+89    89   NA
+90    90   NA
+91    91   NA
+92    92   NA
+93    93   NA
+94    94   NA
+95    95   NA
+96    96    3
+97    97   NA
+98    98   NA
+99    99   NA
+100  100    2</code></pre>
 </div>
+</div>
+</section>
+<section id="igual-podemos-hacer-con-respecto-a-los-valores-de-los-píxeles-en-cada-punto-de-un-vectorial" class="slide level2">
+<h2>Igual podemos hacer con respecto a los valores de los píxeles en cada punto de un vectorial</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>     ID ARG_wc2.1_30s_tavg_1 ARG_wc2.1_30s_tavg_2 ARG_wc2.1_30s_tavg_3
+1     1                 23.8                 22.5                 19.6
+2     2                 23.4                 22.0                 18.8
+3     3                 23.0                 21.7                 19.0
+4     4                 19.3                 18.9                 15.8
+5     5                 24.0                 22.6                 20.5
+6     6                 18.6                 18.2                 15.5
+7     7                 10.8                 10.1                  9.2
+8     8                 24.3                 23.1                 21.4
+9     9                 16.4                 15.7                 14.5
+10   10                 23.9                 22.9                 21.3
+11   11                 16.0                 15.3                 13.1
+12   12                 27.7                 26.9                 25.2
+13   13                 18.7                 17.5                 15.0
+14   14                 26.5                 25.5                 23.4
+15   15                 26.2                 25.3                 23.5
+16   16                 25.4                 24.5                 22.1
+17   17                 26.2                 24.9                 23.0
+18   18                 23.6                 22.2                 19.5
+19   19                 20.7                 20.0                 18.1
+20   20                  2.0                  1.5                  0.8
+21   21                 27.7                 26.8                 25.1
+22   22                 27.9                 27.1                 25.2
+23   23                 26.2                 25.1                 23.1
+24   24                 25.8                 24.2                 20.9
+25   25                 27.1                 26.3                 24.5
+26   26                 27.0                 25.6                 23.0
+27   27                 15.0                 14.5                 12.1
+28   28                 27.1                 26.2                 24.6
+29   29                 26.5                 25.4                 23.3
+30   30                 22.9                 21.8                 19.4
+31   31                 24.0                 22.6                 19.6
+32   32                 21.0                 19.8                 16.7
+33   33                 26.7                 25.3                 23.5
+34   34                 24.2                 22.8                 19.8
+35   35                 23.9                 22.2                 19.3
+36   36                  5.8                  5.3                  4.6
+37   37                 18.8                 18.3                 15.5
+38   38                 21.7                 20.8                 18.7
+39   39                 15.5                 15.1                 12.2
+40   40                  8.2                  7.3                  5.6
+41   41                 13.1                 12.6                 10.3
+42   42                 20.9                 19.6                 16.6
+43   43                 27.2                 25.7                 23.7
+44   44                 16.0                 15.5                 12.4
+45   45                 26.7                 25.7                 23.7
+46   46                 22.4                 21.4                 19.3
+47   47                 23.0                 22.0                 20.2
+48   48                 24.0                 23.0                 20.3
+49   49                 22.7                 21.7                 19.5
+50   50                 15.2                 14.7                 12.2
+51   51                 21.1                 20.4                 18.8
+52   52                 25.5                 24.1                 21.5
+53   53                 24.1                 22.7                 19.6
+54   54                 26.9                 25.3                 23.3
+55   55                 13.8                 13.3                 11.1
+56   56                 23.4                 22.0                 18.9
+57   57                 20.1                 19.1                 16.0
+58   58                 24.8                 23.1                 20.1
+59   59                 25.7                 24.9                 22.8
+60   60                  7.8                  7.3                  6.4
+61   61                 19.0                 18.3                 15.2
+62   62                 24.4                 23.0                 20.2
+63   63                  9.0                  8.3                  7.9
+64   64                 25.9                 25.0                 23.0
+65   65                 23.6                 22.3                 20.2
+66   66                 24.1                 22.7                 19.5
+67   67                 13.6                 13.2                 10.3
+68   68                 23.1                 21.7                 18.9
+69   69                 14.8                 14.4                 12.0
+70   70                 22.9                 21.6                 19.4
+71   71                 24.4                 22.8                 19.7
+72   72                 10.7                 10.2                  8.1
+73   73                 21.2                 20.6                 19.0
+74   74                 22.5                 21.5                 19.9
+75   75                 21.8                 20.6                 18.1
+76   76                 24.1                 22.7                 19.6
+77   77                 23.8                 22.4                 19.4
+78   78                 13.7                 13.0                 11.1
+79   79                 27.1                 26.3                 24.5
+80   80                 15.6                 14.7                 12.0
+81   81                 25.6                 24.2                 22.1
+82   82                 21.6                 20.4                 17.4
+83   83                 12.7                 12.2                 10.0
+84   84                 24.5                 23.1                 20.1
+85   85                 19.5                 18.5                 16.7
+86   86                 22.9                 21.6                 19.2
+87   87                  0.0                 -0.7                 -1.8
+88   88                 24.1                 22.7                 19.4
+89   89                 27.6                 26.9                 25.1
+90   90                 13.3                 12.8                 10.6
+91   91                 23.9                 23.7                 22.3
+92   92                 27.6                 26.6                 24.2
+93   93                  9.1                  8.3                  7.0
+94   94                 28.0                 27.3                 25.5
+95   95                 17.2                 16.5                 14.2
+96   96                 20.8                 20.0                 17.6
+97   97                 24.5                 24.0                 21.3
+98   98                 24.7                 23.4                 21.6
+99   99                 18.4                 17.5                 16.1
+100 100                 24.1                 22.6                 19.6
+    ARG_wc2.1_30s_tavg_4 ARG_wc2.1_30s_tavg_5 ARG_wc2.1_30s_tavg_6
+1                   16.1                 12.5                  9.0
+2                   14.2                 10.4                  7.2
+3                   15.2                 11.6                  8.3
+4                   11.8                  7.8                  4.8
+5                   16.8                 13.6                 10.1
+6                   11.7                  8.1                  5.0
+7                    6.7                  4.5                  1.9
+8                   17.1                 14.2                 11.2
+9                   11.9                  9.5                  6.7
+10                  17.5                 14.4                 11.4
+11                   9.7                  5.7                  3.0
+12                  21.9                 19.0                 16.9
+13                  10.7                  7.0                  3.9
+14                  19.6                 16.9                 14.3
+15                  20.7                 17.8                 15.0
+16                  18.3                 15.4                 12.4
+17                  19.4                 16.3                 13.1
+18                  16.0                 12.4                  8.9
+19                  15.3                 12.6                  9.5
+20                  -1.0                 -2.6                 -4.9
+21                  22.3                 19.2                 16.3
+22                  22.2                 19.4                 16.4
+23                  19.1                 16.3                 13.4
+24                  16.6                 12.1                  8.3
+25                  20.9                 18.2                 15.6
+26                  18.4                 14.1                  9.9
+27                   8.5                  4.8                  2.1
+28                  20.9                 18.2                 15.8
+29                  19.5                 16.8                 14.1
+30                  15.3                 12.1                  9.3
+31                  15.6                 11.5                  8.3
+32                  12.1                  8.7                  5.7
+33                  20.0                 16.7                 13.3
+34                  16.1                 11.8                  8.5
+35                  14.3                 10.8                  7.4
+36                   2.7                  0.8                 -1.7
+37                  11.8                  8.1                  5.0
+38                  14.8                 11.5                  8.6
+39                   8.2                  4.6                  1.7
+40                   2.6                 -0.8                 -4.2
+41                   7.0                  3.4                  0.7
+42                  11.7                  8.0                  4.8
+43                  20.0                 17.2                 14.4
+44                   8.2                  4.7                  1.9
+45                  19.4                 16.8                 14.1
+46                  15.4                 12.0                  9.1
+47                  16.5                 12.9                  9.9
+48                  16.9                 13.8                 10.5
+49                  15.5                 12.1                  9.3
+50                   8.3                  4.9                  2.0
+51                  14.9                 11.7                  8.8
+52                  17.4                 13.5                  9.9
+53                  14.5                 10.7                  7.0
+54                  19.1                 15.0                 11.1
+55                   7.9                  3.9                  1.4
+56                  14.7                 10.8                  7.8
+57                  11.7                  8.5                  5.6
+58                  15.4                 11.2                  7.7
+59                  20.1                 16.6                 13.6
+60                   4.4                  2.6                  0.1
+61                  10.7                  7.2                  4.2
+62                  14.7                 10.8                  7.3
+63                   5.7                  3.2                  0.5
+64                  20.2                 17.3                 14.3
+65                  16.5                 13.2                  9.6
+66                  14.7                 10.7                  7.3
+67                   6.1                  2.7                 -0.1
+68                  14.1                 10.4                  7.1
+69                   8.3                  5.0                  2.0
+70                  15.4                 11.9                  8.6
+71                  15.2                 11.0                  7.6
+72                   5.1                  1.2                 -1.3
+73                  15.0                 11.8                  9.0
+74                  16.1                 12.7                  9.6
+75                  13.6                 10.2                  7.2
+76                  14.4                 10.6                  7.0
+77                  14.3                 10.6                  6.9
+78                   7.5                  4.7                  1.9
+79                  21.2                 18.3                 15.9
+80                   8.3                  5.2                  2.5
+81                  17.9                 14.0                 10.4
+82                  13.4                  9.6                  6.5
+83                   6.9                  3.2                  0.6
+84                  14.7                 10.8                  7.4
+85                  13.4                 10.6                  7.9
+86                  15.5                 11.9                  8.6
+87                  -4.1                 -6.7                -10.0
+88                  15.4                 11.2                  7.9
+89                  21.8                 18.9                 16.8
+90                   7.6                  3.5                  1.0
+91                  19.3                 16.1                 14.6
+92                  21.3                 18.4                 15.5
+93                   4.5                  3.0                  1.3
+94                  22.5                 19.5                 17.6
+95                  10.7                  6.8                  4.0
+96                  13.9                 10.1                  7.1
+97                  19.1                 16.4                 12.9
+98                  17.4                 14.3                 11.3
+99                  13.3                 10.9                  8.3
+100                 15.4                 11.3                  8.1
+    ARG_wc2.1_30s_tavg_7 ARG_wc2.1_30s_tavg_8 ARG_wc2.1_30s_tavg_9
+1                    8.5                 10.0                 13.0
+2                    7.0                  8.8                 11.5
+3                    7.7                  9.6                 12.3
+4                    4.9                  6.6                  9.2
+5                    9.9                 11.3                 13.8
+6                    5.0                  6.7                  9.0
+7                    2.1                  3.4                  5.7
+8                   11.3                 12.2                 14.3
+9                    7.0                  8.7                 11.2
+10                  10.9                 12.4                 14.2
+11                   2.8                  4.9                  7.3
+12                  16.6                 18.6                 20.8
+13                   3.6                  5.0                  7.6
+14                  13.8                 15.7                 17.4
+15                  14.8                 17.4                 20.4
+16                  11.9                 13.5                 15.6
+17                  12.6                 14.8                 17.3
+18                   8.5                 10.1                 12.9
+19                  10.3                 12.0                 14.9
+20                  -4.9                 -4.5                 -2.9
+21                  16.3                 18.8                 22.0
+22                  16.0                 18.6                 21.6
+23                  12.9                 14.9                 16.9
+24                   7.7                 10.2                 13.9
+25                  15.5                 17.1                 19.1
+26                   9.7                 12.4                 16.1
+27                   2.0                  3.3                  6.0
+28                  15.8                 17.4                 19.3
+29                  13.6                 15.4                 17.2
+30                   9.0                 10.1                 12.4
+31                   8.0                  9.9                 12.6
+32                   5.4                  6.7                  9.3
+33                  12.8                 15.3                 18.1
+34                   8.3                 10.3                 13.1
+35                   7.4                  9.0                 12.0
+36                  -1.6                 -0.9                  1.1
+37                   4.9                  6.7                  9.0
+38                   8.1                  9.2                 11.3
+39                   1.4                  3.1                  5.7
+40                  -4.3                 -3.7                 -2.0
+41                   0.5                  1.8                  4.5
+42                   4.5                  6.0                  9.0
+43                  14.2                 17.0                 18.9
+44                   1.4                  3.0                  5.5
+45                  13.9                 16.5                 18.0
+46                   8.6                  9.8                 12.1
+47                   9.1                 10.7                 12.7
+48                   9.7                 11.2                 13.9
+49                   8.9                 10.0                 12.3
+50                   1.6                  3.4                  5.9
+51                   8.3                  9.3                 11.2
+52                   9.4                 11.9                 15.0
+53                   7.0                  8.7                 12.2
+54                  11.0                 14.0                 17.7
+55                   1.1                  3.1                  5.7
+56                   7.4                  8.9                 11.8
+57                   5.3                  6.5                  8.9
+58                   7.4                  9.2                 12.7
+59                  13.7                 14.8                 19.4
+60                   0.3                  1.0                  2.9
+61                   3.7                  5.2                  7.6
+62                   7.1                  8.4                 12.3
+63                   0.4                  2.2                  4.5
+64                  14.0                 16.7                 19.8
+65                   9.5                 11.0                 13.5
+66                   7.2                  8.7                 12.4
+67                  -0.5                  0.8                  3.1
+68                   6.9                  8.8                 11.5
+69                   1.8                  3.4                  6.1
+70                   7.9                 10.3                 12.4
+71                   7.1                  9.2                 12.7
+72                  -1.3                 -0.3                  2.4
+73                   8.4                  9.4                 11.2
+74                   8.8                 10.3                 12.4
+75                   6.8                  8.2                 10.4
+76                   6.9                  8.3                 12.2
+77                   6.9                  8.7                 12.0
+78                   1.1                  3.0                  5.3
+79                  15.4                 17.1                 19.0
+80                   2.1                  3.0                  5.2
+81                  10.0                 12.8                 16.1
+82                   6.3                  7.8                 10.3
+83                   0.4                  1.5                  4.3
+84                   7.2                  8.5                 12.3
+85                   7.9                  9.8                 12.4
+86                   8.0                  9.9                 12.5
+87                 -10.4                 -9.8                 -8.6
+88                   7.7                  9.5                 12.7
+89                  16.5                 18.4                 20.6
+90                   1.0                  2.3                  5.0
+91                  14.2                 15.9                 17.5
+92                  15.2                 18.0                 20.9
+93                   0.9                  1.4                  2.8
+94                  16.9                 19.1                 21.2
+95                   3.8                  5.6                  8.1
+96                   6.7                  8.4                 10.6
+97                  14.7                 15.3                 18.5
+98                  11.1                 12.4                 14.4
+99                   8.4                 10.0                 12.3
+100                  7.7                  9.7                 12.7
+    ARG_wc2.1_30s_tavg_10 ARG_wc2.1_30s_tavg_11 ARG_wc2.1_30s_tavg_12
+1                    16.3                  19.9                  22.9
+2                    15.5                  19.5                  22.2
+3                    15.5                  18.9                  22.0
+4                    12.6                  15.8                  17.8
+5                    16.8                  20.0                  22.9
+6                    12.2                  15.3                  17.2
+7                     7.6                   9.7                  10.8
+8                    17.2                  20.0                  22.6
+9                    13.4                  15.4                  16.4
+10                   17.0                  19.6                  22.4
+11                   10.4                  13.3                  14.8
+12                   23.6                  25.1                  27.0
+13                   11.2                  14.6                  17.4
+14                   20.3                  22.8                  25.3
+15                   23.3                  24.8                  26.2
+16                   18.9                  21.7                  24.3
+17                   20.8                  23.1                  25.6
+18                   16.1                  19.5                  22.6
+19                   17.0                  19.5                  20.4
+20                   -1.8                   0.2                   1.7
+21                   25.1                  26.3                  27.7
+22                   25.0                  26.5                  28.0
+23                   20.1                  22.7                  25.1
+24                   18.6                  21.8                  24.7
+25                   22.1                  24.1                  26.1
+26                   20.8                  23.9                  26.5
+27                    9.1                  11.7                  13.9
+28                   22.3                  24.2                  26.2
+29                   20.1                  22.7                  25.2
+30                   15.3                  18.5                  21.1
+31                   16.3                  19.5                  23.0
+32                   13.2                  17.0                  19.8
+33                   21.7                  23.9                  26.4
+34                   16.8                  19.7                  23.3
+35                   15.4                  19.5                  22.4
+36                    2.4                   4.1                   5.3
+37                   12.2                  15.4                  17.3
+38                   14.3                  17.1                  20.0
+39                    8.9                  11.9                  14.1
+40                    0.8                   3.7                   6.7
+41                    7.6                  10.0                  12.1
+42                   12.8                  16.8                  19.7
+43                   22.1                  24.4                  26.7
+44                    8.9                  12.1                  14.7
+45                   20.9                  23.5                  25.7
+46                   15.0                  17.9                  20.7
+47                   15.7                  18.4                  21.5
+48                   17.4                  20.4                  23.1
+49                   15.2                  18.3                  21.0
+50                    8.9                  11.5                  13.8
+51                   14.0                  16.7                  19.3
+52                   19.2                  22.1                  24.7
+53                   15.9                  20.0                  23.0
+54                   21.9                  24.7                  26.9
+55                    8.7                  11.4                  12.9
+56                   15.3                  19.1                  21.9
+57                   12.6                  16.2                  18.8
+58                   17.0                  20.8                  23.7
+59                   21.5                  23.9                  25.0
+60                    4.2                   6.1                   7.4
+61                   11.4                  15.0                  17.8
+62                   16.0                  20.3                  23.1
+63                    6.6                   8.1                   9.1
+64                   22.4                  24.2                  25.8
+65                   16.5                  19.6                  22.6
+66                   15.8                  19.8                  22.9
+67                    6.4                   9.7                  12.3
+68                   15.3                  19.1                  21.9
+69                    8.9                  11.3                  13.5
+70                   15.8                  18.7                  21.7
+71                   17.0                  20.3                  23.2
+72                    5.7                   8.0                   9.9
+73                   14.0                  16.9                  19.4
+74                   15.3                  17.9                  21.0
+75                   13.6                  17.0                  19.9
+76                   15.6                  19.7                  22.9
+77                   15.8                  19.8                  22.8
+78                    8.0                  10.2                  12.3
+79                   21.8                  23.8                  26.1
+80                    8.4                  11.6                  14.1
+81                   20.4                  23.2                  25.4
+82                   13.3                  16.9                  20.3
+83                    7.4                   9.8                  11.8
+84                   16.0                  20.3                  23.2
+85                   15.2                  17.7                  19.3
+86                   15.7                  18.9                  22.0
+87                   -6.8                  -3.8                  -1.1
+88                   16.5                  20.0                  23.0
+89                   23.3                  24.9                  26.8
+90                    8.3                  10.7                  12.5
+91                   19.7                  21.4                  23.1
+92                   24.0                  25.5                  27.4
+93                    3.9                   6.5                   8.4
+94                   23.9                  25.3                  27.2
+95                   11.2                  14.1                  15.9
+96                   13.8                  16.8                  19.3
+97                   20.2                  23.3                  23.9
+98                   17.4                  20.3                  23.0
+99                   14.7                  17.0                  18.3
+100                  16.3                  19.7                  23.1</code></pre>
+</div>
+</div>
+<div class="asides">
+<p>Fijaros que extráe un valor de cada capa del raster stack.</p>
+</div>
+</section>
+<section id="también-funciona-con-polígonos" class="slide level2">
+<h2>También funciona con polígonos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1"></a>prov_tavg <span class="ot">&lt;-</span> <span class="fu">extract</span>(tavg, arg, <span class="at">fun =</span> <span class="st">"mean"</span>, <span class="at">bind =</span> <span class="cn">TRUE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb115-2"><a href="#cb115-2"></a><span class="fu">plot</span>(prov_tavg, <span class="st">"ARG_wc2.1_30s_tavg_1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-66-1.png" width="960" class="r-stretch"></section>
+<section id="los-objetos-raster-se-puede-operar-matemáticamente-con-ellos-para-generar-estadísticos" class="slide level2">
+<h2>Los objetos raster se puede operar matemáticamente con ellos para generar estadísticos</h2>
+<p>En general se puede usar cualquiera de estas funciones: <code>min</code>, <code>max</code>, <code>mean</code>, <code>prod</code>, <code>sum</code>, <code>median</code>, <code>cv</code>, <code>range</code>, <code>any</code> y <code>all</code>.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+|---------|---------|---------|---------|
+=========================================
+                                          </code></pre>
 </div>
 
-<p><img src="img/logos.png" class="slide-logo"></p>
-<div class="footer footer-default">
+</div>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-67-1.png" width="960" class="r-stretch"></section>
+<section id="también-hay-multitud-de-funciones-avanzadas-propias-de-un-sig-tanto-para-vectoriales-como-raster" class="slide level2">
+<h2>También hay multitud de funciones avanzadas propias de un SIG, tanto para vectoriales como raster</h2>
+<p><code>crop</code>, <code>trim</code>, <code>merge</code>, <code>disagg</code>, <code>resample</code>, <code>classify</code> o <code>cover</code></p>
+<p><code>gdistance</code> package ofrece análisis de distancias complejos (least cost path, etcétera)</p>
+</section>
+<section id="last-but-not-least.-se-pueden-transformar-datos-vectoriales-en-raster" class="slide level2">
+<h2>Last but not least. Se pueden transformar datos vectoriales en raster …</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1"></a>arg_raster <span class="ot">&lt;-</span> <span class="fu">rasterize</span>(arg, tavg, <span class="at">field =</span> <span class="st">"NAME_1"</span>)</span>
+<span id="cb117-2"><a href="#cb117-2"></a><span class="fu">class</span>(arg_raster)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "SpatRaster"
+attr(,"package")
+[1] "terra"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1"></a><span class="fu">plot</span>(arg_raster)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="AEMER-2_Analisis_espacial_files/figure-revealjs/unnamed-chunk-68-1.png" width="960" class="r-stretch"></section>
+<section id="y-viceversa" class="slide level2">
+<h2>… y viceversa</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1"></a><span class="fu">as.polygons</span>(tavg[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> class       : SpatVector 
+ geometry    : polygons 
+ dimensions  : 41, 1  (geometries, attributes)
+ extent      : -74, -53.5, -55.5, -21.5  (xmin, xmax, ymin, ymax)
+ coord. ref. : lon/lat WGS 84 (EPSG:4326) 
+ names       : ARG_wc2.1_30s_tavg_1
+ type        :                &lt;int&gt;
+ values      :                  -11
+                                -10
+                                 -9</code></pre>
+</div>
+</div>
+</section>
+<section id="hora-de-trabajar-por-vuestra-cuenta" class="slide level2">
+<h2>Hora de trabajar por vuestra cuenta…</h2>
+<p>Ejercicios de clase</p>
+</section></section>
+<section id="parte-3.-manipulación-de-datos-raster-y-vectoriales" class="title-slide slide level1 center">
+<h1>Parte 3. Manipulación de datos raster y vectoriales</h1>
+
+
+<img src="img/logos.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p><a href="https://dnietolugilde.com/AEMeR">AEMeR</a></p>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
