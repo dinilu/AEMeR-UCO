@@ -7,7 +7,7 @@
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.3.340">
 
   <meta name="author" content="Diego Nieto Lugilde">
@@ -56,44 +56,44 @@
         -khtml-user-select: none; -moz-user-select: none;
         -ms-user-select: none; user-select: none;
         padding: 0 4px; width: 4em;
+        color: #aaaaaa;
       }
-    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
     div.sourceCode
-      { color: #f8f8f2;  }
+      { color: #003b4f; background-color: #f1f3f5; }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    code span { color: #f8f8f2; } /* Normal */
-    code span.al { color: #f07178; background-color: #2a0f15; font-weight: bold; } /* Alert */
-    code span.an { color: #d4d0ab; } /* Annotation */
-    code span.at { color: #00e0e0; } /* Attribute */
-    code span.bn { color: #d4d0ab; } /* BaseN */
-    code span.bu { color: #abe338; } /* BuiltIn */
-    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #abe338; } /* Char */
-    code span.cn { color: #ffd700; } /* Constant */
-    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
-    code span.cv { color: #ffd700; } /* CommentVar */
-    code span.do { color: #f8f8f2; } /* Documentation */
-    code span.dt { color: #ffa07a; } /* DataType */
-    code span.dv { color: #d4d0ab; } /* DecVal */
-    code span.er { color: #f07178; text-decoration: underline; } /* Error */
-    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
-    code span.fl { color: #d4d0ab; } /* Float */
-    code span.fu { color: #ffa07a; } /* Function */
-    code span.im { color: #abe338; } /* Import */
-    code span.in { color: #d4d0ab; } /* Information */
-    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
-    code span.op { color: #ffa07a; } /* Operator */
-    code span.ot { color: #00e0e0; } /* Other */
-    code span.pp { color: #dcc6e0; } /* Preprocessor */
-    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
-    code span.sc { color: #abe338; } /* SpecialChar */
-    code span.ss { color: #abe338; } /* SpecialString */
-    code span.st { color: #abe338; } /* String */
-    code span.va { color: #00e0e0; } /* Variable */
-    code span.vs { color: #abe338; } /* VerbatimString */
-    code span.wa { color: #dcc6e0; } /* Warning */
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -386,7 +386,7 @@
     }
   </style>
 </head>
-<body class="quarto-dark">
+<body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
@@ -516,9 +516,9 @@ attr(,"package")
  coord. ref. : +proj=longlat +datum=WGS84 +no_defs 
  names       :    ID precip
  type        : &lt;int&gt;  &lt;int&gt;
- values      :     1     29
-                   2     70
-                   3     57</code></pre>
+ values      :     1     28
+                   2     79
+                   3     25</code></pre>
 </div>
 </div>
 </section>
@@ -734,9 +734,9 @@ resolution  : 7, 4  (x, y)
 extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
-name        :      lyr.1 
-min value   : 0.01257991 
-max value   : 0.99585753 </code></pre>
+name        :       lyr.1 
+min value   : 0.008557568 
+max value   : 0.980728802 </code></pre>
 </div>
 </div>
 </section>
@@ -766,9 +766,9 @@ resolution  : 7, 4  (x, y)
 extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
-names       :      lyr.1,        lyr.1,     lyr.1 
-min values  : 0.01257991, 0.0001582542, 0.1121602 
-max values  : 0.99585753, 0.9917322155, 0.9979266 </code></pre>
+names       :       lyr.1,        lyr.1,      lyr.1 
+min values  : 0.008557568, 7.323197e-05, 0.09250712 
+max values  : 0.980728802, 9.618290e-01, 0.99031753 </code></pre>
 </div>
 </div>
 </section>
@@ -792,8 +792,8 @@ extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
 name        :        lyr.1 
-min value   : 0.0001582542 
-max value   : 0.9917322155 </code></pre>
+min value   : 7.323197e-05 
+max value   : 9.618290e-01 </code></pre>
 </div>
 </div>
 </section>
@@ -853,10 +853,10 @@ dimensions  : 4455, 2454, 12  (nrow, ncol, nlyr)
 resolution  : 871.5251, 871.5251  (x, y)
 extent      : -18378.29, 2120344, 3739870, 7622514  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_38886f4919d4_14472.tif 
+source      : spat_a307c511c22_2608.tif 
 names       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... 
-min values  :   -10.03863,   -10.73863,   -11.50125,   -13.56388,   -15.81209,   -19.12294, ... 
-max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.99198, ... </code></pre>
+min values  :    -10.0495,   -10.73685,   -11.49965,   -13.56246,   -15.82211,   -19.13244, ... 
+max values  :     29.2000,    28.40000,    27.30000,    25.00000,    22.20000,    20.99198, ... </code></pre>
 </div>
 </div>
 </section>
@@ -901,7 +901,7 @@ dimensions  : 4853, 2673, 12  (nrow, ncol, nlyr)
 resolution  : 800, 800  (x, y)
 extent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_3888731e53d4_14472.tif 
+source      : spat_a30268d3e52_2608.tif 
 names       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... 
 min values  :   -10.77633,   -11.47463,   -12.17463,   -14.20292,   -16.40292,   -19.51049, ... 
 max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.95641, ... </code></pre>
@@ -937,9 +937,9 @@ dimensions  : 4455, 2454, 1  (nrow, ncol, nlyr)
 resolution  : 871.5251, 871.5251  (x, y)
 extent      : -18378.29, 2120344, 3739870, 7622514  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_38886f4919d4_14472.tif 
+source      : spat_a307c511c22_2608.tif 
 name        : ARG_wc2.1_30s_tavg_2 
-min value   :            -10.73863 
+min value   :            -10.73685 
 max value   :             28.40000 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a>tavg_utm19s_2[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -949,7 +949,7 @@ dimensions  : 4853, 2673, 1  (nrow, ncol, nlyr)
 resolution  : 800, 800  (x, y)
 extent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_3888731e53d4_14472.tif 
+source      : spat_a30268d3e52_2608.tif 
 name        : ARG_wc2.1_30s_tavg_2 
 min value   :            -11.47463 
 max value   :             28.40000 </code></pre>
@@ -1077,8 +1077,8 @@ max value   :             28.40000 </code></pre>
                ARG.3_1   ARG Argentina        Chaco El Chaco|Presi~        NA
     TYPE_1 ENGTYPE_1  CC_1 HASC_1 ISO_1  lets
      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
- Provincia  Province    NA  AR.BA  AR-B     e
- Provincia  Province    NA  AR.CT  AR-K     l
+ Provincia  Province    NA  AR.BA  AR-B     m
+ Provincia  Province    NA  AR.CT  AR-K     o
  Provincia  Province    NA  AR.CC  AR-H     k</code></pre>
 </div>
 </div>
@@ -1251,308 +1251,308 @@ max value   :             28.40000 </code></pre>
 <span id="cb110-2"><a href="#cb110-2"></a>pnts_arg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    id.y              NAME_1    GID_1 GID_0   COUNTRY
-1      1        Buenos Aires  ARG.1_1   ARG Argentina
-2      2           Río Negro ARG.16_1   ARG Argentina
-3      3        Buenos Aires  ARG.1_1   ARG Argentina
-4      4              Chubut  ARG.4_1   ARG Argentina
-5      5            Santa Fe ARG.21_1   ARG Argentina
-6      6              Chubut  ARG.4_1   ARG Argentina
-7      7           Catamarca  ARG.2_1   ARG Argentina
-8      8          Entre Ríos  ARG.8_1   ARG Argentina
-9      9               Salta ARG.17_1   ARG Argentina
-10    10        Buenos Aires  ARG.1_1   ARG Argentina
-11    11          Santa Cruz ARG.20_1   ARG Argentina
-12    12             Formosa  ARG.9_1   ARG Argentina
-13    13             Mendoza ARG.13_1   ARG Argentina
-14    14            Santa Fe ARG.21_1   ARG Argentina
-15    15               Salta ARG.17_1   ARG Argentina
+1      1           Río Negro ARG.16_1   ARG Argentina
+2      2              Chubut  ARG.4_1   ARG Argentina
+3      3            San Luis ARG.19_1   ARG Argentina
+4      4               Salta ARG.17_1   ARG Argentina
+5      5               Salta ARG.17_1   ARG Argentina
+6      6    Tierra del Fuego ARG.23_1   ARG Argentina
+7      7             Mendoza ARG.13_1   ARG Argentina
+8      8          Corrientes  ARG.7_1   ARG Argentina
+9      9             Córdoba  ARG.6_1   ARG Argentina
+10    10          Entre Ríos  ARG.8_1   ARG Argentina
+11    11           Río Negro ARG.16_1   ARG Argentina
+12    12            Misiones ARG.14_1   ARG Argentina
+13    13          Santa Cruz ARG.20_1   ARG Argentina
+14    14            La Rioja ARG.12_1   ARG Argentina
+15    15             Mendoza ARG.13_1   ARG Argentina
 16    16            Santa Fe ARG.21_1   ARG Argentina
-17    17 Santiago del Estero ARG.22_1   ARG Argentina
-18    18        Buenos Aires  ARG.1_1   ARG Argentina
-19    19             Tucumán ARG.24_1   ARG Argentina
+17    17            Misiones ARG.14_1   ARG Argentina
+18    18              Chubut  ARG.4_1   ARG Argentina
+19    19           Río Negro ARG.16_1   ARG Argentina
 20    20           Catamarca  ARG.2_1   ARG Argentina
 21    21               Salta ARG.17_1   ARG Argentina
-22    22               Salta ARG.17_1   ARG Argentina
-23    23            Santa Fe ARG.21_1   ARG Argentina
-24    24             Mendoza ARG.13_1   ARG Argentina
-25    25               Chaco  ARG.3_1   ARG Argentina
-26    26            San Juan ARG.18_1   ARG Argentina
-27    27          Santa Cruz ARG.20_1   ARG Argentina
-28    28               Chaco  ARG.3_1   ARG Argentina
-29    29            Santa Fe ARG.21_1   ARG Argentina
-30    30        Buenos Aires  ARG.1_1   ARG Argentina
-31    31            La Pampa ARG.11_1   ARG Argentina
-32    32             Neuquén ARG.15_1   ARG Argentina
-33    33 Santiago del Estero ARG.22_1   ARG Argentina
+22    22            La Pampa ARG.11_1   ARG Argentina
+23    23               Salta ARG.17_1   ARG Argentina
+24    24        Buenos Aires  ARG.1_1   ARG Argentina
+25    25            Misiones ARG.14_1   ARG Argentina
+26    26            Santa Fe ARG.21_1   ARG Argentina
+27    27            La Pampa ARG.11_1   ARG Argentina
+28    28             Córdoba  ARG.6_1   ARG Argentina
+29    29             Córdoba  ARG.6_1   ARG Argentina
+30    30            Santa Fe ARG.21_1   ARG Argentina
+31    31           Río Negro ARG.16_1   ARG Argentina
+32    32             Córdoba  ARG.6_1   ARG Argentina
+33    33        Buenos Aires  ARG.1_1   ARG Argentina
 34    34            La Pampa ARG.11_1   ARG Argentina
-35    35           Río Negro ARG.16_1   ARG Argentina
-36    36           Catamarca  ARG.2_1   ARG Argentina
-37    37              Chubut  ARG.4_1   ARG Argentina
-38    38        Buenos Aires  ARG.1_1   ARG Argentina
-39    39              Chubut  ARG.4_1   ARG Argentina
-40    40             Mendoza ARG.13_1   ARG Argentina
-41    41          Santa Cruz ARG.20_1   ARG Argentina
+35    35            Santa Fe ARG.21_1   ARG Argentina
+36    36 Santiago del Estero ARG.22_1   ARG Argentina
+37    37             Córdoba  ARG.6_1   ARG Argentina
+38    38           Catamarca  ARG.2_1   ARG Argentina
+39    39             Córdoba  ARG.6_1   ARG Argentina
+40    40              Chubut  ARG.4_1   ARG Argentina
+41    41            La Pampa ARG.11_1   ARG Argentina
 42    42             Mendoza ARG.13_1   ARG Argentina
-43    43 Santiago del Estero ARG.22_1   ARG Argentina
-44    44           Río Negro ARG.16_1   ARG Argentina
-45    45            Santa Fe ARG.21_1   ARG Argentina
-46    46        Buenos Aires  ARG.1_1   ARG Argentina
-47    47        Buenos Aires  ARG.1_1   ARG Argentina
-48    48             Córdoba  ARG.6_1   ARG Argentina
+43    43             Córdoba  ARG.6_1   ARG Argentina
+44    44            La Pampa ARG.11_1   ARG Argentina
+45    45        Buenos Aires  ARG.1_1   ARG Argentina
+46    46           Río Negro ARG.16_1   ARG Argentina
+47    47              Chubut  ARG.4_1   ARG Argentina
+48    48            Santa Fe ARG.21_1   ARG Argentina
 49    49        Buenos Aires  ARG.1_1   ARG Argentina
-50    50              Chubut  ARG.4_1   ARG Argentina
-51    51        Buenos Aires  ARG.1_1   ARG Argentina
-52    52            San Luis ARG.19_1   ARG Argentina
-53    53            La Pampa ARG.11_1   ARG Argentina
+50    50 Santiago del Estero ARG.22_1   ARG Argentina
+51    51          Santa Cruz ARG.20_1   ARG Argentina
+52    52              Chubut  ARG.4_1   ARG Argentina
+53    53          Corrientes  ARG.7_1   ARG Argentina
 54    54           Catamarca  ARG.2_1   ARG Argentina
 55    55          Santa Cruz ARG.20_1   ARG Argentina
-56    56        Buenos Aires  ARG.1_1   ARG Argentina
-57    57             Neuquén ARG.15_1   ARG Argentina
-58    58             Mendoza ARG.13_1   ARG Argentina
-59    59               Salta ARG.17_1   ARG Argentina
-60    60           Catamarca  ARG.2_1   ARG Argentina
-61    61           Río Negro ARG.16_1   ARG Argentina
-62    62            La Pampa ARG.11_1   ARG Argentina
-63    63               Salta ARG.17_1   ARG Argentina
-64    64               Salta ARG.17_1   ARG Argentina
-65    65            Santa Fe ARG.21_1   ARG Argentina
-66    66            La Pampa ARG.11_1   ARG Argentina
-67    67           Río Negro ARG.16_1   ARG Argentina
-68    68           Río Negro ARG.16_1   ARG Argentina
-69    69          Santa Cruz ARG.20_1   ARG Argentina
-70    70        Buenos Aires  ARG.1_1   ARG Argentina
-71    71             Mendoza ARG.13_1   ARG Argentina
-72    72          Santa Cruz ARG.20_1   ARG Argentina
-73    73        Buenos Aires  ARG.1_1   ARG Argentina
-74    74        Buenos Aires  ARG.1_1   ARG Argentina
-75    75        Buenos Aires  ARG.1_1   ARG Argentina
-76    76            La Pampa ARG.11_1   ARG Argentina
-77    77            La Pampa ARG.11_1   ARG Argentina
-78    78              Chubut  ARG.4_1   ARG Argentina
-79    79               Chaco  ARG.3_1   ARG Argentina
-80    80             Neuquén ARG.15_1   ARG Argentina
-81    81            La Rioja ARG.12_1   ARG Argentina
-82    82        Buenos Aires  ARG.1_1   ARG Argentina
-83    83          Santa Cruz ARG.20_1   ARG Argentina
-84    84            La Pampa ARG.11_1   ARG Argentina
-85    85           Catamarca  ARG.2_1   ARG Argentina
-86    86        Buenos Aires  ARG.1_1   ARG Argentina
-87    87             Mendoza ARG.13_1   ARG Argentina
-88    88            La Pampa ARG.11_1   ARG Argentina
-89    89             Formosa  ARG.9_1   ARG Argentina
-90    90          Santa Cruz ARG.20_1   ARG Argentina
-91    91            Misiones ARG.14_1   ARG Argentina
-92    92               Chaco  ARG.3_1   ARG Argentina
-93    93            La Rioja ARG.12_1   ARG Argentina
-94    94             Formosa  ARG.9_1   ARG Argentina
-95    95          Santa Cruz ARG.20_1   ARG Argentina
-96    96              Chubut  ARG.4_1   ARG Argentina
-97    97             Tucumán ARG.24_1   ARG Argentina
-98    98          Entre Ríos  ARG.8_1   ARG Argentina
-99    99           Catamarca  ARG.2_1   ARG Argentina
-100  100            La Pampa ARG.11_1   ARG Argentina
-                         VARNAME_1 NL_NAME_1    TYPE_1 ENGTYPE_1 CC_1 HASC_1
-1              Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-2                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
-3              Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-4                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
-5                         Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
-6                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
-7                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
-8                       Entre-Rios      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.ER
-9                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
-10             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-11                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
-12                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.FM
-13                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
-14                        Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
-15                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
-16                        Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
-17                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SE
-18             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-19                         Tucumão      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.TM
-20                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
-21                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
-22                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
-23                        Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
-24                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
-25  El Chaco|Presidente Juan Peron      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CC
-26                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SJ
-27                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
-28  El Chaco|Presidente Juan Peron      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CC
-29                        Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
-30             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-31              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
-32                         Neuquén      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.NQ
-33                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SE
-34              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
-35                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
-36                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
-37                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
-38             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-39                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
-40                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
-41                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
-42                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
-43                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SE
-44                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
-45                        Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
-46             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-47             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-48                         Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB
-49             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-50                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
-51             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-52                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SL
-53              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
-54                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
-55                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
-56             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-57                         Neuquén      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.NQ
-58                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
-59                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
-60                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
-61                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
-62              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
-63                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
-64                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
-65                        Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
-66              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
-67                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
-68                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
-69                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
-70             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-71                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
-72                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
-73             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-74             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-75             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-76              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
-77              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
-78                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
-79  El Chaco|Presidente Juan Peron      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CC
-80                         Neuquén      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.NQ
-81                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LR
-82             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-83                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
-84              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
-85                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
-86             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-87                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
-88              El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
-89                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.FM
-90                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
-91                         Missões      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MN
-92  El Chaco|Presidente Juan Peron      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CC
-93                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LR
-94                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.FM
-95                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
-96                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
-97                         Tucumão      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.TM
-98                      Entre-Rios      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.ER
-99                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
-100             El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+56    56             Mendoza ARG.13_1   ARG Argentina
+57    57             Córdoba  ARG.6_1   ARG Argentina
+58    58           Catamarca  ARG.2_1   ARG Argentina
+59    59             Mendoza ARG.13_1   ARG Argentina
+60    60            La Pampa ARG.11_1   ARG Argentina
+61    61               Chaco  ARG.3_1   ARG Argentina
+62    62            San Juan ARG.18_1   ARG Argentina
+63    63               Chaco  ARG.3_1   ARG Argentina
+64    64              Chubut  ARG.4_1   ARG Argentina
+65    65 Santiago del Estero ARG.22_1   ARG Argentina
+66    66             Mendoza ARG.13_1   ARG Argentina
+67    67          Santa Cruz ARG.20_1   ARG Argentina
+68    68              Chubut  ARG.4_1   ARG Argentina
+69    69        Buenos Aires  ARG.1_1   ARG Argentina
+70    70           Río Negro ARG.16_1   ARG Argentina
+71    71              Chubut  ARG.4_1   ARG Argentina
+72    72             Córdoba  ARG.6_1   ARG Argentina
+73    73          Santa Cruz ARG.20_1   ARG Argentina
+74    74          Santa Cruz ARG.20_1   ARG Argentina
+75    75          Entre Ríos  ARG.8_1   ARG Argentina
+76    76               Chaco  ARG.3_1   ARG Argentina
+77    77           Río Negro ARG.16_1   ARG Argentina
+78    78        Buenos Aires  ARG.1_1   ARG Argentina
+79    79             Córdoba  ARG.6_1   ARG Argentina
+80    80           Río Negro ARG.16_1   ARG Argentina
+81    81            San Luis ARG.19_1   ARG Argentina
+82    82          Santa Cruz ARG.20_1   ARG Argentina
+83    83             Formosa  ARG.9_1   ARG Argentina
+84    84             Córdoba  ARG.6_1   ARG Argentina
+85    85    Tierra del Fuego ARG.23_1   ARG Argentina
+86    86          Santa Cruz ARG.20_1   ARG Argentina
+87    87              Chubut  ARG.4_1   ARG Argentina
+88    88           Río Negro ARG.16_1   ARG Argentina
+89    89            La Pampa ARG.11_1   ARG Argentina
+90    90               Salta ARG.17_1   ARG Argentina
+91    91           Río Negro ARG.16_1   ARG Argentina
+92    92               Salta ARG.17_1   ARG Argentina
+93    93        Buenos Aires  ARG.1_1   ARG Argentina
+94    94            La Pampa ARG.11_1   ARG Argentina
+95    95           Catamarca  ARG.2_1   ARG Argentina
+96    96               Chaco  ARG.3_1   ARG Argentina
+97    97        Buenos Aires  ARG.1_1   ARG Argentina
+98    98             Córdoba  ARG.6_1   ARG Argentina
+99    99            Santa Fe ARG.21_1   ARG Argentina
+100  100        Buenos Aires  ARG.1_1   ARG Argentina
+                          VARNAME_1 NL_NAME_1    TYPE_1 ENGTYPE_1 CC_1 HASC_1
+1                              &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+2                              &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+3                              &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SL
+4                              &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
+5                              &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
+6   Feuerland|Terra del Fuoco|Terre      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.TF
+7                              &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
+8                              &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CN
+9                           Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB
+10                       Entre-Rios      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.ER
+11                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+12                          Missões      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MN
+13                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+14                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LR
+15                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
+16                         Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
+17                          Missões      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MN
+18                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+19                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+20                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
+21                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
+22               El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+23                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
+24              Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+25                          Missões      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MN
+26                         Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
+27               El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+28                          Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB
+29                          Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB
+30                         Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
+31                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+32                          Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB
+33              Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+34               El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+35                         Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
+36                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SE
+37                          Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB
+38                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
+39                          Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB
+40                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+41               El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+42                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
+43                          Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB
+44               El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+45              Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+46                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+47                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+48                         Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
+49              Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+50                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SE
+51                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+52                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+53                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CN
+54                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
+55                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+56                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
+57                          Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB
+58                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
+59                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
+60               El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+61   El Chaco|Presidente Juan Peron      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CC
+62                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SJ
+63   El Chaco|Presidente Juan Peron      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CC
+64                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+65                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SE
+66                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
+67                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+68                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+69              Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+70                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+71                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+72                          Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB
+73                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+74                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+75                       Entre-Rios      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.ER
+76   El Chaco|Presidente Juan Peron      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CC
+77                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+78              Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+79                          Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB
+80                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+81                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SL
+82                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+83                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.FM
+84                          Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB
+85  Feuerland|Terra del Fuoco|Terre      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.TF
+86                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC
+87                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
+88                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+89               El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+90                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
+91                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN
+92                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA
+93              Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+94               El Pampa|Eva Perón      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.LP
+95                             &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CT
+96   El Chaco|Presidente Juan Peron      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CC
+97              Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
+98                          Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB
+99                         Santa Fé      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SF
+100             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
     ISO_1 perimetro         area poblacion
-1    AR-B 6542992.7 307005689751  17523996
-2    &lt;NA&gt; 2829645.1 202539975187    750768
-3    AR-B 6542992.7 307005689751  17523996
-4    AR-U 4072813.0 224358261357    592621
-5    AR-S 2159600.8 133097028860   3544908
-6    AR-U 4072813.0 224358261357    592621
-7    AR-K 2141772.8 101325015569    429562
-8    &lt;NA&gt; 1391962.6  78008027779   1425578
-9    AR-A 3018996.9 155196050532   1441351
-10   AR-B 6542992.7 307005689751  17523996
-11   AR-Z 3552443.5 242892543838    337226
-12   AR-P 1887284.9  75592720001    607419
-13   AR-M 2160729.2 148772281932   2043540
-14   AR-S 2159600.8 133097028860   3544908
-15   AR-A 3018996.9 155196050532   1441351
-16   AR-S 2159600.8 133097028860   3544908
-17   AR-G 1709915.4 136911867268   1060906
-18   AR-B 6542992.7 307005689751  17523996
-19   &lt;NA&gt;  814874.3  22539627987   1731820
-20   AR-K 2141772.8 101325015569    429562
-21   AR-A 3018996.9 155196050532   1441351
-22   AR-A 3018996.9 155196050532   1441351
-23   AR-S 2159600.8 133097028860   3544908
-24   AR-M 2160729.2 148772281932   2043540
-25   AR-H 1833193.6  99764195922   1129606
-26   AR-J 1897253.6  88821613819    822853
-27   AR-Z 3552443.5 242892543838    337226
-28   AR-H 1833193.6  99764195922   1129606
-29   AR-S 2159600.8 133097028860   3544908
-30   AR-B 6542992.7 307005689751  17523996
-31   AR-L 1816741.6 142947760813    361859
-32   &lt;NA&gt; 2006884.0  94504843837    710814
-33   AR-G 1709915.4 136911867268   1060906
-34   AR-L 1816741.6 142947760813    361859
-35   &lt;NA&gt; 2829645.1 202539975187    750768
-36   AR-K 2141772.8 101325015569    429562
-37   AR-U 4072813.0 224358261357    592621
-38   AR-B 6542992.7 307005689751  17523996
-39   AR-U 4072813.0 224358261357    592621
-40   AR-M 2160729.2 148772281932   2043540
-41   AR-Z 3552443.5 242892543838    337226
-42   AR-M 2160729.2 148772281932   2043540
-43   AR-G 1709915.4 136911867268   1060906
-44   &lt;NA&gt; 2829645.1 202539975187    750768
-45   AR-S 2159600.8 133097028860   3544908
-46   AR-B 6542992.7 307005689751  17523996
-47   AR-B 6542992.7 307005689751  17523996
-48   &lt;NA&gt; 1898966.0 164663835095   3840905
-49   AR-B 6542992.7 307005689751  17523996
-50   AR-U 4072813.0 224358261357    592621
-51   AR-B 6542992.7 307005689751  17523996
-52   AR-D 1379291.3  75844534099    542069
-53   AR-L 1816741.6 142947760813    361859
-54   AR-K 2141772.8 101325015569    429562
-55   AR-Z 3552443.5 242892543838    337226
-56   AR-B 6542992.7 307005689751  17523996
-57   &lt;NA&gt; 2006884.0  94504843837    710814
-58   AR-M 2160729.2 148772281932   2043540
-59   AR-A 3018996.9 155196050532   1441351
-60   AR-K 2141772.8 101325015569    429562
-61   &lt;NA&gt; 2829645.1 202539975187    750768
-62   AR-L 1816741.6 142947760813    361859
-63   AR-A 3018996.9 155196050532   1441351
-64   AR-A 3018996.9 155196050532   1441351
-65   AR-S 2159600.8 133097028860   3544908
-66   AR-L 1816741.6 142947760813    361859
-67   &lt;NA&gt; 2829645.1 202539975187    750768
-68   &lt;NA&gt; 2829645.1 202539975187    750768
-69   AR-Z 3552443.5 242892543838    337226
-70   AR-B 6542992.7 307005689751  17523996
-71   AR-M 2160729.2 148772281932   2043540
-72   AR-Z 3552443.5 242892543838    337226
-73   AR-B 6542992.7 307005689751  17523996
-74   AR-B 6542992.7 307005689751  17523996
-75   AR-B 6542992.7 307005689751  17523996
-76   AR-L 1816741.6 142947760813    361859
-77   AR-L 1816741.6 142947760813    361859
-78   AR-U 4072813.0 224358261357    592621
-79   AR-H 1833193.6  99764195922   1129606
-80   &lt;NA&gt; 2006884.0  94504843837    710814
-81   AR-F 1613964.8  91104159966    383865
-82   AR-B 6542992.7 307005689751  17523996
-83   AR-Z 3552443.5 242892543838    337226
-84   AR-L 1816741.6 142947760813    361859
-85   AR-K 2141772.8 101325015569    429562
-86   AR-B 6542992.7 307005689751  17523996
-87   AR-M 2160729.2 148772281932   2043540
-88   AR-L 1816741.6 142947760813    361859
-89   AR-P 1887284.9  75592720001    607419
-90   AR-Z 3552443.5 242892543838    337226
-91   AR-N 1272355.6  29980009644   1278873
-92   AR-H 1833193.6  99764195922   1129606
-93   AR-F 1613964.8  91104159966    383865
-94   AR-P 1887284.9  75592720001    607419
-95   AR-Z 3552443.5 242892543838    337226
-96   AR-U 4072813.0 224358261357    592621
-97   &lt;NA&gt;  814874.3  22539627987   1731820
-98   &lt;NA&gt; 1391962.6  78008027779   1425578
-99   AR-K 2141772.8 101325015569    429562
-100  AR-L 1816741.6 142947760813    361859</code></pre>
+1    &lt;NA&gt;   2829645 202539975187    750768
+2    AR-U   4072813 224358261357    592621
+3    AR-D   1379291  75844534099    542069
+4    AR-A   3018997 155196050532   1441351
+5    AR-A   3018997 155196050532   1441351
+6    AR-V   2035551  20884464648    185732
+7    AR-M   2160729 148772281932   2043540
+8    AR-W   1546899  88958640476   1212696
+9    &lt;NA&gt;   1898966 164663835095   3840905
+10   &lt;NA&gt;   1391963  78008027779   1425578
+11   &lt;NA&gt;   2829645 202539975187    750768
+12   AR-N   1272356  29980009644   1278873
+13   AR-Z   3552444 242892543838    337226
+14   AR-F   1613965  91104159966    383865
+15   AR-M   2160729 148772281932   2043540
+16   AR-S   2159601 133097028860   3544908
+17   AR-N   1272356  29980009644   1278873
+18   AR-U   4072813 224358261357    592621
+19   &lt;NA&gt;   2829645 202539975187    750768
+20   AR-K   2141773 101325015569    429562
+21   AR-A   3018997 155196050532   1441351
+22   AR-L   1816742 142947760813    361859
+23   AR-A   3018997 155196050532   1441351
+24   AR-B   6542993 307005689751  17523996
+25   AR-N   1272356  29980009644   1278873
+26   AR-S   2159601 133097028860   3544908
+27   AR-L   1816742 142947760813    361859
+28   &lt;NA&gt;   1898966 164663835095   3840905
+29   &lt;NA&gt;   1898966 164663835095   3840905
+30   AR-S   2159601 133097028860   3544908
+31   &lt;NA&gt;   2829645 202539975187    750768
+32   &lt;NA&gt;   1898966 164663835095   3840905
+33   AR-B   6542993 307005689751  17523996
+34   AR-L   1816742 142947760813    361859
+35   AR-S   2159601 133097028860   3544908
+36   AR-G   1709915 136911867268   1060906
+37   &lt;NA&gt;   1898966 164663835095   3840905
+38   AR-K   2141773 101325015569    429562
+39   &lt;NA&gt;   1898966 164663835095   3840905
+40   AR-U   4072813 224358261357    592621
+41   AR-L   1816742 142947760813    361859
+42   AR-M   2160729 148772281932   2043540
+43   &lt;NA&gt;   1898966 164663835095   3840905
+44   AR-L   1816742 142947760813    361859
+45   AR-B   6542993 307005689751  17523996
+46   &lt;NA&gt;   2829645 202539975187    750768
+47   AR-U   4072813 224358261357    592621
+48   AR-S   2159601 133097028860   3544908
+49   AR-B   6542993 307005689751  17523996
+50   AR-G   1709915 136911867268   1060906
+51   AR-Z   3552444 242892543838    337226
+52   AR-U   4072813 224358261357    592621
+53   AR-W   1546899  88958640476   1212696
+54   AR-K   2141773 101325015569    429562
+55   AR-Z   3552444 242892543838    337226
+56   AR-M   2160729 148772281932   2043540
+57   &lt;NA&gt;   1898966 164663835095   3840905
+58   AR-K   2141773 101325015569    429562
+59   AR-M   2160729 148772281932   2043540
+60   AR-L   1816742 142947760813    361859
+61   AR-H   1833194  99764195922   1129606
+62   AR-J   1897254  88821613819    822853
+63   AR-H   1833194  99764195922   1129606
+64   AR-U   4072813 224358261357    592621
+65   AR-G   1709915 136911867268   1060906
+66   AR-M   2160729 148772281932   2043540
+67   AR-Z   3552444 242892543838    337226
+68   AR-U   4072813 224358261357    592621
+69   AR-B   6542993 307005689751  17523996
+70   &lt;NA&gt;   2829645 202539975187    750768
+71   AR-U   4072813 224358261357    592621
+72   &lt;NA&gt;   1898966 164663835095   3840905
+73   AR-Z   3552444 242892543838    337226
+74   AR-Z   3552444 242892543838    337226
+75   &lt;NA&gt;   1391963  78008027779   1425578
+76   AR-H   1833194  99764195922   1129606
+77   &lt;NA&gt;   2829645 202539975187    750768
+78   AR-B   6542993 307005689751  17523996
+79   &lt;NA&gt;   1898966 164663835095   3840905
+80   &lt;NA&gt;   2829645 202539975187    750768
+81   AR-D   1379291  75844534099    542069
+82   AR-Z   3552444 242892543838    337226
+83   AR-P   1887285  75592720001    607419
+84   &lt;NA&gt;   1898966 164663835095   3840905
+85   AR-V   2035551  20884464648    185732
+86   AR-Z   3552444 242892543838    337226
+87   AR-U   4072813 224358261357    592621
+88   &lt;NA&gt;   2829645 202539975187    750768
+89   AR-L   1816742 142947760813    361859
+90   AR-A   3018997 155196050532   1441351
+91   &lt;NA&gt;   2829645 202539975187    750768
+92   AR-A   3018997 155196050532   1441351
+93   AR-B   6542993 307005689751  17523996
+94   AR-L   1816742 142947760813    361859
+95   AR-K   2141773 101325015569    429562
+96   AR-H   1833194  99764195922   1129606
+97   AR-B   6542993 307005689751  17523996
+98   &lt;NA&gt;   1898966 164663835095   3840905
+99   AR-S   2159601 133097028860   3544908
+100  AR-B   6542993 307005689751  17523996</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1560,106 +1560,106 @@ max value   :             28.40000 </code></pre>
 <span id="cb112-2"><a href="#cb112-2"></a>pnts_clip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    id.y Zona
-1      1    2
+1      1    3
 2      2    3
-3      3    2
-4      4    3
-5      5    2
-6      6    3
-7      7   NA
+3      3    1
+4      4   NA
+5      5   NA
+6      6   NA
+7      7    1
 8      8   NA
-9      9   NA
+9      9    2
 10    10   NA
-11    11   NA
+11    11    3
 12    12   NA
-13    13    1
-14    14   NA
-15    15   NA
+13    13   NA
+14    14    1
+15    15    1
 16    16    2
 17    17   NA
-18    18    2
-19    19   NA
+18    18    3
+19    19    3
 20    20   NA
 21    21   NA
-22    22   NA
+22    22    1
 23    23   NA
-24    24    1
+24    24   NA
 25    25   NA
-26    26    1
-27    27   NA
-28    28   NA
-29    29   NA
-30    30   NA
-31    31    2
-32    32    1
-33    33   NA
-34    34    2
-35    35    4
+26    26    2
+27    27    2
+28    28    2
+29    29    2
+30    30    2
+31    31    3
+32    32    2
+33    33    4
+34    34    1
+35    35    2
 36    36   NA
-37    37    3
+37    37    2
 38    38   NA
-39    39   NA
-40    40   NA
-41    41   NA
+39    39    2
+40    40    3
+41    41    2
 42    42    1
-43    43   NA
-44    44   NA
-45    45   NA
-46    46   NA
+43    43    2
+44    44    1
+45    45    2
+46    46    3
 47    47   NA
 48    48    2
-49    49   NA
+49    49    2
 50    50   NA
 51    51   NA
-52    52    1
-53    53    1
+52    52    3
+53    53   NA
 54    54   NA
 55    55   NA
-56    56    4
-57    57   NA
-58    58    1
-59    59   NA
-60    60   NA
-61    61    3
+56    56    1
+57    57    2
+58    58   NA
+59    59    1
+60    60    2
+61    61   NA
 62    62    1
 63    63   NA
-64    64   NA
-65    65    2
+64    64    3
+65    65   NA
 66    66    1
 67    67   NA
-68    68    3
+68    68   NA
 69    69   NA
-70    70    2
-71    71    1
-72    72   NA
+70    70    1
+71    71    3
+72    72    2
 73    73   NA
 74    74   NA
-75    75    2
-76    76    1
-77    77    1
+75    75   NA
+76    76   NA
+77    77    4
 78    78   NA
-79    79   NA
-80    80   NA
-81    81   NA
-82    82    2
+79    79    2
+80    80    4
+81    81    1
+82    82   NA
 83    83   NA
-84    84    1
+84    84    2
 85    85   NA
-86    86    2
-87    87    1
-88    88    1
-89    89   NA
+86    86   NA
+87    87    3
+88    88    3
+89    89    1
 90    90   NA
-91    91   NA
+91    91    3
 92    92   NA
 93    93   NA
-94    94   NA
+94    94    1
 95    95   NA
-96    96    3
-97    97   NA
-98    98   NA
+96    96   NA
+97    97    2
+98    98    2
 99    99   NA
-100  100    2</code></pre>
+100  100   NA</code></pre>
 </div>
 </div>
 </section>
@@ -1668,409 +1668,409 @@ max value   :             28.40000 </code></pre>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>     ID ARG_wc2.1_30s_tavg_1 ARG_wc2.1_30s_tavg_2 ARG_wc2.1_30s_tavg_3
-1     1                 23.8                 22.5                 19.6
-2     2                 23.4                 22.0                 18.8
-3     3                 23.0                 21.7                 19.0
-4     4                 19.3                 18.9                 15.8
-5     5                 24.0                 22.6                 20.5
-6     6                 18.6                 18.2                 15.5
-7     7                 10.8                 10.1                  9.2
-8     8                 24.3                 23.1                 21.4
-9     9                 16.4                 15.7                 14.5
-10   10                 23.9                 22.9                 21.3
-11   11                 16.0                 15.3                 13.1
-12   12                 27.7                 26.9                 25.2
-13   13                 18.7                 17.5                 15.0
-14   14                 26.5                 25.5                 23.4
-15   15                 26.2                 25.3                 23.5
-16   16                 25.4                 24.5                 22.1
-17   17                 26.2                 24.9                 23.0
-18   18                 23.6                 22.2                 19.5
-19   19                 20.7                 20.0                 18.1
-20   20                  2.0                  1.5                  0.8
-21   21                 27.7                 26.8                 25.1
-22   22                 27.9                 27.1                 25.2
-23   23                 26.2                 25.1                 23.1
-24   24                 25.8                 24.2                 20.9
-25   25                 27.1                 26.3                 24.5
-26   26                 27.0                 25.6                 23.0
-27   27                 15.0                 14.5                 12.1
-28   28                 27.1                 26.2                 24.6
-29   29                 26.5                 25.4                 23.3
-30   30                 22.9                 21.8                 19.4
-31   31                 24.0                 22.6                 19.6
-32   32                 21.0                 19.8                 16.7
-33   33                 26.7                 25.3                 23.5
-34   34                 24.2                 22.8                 19.8
-35   35                 23.9                 22.2                 19.3
-36   36                  5.8                  5.3                  4.6
-37   37                 18.8                 18.3                 15.5
-38   38                 21.7                 20.8                 18.7
-39   39                 15.5                 15.1                 12.2
-40   40                  8.2                  7.3                  5.6
-41   41                 13.1                 12.6                 10.3
-42   42                 20.9                 19.6                 16.6
-43   43                 27.2                 25.7                 23.7
-44   44                 16.0                 15.5                 12.4
-45   45                 26.7                 25.7                 23.7
-46   46                 22.4                 21.4                 19.3
-47   47                 23.0                 22.0                 20.2
-48   48                 24.0                 23.0                 20.3
-49   49                 22.7                 21.7                 19.5
-50   50                 15.2                 14.7                 12.2
-51   51                 21.1                 20.4                 18.8
-52   52                 25.5                 24.1                 21.5
-53   53                 24.1                 22.7                 19.6
-54   54                 26.9                 25.3                 23.3
-55   55                 13.8                 13.3                 11.1
-56   56                 23.4                 22.0                 18.9
-57   57                 20.1                 19.1                 16.0
-58   58                 24.8                 23.1                 20.1
-59   59                 25.7                 24.9                 22.8
-60   60                  7.8                  7.3                  6.4
-61   61                 19.0                 18.3                 15.2
-62   62                 24.4                 23.0                 20.2
-63   63                  9.0                  8.3                  7.9
-64   64                 25.9                 25.0                 23.0
-65   65                 23.6                 22.3                 20.2
-66   66                 24.1                 22.7                 19.5
-67   67                 13.6                 13.2                 10.3
-68   68                 23.1                 21.7                 18.9
-69   69                 14.8                 14.4                 12.0
-70   70                 22.9                 21.6                 19.4
-71   71                 24.4                 22.8                 19.7
-72   72                 10.7                 10.2                  8.1
-73   73                 21.2                 20.6                 19.0
-74   74                 22.5                 21.5                 19.9
-75   75                 21.8                 20.6                 18.1
-76   76                 24.1                 22.7                 19.6
-77   77                 23.8                 22.4                 19.4
-78   78                 13.7                 13.0                 11.1
-79   79                 27.1                 26.3                 24.5
-80   80                 15.6                 14.7                 12.0
-81   81                 25.6                 24.2                 22.1
-82   82                 21.6                 20.4                 17.4
-83   83                 12.7                 12.2                 10.0
-84   84                 24.5                 23.1                 20.1
-85   85                 19.5                 18.5                 16.7
-86   86                 22.9                 21.6                 19.2
-87   87                  0.0                 -0.7                 -1.8
-88   88                 24.1                 22.7                 19.4
-89   89                 27.6                 26.9                 25.1
-90   90                 13.3                 12.8                 10.6
-91   91                 23.9                 23.7                 22.3
-92   92                 27.6                 26.6                 24.2
-93   93                  9.1                  8.3                  7.0
-94   94                 28.0                 27.3                 25.5
-95   95                 17.2                 16.5                 14.2
-96   96                 20.8                 20.0                 17.6
-97   97                 24.5                 24.0                 21.3
-98   98                 24.7                 23.4                 21.6
-99   99                 18.4                 17.5                 16.1
-100 100                 24.1                 22.6                 19.6
+1     1                 22.8                 21.6                 18.5
+2     2                 15.5                 15.1                 12.0
+3     3                 25.7                 24.4                 22.1
+4     4                 27.1                 26.2                 23.8
+5     5                 28.0                 27.1                 25.3
+6     6                  9.6                  9.1                  7.3
+7     7                 17.8                 16.8                 14.4
+8     8                 26.6                 25.5                 23.5
+9     9                 23.4                 22.2                 20.0
+10   10                 26.0                 24.7                 22.7
+11   11                 21.4                 20.4                 18.1
+12   12                 25.8                 25.3                 23.7
+13   13                 10.3                  9.6                  7.9
+14   14                 26.8                 25.6                 23.4
+15   15                 19.2                 17.8                 15.2
+16   16                 24.7                 23.7                 21.7
+17   17                 25.2                 24.8                 23.6
+18   18                 16.7                 16.4                 13.2
+19   19                 23.6                 21.9                 19.2
+20   20                 10.2                  9.5                  8.7
+21   21                 20.5                 19.7                 18.4
+22   22                 21.4                 20.0                 17.1
+23   23                 11.0                 10.4                  9.5
+24   24                 21.0                 20.3                 18.0
+25   25                 23.8                 23.5                 22.1
+26   26                 24.0                 22.8                 20.6
+27   27                 23.6                 22.2                 18.7
+28   28                 24.4                 23.4                 20.6
+29   29                 23.5                 22.4                 20.2
+30   30                 25.5                 24.6                 22.4
+31   31                 23.7                 22.1                 19.4
+32   32                 24.2                 22.9                 20.0
+33   33                 22.2                 21.2                 18.6
+34   34                 23.5                 22.2                 19.2
+35   35                 25.9                 25.1                 22.7
+36   36                 27.3                 26.0                 24.0
+37   37                 25.0                 24.1                 21.9
+38   38                 14.7                 13.8                 12.5
+39   39                 22.1                 21.0                 18.7
+40   40                 21.1                 20.2                 17.4
+41   41                 23.9                 22.3                 19.0
+42   42                 25.9                 24.3                 21.3
+43   43                 23.8                 22.6                 20.5
+44   44                 24.5                 23.1                 20.0
+45   45                 23.2                 21.9                 19.3
+46   46                 17.0                 16.3                 13.2
+47   47                 11.0                 10.7                  8.3
+48   48                 23.9                 22.6                 20.6
+49   49                 23.1                 21.8                 19.7
+50   50                 26.0                 24.8                 22.9
+51   51                 12.2                 11.6                  9.4
+52   52                 19.2                 18.9                 15.5
+53   53                 26.1                 25.4                 23.6
+54   54                 25.1                 23.9                 21.8
+55   55                 13.4                 12.9                 10.6
+56   56                 19.5                 18.3                 15.3
+57   57                 23.1                 21.9                 19.8
+58   58                 12.0                 11.3                 10.2
+59   59                 24.5                 23.0                 20.0
+60   60                 23.9                 22.5                 19.0
+61   61                 27.2                 26.4                 24.7
+62   62                 24.8                 23.6                 21.1
+63   63                 27.5                 26.6                 24.3
+64   64                 19.1                 18.9                 16.5
+65   65                 27.8                 26.7                 24.3
+66   66                 26.1                 24.5                 21.5
+67   67                 14.9                 14.2                 12.0
+68   68                 15.4                 14.8                 12.3
+69   69                 22.0                 21.0                 18.5
+70   70                 23.2                 21.8                 18.7
+71   71                 16.4                 16.0                 12.8
+72   72                 22.9                 21.8                 19.3
+73   73                 12.2                 11.7                  9.5
+74   74                 14.8                 14.3                 11.9
+75   75                 25.5                 24.4                 22.2
+76   76                 26.9                 26.1                 24.2
+77   77                 23.6                 21.9                 19.4
+78   78                 21.8                 20.8                 19.0
+79   79                 25.6                 24.5                 22.0
+80   80                 23.5                 21.8                 19.1
+81   81                 24.4                 22.8                 19.9
+82   82                 15.2                 14.6                 12.3
+83   83                 28.0                 27.3                 25.5
+84   84                 24.4                 23.1                 20.9
+85   85                  9.5                  9.3                  7.8
+86   86                  9.4                  8.9                  6.7
+87   87                 18.4                 18.1                 14.8
+88   88                 21.4                 20.2                 17.2
+89   89                 23.9                 22.5                 19.4
+90   90                 28.0                 27.2                 25.1
+91   91                 17.6                 17.0                 13.8
+92   92                 27.5                 26.7                 24.7
+93   93                 24.3                 23.1                 21.1
+94   94                 24.4                 22.8                 19.7
+95   95                 16.1                 15.4                 14.0
+96   96                 27.4                 26.3                 24.1
+97   97                 21.3                 20.2                 17.9
+98   98                 23.6                 22.4                 20.2
+99   99                 26.5                 25.7                 23.5
+100 100                 20.9                 20.4                 18.4
     ARG_wc2.1_30s_tavg_4 ARG_wc2.1_30s_tavg_5 ARG_wc2.1_30s_tavg_6
-1                   16.1                 12.5                  9.0
-2                   14.2                 10.4                  7.2
-3                   15.2                 11.6                  8.3
-4                   11.8                  7.8                  4.8
-5                   16.8                 13.6                 10.1
-6                   11.7                  8.1                  5.0
-7                    6.7                  4.5                  1.9
-8                   17.1                 14.2                 11.2
-9                   11.9                  9.5                  6.7
-10                  17.5                 14.4                 11.4
-11                   9.7                  5.7                  3.0
-12                  21.9                 19.0                 16.9
-13                  10.7                  7.0                  3.9
-14                  19.6                 16.9                 14.3
-15                  20.7                 17.8                 15.0
-16                  18.3                 15.4                 12.4
-17                  19.4                 16.3                 13.1
-18                  16.0                 12.4                  8.9
-19                  15.3                 12.6                  9.5
-20                  -1.0                 -2.6                 -4.9
-21                  22.3                 19.2                 16.3
-22                  22.2                 19.4                 16.4
-23                  19.1                 16.3                 13.4
-24                  16.6                 12.1                  8.3
-25                  20.9                 18.2                 15.6
-26                  18.4                 14.1                  9.9
-27                   8.5                  4.8                  2.1
-28                  20.9                 18.2                 15.8
-29                  19.5                 16.8                 14.1
-30                  15.3                 12.1                  9.3
-31                  15.6                 11.5                  8.3
-32                  12.1                  8.7                  5.7
-33                  20.0                 16.7                 13.3
-34                  16.1                 11.8                  8.5
-35                  14.3                 10.8                  7.4
-36                   2.7                  0.8                 -1.7
-37                  11.8                  8.1                  5.0
-38                  14.8                 11.5                  8.6
-39                   8.2                  4.6                  1.7
-40                   2.6                 -0.8                 -4.2
-41                   7.0                  3.4                  0.7
-42                  11.7                  8.0                  4.8
-43                  20.0                 17.2                 14.4
-44                   8.2                  4.7                  1.9
-45                  19.4                 16.8                 14.1
-46                  15.4                 12.0                  9.1
-47                  16.5                 12.9                  9.9
-48                  16.9                 13.8                 10.5
-49                  15.5                 12.1                  9.3
-50                   8.3                  4.9                  2.0
-51                  14.9                 11.7                  8.8
-52                  17.4                 13.5                  9.9
-53                  14.5                 10.7                  7.0
-54                  19.1                 15.0                 11.1
-55                   7.9                  3.9                  1.4
-56                  14.7                 10.8                  7.8
-57                  11.7                  8.5                  5.6
-58                  15.4                 11.2                  7.7
-59                  20.1                 16.6                 13.6
-60                   4.4                  2.6                  0.1
-61                  10.7                  7.2                  4.2
-62                  14.7                 10.8                  7.3
-63                   5.7                  3.2                  0.5
-64                  20.2                 17.3                 14.3
-65                  16.5                 13.2                  9.6
-66                  14.7                 10.7                  7.3
-67                   6.1                  2.7                 -0.1
-68                  14.1                 10.4                  7.1
-69                   8.3                  5.0                  2.0
-70                  15.4                 11.9                  8.6
-71                  15.2                 11.0                  7.6
-72                   5.1                  1.2                 -1.3
-73                  15.0                 11.8                  9.0
-74                  16.1                 12.7                  9.6
-75                  13.6                 10.2                  7.2
-76                  14.4                 10.6                  7.0
-77                  14.3                 10.6                  6.9
-78                   7.5                  4.7                  1.9
-79                  21.2                 18.3                 15.9
-80                   8.3                  5.2                  2.5
-81                  17.9                 14.0                 10.4
-82                  13.4                  9.6                  6.5
-83                   6.9                  3.2                  0.6
-84                  14.7                 10.8                  7.4
-85                  13.4                 10.6                  7.9
-86                  15.5                 11.9                  8.6
-87                  -4.1                 -6.7                -10.0
-88                  15.4                 11.2                  7.9
-89                  21.8                 18.9                 16.8
-90                   7.6                  3.5                  1.0
-91                  19.3                 16.1                 14.6
-92                  21.3                 18.4                 15.5
-93                   4.5                  3.0                  1.3
-94                  22.5                 19.5                 17.6
-95                  10.7                  6.8                  4.0
-96                  13.9                 10.1                  7.1
-97                  19.1                 16.4                 12.9
-98                  17.4                 14.3                 11.3
-99                  13.3                 10.9                  8.3
-100                 15.4                 11.3                  8.1
+1                   13.4                  9.6                  6.1
+2                    7.7                  4.0                  1.1
+3                   18.1                 14.7                 11.3
+4                   21.0                 17.8                 14.8
+5                   22.6                 19.8                 16.9
+6                    5.1                  2.2                 -0.2
+7                   11.1                  7.4                  4.7
+8                   20.0                 16.8                 14.2
+9                   16.4                 13.1                  9.5
+10                  19.1                 15.9                 13.1
+11                  14.2                 10.4                  7.4
+12                  20.8                 17.5                 15.5
+13                   5.6                  1.7                 -0.1
+14                  19.7                 16.0                 12.3
+15                  10.9                  7.0                  3.8
+16                  18.0                 15.2                 11.9
+17                  20.7                 17.2                 15.4
+18                   9.2                  5.2                  2.3
+19                  14.1                 10.5                  7.2
+20                   6.3                  4.0                  1.4
+21                  15.7                 13.2                 10.3
+22                  12.1                  8.5                  5.2
+23                   7.2                  4.8                  2.1
+24                  14.2                 10.9                  8.2
+25                  19.1                 15.7                 14.1
+26                  17.0                 13.8                 10.2
+27                  14.5                 10.3                  7.3
+28                  17.2                 14.0                 10.8
+29                  16.5                 13.5                 10.0
+30                  18.6                 15.7                 12.7
+31                  14.4                 10.7                  7.4
+32                  16.7                 12.7                  9.2
+33                  14.9                 10.9                  7.9
+34                  14.0                 10.2                  6.7
+35                  18.8                 16.0                 13.5
+36                  20.5                 17.5                 14.6
+37                  18.6                 15.5                 12.2
+38                   9.7                  7.7                  5.7
+39                  15.8                 12.8                  9.9
+40                  13.3                  9.3                  6.2
+41                  14.5                 10.3                  7.2
+42                  16.7                 12.3                  8.4
+43                  17.6                 14.5                 11.5
+44                  14.7                 10.8                  7.2
+45                  15.6                 12.0                  8.7
+46                   8.5                  4.8                  1.7
+47                   4.7                  1.6                 -1.0
+48                  17.0                 13.7                 10.2
+49                  15.9                 12.4                  9.1
+50                  19.3                 16.2                 13.0
+51                   6.3                  2.4                 -0.2
+52                  11.5                  7.3                  4.3
+53                  20.1                 16.9                 14.3
+54                  17.9                 14.1                 10.4
+55                   7.5                  3.4                  1.0
+56                  10.7                  7.2                  4.1
+57                  16.8                 13.8                 10.8
+58                   7.8                  5.7                  3.0
+59                  15.3                 11.2                  7.9
+60                  14.7                 10.4                  7.4
+61                  21.1                 18.3                 16.0
+62                  16.4                 12.2                  8.5
+63                  21.3                 18.4                 15.8
+64                  12.8                  9.6                  6.7
+65                  21.4                 18.5                 15.7
+66                  16.9                 12.5                  8.6
+67                   8.5                  4.5                  1.7
+68                   8.4                  5.0                  2.1
+69                  13.8                 10.7                  7.8
+70                  13.6                  9.8                  6.4
+71                   8.5                  4.6                  1.7
+72                  16.5                 13.5                 10.7
+73                   6.4                  2.8                  0.2
+74                   8.1                  4.7                  1.9
+75                  18.3                 15.4                 12.8
+76                  20.5                 17.8                 15.2
+77                  14.4                 10.7                  7.4
+78                  15.2                 11.8                  8.8
+79                  18.8                 15.6                 12.5
+80                  14.2                 10.7                  7.4
+81                  16.1                 11.7                  8.1
+82                   8.7                  5.0                  2.4
+83                  22.4                 19.5                 17.5
+84                  17.9                 14.9                 11.8
+85                   5.8                  3.3                  1.3
+86                   3.3                 -0.1                 -2.9
+87                  10.8                  6.6                  3.6
+88                  12.4                  8.7                  5.4
+89                  14.2                 10.4                  6.8
+90                  22.5                 19.8                 16.9
+91                   9.2                  5.6                  2.6
+92                  21.7                 18.8                 15.9
+93                  17.0                 14.1                 11.0
+94                  15.4                 11.1                  7.9
+95                  11.2                  8.8                  6.0
+96                  20.7                 17.9                 15.2
+97                  13.9                 10.3                  7.4
+98                  16.3                 13.4                 10.0
+99                  19.9                 17.2                 14.7
+100                 14.8                 11.4                  8.7
     ARG_wc2.1_30s_tavg_7 ARG_wc2.1_30s_tavg_8 ARG_wc2.1_30s_tavg_9
-1                    8.5                 10.0                 13.0
-2                    7.0                  8.8                 11.5
-3                    7.7                  9.6                 12.3
-4                    4.9                  6.6                  9.2
-5                    9.9                 11.3                 13.8
-6                    5.0                  6.7                  9.0
-7                    2.1                  3.4                  5.7
-8                   11.3                 12.2                 14.3
-9                    7.0                  8.7                 11.2
-10                  10.9                 12.4                 14.2
-11                   2.8                  4.9                  7.3
-12                  16.6                 18.6                 20.8
-13                   3.6                  5.0                  7.6
-14                  13.8                 15.7                 17.4
-15                  14.8                 17.4                 20.4
-16                  11.9                 13.5                 15.6
-17                  12.6                 14.8                 17.3
-18                   8.5                 10.1                 12.9
-19                  10.3                 12.0                 14.9
-20                  -4.9                 -4.5                 -2.9
-21                  16.3                 18.8                 22.0
-22                  16.0                 18.6                 21.6
-23                  12.9                 14.9                 16.9
-24                   7.7                 10.2                 13.9
-25                  15.5                 17.1                 19.1
-26                   9.7                 12.4                 16.1
-27                   2.0                  3.3                  6.0
-28                  15.8                 17.4                 19.3
-29                  13.6                 15.4                 17.2
-30                   9.0                 10.1                 12.4
-31                   8.0                  9.9                 12.6
-32                   5.4                  6.7                  9.3
-33                  12.8                 15.3                 18.1
-34                   8.3                 10.3                 13.1
-35                   7.4                  9.0                 12.0
-36                  -1.6                 -0.9                  1.1
-37                   4.9                  6.7                  9.0
-38                   8.1                  9.2                 11.3
-39                   1.4                  3.1                  5.7
-40                  -4.3                 -3.7                 -2.0
-41                   0.5                  1.8                  4.5
-42                   4.5                  6.0                  9.0
-43                  14.2                 17.0                 18.9
-44                   1.4                  3.0                  5.5
-45                  13.9                 16.5                 18.0
-46                   8.6                  9.8                 12.1
-47                   9.1                 10.7                 12.7
-48                   9.7                 11.2                 13.9
-49                   8.9                 10.0                 12.3
-50                   1.6                  3.4                  5.9
-51                   8.3                  9.3                 11.2
-52                   9.4                 11.9                 15.0
-53                   7.0                  8.7                 12.2
-54                  11.0                 14.0                 17.7
-55                   1.1                  3.1                  5.7
-56                   7.4                  8.9                 11.8
-57                   5.3                  6.5                  8.9
-58                   7.4                  9.2                 12.7
-59                  13.7                 14.8                 19.4
-60                   0.3                  1.0                  2.9
-61                   3.7                  5.2                  7.6
-62                   7.1                  8.4                 12.3
-63                   0.4                  2.2                  4.5
-64                  14.0                 16.7                 19.8
-65                   9.5                 11.0                 13.5
-66                   7.2                  8.7                 12.4
-67                  -0.5                  0.8                  3.1
-68                   6.9                  8.8                 11.5
-69                   1.8                  3.4                  6.1
-70                   7.9                 10.3                 12.4
-71                   7.1                  9.2                 12.7
-72                  -1.3                 -0.3                  2.4
-73                   8.4                  9.4                 11.2
-74                   8.8                 10.3                 12.4
-75                   6.8                  8.2                 10.4
-76                   6.9                  8.3                 12.2
-77                   6.9                  8.7                 12.0
-78                   1.1                  3.0                  5.3
-79                  15.4                 17.1                 19.0
-80                   2.1                  3.0                  5.2
-81                  10.0                 12.8                 16.1
-82                   6.3                  7.8                 10.3
-83                   0.4                  1.5                  4.3
-84                   7.2                  8.5                 12.3
-85                   7.9                  9.8                 12.4
-86                   8.0                  9.9                 12.5
-87                 -10.4                 -9.8                 -8.6
-88                   7.7                  9.5                 12.7
-89                  16.5                 18.4                 20.6
-90                   1.0                  2.3                  5.0
-91                  14.2                 15.9                 17.5
-92                  15.2                 18.0                 20.9
-93                   0.9                  1.4                  2.8
-94                  16.9                 19.1                 21.2
-95                   3.8                  5.6                  8.1
-96                   6.7                  8.4                 10.6
-97                  14.7                 15.3                 18.5
-98                  11.1                 12.4                 14.4
-99                   8.4                 10.0                 12.3
-100                  7.7                  9.7                 12.7
+1                    5.8                  7.9                 11.0
+2                    0.8                  2.4                  5.0
+3                   10.9                 13.2                 16.1
+4                   14.6                 17.0                 20.6
+5                   16.7                 19.5                 22.4
+6                   -0.4                  0.9                  2.9
+7                    4.2                  5.4                  7.8
+8                   14.0                 15.5                 17.3
+9                    8.9                 10.9                 13.6
+10                  12.8                 14.4                 16.3
+11                   7.0                  8.7                 10.9
+12                  15.4                 16.8                 18.3
+13                  -0.5                  0.7                  3.4
+14                  11.9                 14.6                 18.0
+15                   3.4                  5.1                  7.9
+16                  11.8                 12.6                 14.8
+17                  15.1                 17.0                 18.1
+18                   2.4                  3.9                  6.7
+19                   7.0                  8.7                 11.7
+20                   1.5                  3.0                  5.4
+21                  10.4                 12.6                 15.2
+22                   4.9                  6.4                  9.5
+23                   2.3                  3.7                  6.0
+24                   7.7                  8.6                 10.6
+25                  13.6                 15.6                 17.0
+26                   9.9                 11.4                 13.9
+27                   7.0                  8.6                 11.6
+28                  10.0                 11.5                 14.2
+29                   9.5                 11.2                 13.9
+30                  12.2                 13.9                 16.0
+31                   7.3                  9.1                 11.9
+32                   8.6                 10.6                 13.8
+33                   7.5                  8.9                 11.1
+34                   6.5                  8.3                 11.6
+35                  12.9                 14.5                 16.5
+36                  14.3                 17.0                 19.4
+37                  11.7                 13.2                 15.7
+38                   5.5                  6.7                  8.6
+39                   9.4                 11.2                 13.9
+40                   6.1                  8.0                 10.5
+41                   7.0                  8.6                 11.9
+42                   7.9                 10.6                 14.2
+43                  11.1                 12.8                 15.4
+44                   7.1                  8.6                 12.4
+45                   8.2                  9.9                 12.6
+46                   1.4                  3.2                  5.8
+47                  -1.6                 -0.2                  1.9
+48                   9.9                 11.3                 13.8
+49                   8.7                 10.7                 13.0
+50                  12.5                 14.5                 16.8
+51                  -0.2                  0.8                  3.6
+52                   4.6                  6.1                  9.0
+53                  14.0                 15.5                 17.3
+54                  10.5                 13.3                 16.6
+55                   0.8                  2.6                  5.3
+56                   3.8                  5.2                  7.9
+57                  10.4                 12.2                 14.7
+58                   3.3                  4.5                  6.7
+59                   7.4                  9.4                 12.9
+60                   7.1                  8.7                 11.9
+61                  15.8                 17.4                 19.4
+62                   8.1                 10.5                 13.9
+63                  15.6                 18.8                 20.5
+64                   6.5                  8.1                  9.8
+65                  15.5                 18.6                 20.9
+66                   8.1                 10.8                 14.4
+67                   1.7                  3.0                  5.7
+68                   1.7                  3.6                  6.1
+69                   7.5                  8.9                 11.0
+70                   6.1                  7.8                 11.1
+71                   1.6                  3.2                  5.9
+72                  10.1                 12.0                 14.8
+73                   0.0                  1.1                  3.8
+74                   1.5                  3.1                  5.8
+75                  12.3                 13.8                 15.8
+76                  15.1                 17.0                 18.8
+77                   7.2                  9.1                 11.8
+78                   8.2                  9.5                 11.7
+79                  11.9                 14.3                 17.3
+80                   7.3                  8.9                 11.7
+81                   7.7                  9.9                 13.1
+82                   2.2                  3.5                  5.9
+83                  16.9                 18.9                 21.0
+84                  11.4                 13.1                 15.7
+85                   1.0                  2.0                  3.7
+86                  -3.2                 -2.2                  0.4
+87                   3.8                  5.3                  8.3
+88                   5.2                  7.2                  9.8
+89                   6.7                  8.3                 11.9
+90                  16.7                 19.6                 22.3
+91                   2.2                  3.9                  6.5
+92                  15.5                 18.1                 21.2
+93                  11.0                 12.0                 14.3
+94                   7.7                  9.4                 12.8
+95                   6.3                  7.7                 10.1
+96                  15.1                 18.0                 19.8
+97                   7.0                  8.2                 10.1
+98                   9.7                 11.4                 14.0
+99                  14.1                 16.2                 17.9
+100                  8.4                  9.2                 10.6
     ARG_wc2.1_30s_tavg_10 ARG_wc2.1_30s_tavg_11 ARG_wc2.1_30s_tavg_12
-1                    16.3                  19.9                  22.9
-2                    15.5                  19.5                  22.2
-3                    15.5                  18.9                  22.0
-4                    12.6                  15.8                  17.8
-5                    16.8                  20.0                  22.9
-6                    12.2                  15.3                  17.2
-7                     7.6                   9.7                  10.8
-8                    17.2                  20.0                  22.6
-9                    13.4                  15.4                  16.4
-10                   17.0                  19.6                  22.4
-11                   10.4                  13.3                  14.8
-12                   23.6                  25.1                  27.0
-13                   11.2                  14.6                  17.4
-14                   20.3                  22.8                  25.3
-15                   23.3                  24.8                  26.2
-16                   18.9                  21.7                  24.3
-17                   20.8                  23.1                  25.6
-18                   16.1                  19.5                  22.6
-19                   17.0                  19.5                  20.4
-20                   -1.8                   0.2                   1.7
-21                   25.1                  26.3                  27.7
-22                   25.0                  26.5                  28.0
-23                   20.1                  22.7                  25.1
-24                   18.6                  21.8                  24.7
-25                   22.1                  24.1                  26.1
-26                   20.8                  23.9                  26.5
-27                    9.1                  11.7                  13.9
-28                   22.3                  24.2                  26.2
-29                   20.1                  22.7                  25.2
-30                   15.3                  18.5                  21.1
-31                   16.3                  19.5                  23.0
-32                   13.2                  17.0                  19.8
-33                   21.7                  23.9                  26.4
-34                   16.8                  19.7                  23.3
-35                   15.4                  19.5                  22.4
-36                    2.4                   4.1                   5.3
-37                   12.2                  15.4                  17.3
-38                   14.3                  17.1                  20.0
-39                    8.9                  11.9                  14.1
-40                    0.8                   3.7                   6.7
-41                    7.6                  10.0                  12.1
-42                   12.8                  16.8                  19.7
-43                   22.1                  24.4                  26.7
-44                    8.9                  12.1                  14.7
-45                   20.9                  23.5                  25.7
-46                   15.0                  17.9                  20.7
-47                   15.7                  18.4                  21.5
-48                   17.4                  20.4                  23.1
-49                   15.2                  18.3                  21.0
-50                    8.9                  11.5                  13.8
-51                   14.0                  16.7                  19.3
-52                   19.2                  22.1                  24.7
-53                   15.9                  20.0                  23.0
-54                   21.9                  24.7                  26.9
-55                    8.7                  11.4                  12.9
-56                   15.3                  19.1                  21.9
-57                   12.6                  16.2                  18.8
-58                   17.0                  20.8                  23.7
-59                   21.5                  23.9                  25.0
-60                    4.2                   6.1                   7.4
-61                   11.4                  15.0                  17.8
-62                   16.0                  20.3                  23.1
-63                    6.6                   8.1                   9.1
-64                   22.4                  24.2                  25.8
-65                   16.5                  19.6                  22.6
-66                   15.8                  19.8                  22.9
-67                    6.4                   9.7                  12.3
-68                   15.3                  19.1                  21.9
-69                    8.9                  11.3                  13.5
-70                   15.8                  18.7                  21.7
-71                   17.0                  20.3                  23.2
-72                    5.7                   8.0                   9.9
-73                   14.0                  16.9                  19.4
-74                   15.3                  17.9                  21.0
-75                   13.6                  17.0                  19.9
-76                   15.6                  19.7                  22.9
-77                   15.8                  19.8                  22.8
-78                    8.0                  10.2                  12.3
-79                   21.8                  23.8                  26.1
-80                    8.4                  11.6                  14.1
-81                   20.4                  23.2                  25.4
-82                   13.3                  16.9                  20.3
-83                    7.4                   9.8                  11.8
-84                   16.0                  20.3                  23.2
-85                   15.2                  17.7                  19.3
-86                   15.7                  18.9                  22.0
-87                   -6.8                  -3.8                  -1.1
-88                   16.5                  20.0                  23.0
-89                   23.3                  24.9                  26.8
-90                    8.3                  10.7                  12.5
-91                   19.7                  21.4                  23.1
-92                   24.0                  25.5                  27.4
-93                    3.9                   6.5                   8.4
-94                   23.9                  25.3                  27.2
-95                   11.2                  14.1                  15.9
-96                   13.8                  16.8                  19.3
-97                   20.2                  23.3                  23.9
-98                   17.4                  20.3                  23.0
-99                   14.7                  17.0                  18.3
-100                  16.3                  19.7                  23.1</code></pre>
+1                    14.9                  18.8                  21.8
+2                     8.4                  11.7                  14.1
+3                    19.8                  22.6                  24.9
+4                    23.2                  25.2                  26.9
+5                    25.6                  26.9                  28.2
+6                     5.4                   7.4                   8.7
+7                    11.0                  14.2                  16.9
+8                    20.2                  22.8                  25.4
+9                    17.1                  20.0                  22.8
+10                   19.3                  21.9                  24.6
+11                   14.2                  17.4                  19.9
+12                   20.8                  22.8                  25.0
+13                    6.2                   7.8                   9.5
+14                   22.1                  24.5                  26.8
+15                   11.7                  15.2                  18.1
+16                   17.8                  20.5                  23.3
+17                   20.8                  22.5                  24.4
+18                   10.1                  13.1                  15.1
+19                   15.3                  19.3                  22.1
+20                    7.3                   9.3                  10.2
+21                   17.7                  19.5                  20.5
+22                   13.3                  17.3                  20.2
+23                    7.8                   9.5                  10.8
+24                   13.6                  16.5                  19.2
+25                   19.3                  21.2                  22.9
+26                   17.1                  20.1                  23.0
+27                   15.2                  19.0                  22.3
+28                   17.5                  20.5                  23.4
+29                   17.3                  20.3                  22.8
+30                   19.2                  21.9                  24.4
+31                   15.7                  19.6                  22.3
+32                   17.4                  20.5                  23.6
+33                   14.3                  17.8                  20.8
+34                   15.5                  19.5                  22.4
+35                   19.3                  22.2                  24.6
+36                   22.5                  24.6                  26.8
+37                   19.0                  21.5                  24.2
+38                   10.5                  13.0                  14.4
+39                   16.9                  19.1                  21.7
+40                   13.9                  17.2                  19.6
+41                   15.5                  19.4                  22.6
+42                   18.9                  22.2                  25.1
+43                   18.5                  20.8                  23.4
+44                   16.0                  20.2                  23.3
+45                   15.8                  19.1                  22.3
+46                    9.4                  12.9                  15.7
+47                    4.7                   7.4                   9.6
+48                   17.1                  20.1                  23.0
+49                   16.1                  19.1                  22.0
+50                   20.4                  22.7                  25.2
+51                    6.9                   9.4                  11.4
+52                   12.5                  15.7                  17.6
+53                   20.0                  22.6                  25.2
+54                   20.5                  23.2                  25.1
+55                    8.6                  10.9                  12.5
+56                   11.6                  15.5                  18.3
+57                   17.8                  20.0                  22.6
+58                    8.5                  10.5                  11.8
+59                   17.2                  20.6                  23.5
+60                   15.6                  19.5                  22.8
+61                   22.3                  24.2                  26.3
+62                   18.2                  21.5                  24.1
+63                   23.9                  25.1                  27.2
+64                   12.8                  16.0                  17.8
+65                   24.1                  25.5                  27.6
+66                   19.1                  22.4                  25.3
+67                    9.1                  12.0                  14.0
+68                    9.1                  11.7                  13.9
+69                   14.0                  17.3                  20.1
+70                   15.0                  19.0                  22.0
+71                    9.3                  12.6                  15.0
+72                   17.8                  20.0                  22.6
+73                    7.0                   9.2                  11.2
+74                    8.7                  11.2                  13.4
+75                   18.7                  21.6                  24.1
+76                   21.7                  23.8                  25.9
+77                   15.5                  19.5                  22.2
+78                   14.6                  17.3                  20.3
+79                   20.7                  22.9                  25.4
+80                   15.2                  19.3                  21.9
+81                   17.4                  20.7                  23.6
+82                    9.0                  12.0                  14.1
+83                   23.7                  25.3                  27.2
+84                   18.9                  21.3                  23.9
+85                    5.7                   7.3                   8.6
+86                    3.6                   6.1                   8.2
+87                   11.8                  14.9                  16.8
+88                   13.7                  17.5                  20.2
+89                   15.6                  19.6                  22.8
+90                   25.3                  26.8                  28.2
+91                   10.1                  13.6                  16.3
+92                   24.4                  26.0                  27.6
+93                   17.0                  20.1                  22.8
+94                   16.6                  20.3                  23.3
+95                   12.2                  14.4                  15.8
+96                   23.1                  24.8                  27.1
+97                   13.3                  16.7                  19.6
+98                   17.3                  20.3                  22.7
+99                   20.5                  23.1                  25.3
+100                  13.3                  15.9                  19.0</code></pre>
 </div>
 </div>
 <div class="asides">
