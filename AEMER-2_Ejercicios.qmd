@@ -12,8 +12,6 @@ format:
 editor: visual
 ---
 
-![](img/logos.png){width=100%}
-
 # Trabajando con datos vectoriales
 
 ## Funciones útiles

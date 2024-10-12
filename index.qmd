@@ -7,6 +7,4 @@ Esta es la web con los materiales del curso:
 * Tema 1: Introducción a R. [Presentación](AEMER-1_Intro.pdf) - [Ejercicios](AEMER-1-Ejercicios.qmd)
 * Tema 2: Manejo de datos espaciales en R. [Presentación](AEMER-2_Analisis_espacial.qmd) - [Ejercicios](AEMER-2_Ejercicios.qmd)
 
-![](img/logos.png){width=100%}
-
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

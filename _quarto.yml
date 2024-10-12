@@ -6,6 +6,9 @@ website:
     left:
       - href: index.qmd
         text: Home
+    right:
+      - href: index.qmd
+        text: "![](img/logos.png){height=1in}"
 
 format:
   html:

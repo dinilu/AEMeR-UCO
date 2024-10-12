@@ -14,8 +14,6 @@ knitr::opts_chunk$set(echo = TRUE,
                       eval = FALSE)
 ```
 
-![](img/logos.png){width=100%}
-
 # Parte 1: Trabajando con vectores
 
 ## Funciones útiles

@@ -7,11 +7,11 @@ slide-number: true
 editor: source
 format:
   revealjs:
+    logo: img/logos.png
+    footer: "[AEMeR](https://dnietolugilde.com/AEMeR)"
     scrollable: true
     theme: dark
 ---
-
-![](img/logos.png){width=100%}
 
 # Manejando datos vectoriales
 
