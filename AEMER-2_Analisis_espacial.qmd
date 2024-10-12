@@ -13,15 +13,22 @@ format:
     theme: dark
 ---
 
+# Manejando datos espaciales
+
+## Para ello usaremos el paquete Terra
+
+```{r}
+#| echo: true
+library(terra)
+```
+
 # Manejando datos vectoriales
 
 ## Crear datos vectoriales desde cero
 
 ```{r}
 #| echo: true
-#| code-line-numbers: '3-4|5|6-7'
-library(terra)
-
+#| code-line-numbers: '1-2|3|4-5'
 lon <- c(-116.7, -120.4, -116.7, -113.5, -115.5, -120.8, -119.5, -113.7, -113.7, -110.7) 
 lat <- c(45.3, 42.6, 38.9, 42.1, 35.7, 38.9, 36.2, 39, 41.6, 36.9) 
 lonlat <- cbind(lon, lat) 
@@ -70,7 +77,7 @@ crs(pts)
 
 ## La ubicación sola no es muy interesante...
 
-Vamos a generar a simular valores de precipitación al azar, un valor para cada punto.
+Vamos a simular valores de precipitación al azar, un valor para cada punto.
 
 ```{r}
 #| echo: true
@@ -84,10 +91,10 @@ pts
 
 ```{r}
 #| echo: true
-plot(pts, cex = precip/10)
+plot(pts, "precip", type = "interval")
 ```
 
-## Genera un segundo conjunto de puntos...
+## Vamos a genera un segundo conjunto de puntos...
 
 ```{r}
 #| echo: true
@@ -97,7 +104,7 @@ lonlat2 <- cbind(id=c(1,1,1,1,1,1,1), part=c(1,1,1,1,1,1,1), lon2, lat2)
 lonlat2
 ```
 
-## ... para crear un conjunto de datos de líneas...
+## ... pero para crear datos de líneas...
 
 ```{r}
 #| echo: true
@@ -105,7 +112,12 @@ lns <- vect(lonlat2, type="lines", crs=crdref)
 lns
 ```
 
-## ... o para generar un conjunto de datos de polígonos.
+```{r}
+#| echo: true
+plot(lns)
+```
+
+## ... o un datos de polígonos.
 
 ```{r}
 #| echo: true
@@ -113,27 +125,36 @@ pols <- vect(lonlat2, type="polygons", crs=crdref)
 pols
 ```
 
-## Cargando datos ya existentes
-
 ```{r}
 #| echo: true
-filename <- system.file("ex/lux.shp", package="terra")
-basename(filename)
+plot(pols)
 ```
+
+## Cargando datos ya existentes
 
 ```{r}
 #| echo: true
 
 # install.packages("geodata")
 library(geodata)
-arg <- gadm("ARG", level = 1, path = ".")
+arg <- gadm("ARG", level = 2, path = ".")
 arg
+```
+
+## Veamos si se parece a lo que conocemos...
+
+```{r}
+#| echo: true
+
+plot(arg)
 ```
 
 ## Escribir ficheros vectoriales
 
 ```{r}
 #| echo: true
+#| eval: false
+
 writeVector(arg, "arg.shp", overwrite=TRUE)
 ```
 
@@ -153,12 +174,6 @@ values(r) <- runif(ncell(r))
 r
 ```
 
-```{r}
-#| echo: true
-values(r) <- 1:ncell(r)
-r
-```
-
 ## Graficar datos raster
 
 ```{r}
@@ -171,8 +186,8 @@ plot(r)
 ```{r}
 #| echo: true
 plot(r)
-points(pts, col="red", pch=20, cex=3)
-lines(pols, col="blue", lwd=2)
+plot(pols, border = "blue", lwd = 2, add = TRUE)
+plot(pts, col = "red", pch=20, cex=1, add = TRUE)
 ```
 
 ## Operar con datos raster
@@ -210,22 +225,32 @@ r2
 
 ```{r}
 #| echo: true
-f <- system.file("ex/logo.tif", package="terra")
-basename(f)
+#| eval: false
+
+tavg <- geodata::worldclim_country("ARG", "tavg", path = ".")
+tavg
 ```
 
 ```{r}
+#| echo: false
+#| eval: true
+
+tavg <- rast("tavg_arg.tif")
+tavg
+```
+## Veamos si se parece a lo que conocemos...
+
+```{r}
 #| echo: true
-r <- rast(f)
-r
+plot(tavg)
 ```
 
 ## Escribir fichero de datos raster
 
 ```{r}
 #| echo: true
-x <- writeRaster(r[[2]], "test_output.tif", overwrite=TRUE)
-x
+#| eval: false
+writeRaster(tavg_arg.tif, "raster_tavg_arg.tif", overwrite=TRUE)
 ```
 
 # Proyecciones
@@ -241,48 +266,52 @@ crs(arg)
 
 ```{r}
 #| echo: true
-pp <- arg
-crs(pp) <- ""
-crs(pp)
+arg_sp <- arg
+crs(arg_sp) <- ""
+crs(arg_sp)
 ```
 
 ## O se puede especificar a mano (estandar PROJ.4)
 
 ```{r}
 #| echo: true
-crs(pp) <- "+proj=longlat +datum=WGS84"
-crs(pp)
+
+arg_falso_utm <- arg
+crs(arg_falso_utm) <- "+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs +type=crs"
+crs(arg_falso_utm)
 ```
 
 ## O se puede especificar con los códigos EPSG
 
 ```{r}
 #| echo: true
-crs(pp) <- "EPSG:4326"
-crs(pp)
+arg_false_utm2 <- arg
+crs(arg_false_utm2) <- "EPSG:32719"
+crs(arg_false_utm2)
 ```
 
 ## Notad que eso cambia el sistema de referencia pero no las coordenadas en si
 
 ```{r}
 #| echo: true
-par(mfrow = c(1, 2))
+par(mfrow = c(2, 2))
 plot(arg)
-plot(pp)
+plot(arg_sp)
+plot(arg_falso_utm)
+plot(arg_false_utm2)
 ```
 
 ## Si queremos convertir coordenadas entre CRS tenemos que proyectar los datos
 
 ```{r}
 #| echo: true
-newcrs <- "+proj=robin +datum=WGS84"
 
-arg_rob <- terra::project(arg, newcrs)
+arg_utm19s <- terra::project(arg, "+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs +type=crs")
 
-arg_4326 <- terra::project(arg_rob, "EPSG:4326")
+arg_4326 <- terra::project(arg, "EPSG:32719")
 par(mfrow=c(1, 3))
 plot(arg)
-plot(arg_rob)
+plot(arg_utm19s)
 plot(arg_4326)
 ```
 
@@ -290,8 +319,9 @@ plot(arg_4326)
 
 ```{r}
 #| echo: true
-stck_rob <- terra::project(stck, newcrs)
-crs(stck_rob)
+#| 
+tavg_utm19s <- terra::project(tavg, "EPSG:32719")
+tavg_utm19s
 ```
 
 ## Ahora si que las coordenadas aparecen "desplazadas"
@@ -299,8 +329,8 @@ crs(stck_rob)
 ```{r}
 #| echo: true
 par(mfrow = c(1, 2))
-plot(stck[[1]])
-plot(stck_rob[[1]])
+plot(tavg[[1]])
+plot(tavg_utm19s[[1]])
 ```
 
 ::: asides
@@ -311,16 +341,16 @@ Notad que los píxeles no tienen un tamaño regular
 
 ```{r}
 #| echo: true
-x <- rast(stck_rob)
-res(x) <- 200000
+x <- rast(tavg_utm19s)
+res(x) <- 500
 x
 ```
 
 ```{r}
 #| echo: true
 
-stck_rob_2 <- terra::project(stck, x)
-stck_rob_2
+tavg_utm19s_2 <- terra::project(tavg_utm19s, x)
+tavg_utm19s_2
 ```
 
 ## Veamos el resultado
@@ -328,28 +358,30 @@ stck_rob_2
 ```{r}
 #| echo: true
 par(mfrow = c(1, 3))
-plot(stck[[2]])
-plot(stck_rob[[2]])
-plot(stck_rob_2[[2]])
+plot(tavg[[2]])
+plot(tavg_utm19s[[2]])
+plot(tavg_utm19s_2[[2]])
 ```
 
 # Manipular datos espaciales
 
 plot(arg, "NAME_2")
 
-d \<- as.data.frame(arg) head(d) \## ID_1 NAME_1 ID_2 NAME_2 AREA POP \## 1 1 Diekirch 1 Clervaux 312 18081 \## 2 1 Diekirch 2 Diekirch 218 32543 \## 3 1 Diekirch 3 Redange 259 18664 \## 4 1 Diekirch 4 Vianden 76 5163 \## 5 1 Diekirch 5 Wiltz 263 16735 \## 6 2 Grevenmacher 6 Echternach 188 18899
+d <- as.data.frame(arg) 
 
-g \<- geom(arg) head(g)
+head(d)
 
-g \<- geom(arg, wkt=TRUE) substr(g, 1, 50)
+g <- geom(arg) head(g)
 
-arg\$NAME_2
+g <- geom(arg, wkt=TRUE) substr(g, 1, 50)
 
-arg\[, "NAME_2"\]
+arg$NAME_2
 
-set.seed(0) arg\$lets \<- sample(letters, nrow(arg)) arg
+arg[, "NAME_2"]
 
-perim(arg) arg\$perimetro \<- perim(arg)
+set.seed(0) arg$lets <- sample(letters, nrow(arg)) arg
+
+perim(arg) arg$perimetro <- perim(arg)
 
 arg\$lets \<- sample(LETTERS, nrow(arg)) head(arg)
 
