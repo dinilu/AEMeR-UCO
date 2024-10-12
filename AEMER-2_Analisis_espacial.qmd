@@ -405,12 +405,14 @@ Parte 2. Manejo de datos raster
 ## Podemos dibujar los mapas con colores en base a alguna información de los atributos.
 
 ```{r}
+#| echo: true
 plot(arg, "NAME_1")
 ```
 
 ## También se puede extraer la información de los atributos en formato `data.frame` para trabajar con ella de forma estadística.
 
 ```{r}
+#| echo: true
 d <- as.data.frame(arg)
 head(d)
 ```
@@ -418,6 +420,7 @@ head(d)
 ## O puedo extraer la información de un sólo campo de los atributos.
 
 ```{r}
+#| echo: true
 arg$NAME_1
 arg[, "NAME_1"]
 ```
@@ -429,6 +432,7 @@ Notad que en este caso, las dos formas de extraer información no se comportan e
 ## También podemos extraer las características geográficas (espaciales)
 
 ```{r}
+#| echo: true
 g <- geom(arg_utm19s) 
 head(g)
 ```
@@ -436,16 +440,19 @@ head(g)
 ## A veces, necesitamos incorporar información a nuestros datos vectoriales.
 
 ```{r}
+#| echo: true
 arg_utm19s$lets <- sample(letters, nrow(arg_utm19s)) 
 arg_utm19s
 ```
 
 ```{r}
+#| echo: true
 perim(arg_utm19s)
 arg_utm19s$perimetro <- perim(arg_utm19s)
 ```
 
 ```{r}
+#| echo: true
 expanse(arg_utm19s)
 arg_utm19s$area <- expanse(arg_utm19s)
 ```
@@ -453,6 +460,7 @@ arg_utm19s$area <- expanse(arg_utm19s)
 ## ¿Qué pasa si quiero borrar una columna?
 
 ```{r}
+#| echo: true
 arg$lets <- NULL
 ```
 
@@ -461,6 +469,7 @@ arg$lets <- NULL
 Me descargué datos del [censo poblacional del país](https://censo.gob.ar/index.php/datos_definitivos_total_pais/) 
 
 ```{r}
+#| echo: true
 d <- read.csv("data/c2022_tp_c_resumen.csv", header = TRUE, encoding = "latin1")
 arg_pop <- merge(arg, d, by.x = 'NAME_1', by.y = 'provincia')
 arg_pop
@@ -469,12 +478,14 @@ arg_pop
 ## Veamos como se ve la población argentina por provincias...
 
 ```{r}
+#| echo: true
 plot(arg_pop, "poblacion", type = "continuous")
 ```
 
 ## También se puede filtrar la información para una o varias entidades dentro de los datos.
 
 ```{r}
+#| echo: true
 which(arg_pop$NAME_1 == 'Buenos Aires')
 i <- which(arg_pop$NAME_1 %in% c("Buenos Aires", "Río Negro"))
 g <- arg_pop[i,]
