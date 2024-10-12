@@ -12,38 +12,29 @@ format:
 editor: visual
 ---
 
+![](img/logos.png){width=100%}
+
 # Trabajando con datos vectoriales
 
 ## Funciones útiles
 
 **`project()`**
 
-Proyecta las coordenadas de los objetos espaciales a un sistema de coordenadas 
-diferentes. Para conseguir los códigos EPSG de distintos sistemas de proyeccion
-podéis usar la siguiente página: https://epsg.io/
+Proyecta las coordenadas de los objetos espaciales a un sistema de coordenadas diferentes. Para conseguir los códigos EPSG de distintos sistemas de proyeccion podéis usar la siguiente página: https://epsg.io/
 
 **`[]`**
 
-Los corchetes sirven para extraer elementos de ciertas posiciones en los objetos 
-de R. Se pueden usar también con los objetos espaciales
+Los corchetes sirven para extraer elementos de ciertas posiciones en los objetos de R. Se pueden usar también con los objetos espaciales
 
 **`==`**
 
-Se usa para realizar comparaciones y generar un vector de valores lógicos que 
-indican cuando se cumple una condición de igualdad. 
+Se usa para realizar comparaciones y generar un vector de valores lógicos que indican cuando se cumple una condición de igualdad.
 
 **`write.`**
 
 ## Ejercicios
 
-**1. Cargue los límites administrativos de los departamentos de Argentina en un
-objeto llamado "departamentos". Posteriormente, filtre los municipios para retener
-sólo los departamentos de la provincia de "Buenos Aires". Finalmente, proyecte 
-los datos de estos municipios desde el sistema de coordenadas en longitud-latitud
-al sistema UTM21 sur, para lo que podéis usar el código "EPSG:32721". Ahora dibuje 
-dos mapas uno con el mapa de la provincia de Buenos Aires en longitud-latitud y
-el otro en UTM21s. Por último guarda el objeto vectorial de Buenos Aires con las 
-coordenadas en UTM21s como un fichero geopackge nuevo, llamado "BuenosAires.gpkg".**
+**1. Cargue los límites administrativos de los departamentos de Argentina en un objeto llamado "departamentos". Posteriormente, filtre los municipios para retener sólo los departamentos de la provincia de "Buenos Aires". Finalmente, proyecte los datos de estos municipios desde el sistema de coordenadas en longitud-latitud al sistema UTM21 sur, para lo que podéis usar el código "EPSG:32721". Ahora dibuje dos mapas uno con el mapa de la provincia de Buenos Aires en longitud-latitud y el otro en UTM21s. Por último guarda el objeto vectorial de Buenos Aires con las coordenadas en UTM21s como un fichero geopackge nuevo, llamado "BuenosAires.gpkg".**
 
 ```{r}
 #| warning: false

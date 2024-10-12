@@ -1,15 +1,17 @@
 ---
-title: "Análisis de datos espaciales en R (AEMeR) aplicados a estudios de Biodiversidad"
+title: "Análisis de datos espaciales en R"
 subtitle: "Manejo de datos espaciales en R"
 author: "Diego Nieto Lugilde"
 institute: "Universidad de Córdoba (España)"
 slide-number: true
-editor: visual
+editor: source
 format:
   revealjs:
     scrollable: true
     theme: dark
 ---
+
+![](img/logos.png){width=100%}
 
 # Manejando datos vectoriales
 
