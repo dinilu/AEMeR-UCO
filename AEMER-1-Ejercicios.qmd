@@ -1,5 +1,5 @@
 ---
-title: 'Análisis espaciales y multivariantes con R aplicados a estudios de biodiversidad' 
+title: 'Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad'
 subtitle: 'Ejercicios de introducción a R'
 author: 'Diego Nieto Lugilde'
 date: 14/10/2024
@@ -29,7 +29,6 @@ Crea una secuencia numérica. Los argumentos `from`, `to` y `by` establecen el v
 **`length(x)`**
 
 Devuelve el número de elementos en un objeto (numeric, character, factor or list).
-
 
 ## Ejercicios
 
@@ -66,7 +65,6 @@ Si se está interesado en generar una secuencia entera, a menudo es más rápido
 
 Otros operadores comunes son `+`, `-`, `*`, `/`, `^`, entre otros. Prueba todos ellos.
 
-
 **2. Usa `seq()` y `c()` para crear un vector llamado "a" que contenga los enteros del 1 al 10, seguido de los enteros pares del 20 al 30, seguidos de los múltiplos de 5 del 150 al 100 (cuenta regresiva).**
 
 > ¿Cuál es el decimocuarto elemento del vector "a"?
@@ -75,9 +73,7 @@ Otros operadores comunes son `+`, `-`, `*`, `/`, `^`, entre otros. Prueba todos 
 
 > Usa `length()` para averiguar la longitud de "a".
 
-**3. Crea cuatro vectores diferentes. El primero llamado "nombres" con los nombres de 15 personas ficticias. El segundo llamado "sexo" con el sexo biológico de esas mismas 15 personas ficticias. El tercero llamado "peso" con el peso en kilogramos de cada una de esas 15 personas. Finalmente, el cuarto vector llamado "altura" deberá tener la estatura en metros de cada uno de ellos. Tened en cuenta, que los 4 vectores se ordenarán de forma correlativa: El primer peso que especifiquéis en el vector "peso" corresponderá al peso de la persona cuyo nombre aparezca en primera posición en el vector "nombres". Una vez que hayas creado los cuatro vectores, calcula el índice de masa corporal (IMC), usando la siguiente fórmula: IMC = peso / estatura^2. Con esta información crear un vector con los nombres de las personas que hayan obtenido un IMC superior a 25.**
-
-
+**3. Crea cuatro vectores diferentes. El primero llamado "nombres" con los nombres de 15 personas ficticias. El segundo llamado "sexo" con el sexo biológico de esas mismas 15 personas ficticias. El tercero llamado "peso" con el peso en kilogramos de cada una de esas 15 personas. Finalmente, el cuarto vector llamado "altura" deberá tener la estatura en metros de cada uno de ellos. Tened en cuenta, que los 4 vectores se ordenarán de forma correlativa: El primer peso que especifiquéis en el vector "peso" corresponderá al peso de la persona cuyo nombre aparezca en primera posición en el vector "nombres". Una vez que hayas creado los cuatro vectores, calcula el índice de masa corporal (IMC), usando la siguiente fórmula: IMC = peso / estatura\^2. Con esta información crear un vector con los nombres de las personas que hayan obtenido un IMC superior a 25.**
 
 # Parte 2: Trabajando con matrices, data.frames y listas
 
@@ -100,7 +96,6 @@ Devuelve un vector de longitud `n`, en el que cada elemento es seleccionado alea
 **2. Crea un data frame llamado "datos" que contenga la información de los cuatro vectores (i.e., nombres, sexo, altura y peso) de los ejercicios anteriores. Vuelve a calcular el IMC, pero usando los datos almacenados dentro de este data frame e incorpora el resultado como una nueva columna dentro del propio data frame.**
 
 **3. Crea 10 matrices como "A", pero con diferentes valores (solo tendrás que ejecutar 10 veces el mismo comando) y guarda cada una de ellas como un elemento dentro de una lista, llamada "matrix_list".**
-
 
 # Parte 3: Usando ficheros de datos
 
@@ -152,7 +147,6 @@ Realiza alguna función (`FUN`) en cada fila o columna de una matriz o marco de 
 
 **6. Escribe la matriz "presencia" que creaste en un archivo "Presencia.csv".**
 
-
 # Parte 4: Gráficas y figuras
 
 ## Funciones útiles
@@ -173,18 +167,16 @@ Dibuja una línea en la gráfica ya existente con la pendiente especificada `b` 
 
 Dibuja puntos, segmentos de línea, flechas o polígonos en una gráfica ya existente.
 
-**`lm(x, y)`*** 
+**`lm(x, y)`**\*
 
 Genera un modelo lineal entre las dos variables.
 
-
 ## Ejercicios
 
-**1. Dibuja un histograma del vector "a" que creaste en los Ejercicios de la  parte 1. Cambia el color de las barras con la opción `col` y cambia el color de los cuadros con la opción de `border`. Usa `abline()` para dibujar la media de la distribución como una línea vertical punteada.**
+**1. Dibuja un histograma del vector "a" que creaste en los Ejercicios de la parte 1. Cambia el color de las barras con la opción `col` y cambia el color de los cuadros con la opción de `border`. Usa `abline()` para dibujar la media de la distribución como una línea vertical punteada.**
 
 > Aquí deberás usar la función `mean` para calcular la media antes.
 
 **2. Crea dos variables correlacionadas "x" e "y", usando `x <- rnorm (200)` e `y = x + rnorm (200)`. Dibuja "x" vs. "y" y juegua con los parámetros de trazado. Usa la `abline` para incluir una recta de regresión entre las dos variables.**
 
 **3. Genera un nuevo conjunto de datos "w" correlacionado con "x", usando `w <- 2*x * rnorm(200)`. Añade esta nuevo conjunto de datos al gráfico anterior pero cambiando el color para que se distingan bien los datos de "y" y "w". Además, añade otra recta de regresión entre "w" y "x".**
-
