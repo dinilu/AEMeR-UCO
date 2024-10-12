@@ -15,4 +15,4 @@ format:
     theme: cosmo
     css: styles.css
     toc: true
-  lang: es
+    lang: es
