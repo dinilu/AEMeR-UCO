@@ -51,3 +51,4 @@ rsconnect/
 /.quarto/
 *.Rproj
 /_site/
+/site_libs/
