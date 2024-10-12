@@ -12,6 +12,25 @@ format:
 editor: visual
 ---
 
+::: {.callout-note}
+Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre `ejercicios_t2_[nombre]_[apellido].R`. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla `#` delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la `#`) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandarmelos por email.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Ejercicio 1.
+# Parte 1
+seq(1, 40, by = 2)
+
+# Parte 2
+seq(1, 40, by = -2)
+# Este código da error porque especifiqué algo mal :)
+
+```
+:::
+
+
 # Trabajando con datos vectoriales
 
 ## Funciones útiles
