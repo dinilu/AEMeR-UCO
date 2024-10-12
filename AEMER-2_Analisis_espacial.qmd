@@ -1,5 +1,5 @@
 ---
-title: "Análisis de datos espaciales en R"
+title: "Análisis de datos espaciales en R (AEMeR) aplicados a estudios de Biodiversidad"
 subtitle: "Manejo de datos espaciales en R"
 author: "Diego Nieto Lugilde"
 institute: "Universidad de Córdoba (España)"
@@ -353,7 +353,7 @@ arg\$lets \<- sample(LETTERS, nrow(arg)) head(arg)
 
 arg\$lets \<- NULL
 
-dfr \<- data.frame(District = arg$NAME_1,  Canton = arg$NAME_2, Value = round(runif(length(arg), 100, 1000))) dfr \<- dfr\[order(dfr\$Canton), \] pm \<- merge(arg, dfr, by.x = c('NAME_1', 'NAME_2'), by.y = c('District', 'Canton')) pm
+dfr \<- data.frame(District = arg$NAME_1, Canton = arg$NAME_2, Value = round(runif(length(arg), 100, 1000))) dfr \<- dfr\[order(dfr\$Canton), \] pm \<- merge(arg, dfr, by.x = c('NAME_1', 'NAME_2'), by.y = c('District', 'Canton')) pm
 
 head(pm)
 
