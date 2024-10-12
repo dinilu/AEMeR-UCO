@@ -109,14 +109,14 @@
     "href": "AEMER-2_Analisis_espacial.html#la-ubicación-sola-no-es-muy-interesante",
     "title": "Análisis de datos espaciales en R",
     "section": "La ubicación sola no es muy interesante…",
-    "text": "La ubicación sola no es muy interesante…\nVamos a simular valores de precipitación al azar, un valor para cada punto.\n\nprecipvalue &lt;- round(runif(nrow(lonlat), min=0, max=100))\ndf &lt;- data.frame(ID=1:nrow(lonlat), precip=precipvalue)\npts &lt;- vect(lonlat, atts=df, crs=crdref)\npts\n\n class       : SpatVector \n geometry    : points \n dimensions  : 10, 2  (geometries, attributes)\n extent      : -120.8, -110.7, 35.7, 45.3  (xmin, xmax, ymin, ymax)\n coord. ref. : +proj=longlat +datum=WGS84 +no_defs \n names       :    ID precip\n type        : &lt;int&gt;  &lt;num&gt;\n values      :     1     28\n                   2     33\n                   3     92"
+    "text": "La ubicación sola no es muy interesante…\nVamos a simular valores de precipitación al azar, un valor para cada punto.\n\nprecipvalue &lt;- round(runif(nrow(lonlat), min=0, max=100))\ndf &lt;- data.frame(ID=1:nrow(lonlat), precip=precipvalue)\npts &lt;- vect(lonlat, atts=df, crs=crdref)\npts\n\n class       : SpatVector \n geometry    : points \n dimensions  : 10, 2  (geometries, attributes)\n extent      : -120.8, -110.7, 35.7, 45.3  (xmin, xmax, ymin, ymax)\n coord. ref. : +proj=longlat +datum=WGS84 +no_defs \n names       :    ID precip\n type        : &lt;int&gt;  &lt;num&gt;\n values      :     1     88\n                   2     20\n                   3      9"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#graficar-precipitaciones",
     "href": "AEMER-2_Analisis_espacial.html#graficar-precipitaciones",
     "title": "Análisis de datos espaciales en R",
     "section": "Graficar precipitaciones",
-    "text": "Graficar precipitaciones\n\nplot(pts, cex = precip/10)"
+    "text": "Graficar precipitaciones\n\nplot(pts, \"precip\", type = \"interval\")"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#vamos-a-genera-un-segundo-conjunto-de-puntos",
@@ -144,7 +144,14 @@
     "href": "AEMER-2_Analisis_espacial.html#cargando-datos-ya-existentes",
     "title": "Análisis de datos espaciales en R",
     "section": "Cargando datos ya existentes",
-    "text": "Cargando datos ya existentes\n\n# install.packages(\"geodata\")\nlibrary(geodata)\narg &lt;- gadm(\"ARG\", level = 1, path = \".\")\narg\n\n class       : SpatVector \n geometry    : polygons \n dimensions  : 24, 11  (geometries, attributes)\n extent      : -73.56056, -53.59184, -55.06153, -21.78137  (xmin, xmax, ymin, ymax)\n coord. ref. : lon/lat WGS 84 (EPSG:4326) \n names       :   GID_1 GID_0   COUNTRY       NAME_1       VARNAME_1 NL_NAME_1\n type        :   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;\n values      : ARG.1_1   ARG Argentina Buenos Aires Baires|Buenos ~        NA\n               ARG.2_1   ARG Argentina    Catamarca              NA        NA\n               ARG.3_1   ARG Argentina        Chaco El Chaco|Presi~        NA\n    TYPE_1 ENGTYPE_1  CC_1 HASC_1 ISO_1\n     &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;\n Provincia  Province    NA  AR.BA  AR-B\n Provincia  Province    NA  AR.CT  AR-K\n Provincia  Province    NA  AR.CC  AR-H"
+    "text": "Cargando datos ya existentes\n\n# install.packages(\"geodata\")\nlibrary(geodata)\narg &lt;- gadm(\"ARG\", level = 2, path = \".\")\narg\n\n class       : SpatVector \n geometry    : polygons \n dimensions  : 502, 13  (geometries, attributes)\n extent      : -73.56056, -53.59184, -55.06153, -21.78137  (xmin, xmax, ymin, ymax)\n coord. ref. : lon/lat WGS 84 (EPSG:4326) \n names       :     GID_2 GID_0   COUNTRY   GID_1       NAME_1 NL_NAME_1\n type        :     &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;\n values      : ARG.1.1_1   ARG Argentina ARG.1_1 Buenos Aires        NA\n               ARG.1.2_1   ARG Argentina ARG.1_1 Buenos Aires        NA\n               ARG.1.3_1   ARG Argentina ARG.1_1 Buenos Aires        NA\n          NAME_2     VARNAME_2 NL_NAME_2  TYPE_2 (and 3 more)\n           &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;             \n   Adolfo Alsina        Carhue        NA Partido             \n Adolfo Gonzale~ Adolfo Gonzal        NA Partido             \n         Alberti            NA        NA Partido"
+  },
+  {
+    "objectID": "AEMER-2_Analisis_espacial.html#veamos-si-se-parece-a-lo-que-conocemos",
+    "href": "AEMER-2_Analisis_espacial.html#veamos-si-se-parece-a-lo-que-conocemos",
+    "title": "Análisis de datos espaciales en R",
+    "section": "Veamos si se parece a lo que conocemos…",
+    "text": "Veamos si se parece a lo que conocemos…\n\nplot(arg)"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#escribir-ficheros-vectoriales",
@@ -158,7 +165,7 @@
     "href": "AEMER-2_Analisis_espacial.html#crear-datos-raster",
     "title": "Análisis de datos espaciales en R",
     "section": "Crear datos raster",
-    "text": "Crear datos raster\n\nr &lt;- rast(ncol=10, nrow=10, xmin=-150, xmax=-80, ymin=20, ymax=60)\nr\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \n\n\n\nvalues(r) &lt;- runif(ncell(r))\nr\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nname        :       lyr.1 \nmin value   : 0.008342978 \nmax value   : 0.998458780 \n\n\n\nvalues(r) &lt;- 1:ncell(r)\nr\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nname        : lyr.1 \nmin value   :     1 \nmax value   :   100"
+    "text": "Crear datos raster\n\nr &lt;- rast(ncol=10, nrow=10, xmin=-150, xmax=-80, ymin=20, ymax=60)\nr\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \n\n\n\nvalues(r) &lt;- runif(ncell(r))\nr\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nname        :      lyr.1 \nmin value   : 0.01117664 \nmax value   : 0.98339813"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#graficar-datos-raster",
@@ -172,7 +179,7 @@
     "href": "AEMER-2_Analisis_espacial.html#añadir-información-vectorial-sobre-el-gráfico",
     "title": "Análisis de datos espaciales en R",
     "section": "Añadir información vectorial sobre el gráfico",
-    "text": "Añadir información vectorial sobre el gráfico\n\nplot(r)\npoints(pts, col=\"red\", pch=20, cex=3)\nlines(pols, col=\"blue\", lwd=2)"
+    "text": "Añadir información vectorial sobre el gráfico\n\nplot(r)\nplot(pols, border = \"blue\", lwd = 2, add = TRUE)\nplot(pts, col = \"red\", pch=20, cex=1, add = TRUE)"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#operar-con-datos-raster",
@@ -186,7 +193,7 @@
     "href": "AEMER-2_Analisis_espacial.html#combinar-raster-para-crear-un-objeto-multicapa",
     "title": "Análisis de datos espaciales en R",
     "section": "Combinar raster para crear un objeto multicapa",
-    "text": "Combinar raster para crear un objeto multicapa\n\nstck &lt;- c(r, r2, r3)\nstck\n\nclass       : SpatRaster \ndimensions  : 10, 10, 3  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nnames       : lyr.1, lyr.1, lyr.1 \nmin values  :     1,     1,     1 \nmax values  :   100, 10000,    10"
+    "text": "Combinar raster para crear un objeto multicapa\n\nstck &lt;- c(r, r2, r3)\nstck\n\nclass       : SpatRaster \ndimensions  : 10, 10, 3  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nnames       :      lyr.1,        lyr.1,     lyr.1 \nmin values  : 0.01117664, 0.0001249174, 0.1057197 \nmax values  : 0.98339813, 0.9670718884, 0.9916643"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#graficar-datos-multicapa",
@@ -200,21 +207,28 @@
     "href": "AEMER-2_Analisis_espacial.html#extraer-capas-sueltas-de-objetos-multicapa",
     "title": "Análisis de datos espaciales en R",
     "section": "Extraer capas sueltas de objetos multicapa",
-    "text": "Extraer capas sueltas de objetos multicapa\n\nr2 &lt;- stck[[2]]\nr2\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nname        : lyr.1 \nmin value   :     1 \nmax value   : 10000"
+    "text": "Extraer capas sueltas de objetos multicapa\n\nr2 &lt;- stck[[2]]\nr2\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nname        :        lyr.1 \nmin value   : 0.0001249174 \nmax value   : 0.9670718884"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#cargar-datos-raster",
     "href": "AEMER-2_Analisis_espacial.html#cargar-datos-raster",
     "title": "Análisis de datos espaciales en R",
     "section": "Cargar datos raster",
-    "text": "Cargar datos raster\n\nf &lt;- system.file(\"ex/logo.tif\", package=\"terra\")\nbasename(f)\n\n[1] \"logo.tif\"\n\n\n\nr &lt;- rast(f)\nr\n\nclass       : SpatRaster \ndimensions  : 77, 101, 3  (nrow, ncol, nlyr)\nresolution  : 1, 1  (x, y)\nextent      : 0, 101, 0, 77  (xmin, xmax, ymin, ymax)\ncoord. ref. : Cartesian (Meter) \nsource      : logo.tif \ncolors RGB  : 1, 2, 3 \nnames       : red, green, blue \nmin values  :   0,     0,    0 \nmax values  : 255,   255,  255"
+    "text": "Cargar datos raster\n\ntavg &lt;- geodata::worldclim_country(\"ARG\", \"tavg\", path = \".\")\ntavg\n\n\n\nclass       : SpatRaster \ndimensions  : 4080, 2460, 12  (nrow, ncol, nlyr)\nresolution  : 0.008333333, 0.008333333  (x, y)\nextent      : -74, -53.5, -55.5, -21.5  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (EPSG:4326) \nsource      : tavg_arg.tif \nnames       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... \nmin values  :       -11.1,       -11.8,       -12.5,       -14.5,       -16.7,       -19.8, ... \nmax values  :        29.2,        28.4,        27.3,        25.0,        22.2,        21.0, ..."
+  },
+  {
+    "objectID": "AEMER-2_Analisis_espacial.html#veamos-si-se-parece-a-lo-que-conocemos-1",
+    "href": "AEMER-2_Analisis_espacial.html#veamos-si-se-parece-a-lo-que-conocemos-1",
+    "title": "Análisis de datos espaciales en R",
+    "section": "Veamos si se parece a lo que conocemos…",
+    "text": "Veamos si se parece a lo que conocemos…\n\nplot(tavg)"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#escribir-fichero-de-datos-raster",
     "href": "AEMER-2_Analisis_espacial.html#escribir-fichero-de-datos-raster",
     "title": "Análisis de datos espaciales en R",
     "section": "Escribir fichero de datos raster",
-    "text": "Escribir fichero de datos raster\n\nx &lt;- writeRaster(r[[2]], \"test_output.tif\", overwrite=TRUE)\nx\n\nclass       : SpatRaster \ndimensions  : 77, 101, 1  (nrow, ncol, nlyr)\nresolution  : 1, 1  (x, y)\nextent      : 0, 101, 0, 77  (xmin, xmax, ymin, ymax)\ncoord. ref. : Cartesian (Meter) \nsource      : test_output.tif \nname        : green \nmin value   :     0 \nmax value   :   255"
+    "text": "Escribir fichero de datos raster\n\nwriteRaster(tavg_arg.tif, \"raster_tavg_arg.tif\", overwrite=TRUE)"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#comprobamos-el-crs-de-alguno-de-nuestros-datos",
@@ -228,63 +242,63 @@
     "href": "AEMER-2_Analisis_espacial.html#se-puede-borrar-el-crs-del-conjunto-de-datos",
     "title": "Análisis de datos espaciales en R",
     "section": "Se puede borrar el CRS del conjunto de datos",
-    "text": "Se puede borrar el CRS del conjunto de datos\n\npp &lt;- arg\ncrs(pp) &lt;- \"\"\ncrs(pp)\n\n[1] \"\""
+    "text": "Se puede borrar el CRS del conjunto de datos\n\narg_sp &lt;- arg\ncrs(arg_sp) &lt;- \"\"\ncrs(arg_sp)\n\n[1] \"\""
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#o-se-puede-especificar-a-mano-estandar-proj.4",
     "href": "AEMER-2_Analisis_espacial.html#o-se-puede-especificar-a-mano-estandar-proj.4",
     "title": "Análisis de datos espaciales en R",
     "section": "O se puede especificar a mano (estandar PROJ.4)",
-    "text": "O se puede especificar a mano (estandar PROJ.4)\n\ncrs(pp) &lt;- \"+proj=longlat +datum=WGS84\"\ncrs(pp)\n\n[1] \"GEOGCRS[\\\"unknown\\\",\\n    DATUM[\\\"World Geodetic System 1984\\\",\\n        ELLIPSOID[\\\"WGS 84\\\",6378137,298.257223563,\\n            LENGTHUNIT[\\\"metre\\\",1]],\\n        ID[\\\"EPSG\\\",6326]],\\n    PRIMEM[\\\"Greenwich\\\",0,\\n        ANGLEUNIT[\\\"degree\\\",0.0174532925199433],\\n        ID[\\\"EPSG\\\",8901]],\\n    CS[ellipsoidal,2],\\n        AXIS[\\\"longitude\\\",east,\\n            ORDER[1],\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433,\\n                ID[\\\"EPSG\\\",9122]]],\\n        AXIS[\\\"latitude\\\",north,\\n            ORDER[2],\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433,\\n                ID[\\\"EPSG\\\",9122]]]]\""
+    "text": "O se puede especificar a mano (estandar PROJ.4)\n\narg_falso_utm &lt;- arg\ncrs(arg_falso_utm) &lt;- \"+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs +type=crs\"\ncrs(arg_falso_utm)\n\n[1] \"PROJCRS[\\\"unknown\\\",\\n    BASEGEOGCRS[\\\"unknown\\\",\\n        DATUM[\\\"World Geodetic System 1984\\\",\\n            ELLIPSOID[\\\"WGS 84\\\",6378137,298.257223563,\\n                LENGTHUNIT[\\\"metre\\\",1]],\\n            ID[\\\"EPSG\\\",6326]],\\n        PRIMEM[\\\"Greenwich\\\",0,\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433],\\n            ID[\\\"EPSG\\\",8901]]],\\n    CONVERSION[\\\"UTM zone 19S\\\",\\n        METHOD[\\\"Transverse Mercator\\\",\\n            ID[\\\"EPSG\\\",9807]],\\n        PARAMETER[\\\"Latitude of natural origin\\\",0,\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433],\\n            ID[\\\"EPSG\\\",8801]],\\n        PARAMETER[\\\"Longitude of natural origin\\\",-69,\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433],\\n            ID[\\\"EPSG\\\",8802]],\\n        PARAMETER[\\\"Scale factor at natural origin\\\",0.9996,\\n            SCALEUNIT[\\\"unity\\\",1],\\n            ID[\\\"EPSG\\\",8805]],\\n        PARAMETER[\\\"False easting\\\",500000,\\n            LENGTHUNIT[\\\"metre\\\",1],\\n            ID[\\\"EPSG\\\",8806]],\\n        PARAMETER[\\\"False northing\\\",10000000,\\n            LENGTHUNIT[\\\"metre\\\",1],\\n            ID[\\\"EPSG\\\",8807]],\\n        ID[\\\"EPSG\\\",17019]],\\n    CS[Cartesian,2],\\n        AXIS[\\\"(E)\\\",east,\\n            ORDER[1],\\n            LENGTHUNIT[\\\"metre\\\",1,\\n                ID[\\\"EPSG\\\",9001]]],\\n        AXIS[\\\"(N)\\\",north,\\n            ORDER[2],\\n            LENGTHUNIT[\\\"metre\\\",1,\\n                ID[\\\"EPSG\\\",9001]]]]\""
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#o-se-puede-especificar-con-los-códigos-epsg",
     "href": "AEMER-2_Analisis_espacial.html#o-se-puede-especificar-con-los-códigos-epsg",
     "title": "Análisis de datos espaciales en R",
     "section": "O se puede especificar con los códigos EPSG",
-    "text": "O se puede especificar con los códigos EPSG\n\ncrs(pp) &lt;- \"EPSG:4326\"\ncrs(pp)\n\n[1] \"GEOGCRS[\\\"WGS 84\\\",\\n    ENSEMBLE[\\\"World Geodetic System 1984 ensemble\\\",\\n        MEMBER[\\\"World Geodetic System 1984 (Transit)\\\"],\\n        MEMBER[\\\"World Geodetic System 1984 (G730)\\\"],\\n        MEMBER[\\\"World Geodetic System 1984 (G873)\\\"],\\n        MEMBER[\\\"World Geodetic System 1984 (G1150)\\\"],\\n        MEMBER[\\\"World Geodetic System 1984 (G1674)\\\"],\\n        MEMBER[\\\"World Geodetic System 1984 (G1762)\\\"],\\n        MEMBER[\\\"World Geodetic System 1984 (G2139)\\\"],\\n        ELLIPSOID[\\\"WGS 84\\\",6378137,298.257223563,\\n            LENGTHUNIT[\\\"metre\\\",1]],\\n        ENSEMBLEACCURACY[2.0]],\\n    PRIMEM[\\\"Greenwich\\\",0,\\n        ANGLEUNIT[\\\"degree\\\",0.0174532925199433]],\\n    CS[ellipsoidal,2],\\n        AXIS[\\\"geodetic latitude (Lat)\\\",north,\\n            ORDER[1],\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433]],\\n        AXIS[\\\"geodetic longitude (Lon)\\\",east,\\n            ORDER[2],\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433]],\\n    USAGE[\\n        SCOPE[\\\"Horizontal component of 3D system.\\\"],\\n        AREA[\\\"World.\\\"],\\n        BBOX[-90,-180,90,180]],\\n    ID[\\\"EPSG\\\",4326]]\""
+    "text": "O se puede especificar con los códigos EPSG\n\narg_false_utm2 &lt;- arg\ncrs(arg_false_utm2) &lt;- \"EPSG:32719\"\ncrs(arg_false_utm2)\n\n[1] \"PROJCRS[\\\"WGS 84 / UTM zone 19S\\\",\\n    BASEGEOGCRS[\\\"WGS 84\\\",\\n        ENSEMBLE[\\\"World Geodetic System 1984 ensemble\\\",\\n            MEMBER[\\\"World Geodetic System 1984 (Transit)\\\"],\\n            MEMBER[\\\"World Geodetic System 1984 (G730)\\\"],\\n            MEMBER[\\\"World Geodetic System 1984 (G873)\\\"],\\n            MEMBER[\\\"World Geodetic System 1984 (G1150)\\\"],\\n            MEMBER[\\\"World Geodetic System 1984 (G1674)\\\"],\\n            MEMBER[\\\"World Geodetic System 1984 (G1762)\\\"],\\n            MEMBER[\\\"World Geodetic System 1984 (G2139)\\\"],\\n            ELLIPSOID[\\\"WGS 84\\\",6378137,298.257223563,\\n                LENGTHUNIT[\\\"metre\\\",1]],\\n            ENSEMBLEACCURACY[2.0]],\\n        PRIMEM[\\\"Greenwich\\\",0,\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433]],\\n        ID[\\\"EPSG\\\",4326]],\\n    CONVERSION[\\\"UTM zone 19S\\\",\\n        METHOD[\\\"Transverse Mercator\\\",\\n            ID[\\\"EPSG\\\",9807]],\\n        PARAMETER[\\\"Latitude of natural origin\\\",0,\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433],\\n            ID[\\\"EPSG\\\",8801]],\\n        PARAMETER[\\\"Longitude of natural origin\\\",-69,\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433],\\n            ID[\\\"EPSG\\\",8802]],\\n        PARAMETER[\\\"Scale factor at natural origin\\\",0.9996,\\n            SCALEUNIT[\\\"unity\\\",1],\\n            ID[\\\"EPSG\\\",8805]],\\n        PARAMETER[\\\"False easting\\\",500000,\\n            LENGTHUNIT[\\\"metre\\\",1],\\n            ID[\\\"EPSG\\\",8806]],\\n        PARAMETER[\\\"False northing\\\",10000000,\\n            LENGTHUNIT[\\\"metre\\\",1],\\n            ID[\\\"EPSG\\\",8807]]],\\n    CS[Cartesian,2],\\n        AXIS[\\\"(E)\\\",east,\\n            ORDER[1],\\n            LENGTHUNIT[\\\"metre\\\",1]],\\n        AXIS[\\\"(N)\\\",north,\\n            ORDER[2],\\n            LENGTHUNIT[\\\"metre\\\",1]],\\n    USAGE[\\n        SCOPE[\\\"Navigation and medium accuracy spatial referencing.\\\"],\\n        AREA[\\\"Between 72°W and 66°W, southern hemisphere between 80°S and equator, onshore and offshore. Argentina. Bolivia. Brazil. Chile. Colombia. Peru.\\\"],\\n        BBOX[-80,-72,0,-66]],\\n    ID[\\\"EPSG\\\",32719]]\""
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#notad-que-eso-cambia-el-sistema-de-referencia-pero-no-las-coordenadas-en-si",
     "href": "AEMER-2_Analisis_espacial.html#notad-que-eso-cambia-el-sistema-de-referencia-pero-no-las-coordenadas-en-si",
     "title": "Análisis de datos espaciales en R",
     "section": "Notad que eso cambia el sistema de referencia pero no las coordenadas en si",
-    "text": "Notad que eso cambia el sistema de referencia pero no las coordenadas en si\n\npar(mfrow = c(1, 2))\nplot(arg)\nplot(pp)"
+    "text": "Notad que eso cambia el sistema de referencia pero no las coordenadas en si\n\npar(mfrow = c(2, 2))\nplot(arg)\nplot(arg_sp)\nplot(arg_falso_utm)\nplot(arg_false_utm2)"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#si-queremos-convertir-coordenadas-entre-crs-tenemos-que-proyectar-los-datos",
     "href": "AEMER-2_Analisis_espacial.html#si-queremos-convertir-coordenadas-entre-crs-tenemos-que-proyectar-los-datos",
     "title": "Análisis de datos espaciales en R",
     "section": "Si queremos convertir coordenadas entre CRS tenemos que proyectar los datos",
-    "text": "Si queremos convertir coordenadas entre CRS tenemos que proyectar los datos\n\nnewcrs &lt;- \"+proj=robin +datum=WGS84\"\n\narg_rob &lt;- terra::project(arg, newcrs)\n\narg_4326 &lt;- terra::project(arg_rob, \"EPSG:4326\")\npar(mfrow=c(1, 3))\nplot(arg)\nplot(arg_rob)\nplot(arg_4326)"
+    "text": "Si queremos convertir coordenadas entre CRS tenemos que proyectar los datos\n\narg_utm19s &lt;- terra::project(arg, \"+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs +type=crs\")\n\narg_4326 &lt;- terra::project(arg, \"EPSG:32719\")\npar(mfrow=c(1, 3))\nplot(arg)\nplot(arg_utm19s)\nplot(arg_4326)"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#también-se-pueden-proyectar-datos-raster",
     "href": "AEMER-2_Analisis_espacial.html#también-se-pueden-proyectar-datos-raster",
     "title": "Análisis de datos espaciales en R",
     "section": "También se pueden proyectar datos raster",
-    "text": "También se pueden proyectar datos raster\n\nstck_rob &lt;- terra::project(stck, newcrs)\ncrs(stck_rob)\n\n[1] \"PROJCRS[\\\"unknown\\\",\\n    BASEGEOGCRS[\\\"unknown\\\",\\n        DATUM[\\\"World Geodetic System 1984\\\",\\n            ELLIPSOID[\\\"WGS 84\\\",6378137,298.257223563,\\n                LENGTHUNIT[\\\"metre\\\",1]],\\n            ID[\\\"EPSG\\\",6326]],\\n        PRIMEM[\\\"Greenwich\\\",0,\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433],\\n            ID[\\\"EPSG\\\",8901]]],\\n    CONVERSION[\\\"unknown\\\",\\n        METHOD[\\\"Robinson\\\"],\\n        PARAMETER[\\\"Longitude of natural origin\\\",0,\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433],\\n            ID[\\\"EPSG\\\",8802]],\\n        PARAMETER[\\\"False easting\\\",0,\\n            LENGTHUNIT[\\\"metre\\\",1],\\n            ID[\\\"EPSG\\\",8806]],\\n        PARAMETER[\\\"False northing\\\",0,\\n            LENGTHUNIT[\\\"metre\\\",1],\\n            ID[\\\"EPSG\\\",8807]]],\\n    CS[Cartesian,2],\\n        AXIS[\\\"(E)\\\",east,\\n            ORDER[1],\\n            LENGTHUNIT[\\\"metre\\\",1,\\n                ID[\\\"EPSG\\\",9001]]],\\n        AXIS[\\\"(N)\\\",north,\\n            ORDER[2],\\n            LENGTHUNIT[\\\"metre\\\",1,\\n                ID[\\\"EPSG\\\",9001]]]]\""
+    "text": "También se pueden proyectar datos raster\n\ntavg_utm19s &lt;- terra::project(tavg, \"EPSG:32719\")\n\n\n|---------|---------|---------|---------|\n=========================================\n                                          \n\ntavg_utm19s\n\nclass       : SpatRaster \ndimensions  : 4455, 2454, 12  (nrow, ncol, nlyr)\nresolution  : 871.5251, 871.5251  (x, y)\nextent      : -18378.29, 2120344, 3739870, 7622514  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \nsource      : spat_10482913240c_4168.tif \nnames       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... \nmin values  :   -10.05342,   -10.73714,   -11.49992,   -13.56269,   -15.82571,   -19.13586, ... \nmax values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.98987, ..."
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#ahora-si-que-las-coordenadas-aparecen-desplazadas",
     "href": "AEMER-2_Analisis_espacial.html#ahora-si-que-las-coordenadas-aparecen-desplazadas",
     "title": "Análisis de datos espaciales en R",
     "section": "Ahora si que las coordenadas aparecen “desplazadas”",
-    "text": "Ahora si que las coordenadas aparecen “desplazadas”\n\npar(mfrow = c(1, 2))\nplot(stck[[1]])\nplot(stck_rob[[1]])\n\n\n\nNotad que los píxeles no tienen un tamaño regular"
+    "text": "Ahora si que las coordenadas aparecen “desplazadas”\n\npar(mfrow = c(1, 2))\nplot(tavg[[1]])\nplot(tavg_utm19s[[1]])\n\n\n\nNotad que los píxeles no tienen un tamaño regular"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#para-controlar-el-número-de-pixeles-y-su-resolución-debemos-crear-antes-una-plantilla",
     "href": "AEMER-2_Analisis_espacial.html#para-controlar-el-número-de-pixeles-y-su-resolución-debemos-crear-antes-una-plantilla",
     "title": "Análisis de datos espaciales en R",
     "section": "Para controlar el número de pixeles y su resolución debemos crear antes una plantilla",
-    "text": "Para controlar el número de pixeles y su resolución debemos crear antes una plantilla\n\nx &lt;- rast(stck_rob)\nres(x) &lt;- 200000\nx\n\nclass       : SpatRaster \ndimensions  : 20, 38, 3  (nrow, ncol, nlyr)\nresolution  : 2e+05, 2e+05  (x, y)\nextent      : -13919275, -6319275, 2287814, 6287814  (xmin, xmax, ymin, ymax)\ncoord. ref. : +proj=robin +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs \n\n\n\nstck_rob_2 &lt;- terra::project(stck, x)\nstck_rob_2\n\nclass       : SpatRaster \ndimensions  : 20, 38, 3  (nrow, ncol, nlyr)\nresolution  : 2e+05, 2e+05  (x, y)\nextent      : -13919275, -6319275, 2287814, 6287814  (xmin, xmax, ymin, ymax)\ncoord. ref. : +proj=robin +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs \nsource(s)   : memory\nnames       :    lyr.1,    lyr.1,    lyr.1 \nmin values  :  1.00000,    1.000, 1.000000 \nmax values  : 99.18499, 9845.148, 9.958177"
+    "text": "Para controlar el número de pixeles y su resolución debemos crear antes una plantilla\n\nx &lt;- rast(tavg_utm19s)\nres(x) &lt;- 500\nx\n\nclass       : SpatRaster \ndimensions  : 7765, 4277, 12  (nrow, ncol, nlyr)\nresolution  : 500, 500  (x, y)\nextent      : -18378.29, 2120122, 3739870, 7622370  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \n\n\n\ntavg_utm19s_2 &lt;- terra::project(tavg_utm19s, x)\n\n\n|---------|---------|---------|---------|\n=========================================\n                                          \n\ntavg_utm19s_2\n\nclass       : SpatRaster \ndimensions  : 7765, 4277, 12  (nrow, ncol, nlyr)\nresolution  : 500, 500  (x, y)\nextent      : -18378.29, 2120122, 3739870, 7622370  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \nsource      : spat_10482ea871b4_4168.tif \nnames       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... \nmin values  :   -9.826292,   -10.52396,   -11.27285,   -13.33443,   -15.59083,   -18.91430, ... \nmax values  :   29.200001,    28.40000,    27.30000,    25.00000,    22.20000,    20.98052, ..."
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#veamos-el-resultado",
     "href": "AEMER-2_Analisis_espacial.html#veamos-el-resultado",
     "title": "Análisis de datos espaciales en R",
     "section": "Veamos el resultado",
-    "text": "Veamos el resultado\n\npar(mfrow = c(1, 3))\nplot(stck[[2]])\nplot(stck_rob[[2]])\nplot(stck_rob_2[[2]])"
+    "text": "Veamos el resultado\n\npar(mfrow = c(1, 3))\nplot(tavg[[2]])\nplot(tavg_utm19s[[2]])\nplot(tavg_utm19s_2[[2]])"
   },
   {
     "objectID": "AEMER-2_Ejercicios.html",
