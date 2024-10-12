@@ -40,7 +40,7 @@ pts
 Fijaros que el apartado "coord. ref." está vacío.
 :::
 
-## Revisar
+## Revisamos el tipo de datos
 
 ```{r}
 #| echo: true
@@ -52,19 +52,19 @@ class (pts)
 geom(pts)
 ```
 
-## Visualizar
+## Visualizamos la distribución espacial de los datos
 
 ```{r}
 #| echo: true
 plot(pts)
 ```
 
-## Establecer sistema de referencia de coordenadas (CRS)
+## Establecemos el sistema de referencia de coordenadas (CRS)
 
 ```{r}
 #| echo: true
 crdref <- "+proj=longlat +datum=WGS84"
-pts <- vect(lonlat, crs=crdref)
+pts <- vect(lonlat, crs = crdref)
 pts
 ```
 
@@ -81,34 +81,34 @@ Vamos a simular valores de precipitación al azar, un valor para cada punto.
 
 ```{r}
 #| echo: true
-precipvalue <- round(runif(nrow(lonlat), min=0, max=100))
-df <- data.frame(ID=1:nrow(lonlat), precip=precipvalue)
-pts <- vect(lonlat, atts=df, crs=crdref)
+precipvalue <- sample(1:100, 10)
+df <- data.frame(ID = 1:nrow(lonlat), precip = precipvalue)
+pts <- vect(lonlat, atts = df, crs = crdref)
 pts
 ```
 
-## Graficar precipitaciones
+## Visualizamos las precipitaciones en su contexto espacial
 
 ```{r}
 #| echo: true
 plot(pts, "precip", type = "interval")
 ```
 
-## Vamos a genera un segundo conjunto de puntos...
+## Vamos a generar ahora un segundo conjunto de puntos...
 
 ```{r}
 #| echo: true
 lon2 <- c(-116.8, -114.2, -112.9, -111.9, -114.2, -115.4, -117.7)
 lat2 <- c(41.3, 42.9, 42.4, 39.8, 37.6, 38.3, 37.6)
-lonlat2 <- cbind(id=c(1,1,1,1,1,1,1), part=c(1,1,1,1,1,1,1), lon2, lat2)
+lonlat2 <- cbind(id = c(1,1,1,1,1,1,1), part = c(1,1,1,1,1,1,1), lon2, lat2)
 lonlat2
 ```
 
-## ... pero para crear datos de líneas...
+## ... pero para crear datos vectoriales de líneas...
 
 ```{r}
 #| echo: true
-lns <- vect(lonlat2, type="lines", crs=crdref)
+lns <- vect(lonlat2, type = "lines", crs = crdref)
 lns
 ```
 
@@ -117,11 +117,11 @@ lns
 plot(lns)
 ```
 
-## ... o un datos de polígonos.
+## ... o un datos vectoriales de polígonos.
 
 ```{r}
 #| echo: true
-pols <- vect(lonlat2, type="polygons", crs=crdref)
+pols <- vect(lonlat2, type = "polygons", crs = crdref)
 pols
 ```
 
@@ -130,14 +130,30 @@ pols
 plot(pols)
 ```
 
-## Cargando datos ya existentes
+## Lo más normal es usar datos generados con un SIG. 
+
+Podemos descargar datos de internet (v.gr. [GADM](https://gadm.org)) y cargarlos desde nuestro disco duro.
+
+
+```{r}
+#| echo: true
+#| eval: false
+
+# install.packages("geodata")
+arg <- vect("gadm/gadm41_ARG_1.shp")
+arg
+```
+
+## Lo más normal es usar datos generados con un SIG. 
+
+Pero hay paquetes que dan acceso a datos vectoriales directamente en R (v.gr. geodata)
 
 ```{r}
 #| echo: true
 
 # install.packages("geodata")
 library(geodata)
-arg <- gadm("ARG", level = 2, path = ".")
+arg <- gadm("ARG", level = 1, path = ".")
 arg
 ```
 
@@ -149,14 +165,80 @@ arg
 plot(arg)
 ```
 
-## Escribir ficheros vectoriales
+## Si quieres guardar esos datos para no tener que volver a descargarlos, puedes escribir ficheros vectoriales
 
 ```{r}
 #| echo: true
 #| eval: false
 
-writeVector(arg, "arg.shp", overwrite=TRUE)
+writeVector(arg, "arg.shp", overwrite = TRUE)
 ```
+
+## Comprobamos el CRS de alguno de nuestros datos
+
+```{r}
+#| echo: true
+crs(arg)
+```
+
+## Se puede borrar el CRS del conjunto de datos
+
+```{r}
+#| echo: true
+arg_sin_crs <- arg
+crs(arg_sin_crs) <- ""
+crs(arg_sin_crs)
+```
+
+## O se puede especificar a mano (estandar PROJ.4)
+
+```{r}
+#| echo: true
+
+arg_falso_utm <- arg
+crs(arg_falso_utm) <- "+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs +type=crs"
+crs(arg_falso_utm)
+```
+
+## O se puede especificar con los códigos [EPSG](https://epsg.io/)
+
+```{r}
+#| echo: true
+arg_false_utm2 <- arg
+crs(arg_false_utm2) <- "EPSG:32719"
+crs(arg_false_utm2)
+```
+
+## Notad que eso cambia el sistema de referencia pero no las coordenadas en si
+
+```{r}
+#| echo: true
+par(mfrow = c(2, 2))
+plot(arg)
+plot(arg_sin_crs)
+plot(arg_falso_utm)
+plot(arg_false_utm2)
+```
+
+## Si queremos convertir coordenadas entre CRS tenemos que proyectar los datos
+
+```{r}
+#| echo: true
+
+arg_utm19s <- project(arg, "+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs +type=crs")
+
+arg_4326 <- project(arg, "EPSG:32719")
+par(mfrow = c(1, 3))
+plot(arg)
+plot(arg_utm19s)
+plot(arg_4326)
+```
+
+## Momento para practicar
+
+Ejercicios de clase
+
+Parte 1: Trabajando con datos vectoriales
 
 # Manejando datos raster
 
@@ -164,7 +246,9 @@ writeVector(arg, "arg.shp", overwrite=TRUE)
 
 ```{r}
 #| echo: true
-r <- rast(ncol=10, nrow=10, xmin=-150, xmax=-80, ymin=20, ymax=60)
+r <- rast(ncol = 10, nrow = 10, 
+          xmin = -150, xmax = -80, 
+          ymin = 20, ymax = 60)
 r
 ```
 
@@ -250,69 +334,7 @@ plot(tavg)
 ```{r}
 #| echo: true
 #| eval: false
-writeRaster(tavg_arg.tif, "raster_tavg_arg.tif", overwrite=TRUE)
-```
-
-# Proyecciones
-
-## Comprobamos el CRS de alguno de nuestros datos
-
-```{r}
-#| echo: true
-crs(arg)
-```
-
-## Se puede borrar el CRS del conjunto de datos
-
-```{r}
-#| echo: true
-arg_sp <- arg
-crs(arg_sp) <- ""
-crs(arg_sp)
-```
-
-## O se puede especificar a mano (estandar PROJ.4)
-
-```{r}
-#| echo: true
-
-arg_falso_utm <- arg
-crs(arg_falso_utm) <- "+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs +type=crs"
-crs(arg_falso_utm)
-```
-
-## O se puede especificar con los códigos EPSG
-
-```{r}
-#| echo: true
-arg_false_utm2 <- arg
-crs(arg_false_utm2) <- "EPSG:32719"
-crs(arg_false_utm2)
-```
-
-## Notad que eso cambia el sistema de referencia pero no las coordenadas en si
-
-```{r}
-#| echo: true
-par(mfrow = c(2, 2))
-plot(arg)
-plot(arg_sp)
-plot(arg_falso_utm)
-plot(arg_false_utm2)
-```
-
-## Si queremos convertir coordenadas entre CRS tenemos que proyectar los datos
-
-```{r}
-#| echo: true
-
-arg_utm19s <- terra::project(arg, "+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs +type=crs")
-
-arg_4326 <- terra::project(arg, "EPSG:32719")
-par(mfrow=c(1, 3))
-plot(arg)
-plot(arg_utm19s)
-plot(arg_4326)
+writeRaster(tavg_arg.tif, "raster_tavg_arg.tif", overwrite = TRUE)
 ```
 
 ## También se pueden proyectar datos raster
@@ -320,7 +342,7 @@ plot(arg_4326)
 ```{r}
 #| echo: true
 #| 
-tavg_utm19s <- terra::project(tavg, "EPSG:32719")
+tavg_utm19s <- project(tavg, "EPSG:32719")
 tavg_utm19s
 ```
 
@@ -349,7 +371,7 @@ x
 ```{r}
 #| echo: true
 
-tavg_utm19s_2 <- terra::project(tavg_utm19s, x)
+tavg_utm19s_2 <- project(tavg_utm19s, x)
 tavg_utm19s_2
 ```
 
@@ -379,7 +401,7 @@ head(d)
 
 g <- geom(arg) head(g)
 
-g <- geom(arg, wkt=TRUE) substr(g, 1, 50)
+g <- geom(arg, wkt = TRUE) substr(g, 1, 50)
 
 arg$NAME_2
 
@@ -403,25 +425,25 @@ z \<- rast(p) dim(z) \<- c(2,2) values(z) \<- 1:4 names(z) \<- 'Zone'
 
 z \<- as.polygons(z) z
 
-z2 \<- z\[2,\] plot(p) plot(z, add=TRUE, border='blue', lwd=5) plot(z2, add=TRUE, border='red', lwd=2, col='red')
+z2 \<- z\[2,\] plot(p) plot(z, add = TRUE, border = 'blue', lwd = 5) plot(z2, add = TRUE, border = 'red', lwd = 2, col = 'red')
 
 b \<- rbind(p, z) head(b)
 
 tail(b)
 
-pa \<- aggregate(p, by='NAME_1') za \<- aggregate(z) plot(za, col='light gray', border='light gray', lwd=5) plot(pa, add=TRUE, col=rainbow(3), lwd=3, border='white')
+pa \<- aggregate(p, by = 'NAME_1') za \<- aggregate(z) plot(za, col = 'light gray', border = 'light gray', lwd = 5) plot(pa, add = TRUE, col = rainbow(3), lwd = 3, border = 'white')
 
 e \<- erase(p, z2) plot(e)
 
 i \<- intersect(p, z2) plot(i)
 
-e \<- ext(6, 6.4, 49.7, 50) pe \<- crop(p, z2) plot(p) plot(e, add=TRUE, lwd=3, col="red") plot(i, col='light green', add=TRUE) plot(pe, col='light blue', add=TRUE) plot(e, add=TRUE, lwd=3, border="blue")
+e \<- ext(6, 6.4, 49.7, 50) pe \<- crop(p, z2) plot(p) plot(e, add = TRUE, lwd = 3, col = "red") plot(i, col = 'light green', add = TRUE) plot(pe, col = 'light blue', add = TRUE) plot(e, add = TRUE, lwd = 3, border = "blue")
 
 u \<- union(p, z) u
 
-set.seed(5) plot(u, col=sample(rainbow(length(u))))
+set.seed(5) plot(u, col = sample(rainbow(length(u))))
 
-dif \<- symdif(z,p) plot(dif, col=rainbow(length(dif)))
+dif \<- symdif(z,p) plot(dif, col = rainbow(length(dif)))
 
 extract(spts, p)
 
