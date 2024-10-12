@@ -9,7 +9,6 @@ format:
     logo: img/logos.png
     footer: "[AEMeR](https://dnietolugilde.com/AEMeR)"
     scrollable: true
-    theme: dark
 editor: source
 ---
 
@@ -36,7 +35,7 @@ pts <- vect(lonlat)
 pts
 ```
 
-::: aside
+::: asides
 Fijaros que el apartado "coord. ref." está vacío.
 :::
 
@@ -264,15 +263,6 @@ r
 plot(r)
 ```
 
-## Añadir información vectorial sobre el gráfico
-
-```{r}
-#| echo: true
-plot(r)
-plot(pols, border = "blue", lwd = 2, add = TRUE)
-plot(pts, col = "red", pch=20, cex=1, add = TRUE)
-```
-
 ## Operar con datos raster
 
 ```{r}
@@ -328,7 +318,7 @@ tavg
 
 ```{r}
 #| echo: true
-plot(tavg)
+plot(tavg, range = c(-20, 30))
 ```
 
 ## Si queremos reutilizar los datos y no tener que volver a descargarlos, también podemos escribirlos en un fichero de datos raster
@@ -358,7 +348,7 @@ plot(tavg_utm19s[[1]])
 ```
 
 ::: asides
-Notad que no hay una correspondencia exacta de píxeles. 
+Notad que no hay una correspondencia exacta de píxeles.
 :::
 
 ## Para controlar el número de pixeles y su resolución lo normal es crear antes una plantilla
@@ -409,6 +399,15 @@ Parte 2. Manejo de datos raster
 plot(arg, "NAME_1")
 ```
 
+## Podemos combinar información raster y vectorial en el mismo mapa
+
+```{r}
+#| echo: true
+
+plot(tavg[[1]])
+plot(arg, add = TRUE)
+```
+
 ## También se puede extraer la información de los atributos en formato `data.frame` para trabajar con ella de forma estadística.
 
 ```{r}
@@ -441,20 +440,20 @@ head(g)
 
 ```{r}
 #| echo: true
-arg_utm19s$lets <- sample(letters, nrow(arg_utm19s)) 
-arg_utm19s
+arg$lets <- sample(letters, nrow(arg_utm19s)) 
+arg
 ```
 
 ```{r}
 #| echo: true
-perim(arg_utm19s)
-arg_utm19s$perimetro <- perim(arg_utm19s)
+perim(arg)
+arg$perimetro <- perim(arg)
 ```
 
 ```{r}
 #| echo: true
-expanse(arg_utm19s)
-arg_utm19s$area <- expanse(arg_utm19s)
+expanse(arg)
+arg$area <- expanse(arg)
 ```
 
 ## ¿Qué pasa si quiero borrar una columna?
@@ -464,59 +463,184 @@ arg_utm19s$area <- expanse(arg_utm19s)
 arg$lets <- NULL
 ```
 
-## A veces tenemos los datos en una tabla aparte. Podemos vincularla con los datos de los atributos vectoriales, pero necesitamos un campo en común.
+## A veces tenemos los datos en una tabla aparte
+
+Podemos vincularla con los datos de los atributos vectoriales, pero necesitamos un campo en común.
 
 Me descargué datos del [censo poblacional del país](https://censo.gob.ar/index.php/datos_definitivos_total_pais/) 
 
 ```{r}
 #| echo: true
 d <- read.csv("data/c2022_tp_c_resumen.csv", header = TRUE, encoding = "latin1")
-arg_pop <- merge(arg, d, by.x = 'NAME_1', by.y = 'provincia')
-arg_pop
+arg <- merge(arg, d, by.x = "NAME_1", by.y = "provincia")
+arg
 ```
 
 ## Veamos como se ve la población argentina por provincias...
 
 ```{r}
 #| echo: true
-plot(arg_pop, "poblacion", type = "continuous")
+plot(arg, "poblacion", type = "continuous")
 ```
 
 ## También se puede filtrar la información para una o varias entidades dentro de los datos.
 
 ```{r}
 #| echo: true
-which(arg_pop$NAME_1 == 'Buenos Aires')
-i <- which(arg_pop$NAME_1 %in% c("Buenos Aires", "Río Negro"))
-g <- arg_pop[i,]
+which(arg$NAME_1 == "Buenos Aires")
+i <- which(arg$NAME_1 %in% c("Buenos Aires", "Río Negro"))
+g <- arg[i,]
 plot(g)
 ```
 
+## A veces necesitamos combinar información de varios polígonos en uno de mayor tamaño
 
-z <- rast(p) dim(z) <- c(2,2) values(z) <- 1:4 names(z) <- 'Zone'
+```{r}
+#| echo: true
+arg_0 <- aggregate(arg, by = "COUNTRY") 
+plot(arg_0, col = "white", lwd = 2, border = "cyan")
+```
 
-z <- as.polygons(z) z
+## En los objetos raster también se pueden hacer agregaciones, pero normalmente para cambiar la resolución de los datos
 
-z2 <- z[2,] plot(p) plot(z, add = TRUE, border = 'blue', lwd = 5) plot(z2, add = TRUE, border = 'red', lwd = 2, col = 'red')
+```{r}
+#| echo: true
 
-b <- rbind(p, z) head(b)
+tavg_10 <- aggregate(tavg, fact = 100, fun = "mean", na.rm = TRUE)
+par(mfrow = c(1, 2))
+plot(tavg[[1]])
+plot(tavg_10[[1]])
+```
 
-tail(b)
 
-pa <- aggregate(p, by = 'NAME_1') za <- aggregate(z) plot(za, col = 'light gray', border = 'light gray', lwd = 5) plot(pa, add = TRUE, col = rainbow(3), lwd = 3, border = 'white')
+## En otras ocasiones tenemos dos capas vectoriales y necesitamos quedarnos sólo con datos que quedan dentro de una de ellas
 
-e <- erase(p, z2) plot(e)
+```{r}
+#| echo: true
+clip <- rast(ext = c(-70, -60, -47, -30), nrow = 2, ncol = 2)
+values(clip) <- 1:4
+names(clip) <- "Zona"
+clip <- as.polygons(clip)
+clip 
+```
 
-i <- intersect(p, z2) plot(i)
+```{r}
+#| echo: true
+plot(arg) 
+plot(clip, add = TRUE, border = "blue", lwd = 5) 
+```
 
-e <- ext(6, 6.4, 49.7, 50) pe <- crop(p, z2) plot(p) plot(e, add = TRUE, lwd = 3, col = "red") plot(i, col = 'light green', add = TRUE) plot(pe, col = 'light blue', add = TRUE) plot(e, add = TRUE, lwd = 3, border = "blue")
+```{r}
+#| echo: true
+arg_clip <- intersect(arg, clip) 
+plot(arg_clip)
+```
 
-u <- union(p, z) u
+## Los objetos raster también se pueden cortar con un vectorial
 
-set.seed(5) plot(u, col = sample(rainbow(length(u))))
+```{r}
+#| echo: true
 
-dif <- symdif(z,p) plot(dif, col = rainbow(length(dif)))
+tavg_arg <- mask(tavg, arg)
+par(mfrow = c(1, 2))
+plot(tavg[[1]])
+plot(tavg_arg[[1]])
+```
 
-extract(spts, p)
 
-extract(spts, z)
+## Otras veces necesitamos combinar los vectores de dos ficheros diferentes
+
+```{r}
+#| echo: true
+u <- union(arg, clip)
+plot(u, col = sample(rainbow(length(u))))
+```
+
+## En estudios de biodiversidad, es muy frecuente necesitar extraer información de una capa vectorial en los puntos, líneas o polígonos de otra capa vectorial
+
+```{r}
+#| echo: true
+pnts <- spatSample(arg, 100)
+```
+
+```{r}
+#| echo: true
+plot(arg)
+plot(clip, add = TRUE, border = "cyan")
+plot(pnts, add = TRUE, col = "red")
+```
+
+```{r}
+#| echo: true
+pnts_arg <- extract(arg, pnts)
+pnts_arg
+```
+
+```{r}
+#| echo: true
+pnts_clip <- extract(clip, pnts)
+pnts_clip
+```
+
+## Igual podemos hacer con respecto a los valores de los píxeles en cada punto de un vectorial
+
+```{r}
+#| echo:true
+pnts_tavg <- extract(tavg, pnts)
+pnts_tavg
+```
+
+::: asides
+Fijaros que extráe un valor de cada capa del raster stack.
+:::
+
+## También funciona con polígonos
+
+```{r}
+#| echo: true
+
+prov_tavg <- extract(tavg, arg, fun = "mean", bind = TRUE, na.rm = TRUE)
+plot(prov_tavg, "ARG_wc2.1_30s_tavg_1")
+```
+
+
+## Los objetos raster se puede operar matemáticamente con ellos para generar estadísticos
+
+En general se puede usar cualquiera de estas funciones:
+`min`, `max`, `mean`, `prod`, `sum`, `median`, `cv`, `range`, `any` y `all`.
+
+```{r}
+min_tavg <- min(tavg)
+plot(min_tavg)
+```
+
+## También hay multitud de funciones avanzadas propias de un SIG, tanto para vectoriales como raster
+
+`crop`, `trim`, `merge`, `disagg`, `resample`, `classify` o `cover`
+
+`gdistance` package ofrece análisis de distancias complejos (least cost path, etcétera)
+
+## Last but not least. Se pueden transformar datos vectoriales en raster ...
+
+```{r}
+#| echo: true
+
+arg_raster <- rasterize(arg, tavg, field = "NAME_1")
+class(arg_raster)
+plot(arg_raster)
+```
+
+## ... y viceversa
+
+```{r}
+#| echo: true
+
+as.polygons(tavg[[1]])
+
+```
+
+## Hora de trabajar por vuestra cuenta...
+
+Ejercicios de clase
+
+# Parte 3. Manipulación de datos raster y vectoriales
