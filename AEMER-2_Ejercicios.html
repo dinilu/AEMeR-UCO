@@ -150,6 +150,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#funciones-útiles-1" id="toc-funciones-útiles-1" class="nav-link" data-scroll-target="#funciones-útiles-1">Funciones útiles</a></li>
   <li><a href="#ejercicios-1" id="toc-ejercicios-1" class="nav-link" data-scroll-target="#ejercicios-1">Ejercicios</a></li>
   </ul></li>
+  <li><a href="#parte-3.-manipulación-datos-ráster-y-vectoriales" id="toc-parte-3.-manipulación-datos-ráster-y-vectoriales" class="nav-link" data-scroll-target="#parte-3.-manipulación-datos-ráster-y-vectoriales">Parte 3. Manipulación datos ráster y vectoriales</a>
+  <ul class="collapse">
+  <li><a href="#funciones-útiles-2" id="toc-funciones-útiles-2" class="nav-link" data-scroll-target="#funciones-útiles-2">Funciones útiles</a></li>
+  <li><a href="#ejercicios-2" id="toc-ejercicios-2" class="nav-link" data-scroll-target="#ejercicios-2">Ejercicios</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -233,7 +238,8 @@ Nota
 <summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geodata)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>departamentos <span class="ot">&lt;-</span> <span class="fu">gadm</span>(<span class="st">"ARG"</span>, <span class="dv">2</span>, <span class="at">path =</span> <span class="st">"."</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ba <span class="ot">&lt;-</span> departamentos[<span class="fu">which</span>(departamentos<span class="sc">$</span>NAME_1 <span class="sc">==</span> <span class="st">"Buenos Aires"</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">which</span>(departamentos<span class="sc">$</span>NAME_1 <span class="sc">==</span> <span class="st">"Buenos Aires"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>ba <span class="ot">&lt;-</span> departamentos[i]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>2. Ahora, proyecte los datos de estos municipios desde el sistema de coordenadas en longitud-latitud y WGS84 al sistema UTM21 sur. Para ello necesitaréis buscar el código EPSG en <a href="https://epsg.io">https://epsg.io</a>.</strong></p>
@@ -259,7 +265,7 @@ Nota
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_utm)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="AEMER-2_Ejercicios_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="AEMER-2_Ejercicios_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -272,6 +278,10 @@ Nota
 <p>Se utiliza para generar o cargar datos raster. Es muy flexible también en su forma de usarse, por lo que tendrás que tener cuidad con los argumentos que usas con ella.</p>
 <p><strong>worldclim_country()</strong></p>
 <p>Esta función del paquete <code>geodata</code> se usa para cargar datos climáticos de cualquier país del planeta. Los datos proceden del proyecto <a href="https://worldclim.org">WorldClim</a>.</p>
+<p><strong>project()</strong></p>
+<p>Se usa para proyectar tanto datos vectoriales como raster.</p>
+<p><strong>writeRaster()</strong></p>
+<p>Se usa para guardar objetos ráster en el disco duro del ordenador.</p>
 </section>
 <section id="ejercicios-1" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicios-1">Ejercicios</h2>
@@ -280,33 +290,50 @@ Nota
 <details>
 <summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geodata)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>arg_bio <span class="ot">&lt;-</span> <span class="fu">worldclim_country</span>(<span class="st">"ARG"</span>, <span class="at">var =</span> <span class="st">"bio"</span>, <span class="at">path =</span> <span class="st">"climate"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>arg_bio <span class="ot">&lt;-</span> <span class="fu">worldclim_country</span>(<span class="st">"ARG"</span>, <span class="at">var =</span> <span class="st">"bio"</span>, <span class="at">path =</span> <span class="st">"."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>2. Fíjese el nombre tan largo y poco intuitivo de los nombres de las distintas capas (puede consultarlo usando el siguiente código <code>names(bio)</code>). Cambie el nombre de las variables por algo más corto e intuitivo (v.gr. “bio1”, “bio2”, etc.).</strong></p>
 <div class="cell">
 <details>
 <summary>Solución (no mirar de primeras)</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span>(arg_bio, <span class="st">"epsg:32721"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(arg_bio)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(arg_bio) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"bio"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">19</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-|---------|---------|---------|---------|
-=========================================
-                                          </code></pre>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>class       : SpatRaster 
-dimensions  : 4442, 2437, 19  (nrow, ncol, nlyr)
-resolution  : 879.1828, 879.1828  (x, y)
-extent      : -1280055, 862513.1, 3717177, 7622507  (xmin, xmax, ymin, ymax)
-coord. ref. : WGS 84 / UTM zone 21S (EPSG:32721) 
-source      : spat_623079b636a1_25136.tif 
-names       : wc2.1~bio_1, wc2.1~bio_2, wc2.1~bio_3, wc2.1~bio_4, wc2.1~bio_5, wc2.1~bio_6, ... 
-min values  :   -14.97495,    3.350654,    33.53699,    178.1159,   -5.545715,   -23.63696, ... 
-max values  :    25.27420,   19.006159,    75.75195,    683.8031,   36.299999,    14.20000, ... </code></pre>
+<p><strong>3. Revisa el CRS de los datos que has descargado. ¿Coinciden con los datos que has generado como resultado de los ejercicios de la Parte 1? Si no es así, proyecta los datos raster para que coincidan con esos datos y mantengan una resolución exacta dde 1000 metros.</strong></p>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>arg_bio_utm <span class="ot">&lt;-</span> <span class="fu">project</span>(arg_bio, <span class="st">"epsg:32721"</span>, <span class="at">res =</span> <span class="dv">1000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
+<p><strong>4. Guarde los dos objetos ráster (original y resultante) como un fichero en el disco duro de su ordenador, de modo que pueda reutilizarlos más adelante cuando los vuelva a necesitar.</strong></p>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(arg_bio, <span class="st">"arg_bio.tif"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(arg_bio_utm, <span class="st">"arg_bio_utm.tif"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
+<p><strong>5. Finalmente, para cerciorarnos que todo esté correcto, dibuje el mapa original con los datos vectoriales de los municipios de la provincia de “Buenos Aires” encima.</strong></p>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(arg_bio_utm[[<span class="st">"bio4"</span>]])</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_utm, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="parte-3.-manipulación-datos-ráster-y-vectoriales" class="level1">
+<h1>Parte 3. Manipulación datos ráster y vectoriales</h1>
+<section id="funciones-útiles-2" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-útiles-2">Funciones útiles</h2>
+</section>
+<section id="ejercicios-2" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicios-2">Ejercicios</h2>
+<p><strong>1. </strong></p>
 
 
 </section>
