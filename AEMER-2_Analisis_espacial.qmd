@@ -9,10 +9,58 @@ format:
     logo: img/logos.png
     footer: "[AEMeR](https://dnietolugilde.com/AEMeR)"
     scrollable: true
+    chalkboard: true
+    transition: slide
 editor: source
 ---
 
-# Manejando datos espaciales
+## ¿Qué son los datos espaciales?
+
+![](img/datos_espaciales.jpg)
+
+## La misma información se puede representar de varias maneras
+
+:::: {.columns}
+
+::: {.column}
+Algunos tipos de datos se ajustan mejor que otros a ciertas formas de representarlos
+:::
+
+::: {.column}
+![](img/raster_versus_vectorial.jpg)
+:::
+
+::::
+
+## ¿Cómo se localiza la información?
+
+![](img/coordenadas-geograficas.jpg)
+
+## No parece fácil medir los ángulos ;)
+
+![](img/datum.jpg)
+
+Se calculan aproximaciones usando modelos de la Tierra (Datum)
+
+## Además, no es lo mismo saber donde ocurre algo que dibujar un mapa
+
+:::: {.columns}
+
+::: {.column width="40%"}
+Para ello es necesario proyectar una esfera sobre un plano
+:::
+
+::: {.column width="60%"}
+![](img/proyecciones.png)
+:::
+
+::::
+
+## Cada proyección y cada datum genera mapas con propiedades diferentes
+
+![](img/tipos_de_proyecciones.jpg)
+
+# Manejando datos espaciales {background-color="aquamarine"}
 
 ## Para ello usaremos el paquete Terra
 
@@ -21,7 +69,7 @@ editor: source
 library(terra)
 ```
 
-# Manejando datos vectoriales
+# Manejando datos vectoriales {background-color="aquamarine"}
 
 ## Crear datos vectoriales desde cero
 
@@ -120,12 +168,14 @@ plot(lns)
 
 ```{r}
 #| echo: true
+
 pols <- vect(lonlat2, type = "polygons", crs = crdref)
 pols
 ```
 
 ```{r}
 #| echo: true
+
 plot(pols)
 ```
 
@@ -176,6 +226,7 @@ writeVector(arg, "arg.shp", overwrite = TRUE)
 
 ```{r}
 #| echo: true
+
 crs(arg)
 ```
 
@@ -183,6 +234,7 @@ crs(arg)
 
 ```{r}
 #| echo: true
+
 arg_sin_crs <- arg
 crs(arg_sin_crs) <- ""
 crs(arg_sin_crs)
@@ -202,6 +254,7 @@ crs(arg_falso_utm)
 
 ```{r}
 #| echo: true
+
 arg_false_utm2 <- arg
 crs(arg_false_utm2) <- "EPSG:32719"
 crs(arg_false_utm2)
@@ -211,6 +264,7 @@ crs(arg_false_utm2)
 
 ```{r}
 #| echo: true
+
 par(mfrow = c(2, 2))
 plot(arg)
 plot(arg_sin_crs)
@@ -238,12 +292,13 @@ Ejercicios de clase
 
 Parte 1: Trabajando con datos vectoriales
 
-# Manejando datos raster
+# Manejando datos raster {background-color="aquamarine"}
 
 ## Crear datos raster
 
 ```{r}
 #| echo: true
+
 r <- rast(ncol = 10, nrow = 10, 
           xmin = -150, xmax = -80, 
           ymin = 20, ymax = 60)
@@ -252,6 +307,7 @@ r
 
 ```{r}
 #| echo: true
+
 values(r) <- runif(ncell(r))
 r
 ```
@@ -260,6 +316,7 @@ r
 
 ```{r}
 #| echo: true
+
 plot(r)
 ```
 
@@ -267,6 +324,7 @@ plot(r)
 
 ```{r}
 #| echo: true
+
 r2 <- r * r
 r3  <- sqrt(r)
 ```
@@ -275,6 +333,7 @@ r3  <- sqrt(r)
 
 ```{r}
 #| echo: true
+
 stck <- c(r, r2, r3)
 stck
 ```
@@ -283,6 +342,7 @@ stck
 
 ```{r}
 #| echo: true
+
 plot(stck)
 ```
 
@@ -290,6 +350,7 @@ plot(stck)
 
 ```{r}
 #| echo: true
+
 r2 <- stck[[2]]
 r2
 ```
@@ -306,6 +367,7 @@ tavg
 ```
 
 ## ... o podemos usar el paquete `geodata` para acceder directamente a esa información
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -318,6 +380,7 @@ tavg
 
 ```{r}
 #| echo: true
+
 plot(tavg, range = c(-20, 30))
 ```
 
@@ -326,6 +389,7 @@ plot(tavg, range = c(-20, 30))
 ```{r}
 #| echo: true
 #| eval: false
+
 writeRaster(tavg_arg.tif, "raster_tavg_arg.tif", overwrite = TRUE)
 ```
 
@@ -333,7 +397,7 @@ writeRaster(tavg_arg.tif, "raster_tavg_arg.tif", overwrite = TRUE)
 
 ```{r}
 #| echo: true
-#| 
+ 
 tavg_utm19s <- project(tavg, "EPSG:32719")
 tavg_utm19s
 ```
@@ -342,6 +406,7 @@ tavg_utm19s
 
 ```{r}
 #| echo: true
+
 par(mfrow = c(1, 2))
 plot(tavg[[1]])
 plot(tavg_utm19s[[1]])
@@ -355,6 +420,7 @@ Notad que no hay una correspondencia exacta de píxeles.
 
 ```{r}
 #| echo: true
+
 x <- rast(tavg_utm19s)
 res(x) <- 800
 x
@@ -371,6 +437,7 @@ tavg_utm19s_2
 
 ```{r}
 #| echo: true
+
 par(mfrow = c(1, 3))
 plot(tavg[[2]])
 plot(tavg_utm19s[[2]])
@@ -379,6 +446,7 @@ plot(tavg_utm19s_2[[2]])
 
 ```{r}
 #| echo: true
+
 tavg[[2]]
 tavg_utm19s[[2]]
 tavg_utm19s_2[[2]]
@@ -390,12 +458,13 @@ Ejercicios de clase
 
 Parte 2. Manejo de datos raster
 
-# Manipular datos espaciales
+# Manipular datos espaciales {background-color="aquamarine"}
 
 ## Podemos dibujar los mapas con colores en base a alguna información de los atributos.
 
 ```{r}
 #| echo: true
+
 plot(arg, "NAME_1")
 ```
 
@@ -412,6 +481,7 @@ plot(arg, add = TRUE)
 
 ```{r}
 #| echo: true
+
 d <- as.data.frame(arg)
 head(d)
 ```
@@ -420,6 +490,7 @@ head(d)
 
 ```{r}
 #| echo: true
+
 arg$NAME_1
 arg[, "NAME_1"]
 ```
@@ -432,6 +503,7 @@ Notad que en este caso, las dos formas de extraer información no se comportan e
 
 ```{r}
 #| echo: true
+
 g <- geom(arg_utm19s) 
 head(g)
 ```
@@ -440,18 +512,21 @@ head(g)
 
 ```{r}
 #| echo: true
+
 arg$lets <- sample(letters, nrow(arg_utm19s)) 
 arg
 ```
 
 ```{r}
 #| echo: true
+
 perim(arg)
 arg$perimetro <- perim(arg)
 ```
 
 ```{r}
 #| echo: true
+
 expanse(arg)
 arg$area <- expanse(arg)
 ```
@@ -460,6 +535,7 @@ arg$area <- expanse(arg)
 
 ```{r}
 #| echo: true
+
 arg$lets <- NULL
 ```
 
@@ -467,10 +543,11 @@ arg$lets <- NULL
 
 Podemos vincularla con los datos de los atributos vectoriales, pero necesitamos un campo en común.
 
-Me descargué datos del [censo poblacional del país](https://censo.gob.ar/index.php/datos_definitivos_total_pais/) 
+Me descargué datos del [censo poblacional del país](https://censo.gob.ar/index.php/datos_definitivos_total_pais/)
 
 ```{r}
 #| echo: true
+
 d <- read.csv("data/c2022_tp_c_resumen.csv", header = TRUE, encoding = "latin1")
 arg <- merge(arg, d, by.x = "NAME_1", by.y = "provincia")
 arg
@@ -480,6 +557,7 @@ arg
 
 ```{r}
 #| echo: true
+
 plot(arg, "poblacion", type = "continuous")
 ```
 
@@ -487,6 +565,7 @@ plot(arg, "poblacion", type = "continuous")
 
 ```{r}
 #| echo: true
+
 which(arg$NAME_1 == "Buenos Aires")
 i <- which(arg$NAME_1 %in% c("Buenos Aires", "Río Negro"))
 g <- arg[i,]
@@ -497,6 +576,7 @@ plot(g)
 
 ```{r}
 #| echo: true
+
 arg_0 <- aggregate(arg, by = "COUNTRY") 
 plot(arg_0, col = "white", lwd = 2, border = "cyan")
 ```
@@ -512,11 +592,11 @@ plot(tavg[[1]])
 plot(tavg_10[[1]])
 ```
 
-
 ## En otras ocasiones tenemos dos capas vectoriales y necesitamos quedarnos sólo con datos que quedan dentro de una de ellas
 
 ```{r}
 #| echo: true
+
 clip <- rast(ext = c(-70, -60, -47, -30), nrow = 2, ncol = 2)
 values(clip) <- 1:4
 names(clip) <- "Zona"
@@ -526,12 +606,14 @@ clip
 
 ```{r}
 #| echo: true
+
 plot(arg) 
 plot(clip, add = TRUE, border = "blue", lwd = 5) 
 ```
 
 ```{r}
 #| echo: true
+
 arg_clip <- intersect(arg, clip) 
 plot(arg_clip)
 ```
@@ -547,11 +629,11 @@ plot(tavg[[1]])
 plot(tavg_arg[[1]])
 ```
 
-
 ## Otras veces necesitamos combinar los vectores de dos ficheros diferentes
 
 ```{r}
 #| echo: true
+
 u <- union(arg, clip)
 plot(u, col = sample(rainbow(length(u))))
 ```
@@ -560,11 +642,13 @@ plot(u, col = sample(rainbow(length(u))))
 
 ```{r}
 #| echo: true
+
 pnts <- spatSample(arg, 100)
 ```
 
 ```{r}
 #| echo: true
+
 plot(arg)
 plot(clip, add = TRUE, border = "cyan")
 plot(pnts, add = TRUE, col = "red")
@@ -572,12 +656,14 @@ plot(pnts, add = TRUE, col = "red")
 
 ```{r}
 #| echo: true
+
 pnts_arg <- extract(arg, pnts)
 pnts_arg
 ```
 
 ```{r}
 #| echo: true
+
 pnts_clip <- extract(clip, pnts)
 pnts_clip
 ```
@@ -585,7 +671,8 @@ pnts_clip
 ## Igual podemos hacer con respecto a los valores de los píxeles en cada punto de un vectorial
 
 ```{r}
-#| echo:true
+#| echo: true
+
 pnts_tavg <- extract(tavg, pnts)
 pnts_tavg
 ```
@@ -603,13 +690,13 @@ prov_tavg <- extract(tavg, arg, fun = "mean", bind = TRUE, na.rm = TRUE)
 plot(prov_tavg, "ARG_wc2.1_30s_tavg_1")
 ```
 
-
 ## Los objetos raster se puede operar matemáticamente con ellos para generar estadísticos
 
-En general se puede usar cualquiera de estas funciones:
-`min`, `max`, `mean`, `prod`, `sum`, `median`, `cv`, `range`, `any` y `all`.
+En general se puede usar cualquiera de estas funciones: `min`, `max`, `mean`, `prod`, `sum`, `median`, `cv`, `range`, `any` y `all`.
 
 ```{r}
+#| echo: true
+
 min_tavg <- min(tavg)
 plot(min_tavg)
 ```
@@ -643,4 +730,4 @@ as.polygons(tavg[[1]])
 
 Ejercicios de clase
 
-# Parte 3. Manipulación de datos raster y vectoriales
+Parte 3. Manipulación de datos raster y vectoriales
