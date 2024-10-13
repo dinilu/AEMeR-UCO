@@ -54,6 +54,7 @@ rsconnect/
 /site_libs/
 /gadm/
 /climate/
-tavg_arg.tif
 /AEMER-2_Analisis_espacial_files/
+/_freeze/
+*.tif
 *.gpkg
