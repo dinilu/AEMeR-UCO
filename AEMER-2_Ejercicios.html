@@ -145,7 +145,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#funciones-útiles" id="toc-funciones-útiles" class="nav-link" data-scroll-target="#funciones-útiles">Funciones útiles</a></li>
   <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios">Ejercicios</a></li>
   </ul></li>
-  <li><a href="#parte-2.-trabajando-con-datos-ráster" id="toc-parte-2.-trabajando-con-datos-ráster" class="nav-link" data-scroll-target="#parte-2.-trabajando-con-datos-ráster">Parte 2. Trabajando con datos ráster</a></li>
+  <li><a href="#parte-2.-trabajando-con-datos-ráster" id="toc-parte-2.-trabajando-con-datos-ráster" class="nav-link" data-scroll-target="#parte-2.-trabajando-con-datos-ráster">Parte 2. Trabajando con datos ráster</a>
+  <ul class="collapse">
+  <li><a href="#funciones-útiles-1" id="toc-funciones-útiles-1" class="nav-link" data-scroll-target="#funciones-útiles-1">Funciones útiles</a></li>
+  <li><a href="#ejercicios-1" id="toc-ejercicios-1" class="nav-link" data-scroll-target="#ejercicios-1">Ejercicios</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -208,6 +212,10 @@ Nota
 <h1>Parte 1. Trabajando con datos vectoriales</h1>
 <section id="funciones-útiles" class="level2">
 <h2 class="anchored" data-anchor-id="funciones-útiles">Funciones útiles</h2>
+<p><strong>vect()</strong></p>
+<p>Se usa para generar o leer datos vectoriales. Es muy flexible en su forma de funcionar, por lo que tendrás que leer bien la documentación para ver que argumentos necesita.</p>
+<p><strong>gadm()</strong></p>
+<p>Esta función del paquete <code>geodata</code> se usa para cargar datos de los límites administrativos de los distintos países del planeta.</p>
 <p><strong><code>project()</code></strong></p>
 <p>Proyecta las coordenadas de los objetos espaciales a un sistema de coordenadas diferentes. Para conseguir los códigos EPSG de distintos sistemas de proyeccion podéis usar la siguiente página: https://epsg.io/</p>
 <p><strong><code>[]</code></strong></p>
@@ -258,8 +266,26 @@ Nota
 </section>
 <section id="parte-2.-trabajando-con-datos-ráster" class="level1">
 <h1>Parte 2. Trabajando con datos ráster</h1>
+<section id="funciones-útiles-1" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-útiles-1">Funciones útiles</h2>
+<p><strong>rast()</strong></p>
+<p>Se utiliza para generar o cargar datos raster. Es muy flexible también en su forma de usarse, por lo que tendrás que tener cuidad con los argumentos que usas con ella.</p>
+<p><strong>worldclim_country()</strong></p>
+<p>Esta función del paquete <code>geodata</code> se usa para cargar datos climáticos de cualquier país del planeta. Los datos proceden del proyecto <a href="https://worldclim.org">WorldClim</a>.</p>
+</section>
+<section id="ejercicios-1" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicios-1">Ejercicios</h2>
+<p>** 1. Carga las variables bioclimáticas (v.gr. <code>var = "bio"</code>) del proyecto WorldClim a 0.5 minutos de grado de resolución.**</p>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geodata)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>arg_bio <span class="ot">&lt;-</span> <span class="fu">worldclim_country</span>(<span class="st">"ARG"</span>, <span class="at">var =</span> <span class="st">"bio"</span>, <span class="at">path =</span> <span class="st">"climate"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
