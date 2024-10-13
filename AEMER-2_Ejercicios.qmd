@@ -18,6 +18,7 @@ Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ell
 ```{r}
 #| echo: true
 #| eval: false
+#| code-fold: false
 
 # Ejercicio 1.
 # Parte 1
@@ -47,19 +48,47 @@ Los corchetes sirven para extraer elementos de ciertas posiciones en los objetos
 
 Se usa para realizar comparaciones y generar un vector de valores lógicos que indican cuando se cumple una condición de igualdad.
 
-**`write.`**
+**`writeVector`**
+
+Esta función se usa para guardar objetos vectoriales en el disco duro del ordenador.
 
 ## Ejercicios
 
-**1. Cargue los límites administrativos de los departamentos de Argentina en un objeto llamado "departamentos". Posteriormente, filtre los municipios para retener sólo los departamentos de la provincia de "Buenos Aires". Finalmente, proyecte los datos de estos municipios desde el sistema de coordenadas en longitud-latitud al sistema UTM21 sur, para lo que podéis usar el código "EPSG:32721". Ahora dibuje dos mapas uno con el mapa de la provincia de Buenos Aires en longitud-latitud y el otro en UTM21s. Por último guarda el objeto vectorial de Buenos Aires con las coordenadas en UTM21s como un fichero geopackge nuevo, llamado "BuenosAires.gpkg".**
+**1. Cargue los límites administrativos de los departamentos de Argentina en un objeto llamado `departamentos` y filtre los departamentos para retener sólo los departamentos de la provincia de `"Buenos Aires"`.**
 
 ```{r}
 #| warning: false
+
 library(geodata)
 departamentos <- gadm("ARG", 2, path = ".")
 ba <- departamentos[which(departamentos$NAME_1 == "Buenos Aires")]
+```
+
+**2. Ahora, proyecte los datos de estos municipios desde el sistema de coordenadas en longitud-latitud y WGS84 al sistema UTM21 sur. Para ello necesitaréis buscar el código EPSG en [https://epsg.io](https://epsg.io).**
+
+```{r}
+#| warning: false
+
 ba_utm <- project(ba, "epsg:32721")
+```
+
+**3. Guarda el objeto vectorial de Buenos Aires con las coordenadas en UTM21s como un fichero geopackge nuevo, llamado `BuenosAires.gpkg`**
+
+```{r}
+#| warning: false
+
+writeVector(ba_utm, "BuenosAires.gpkg", overwrite = TRUE)
+```
+
+**4. Finalmente, dibuje dos mapas uno con el mapa de la provincia de Buenos Aires en longitud-latitud (WGS84) y el otro en UTM21s. Por último .**
+
+```{r}
+#| warning: false
+
 par(mfrow = c(1, 2))
 plot(ba)
 plot(ba_utm)
 ```
+
+
+# Parte 2. Trabajando con datos ráster
