@@ -145,6 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#funciones-útiles" id="toc-funciones-útiles" class="nav-link" data-scroll-target="#funciones-útiles">Funciones útiles</a></li>
   <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios">Ejercicios</a></li>
   </ul></li>
+  <li><a href="#parte-2.-trabajando-con-datos-ráster" id="toc-parte-2.-trabajando-con-datos-ráster" class="nav-link" data-scroll-target="#parte-2.-trabajando-con-datos-ráster">Parte 2. Trabajando con datos ráster</a></li>
   </ul>
 </nav>
     </div>
@@ -213,29 +214,52 @@ Nota
 <p>Los corchetes sirven para extraer elementos de ciertas posiciones en los objetos de R. Se pueden usar también con los objetos espaciales</p>
 <p><strong><code>==</code></strong></p>
 <p>Se usa para realizar comparaciones y generar un vector de valores lógicos que indican cuando se cumple una condición de igualdad.</p>
-<p><strong><code>write.</code></strong></p>
+<p><strong><code>writeVector</code></strong></p>
+<p>Esta función se usa para guardar objetos vectoriales en el disco duro del ordenador.</p>
 </section>
 <section id="ejercicios" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicios">Ejercicios</h2>
-<p><strong>1. Cargue los límites administrativos de los departamentos de Argentina en un objeto llamado “departamentos”. Posteriormente, filtre los municipios para retener sólo los departamentos de la provincia de “Buenos Aires”. Finalmente, proyecte los datos de estos municipios desde el sistema de coordenadas en longitud-latitud al sistema UTM21 sur, para lo que podéis usar el código “EPSG:32721”. Ahora dibuje dos mapas uno con el mapa de la provincia de Buenos Aires en longitud-latitud y el otro en UTM21s. Por último guarda el objeto vectorial de Buenos Aires con las coordenadas en UTM21s como un fichero geopackge nuevo, llamado “BuenosAires.gpkg”.</strong></p>
+<p><strong>1. Cargue los límites administrativos de los departamentos de Argentina en un objeto llamado <code>departamentos</code> y filtre los departamentos para retener sólo los departamentos de la provincia de <code>"Buenos Aires"</code>.</strong></p>
 <div class="cell">
 <details>
 <summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geodata)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>departamentos <span class="ot">&lt;-</span> <span class="fu">gadm</span>(<span class="st">"ARG"</span>, <span class="dv">2</span>, <span class="at">path =</span> <span class="st">"."</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ba <span class="ot">&lt;-</span> departamentos[<span class="fu">which</span>(departamentos<span class="sc">$</span>NAME_1 <span class="sc">==</span> <span class="st">"Buenos Aires"</span>)]</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>ba_utm <span class="ot">&lt;-</span> <span class="fu">project</span>(ba, <span class="st">"epsg:32721"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_utm)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ba <span class="ot">&lt;-</span> departamentos[<span class="fu">which</span>(departamentos<span class="sc">$</span>NAME_1 <span class="sc">==</span> <span class="st">"Buenos Aires"</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>2. Ahora, proyecte los datos de estos municipios desde el sistema de coordenadas en longitud-latitud y WGS84 al sistema UTM21 sur. Para ello necesitaréis buscar el código EPSG en <a href="https://epsg.io">https://epsg.io</a>.</strong></p>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ba_utm <span class="ot">&lt;-</span> <span class="fu">project</span>(ba, <span class="st">"epsg:32721"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>3. Guarda el objeto vectorial de Buenos Aires con las coordenadas en UTM21s como un fichero geopackge nuevo, llamado <code>BuenosAires.gpkg</code></strong></p>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeVector</span>(ba_utm, <span class="st">"BuenosAires.gpkg"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>4. Finalmente, dibuje dos mapas uno con el mapa de la provincia de Buenos Aires en longitud-latitud (WGS84) y el otro en UTM21s. Por último .</strong></p>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_utm)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="AEMER-2_Ejercicios_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<p><img src="AEMER-2_Ejercicios_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="parte-2.-trabajando-con-datos-ráster" class="level1">
+<h1>Parte 2. Trabajando con datos ráster</h1>
+
+
 </section>
 
 </main> <!-- /main -->
