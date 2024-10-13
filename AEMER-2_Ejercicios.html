@@ -275,13 +275,37 @@ Nota
 </section>
 <section id="ejercicios-1" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicios-1">Ejercicios</h2>
-<p>** 1. Carga las variables bioclimáticas (v.gr. <code>var = "bio"</code>) del proyecto WorldClim a 0.5 minutos de grado de resolución.**</p>
+<p><strong>1. Carga las variables bioclimáticas (v.gr. <code>var = "bio"</code>) del proyecto WorldClim a 0.5 minutos de grado de resolución.</strong></p>
 <div class="cell">
 <details>
 <summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geodata)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>arg_bio <span class="ot">&lt;-</span> <span class="fu">worldclim_country</span>(<span class="st">"ARG"</span>, <span class="at">var =</span> <span class="st">"bio"</span>, <span class="at">path =</span> <span class="st">"climate"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
+<p><strong>2. Fíjese el nombre tan largo y poco intuitivo de los nombres de las distintas capas (puede consultarlo usando el siguiente código <code>names(bio)</code>). Cambie el nombre de las variables por algo más corto e intuitivo (v.gr. “bio1”, “bio2”, etc.).</strong></p>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span>(arg_bio, <span class="st">"epsg:32721"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+|---------|---------|---------|---------|
+=========================================
+                                          </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class       : SpatRaster 
+dimensions  : 4442, 2437, 19  (nrow, ncol, nlyr)
+resolution  : 879.1828, 879.1828  (x, y)
+extent      : -1280055, 862513.1, 3717177, 7622507  (xmin, xmax, ymin, ymax)
+coord. ref. : WGS 84 / UTM zone 21S (EPSG:32721) 
+source      : spat_623079b636a1_25136.tif 
+names       : wc2.1~bio_1, wc2.1~bio_2, wc2.1~bio_3, wc2.1~bio_4, wc2.1~bio_5, wc2.1~bio_6, ... 
+min values  :   -14.97495,    3.350654,    33.53699,    178.1159,   -5.545715,   -23.63696, ... 
+max values  :    25.27420,   19.006159,    75.75195,    683.8031,   36.299999,    14.20000, ... </code></pre>
+</div>
 </div>
 
 

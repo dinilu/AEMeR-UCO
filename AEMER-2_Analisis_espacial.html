@@ -569,9 +569,9 @@ attr(,"package")
  coord. ref. : +proj=longlat +datum=WGS84 +no_defs 
  names       :    ID precip
  type        : &lt;int&gt;  &lt;int&gt;
- values      :     1     69
-                   2     53
-                   3     99</code></pre>
+ values      :     1     54
+                   2     52
+                   3     48</code></pre>
 </div>
 </div>
 </section>
@@ -788,9 +788,9 @@ resolution  : 7, 4  (x, y)
 extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
-name        :     lyr.1 
-min value   : 0.0143062 
-max value   : 0.9707592 </code></pre>
+name        :      lyr.1 
+min value   : 0.03945964 
+max value   : 0.98098057 </code></pre>
 </div>
 </div>
 </section>
@@ -833,9 +833,9 @@ resolution  : 7, 4  (x, y)
 extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
-names       :     lyr.1,        lyr.1,     lyr.1 
-min values  : 0.0143062, 0.0002046675, 0.1196085 
-max values  : 0.9707592, 0.9423733786, 0.9852711 </code></pre>
+names       :      lyr.1,       lyr.1,     lyr.1 
+min values  : 0.03945964, 0.001557063, 0.1986445 
+max values  : 0.98098057, 0.962322885, 0.9904446 </code></pre>
 </div>
 </div>
 </section>
@@ -858,9 +858,9 @@ resolution  : 7, 4  (x, y)
 extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
-name        :        lyr.1 
-min value   : 0.0002046675 
-max value   : 0.9423733786 </code></pre>
+name        :       lyr.1 
+min value   : 0.001557063 
+max value   : 0.962322885 </code></pre>
 </div>
 </div>
 </section>
@@ -921,10 +921,10 @@ dimensions  : 4455, 2454, 12  (nrow, ncol, nlyr)
 resolution  : 871.5251, 871.5251  (x, y)
 extent      : -18378.29, 2120344, 3739870, 7622514  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_6044428b211_24644.tif 
+source      : spat_49f411a05fa_18932.tif 
 names       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... 
-min values  :   -10.06131,   -10.71734,     -11.481,   -13.54466,   -15.83285,   -19.14271, ... 
-max values  :    29.20000,    28.40000,      27.300,    25.00000,    22.20000,    20.97275, ... </code></pre>
+min values  :   -10.04368,   -10.73832,   -11.50097,   -13.56363,   -15.81678,   -19.12739, ... 
+max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.99141, ... </code></pre>
 </div>
 </div>
 </section>
@@ -979,10 +979,10 @@ dimensions  : 4853, 2673, 12  (nrow, ncol, nlyr)
 resolution  : 800, 800  (x, y)
 extent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_60446db771b5_24644.tif 
+source      : spat_49f437f66610_18932.tif 
 names       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... 
 min values  :   -10.77633,   -11.47463,   -12.17463,   -14.20292,   -16.40292,   -19.51049, ... 
-max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.94806, ... </code></pre>
+max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.95641, ... </code></pre>
 </div>
 </div>
 </section>
@@ -1349,20 +1349,20 @@ max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,  
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1"></a>pnts_arg <span class="ot">&lt;-</span> <span class="fu">extract</span>(arg, pnts)</span>
 <span id="cb102-2"><a href="#cb102-2"></a><span class="fu">head</span>(pnts_arg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  id.y  NAME_1   GID_1 GID_0   COUNTRY VARNAME_1 NL_NAME_1    TYPE_1 ENGTYPE_1
-1    1 Córdoba ARG.6_1   ARG Argentina   Cordova      &lt;NA&gt; Provincia  Province
-2    2 Córdoba ARG.6_1   ARG Argentina   Cordova      &lt;NA&gt; Provincia  Province
-3    3 Córdoba ARG.6_1   ARG Argentina   Cordova      &lt;NA&gt; Provincia  Province
-4    4  Chubut ARG.4_1   ARG Argentina      &lt;NA&gt;      &lt;NA&gt; Provincia  Province
-5    5  Chubut ARG.4_1   ARG Argentina      &lt;NA&gt;      &lt;NA&gt; Provincia  Province
-6    6  Chubut ARG.4_1   ARG Argentina      &lt;NA&gt;      &lt;NA&gt; Provincia  Province
-  CC_1 HASC_1 ISO_1 perimetro poblacion
-1 &lt;NA&gt;  AR.CB  &lt;NA&gt;   1898966   3840905
-2 &lt;NA&gt;  AR.CB  &lt;NA&gt;   1898966   3840905
-3 &lt;NA&gt;  AR.CB  &lt;NA&gt;   1898966   3840905
-4 &lt;NA&gt;  AR.CH  AR-U   4072813    592621
-5 &lt;NA&gt;  AR.CH  AR-U   4072813    592621
-6 &lt;NA&gt;  AR.CH  AR-U   4072813    592621</code></pre>
+<pre><code>  id.y              NAME_1    GID_1 GID_0   COUNTRY VARNAME_1 NL_NAME_1
+1    1          Corrientes  ARG.7_1   ARG Argentina      &lt;NA&gt;      &lt;NA&gt;
+2    2               Jujuy ARG.10_1   ARG Argentina      &lt;NA&gt;      &lt;NA&gt;
+3    3 Santiago del Estero ARG.22_1   ARG Argentina      &lt;NA&gt;      &lt;NA&gt;
+4    4             Mendoza ARG.13_1   ARG Argentina      &lt;NA&gt;      &lt;NA&gt;
+5    5              Chubut  ARG.4_1   ARG Argentina      &lt;NA&gt;      &lt;NA&gt;
+6    6           Río Negro ARG.16_1   ARG Argentina      &lt;NA&gt;      &lt;NA&gt;
+     TYPE_1 ENGTYPE_1 CC_1 HASC_1 ISO_1 perimetro poblacion
+1 Provincia  Province &lt;NA&gt;  AR.CN  AR-W   1546899   1212696
+2 Provincia  Province &lt;NA&gt;  AR.JY  AR-Y   1410539    811611
+3 Provincia  Province &lt;NA&gt;  AR.SE  AR-G   1709915   1060906
+4 Provincia  Province &lt;NA&gt;  AR.MZ  AR-M   2160729   2043540
+5 Provincia  Province &lt;NA&gt;  AR.CH  AR-U   4072813    592621
+6 Provincia  Province &lt;NA&gt;  AR.RN  &lt;NA&gt;   2829645    750768</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1371,10 +1371,10 @@ max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,  
 <div class="cell-output cell-output-stdout">
 <pre><code>  id.y Zona
 1    1   NA
-2    2    2
-3    3    2
-4    4   NA
-5    5    3
+2    2   NA
+3    3   NA
+4    4    1
+5    5   NA
 6    6    3</code></pre>
 </div>
 </div>
@@ -1386,33 +1386,33 @@ max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,  
 <span id="cb106-2"><a href="#cb106-2"></a><span class="fu">head</span>(pnts_tavg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  ID ARG_wc2.1_30s_tavg_1 ARG_wc2.1_30s_tavg_2 ARG_wc2.1_30s_tavg_3
-1  1                 26.7                 25.4                 23.3
-2  2                 24.5                 23.6                 21.0
-3  3                 24.8                 24.0                 21.6
-4  4                 15.8                 15.4                 12.4
-5  5                 16.2                 15.7                 12.6
-6  6                 17.3                 16.9                 13.9
+1  1                 26.9                 25.6                 23.8
+2  2                 14.4                 13.6                 13.2
+3  3                 25.3                 24.0                 22.2
+4  4                 13.9                 13.0                 11.0
+5  5                 13.9                 13.5                 11.2
+6  6                 22.0                 20.8                 17.7
   ARG_wc2.1_30s_tavg_4 ARG_wc2.1_30s_tavg_5 ARG_wc2.1_30s_tavg_6
-1                 20.0                 16.7                 13.3
-2                 17.7                 14.6                 11.4
-3                 18.3                 15.2                 12.0
-4                  8.4                  4.6                  1.7
-5                  8.4                  4.6                  1.6
-6                  9.9                  6.1                  3.2
+1                 20.2                 16.9                 14.3
+2                 10.9                  8.0                  5.5
+3                 18.7                 15.6                 12.3
+4                  8.0                  4.6                  1.7
+5                  7.6                  4.4                  1.6
+6                 12.7                  8.9                  5.6
   ARG_wc2.1_30s_tavg_7 ARG_wc2.1_30s_tavg_8 ARG_wc2.1_30s_tavg_9
-1                 12.7                 15.2                 18.3
-2                 10.7                 12.3                 14.9
-3                 11.4                 12.8                 15.2
-4                  1.5                  3.2                  5.9
-5                  1.6                  3.2                  5.6
-6                  3.0                  4.7                  7.6
+1                 14.2                 15.7                 17.4
+2                  5.3                  7.7                  9.9
+3                 12.0                 14.0                 16.6
+4                  1.2                  2.4                  4.4
+5                  1.1                  3.0                  5.3
+6                  5.3                  7.4                 10.3
   ARG_wc2.1_30s_tavg_10 ARG_wc2.1_30s_tavg_11 ARG_wc2.1_30s_tavg_12
-1                  21.9                  24.2                  26.6
-2                  18.2                  20.9                  23.7
-3                  18.5                  21.1                  23.9
-4                   9.1                  12.2                  14.3
-5                   9.1                  12.5                  14.7
-6                  10.9                  13.7                  15.8</code></pre>
+1                  20.5                  23.0                  25.6
+2                  12.3                  13.7                  14.5
+3                  20.1                  22.3                  24.8
+4                   7.3                  10.4                  13.1
+5                   8.0                  10.4                  12.6
+6                  14.2                  18.1                  21.0</code></pre>
 </div>
 </div>
 <div class="callout callout-warning callout-titled callout-style-default">
