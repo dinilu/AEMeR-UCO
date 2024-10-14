@@ -206,7 +206,7 @@ Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre <code>ejercicios_t1_[nombre]_[apellido].R</code>. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla <code>#</code> delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la <code>#</code>) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandarmelos por email.</p>
+<p>Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre <code>ejercicios_t1_[nombre]_[apellido].R</code>. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla <code>#</code> delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la <code>#</code>) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandármelos por email.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 1.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Parte 1</span></span>
@@ -223,11 +223,11 @@ Nota
 <section id="funciones-útiles" class="level2">
 <h2 class="anchored" data-anchor-id="funciones-útiles">Funciones útiles</h2>
 <p><strong><code>c()</code></strong></p>
-<p>Concatena y combina objetos en el orden de inclusion, devolviendo un objeto de una dimension (vectores or listas). Devuelve un objeto del mismo tipo (vector or lista).</p>
+<p>Concatena y combina objetos en el orden de inclusión, devolviendo un objeto de una dimensión (vectores o listas). Devuelve un objeto del mismo tipo (vector o lista).</p>
 <p><strong><code>seq(from, to, by)</code></strong></p>
-<p>Crea una secuencia numérica. Los argumentos <code>from</code>, <code>to</code> y <code>by</code> establecen el valor de inicio, fin e incremento de la secuencia numérica. La función también acepta el parámetro <code>length.out</code>, que dividirá la secuencia numerica entre el valor de inicio y el de fin uniformemente en el número de valores indicados por <code>length.out</code>. Los argumentos <code>from</code>, <code>to</code> y <code>by</code> por defecto tienen valor en 1. La función devuelve un vector.</p>
+<p>Crea una secuencia numérica. Los argumentos <code>from</code>, <code>to</code> y <code>by</code> establecen el valor de inicio, fin e incremento de la secuencia numérica. La función también acepta el parámetro <code>length.out</code>, que dividirá la secuencia numérica entre el valor de inicio y el de fin uniformemente en el número de valores indicados por <code>length.out</code>. Los argumentos <code>from</code>, <code>to</code> y <code>by</code> por defecto tienen valor en 1. La función devuelve un vector.</p>
 <p><strong><code>length(x)</code></strong></p>
-<p>Devuelve el número de elementos en un objeto (numeric, character, factor or list).</p>
+<p>Devuelve el número de elementos en un objeto (numeric, character, factor o list).</p>
 </section>
 <section id="ejercicios" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicios">Ejercicios</h2>
@@ -279,7 +279,7 @@ Nota
 <p><strong><code>matrix(data, nrow, ncol)</code></strong></p>
 <p>Genera una matriz, donde <code>data</code> son los datos que se colocan en dicha matriz que se organizan usando un número de filas = <code>nrow</code> y un número de columnas = <code>ncol</code>. El argumento <code>data</code> puede ser un número único, NA (sin dato o dato en blanco) o un vector.</p>
 <p><strong><code>rnorm(n, mean, sd)</code></strong></p>
-<p>Devuelve un vector de longitud <code>n</code>, en el que cada elemento es seleccionado aleatoriamente de una distribución normal con media = <code>mean</code> y desviación estandar = <code>sd</code>.</p>
+<p>Devuelve un vector de longitud <code>n</code>, en el que cada elemento es seleccionado aleatoriamente de una distribución normal con media = <code>mean</code> y desviación estándar = <code>sd</code>.</p>
 </section>
 <section id="ejercicios-1" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicios-1">Ejercicios</h2>
@@ -322,7 +322,7 @@ Nota
 </blockquote>
 <p><strong>3. Usa la función <code>which()</code> para determinar qué sitios tienen al menos 10 individuos de <em>Lupinus bicolor</em>. Usa la función <code>which()</code> para determinar qué especies tienen una abundancia de al menos 5 en el <em>Site5</em>.</strong></p>
 <p><strong>4. Crea una nueva matriz llamada “presencia” donde cada elemento de “presencia” es 1, si el valor correspondiente de “abundancia” es mayor que 0, y 0 en el caso contrario.</strong></p>
-<p><strong>5. Usando la matriz “presencia” que creastes y la función <code>apply()</code>, calcula la riqueza de especies (i.e.&nbsp;el número de especies) de cada sitio.</strong></p>
+<p><strong>5. Usando la matriz “presencia” que creaste y la función <code>apply()</code>, calcula la riqueza de especies (i.e.&nbsp;el número de especies) de cada sitio.</strong></p>
 <p><strong>6. Escribe la matriz “presencia” que creaste en un archivo “Presencia.csv”.</strong></p>
 </section>
 </section>
@@ -347,7 +347,7 @@ Nota
 <blockquote class="blockquote">
 <p>Aquí deberás usar la función <code>mean</code> para calcular la media antes.</p>
 </blockquote>
-<p><strong>2. Crea dos variables correlacionadas “x” e “y”, usando <code>x &lt;- rnorm (200)</code> e <code>y = x + rnorm (200)</code>. Dibuja “x” vs.&nbsp;“y” y juegua con los parámetros de trazado. Usa la <code>abline</code> para incluir una recta de regresión entre las dos variables.</strong></p>
+<p><strong>2. Crea dos variables correlacionadas “x” e “y”, usando <code>x &lt;- rnorm (200)</code> e <code>y = x + rnorm (200)</code>. Dibuja “x” vs.&nbsp;“y” y juega con los parámetros de trazado. Usa la <code>abline</code> para incluir una recta de regresión entre las dos variables.</strong></p>
 <p><strong>3. Genera un nuevo conjunto de datos “w” correlacionado con “x”, usando <code>w &lt;- 2*x * rnorm(200)</code>. Añade esta nuevo conjunto de datos al gráfico anterior pero cambiando el color para que se distingan bien los datos de “y” y “w”. Además, añade otra recta de regresión entre “w” y “x”.</strong></p>
 
 

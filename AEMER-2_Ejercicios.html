@@ -201,7 +201,7 @@ Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre <code>ejercicios_t2_[nombre]_[apellido].R</code>. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla <code>#</code> delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la <code>#</code>) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandarmelos por email.</p>
+<p>Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre <code>ejercicios_t2_[nombre]_[apellido].R</code>. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla <code>#</code> delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la <code>#</code>) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandármelos por email.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 1.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Parte 1</span></span>
@@ -222,7 +222,7 @@ Nota
 <p><strong><code>gadm()</code></strong></p>
 <p>Esta función del paquete <code>geodata</code> se usa para cargar datos de los límites administrativos de los distintos países del planeta.</p>
 <p><strong><code>project()</code></strong></p>
-<p>Proyecta las coordenadas de los objetos espaciales a un sistema de coordenadas diferentes. Para conseguir los códigos EPSG de distintos sistemas de proyeccion podéis usar la siguiente página: https://epsg.io/</p>
+<p>Proyecta las coordenadas de los objetos espaciales a un sistema de coordenadas diferentes. Para conseguir los códigos EPSG de distintos sistemas de proyección podéis usar la siguiente página: https://epsg.io/</p>
 <p><strong><code>[]</code></strong></p>
 <p>Los corchetes sirven para extraer elementos de ciertas posiciones en los objetos de R. Se pueden usar también con los objetos espaciales</p>
 <p><strong><code>==</code></strong></p>
@@ -249,7 +249,7 @@ Nota
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ba_utm <span class="ot">&lt;-</span> <span class="fu">project</span>(ba, <span class="st">"epsg:32721"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p><strong>3. Guarda el objeto vectorial de Buenos Aires con las coordenadas en UTM21s como un fichero geopackge nuevo, llamado <code>BuenosAires.gpkg</code></strong></p>
+<p><strong>3. Guarda el objeto vectorial de Buenos Aires con las coordenadas en UTM21s como un fichero geopackage nuevo, llamado <code>BuenosAires.gpkg</code></strong></p>
 <div class="cell">
 <details>
 <summary>Solución (no mirar de primeras)</summary>
@@ -275,7 +275,7 @@ Nota
 <section id="funciones-útiles-1" class="level2">
 <h2 class="anchored" data-anchor-id="funciones-útiles-1">Funciones útiles</h2>
 <p><strong><code>rast()</code></strong></p>
-<p>Se utiliza para generar o cargar datos raster. Es muy flexible también en su forma de usarse, por lo que tendrás que tener cuidad con los argumentos que usas con ella.</p>
+<p>Se utiliza para generar o cargar datos ráster. Es muy flexible también en su forma de usarse, por lo que tendrás que tener cuidad con los argumentos que usas con ella.</p>
 <p><strong><code>worldclim_country()</code></strong></p>
 <p>Esta función del paquete <code>geodata</code> se usa para cargar datos climáticos de cualquier país del planeta. Los datos proceden del proyecto <a href="https://worldclim.org">WorldClim</a>.</p>
 <p><strong><code>project()</code></strong></p>
@@ -301,7 +301,7 @@ Nota
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(arg_bio) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"bio"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">19</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p><strong>3. Revisa el CRS de los datos que has descargado. ¿Coinciden con los datos que has generado como resultado de los ejercicios de la Parte 1? Si no es así, proyecta los datos raster para que coincidan con esos datos y mantengan una resolución exacta dde 1000 metros.</strong></p>
+<p><strong>3. Revisa el CRS de los datos que has descargado. ¿Coinciden con los datos que has generado como resultado de los ejercicios de la Parte 1? Si no es así, proyecta los datos raster para que coincidan con esos datos y mantengan una resolución exacta de 1000 metros.</strong></p>
 <div class="cell">
 <details>
 <summary>Solución (no mirar de primeras)</summary>
