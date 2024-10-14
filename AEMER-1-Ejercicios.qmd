@@ -6,7 +6,7 @@ date: 10/14/2024
 format: html
 toc: true
 toc-depth: 2
-editor: visual
+editor: source
 ---
 
 ```{r setup, include=FALSE}
@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE,
 ```
 
 ::: callout-note
-Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre `ejercicios_t1_[nombre]_[apellido].R`. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla `#` delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la `#`) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandarmelos por email.
+Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre `ejercicios_t1_[nombre]_[apellido].R`. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla `#` delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la `#`) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandármelos por email.
 
 ```{r}
 #| echo: true
@@ -38,15 +38,15 @@ seq(1, 40, by = -2)
 
 **`c()`**
 
-Concatena y combina objetos en el orden de inclusion, devolviendo un objeto de una dimension (vectores or listas). Devuelve un objeto del mismo tipo (vector or lista).
+Concatena y combina objetos en el orden de inclusión, devolviendo un objeto de una dimensión (vectores o listas). Devuelve un objeto del mismo tipo (vector o lista).
 
 **`seq(from, to, by)`**
 
-Crea una secuencia numérica. Los argumentos `from`, `to` y `by` establecen el valor de inicio, fin e incremento de la secuencia numérica. La función también acepta el parámetro `length.out`, que dividirá la secuencia numerica entre el valor de inicio y el de fin uniformemente en el número de valores indicados por `length.out`. Los argumentos `from`, `to` y `by` por defecto tienen valor en 1. La función devuelve un vector.
+Crea una secuencia numérica. Los argumentos `from`, `to` y `by` establecen el valor de inicio, fin e incremento de la secuencia numérica. La función también acepta el parámetro `length.out`, que dividirá la secuencia numérica entre el valor de inicio y el de fin uniformemente en el número de valores indicados por `length.out`. Los argumentos `from`, `to` y `by` por defecto tienen valor en 1. La función devuelve un vector.
 
 **`length(x)`**
 
-Devuelve el número de elementos en un objeto (numeric, character, factor or list).
+Devuelve el número de elementos en un objeto (numeric, character, factor o list).
 
 ## Ejercicios
 
@@ -103,7 +103,7 @@ Genera una matriz, donde `data` son los datos que se colocan en dicha matriz que
 
 **`rnorm(n, mean, sd)`**
 
-Devuelve un vector de longitud `n`, en el que cada elemento es seleccionado aleatoriamente de una distribución normal con media = `mean` y desviación estandar = `sd`.
+Devuelve un vector de longitud `n`, en el que cada elemento es seleccionado aleatoriamente de una distribución normal con media = `mean` y desviación estándar = `sd`.
 
 ## Ejercicios
 
@@ -161,7 +161,7 @@ Realiza alguna función (`FUN`) en cada fila o columna de una matriz o marco de 
 
 **4. Crea una nueva matriz llamada "presencia" donde cada elemento de "presencia" es 1, si el valor correspondiente de "abundancia" es mayor que 0, y 0 en el caso contrario.**
 
-**5. Usando la matriz "presencia" que creastes y la función `apply()`, calcula la riqueza de especies (i.e. el número de especies) de cada sitio.**
+**5. Usando la matriz "presencia" que creaste y la función `apply()`, calcula la riqueza de especies (i.e. el número de especies) de cada sitio.**
 
 **6. Escribe la matriz "presencia" que creaste en un archivo "Presencia.csv".**
 
@@ -195,6 +195,6 @@ Genera un modelo lineal entre las dos variables.
 
 > Aquí deberás usar la función `mean` para calcular la media antes.
 
-**2. Crea dos variables correlacionadas "x" e "y", usando `x <- rnorm (200)` e `y = x + rnorm (200)`. Dibuja "x" vs. "y" y juegua con los parámetros de trazado. Usa la `abline` para incluir una recta de regresión entre las dos variables.**
+**2. Crea dos variables correlacionadas "x" e "y", usando `x <- rnorm (200)` e `y = x + rnorm (200)`. Dibuja "x" vs. "y" y juega con los parámetros de trazado. Usa la `abline` para incluir una recta de regresión entre las dos variables.**
 
 **3. Genera un nuevo conjunto de datos "w" correlacionado con "x", usando `w <- 2*x * rnorm(200)`. Añade esta nuevo conjunto de datos al gráfico anterior pero cambiando el color para que se distingan bien los datos de "y" y "w". Además, añade otra recta de regresión entre "w" y "x".**

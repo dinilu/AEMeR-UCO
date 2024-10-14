@@ -13,7 +13,7 @@ editor: source
 ---
 
 ::: callout-note
-Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre `ejercicios_t2_[nombre]_[apellido].R`. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla `#` delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la `#`) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandarmelos por email.
+Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre `ejercicios_t2_[nombre]_[apellido].R`. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla `#` delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la `#`) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandármelos por email.
 
 ```{r}
 #| echo: true
@@ -45,7 +45,7 @@ Esta función del paquete `geodata` se usa para cargar datos de los límites adm
 
 **`project()`**
 
-Proyecta las coordenadas de los objetos espaciales a un sistema de coordenadas diferentes. Para conseguir los códigos EPSG de distintos sistemas de proyeccion podéis usar la siguiente página: https://epsg.io/
+Proyecta las coordenadas de los objetos espaciales a un sistema de coordenadas diferentes. Para conseguir los códigos EPSG de distintos sistemas de proyección podéis usar la siguiente página: https://epsg.io/
 
 **`[]`**
 
@@ -92,7 +92,7 @@ ba <- departamentos[i]
 ba_utm <- project(ba, "epsg:32721")
 ```
 
-**3. Guarda el objeto vectorial de Buenos Aires con las coordenadas en UTM21s como un fichero geopackge nuevo, llamado `BuenosAires.gpkg`**
+**3. Guarda el objeto vectorial de Buenos Aires con las coordenadas en UTM21s como un fichero geopackage nuevo, llamado `BuenosAires.gpkg`**
 
 ```{r}
 #| warning: false
@@ -116,7 +116,7 @@ plot(ba_utm)
 
 **`rast()`**
 
-Se utiliza para generar o cargar datos raster. Es muy flexible también en su forma de usarse, por lo que tendrás que tener cuidad con los argumentos que usas con ella.
+Se utiliza para generar o cargar datos ráster. Es muy flexible también en su forma de usarse, por lo que tendrás que tener cuidad con los argumentos que usas con ella.
 
 **`worldclim_country()`**
 
@@ -161,7 +161,7 @@ names(arg_bio)
 names(arg_bio) <- paste0("bio", 1:19)
 ```
 
-**3. Revisa el CRS de los datos que has descargado. ¿Coinciden con los datos que has generado como resultado de los ejercicios de la Parte 1? Si no es así, proyecta los datos raster para que coincidan con esos datos y mantengan una resolución exacta dde 1000 metros.**
+**3. Revisa el CRS de los datos que has descargado. ¿Coinciden con los datos que has generado como resultado de los ejercicios de la Parte 1? Si no es así, proyecta los datos raster para que coincidan con esos datos y mantengan una resolución exacta de 1000 metros.**
 
 ```{r}
 #| echo: true

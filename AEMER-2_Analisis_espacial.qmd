@@ -201,7 +201,7 @@ plot(pols)
 
 ## Lo más normal es usar datos generados con un SIG
 
-Descargar datos de internet (v.gr. [GADM](https://gadm.org)) y cargarlos desde el disco duro
+Descargar datos de Internet (v.gr. [GADM](https://gadm.org)) y cargarlos desde el disco duro
 
 ```{r}
 #| echo: true
@@ -366,7 +366,7 @@ r3  <- sqrt(r)
 ```
 
 :::{.callout-important}
-Al operar con datos raster, las operaciones se aplican sobre cada pixel individualmente. Por ello, sólo se pueden realizar operaciones con raster que tienen el mismo área y el mismo tamaño de pixel. El resultado, por tanto, es un nuevo objeto raster con las mismas características geográficas, pero cuyos píxeles tienen los valores resultantes de aplicar las funciones matemáticas.
+Al operar con datos ráster, las operaciones se aplican sobre cada píxel individualmente. Por ello, sólo se pueden realizar operaciones con ráster que tienen el mismo área y el mismo tamaño de píxel. El resultado, por tanto, es un nuevo objeto ráster con las mismas características geográficas, pero cuyos píxeles tienen los valores resultantes de aplicar las funciones matemáticas.
 :::
 
 ## Si trabajamos con muchas capas, mejor crear un objeto multicapa
@@ -720,7 +720,7 @@ head(pnts_tavg)
 ```
 
 :::{.callout-warning}
-Fijaros que extráe un valor de cada capa del ráster stack
+Fijaros que extrae un valor de cada capa del ráster stack
 :::
 
 ## También funciona con polígonos
