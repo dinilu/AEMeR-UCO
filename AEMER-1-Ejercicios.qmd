@@ -2,7 +2,7 @@
 title: 'Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad'
 subtitle: 'Ejercicios de introducción a R'
 author: 'Diego Nieto Lugilde'
-date: 14/10/2024
+date: 10/14/2024
 format: html
 toc: true
 toc-depth: 2
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE,
                       eval = FALSE)
 ```
 
-::: {.callout-note}
+::: callout-note
 Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre `ejercicios_t1_[nombre]_[apellido].R`. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla `#` delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la `#`) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandarmelos por email.
 
 ```{r}

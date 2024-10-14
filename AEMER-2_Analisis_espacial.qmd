@@ -2,6 +2,7 @@
 title: "Análisis de datos espaciales en R"
 subtitle: "Manejo de datos espaciales en R"
 author: "Diego Nieto Lugilde"
+date: 10/15/2024
 institute: "Universidad de Córdoba (España)"
 slide-number: true
 format:
@@ -308,6 +309,23 @@ plot(arg_utm19s)
 plot(arg_4326)
 ```
 
+## También se puede filtrar la información para una o varias entidades de los datos
+
+```{r}
+#| echo: true
+
+which(arg$NAME_1 == "Buenos Aires")
+```
+
+```{r}
+#| echo: true
+#| code-line-numbers: '1|2|3'
+
+i <- which(arg$NAME_1 %in% c("Buenos Aires", "Río Negro"))
+g <- arg[i,]
+plot(g)
+```
+
 ## Momento para practicar
 
 Ejercicios de clase
@@ -581,24 +599,6 @@ arg
 #| echo: true
 
 plot(arg, "poblacion", type = "continuous")
-```
-
-## También se puede filtrar la información para una o varias entidades de los datos
-
-
-```{r}
-#| echo: true
-
-which(arg$NAME_1 == "Buenos Aires")
-```
-
-```{r}
-#| echo: true
-#| code-line-numbers: '1|2|3'
-
-i <- which(arg$NAME_1 %in% c("Buenos Aires", "Río Negro"))
-g <- arg[i,]
-plot(g)
 ```
 
 ## A veces necesitamos fusionar las formas de varios polígonos (o líneas) en uno de mayor tamaño
