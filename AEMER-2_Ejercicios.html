@@ -8,7 +8,7 @@
 
 <meta name="author" content="Diego Nieto Lugilde">
 
-<title>Análisis espaciales y multivariantes con R aplicados a estudios de biodiversidad</title>
+<title>Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -163,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Análisis espaciales y multivariantes con R aplicados a estudios de biodiversidad</h1>
+<h1 class="title">Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad</h1>
 <p class="subtitle lead">Ejercicios de manipulación de datos espaciales</p>
 </div>
 
@@ -181,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">10 de marzo de 2025</p>
+      <p class="date">15 de octubre de 2024</p>
     </div>
   </div>
   
@@ -316,13 +316,16 @@ Nota
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(arg_bio_utm, <span class="st">"arg_bio_utm.tif"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p><strong>5. Finalmente, para cerciorarnos que todo esté correcto, dibuje el mapa original con los datos vectoriales de los municipios de la provincia de “Buenos Aires” encima.</strong></p>
+<p><strong>5. Finalmente, para cerciorarnos que todo esté correcto, dibuje el mapa de la variable <code>"bio4"</code> en UTM19s con los polígonos de los municipios de la provincia de “Buenos Aires” superpuestos.</strong></p>
 <div class="cell">
 <details>
 <summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(arg_bio_utm[[<span class="st">"bio4"</span>]])</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_utm, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output-display">
+<p><img src="AEMER-2_Ejercicios_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 </section>
 </section>
@@ -330,10 +333,45 @@ Nota
 <h1>Parte 3. Manipulación datos ráster y vectoriales</h1>
 <section id="funciones-útiles-2" class="level2">
 <h2 class="anchored" data-anchor-id="funciones-útiles-2">Funciones útiles</h2>
+<p><strong>aggregate()</strong></p>
+<p>Sirve para agregar formas vectoriales que tienen el mismo valor en alguno de los campos de los atributos, el cual se usa como criterio de agregación. También se usa para agregar los valores de varios píxeles contiguos en datos ráster.</p>
 </section>
 <section id="ejercicios-2" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicios-2">Ejercicios</h2>
-<p><strong>1. </strong></p>
+<p><strong>1. Añade una columna de atributos a la capa de los municipios de “Buenos Aires” en la que se recoja el área (superficie) de cada municipio. Posteriormente, dibuja un mapa de los municipios en los que se pueda observar con colores diferentes el área de cada uno de ellos. ¿Hay un patrón geográfico en el tamaño de los municipios de la provincia?</strong></p>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ba<span class="sc">$</span>area <span class="ot">&lt;-</span> <span class="fu">expanse</span>(ba)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba, <span class="st">"area"</span>, <span class="at">type =</span> <span class="st">"interval"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>2. Agrega todos los municipios de la provincia de “Buenos Aires” para generar un polígono con la forma de la provincia. Dibuja el mapa del ejercicio anterior y adiciona el borde de la provincia con los colores de la bandera argentina.</strong></p>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ba_borde <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(ba, <span class="st">"NAME_1"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba, <span class="st">"area"</span>, <span class="at">type =</span> <span class="st">"interval"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_borde, <span class="at">lwd =</span> <span class="dv">4</span>, <span class="at">border =</span> <span class="st">"cyan"</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_borde, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">border =</span> <span class="st">"white"</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>3. Recorta el objeto ráster con las variables bioclimáticas de Argentina para quedarte sólo con los datos de la provincia de “Buenos Aires”. Dibuja el mapa de la variable <code>bio4</code> de dichos datos. ¿Ves algo raro?</strong></p>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ba_bio <span class="ot">&lt;-</span> <span class="fu">mask</span>(arg_bio, ba)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_bio[[<span class="st">"bio4"</span>]])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>**4. Usa el siguiente código <code>x &lt;- trim(x)</code> (donde <code>x</code> es el nombre del objeto resultante del ejercicio anterior) y vuelve a dibujar el mapa raster resultante. ¿Que diferencia observas con el mapa del ejercicio anterior? ¿Qué crees que hace la función ``?</p>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ba_bio <span class="ot">&lt;-</span> <span class="fu">trim</span>(ba_bio)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_bio[[<span class="st">"bio4"</span>]])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 
 
 </section>

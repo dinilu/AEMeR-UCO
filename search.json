@@ -151,7 +151,7 @@
     "href": "AEMER-2_Analisis_espacial.html#la-ubicación-sola-no-es-muy-interesante",
     "title": "Análisis de datos espaciales en R",
     "section": "La ubicación sola no es muy interesante…",
-    "text": "La ubicación sola no es muy interesante…\nVoy a simular valores de precipitación al azar (sample), un valor para cada punto\n\nprecipvalue &lt;- sample(1:100, 10)\ndf &lt;- data.frame(ID = 1:nrow(lonlat), \n                 precip = precipvalue)\npts &lt;- vect(lonlat, atts = df, crs = crdref)\npts\n\n class       : SpatVector \n geometry    : points \n dimensions  : 10, 2  (geometries, attributes)\n extent      : -120.8, -110.7, 35.7, 45.3  (xmin, xmax, ymin, ymax)\n coord. ref. : +proj=longlat +datum=WGS84 +no_defs \n names       :    ID precip\n type        : &lt;int&gt;  &lt;int&gt;\n values      :     1      9\n                   2     67\n                   3     91"
+    "text": "La ubicación sola no es muy interesante…\nVoy a simular valores de precipitación al azar (sample), un valor para cada punto\n\nprecipvalue &lt;- sample(1:100, 10)\ndf &lt;- data.frame(ID = 1:nrow(lonlat), \n                 precip = precipvalue)\npts &lt;- vect(lonlat, atts = df, crs = crdref)\npts\n\n class       : SpatVector \n geometry    : points \n dimensions  : 10, 2  (geometries, attributes)\n extent      : -120.8, -110.7, 35.7, 45.3  (xmin, xmax, ymin, ymax)\n coord. ref. : +proj=longlat +datum=WGS84 +no_defs \n names       :    ID precip\n type        : &lt;int&gt;  &lt;int&gt;\n values      :     1     70\n                   2     67\n                   3     17"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#veamos-las-precipitaciones-en-su-contexto-espacial",
@@ -252,6 +252,13 @@
     "text": "Para convertir coordenadas entre diferentes CRSs tenemos que proyectar los datos\n\narg_utm19s &lt;- project(arg, \"+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs +type=crs\")\narg_4326 &lt;- project(arg, \"EPSG:32719\")\npar(mfrow = c(1, 3))\nplot(arg)\nplot(arg_utm19s)\nplot(arg_4326)"
   },
   {
+    "objectID": "AEMER-2_Analisis_espacial.html#también-se-puede-filtrar-la-información-para-una-o-varias-entidades-de-los-datos",
+    "href": "AEMER-2_Analisis_espacial.html#también-se-puede-filtrar-la-información-para-una-o-varias-entidades-de-los-datos",
+    "title": "Análisis de datos espaciales en R",
+    "section": "También se puede filtrar la información para una o varias entidades de los datos",
+    "text": "También se puede filtrar la información para una o varias entidades de los datos\n\nwhich(arg$NAME_1 == \"Buenos Aires\")\n\n[1] 1\n\n\n\ni &lt;- which(arg$NAME_1 %in% c(\"Buenos Aires\", \"Río Negro\"))\ng &lt;- arg[i,]\nplot(g)"
+  },
+  {
     "objectID": "AEMER-2_Analisis_espacial.html#momento-para-practicar",
     "href": "AEMER-2_Analisis_espacial.html#momento-para-practicar",
     "title": "Análisis de datos espaciales en R",
@@ -263,7 +270,7 @@
     "href": "AEMER-2_Analisis_espacial.html#podemos-crear-datos-ráster-desde-cero",
     "title": "Análisis de datos espaciales en R",
     "section": "Podemos crear datos ráster desde cero",
-    "text": "Podemos crear datos ráster desde cero\n\nr &lt;- rast(ncol = 10, nrow = 10, \n          xmin = -150, xmax = -80, \n          ymin = 20, ymax = 60)\nvalues(r) &lt;- runif(ncell(r))\nr\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nname        :     lyr.1 \nmin value   : 0.0365303 \nmax value   : 0.9776675"
+    "text": "Podemos crear datos ráster desde cero\n\nr &lt;- rast(ncol = 10, nrow = 10, \n          xmin = -150, xmax = -80, \n          ymin = 20, ymax = 60)\nvalues(r) &lt;- runif(ncell(r))\nr\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nname        :      lyr.1 \nmin value   : 0.02955298 \nmax value   : 0.99892246"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#veamos-que-aspecto-tienen",
@@ -284,7 +291,7 @@
     "href": "AEMER-2_Analisis_espacial.html#si-trabajamos-con-muchas-capas-mejor-crear-un-objeto-multicapa",
     "title": "Análisis de datos espaciales en R",
     "section": "Si trabajamos con muchas capas, mejor crear un objeto multicapa",
-    "text": "Si trabajamos con muchas capas, mejor crear un objeto multicapa\n\nstck &lt;- c(r, r2, r3)\nstck\n\nclass       : SpatRaster \ndimensions  : 10, 10, 3  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nnames       :     lyr.1,       lyr.1,     lyr.1 \nmin values  : 0.0365303, 0.001334462, 0.1911290 \nmax values  : 0.9776675, 0.955833731, 0.9887707"
+    "text": "Si trabajamos con muchas capas, mejor crear un objeto multicapa\n\nstck &lt;- c(r, r2, r3)\nstck\n\nclass       : SpatRaster \ndimensions  : 10, 10, 3  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nnames       :      lyr.1,        lyr.1,     lyr.1 \nmin values  : 0.02955298, 0.0008733785, 0.1719098 \nmax values  : 0.99892246, 0.9978460862, 0.9994611"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#veamos-que-aspecto-tiene-el-objeto-multicapa",
@@ -298,7 +305,7 @@
     "href": "AEMER-2_Analisis_espacial.html#también-se-pueden-extraer-capas-de-objetos-multicapa",
     "title": "Análisis de datos espaciales en R",
     "section": "También se pueden extraer capas de objetos multicapa",
-    "text": "También se pueden extraer capas de objetos multicapa\n\nr2 &lt;- stck[[2]]\nr2\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nname        :       lyr.1 \nmin value   : 0.001334462 \nmax value   : 0.955833731"
+    "text": "También se pueden extraer capas de objetos multicapa\n\nr2 &lt;- stck[[2]]\nr2\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nname        :        lyr.1 \nmin value   : 0.0008733785 \nmax value   : 0.9978460862"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#como-antes-lo-normal-es-cargar-datos-generados-en-sig",
@@ -333,7 +340,7 @@
     "href": "AEMER-2_Analisis_espacial.html#los-datos-ráster-también-se-pueden-proyectar",
     "title": "Análisis de datos espaciales en R",
     "section": "Los datos ráster también se pueden proyectar",
-    "text": "Los datos ráster también se pueden proyectar\n\ntavg_utm19s &lt;- project(tavg, \"EPSG:32719\")\n\n\n|---------|---------|---------|---------|\n=========================================\n                                          \n\ntavg_utm19s\n\nclass       : SpatRaster \ndimensions  : 4455, 2454, 12  (nrow, ncol, nlyr)\nresolution  : 871.5251, 871.5251  (x, y)\nextent      : -18378.29, 2120344, 3739870, 7622514  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \nsource      : spat_5368508beb9_21352.tif \nnames       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... \nmin values  :   -10.04125,   -10.73843,   -11.50108,   -13.56372,   -15.81456,   -19.12528, ... \nmax values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.99198, ..."
+    "text": "Los datos ráster también se pueden proyectar\n\ntavg_utm19s &lt;- project(tavg, \"EPSG:32719\")\n\n\n|---------|---------|---------|---------|\n=========================================\n                                          \n\ntavg_utm19s\n\nclass       : SpatRaster \ndimensions  : 4455, 2454, 12  (nrow, ncol, nlyr)\nresolution  : 871.5251, 871.5251  (x, y)\nextent      : -18378.29, 2120344, 3739870, 7622514  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \nsource      : spat_66d02a5b55ee_26320.tif \nnames       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... \nmin values  :   -10.05807,   -10.73748,   -11.50022,   -13.56296,   -15.82996,   -19.13990, ... \nmax values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.98255, ..."
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#ahora-las-coordenadas-si-aparecen-desplazadas",
@@ -347,7 +354,7 @@
     "href": "AEMER-2_Analisis_espacial.html#para-controlar-el-número-de-pixeles-y-su-resolución-podemos-crear-una-plantilla",
     "title": "Análisis de datos espaciales en R",
     "section": "Para controlar el número de pixeles y su resolución podemos crear una “plantilla”",
-    "text": "Para controlar el número de pixeles y su resolución podemos crear una “plantilla”\n\nplantilla &lt;- rast(tavg_utm19s)\nres(plantilla) &lt;- 800\nplantilla\n\nclass       : SpatRaster \ndimensions  : 4853, 2673, 12  (nrow, ncol, nlyr)\nresolution  : 800, 800  (x, y)\nextent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \n\n\n\ntavg_utm19s_plantilla &lt;- project(tavg, plantilla)\n\n\n|---------|---------|---------|---------|\n=========================================\n                                          \n\ntavg_utm19s_plantilla\n\nclass       : SpatRaster \ndimensions  : 4853, 2673, 12  (nrow, ncol, nlyr)\nresolution  : 800, 800  (x, y)\nextent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \nsource      : spat_5368348d171a_21352.tif \nnames       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... \nmin values  :   -10.77633,   -11.47463,   -12.17463,   -14.20292,   -16.40292,   -19.51049, ... \nmax values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.95641, ..."
+    "text": "Para controlar el número de pixeles y su resolución podemos crear una “plantilla”\n\nplantilla &lt;- rast(tavg_utm19s)\nres(plantilla) &lt;- 800\nplantilla\n\nclass       : SpatRaster \ndimensions  : 4853, 2673, 12  (nrow, ncol, nlyr)\nresolution  : 800, 800  (x, y)\nextent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \n\n\n\ntavg_utm19s_plantilla &lt;- project(tavg, plantilla)\n\n\n|---------|---------|---------|---------|\n=========================================\n                                          \n\ntavg_utm19s_plantilla\n\nclass       : SpatRaster \ndimensions  : 4853, 2673, 12  (nrow, ncol, nlyr)\nresolution  : 800, 800  (x, y)\nextent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \nsource      : spat_66d05d575ef_26320.tif \nnames       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... \nmin values  :   -10.77633,   -11.47463,   -12.17463,   -14.20292,   -16.40292,   -19.51049, ... \nmax values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.95158, ..."
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#veamos-el-resultado",
@@ -434,13 +441,6 @@
     "text": "Veamos la población argentina por provincias\n\nplot(arg, \"poblacion\", type = \"continuous\")"
   },
   {
-    "objectID": "AEMER-2_Analisis_espacial.html#también-se-puede-filtrar-la-información-para-una-o-varias-entidades-de-los-datos",
-    "href": "AEMER-2_Analisis_espacial.html#también-se-puede-filtrar-la-información-para-una-o-varias-entidades-de-los-datos",
-    "title": "Análisis de datos espaciales en R",
-    "section": "También se puede filtrar la información para una o varias entidades de los datos",
-    "text": "También se puede filtrar la información para una o varias entidades de los datos\n\nwhich(arg$NAME_1 == \"Buenos Aires\")\n\n[1] 1\n\n\n\ni &lt;- which(arg$NAME_1 %in% c(\"Buenos Aires\", \"Río Negro\"))\ng &lt;- arg[i,]\nplot(g)"
-  },
-  {
     "objectID": "AEMER-2_Analisis_espacial.html#a-veces-necesitamos-fusionar-las-formas-de-varios-polígonos-o-líneas-en-uno-de-mayor-tamaño",
     "href": "AEMER-2_Analisis_espacial.html#a-veces-necesitamos-fusionar-las-formas-de-varios-polígonos-o-líneas-en-uno-de-mayor-tamaño",
     "title": "Análisis de datos espaciales en R",
@@ -501,14 +501,14 @@
     "href": "AEMER-2_Analisis_espacial.html#veamos-los-valores-de-las-capas-en-los-puntos",
     "title": "Análisis de datos espaciales en R",
     "section": "Veamos los valores de las capas en los puntos",
-    "text": "Veamos los valores de las capas en los puntos\n\npnts_arg &lt;- extract(arg, pnts)\nhead(pnts_arg)\n\n  id.y     NAME_1    GID_1 GID_0   COUNTRY  VARNAME_1 NL_NAME_1    TYPE_1\n1    1 Corrientes  ARG.7_1   ARG Argentina       &lt;NA&gt;      &lt;NA&gt; Provincia\n2    2     Chubut  ARG.4_1   ARG Argentina       &lt;NA&gt;      &lt;NA&gt; Provincia\n3    3 Entre Ríos  ARG.8_1   ARG Argentina Entre-Rios      &lt;NA&gt; Provincia\n4    4     Chubut  ARG.4_1   ARG Argentina       &lt;NA&gt;      &lt;NA&gt; Provincia\n5    5   Santa Fe ARG.21_1   ARG Argentina   Santa Fé      &lt;NA&gt; Provincia\n6    6      Salta ARG.17_1   ARG Argentina       &lt;NA&gt;      &lt;NA&gt; Provincia\n  ENGTYPE_1 CC_1 HASC_1 ISO_1 perimetro poblacion\n1  Province &lt;NA&gt;  AR.CN  AR-W   1546899   1212696\n2  Province &lt;NA&gt;  AR.CH  AR-U   4072813    592621\n3  Province &lt;NA&gt;  AR.ER  &lt;NA&gt;   1391963   1425578\n4  Province &lt;NA&gt;  AR.CH  AR-U   4072813    592621\n5  Province &lt;NA&gt;  AR.SF  AR-S   2159601   3544908\n6  Province &lt;NA&gt;  AR.SA  AR-A   3018997   1441351\n\n\n\npnts_clip &lt;- extract(clip, pnts)\nhead(pnts_clip)\n\n  id.y Zona\n1    1   NA\n2    2    3\n3    3   NA\n4    4    3\n5    5    2\n6    6   NA"
+    "text": "Veamos los valores de las capas en los puntos\n\npnts_arg &lt;- extract(arg, pnts)\nhead(pnts_arg)\n\n  id.y    NAME_1    GID_1 GID_0   COUNTRY VARNAME_1 NL_NAME_1    TYPE_1\n1    1   Tucumán ARG.24_1   ARG Argentina   Tucumão      &lt;NA&gt; Provincia\n2    2  La Rioja ARG.12_1   ARG Argentina      &lt;NA&gt;      &lt;NA&gt; Provincia\n3    3  Misiones ARG.14_1   ARG Argentina   Missões      &lt;NA&gt; Provincia\n4    4 Río Negro ARG.16_1   ARG Argentina      &lt;NA&gt;      &lt;NA&gt; Provincia\n5    5   Formosa  ARG.9_1   ARG Argentina      &lt;NA&gt;      &lt;NA&gt; Provincia\n6    6    Chubut  ARG.4_1   ARG Argentina      &lt;NA&gt;      &lt;NA&gt; Provincia\n  ENGTYPE_1 CC_1 HASC_1 ISO_1 perimetro poblacion\n1  Province &lt;NA&gt;  AR.TM  &lt;NA&gt;  814874.3   1731820\n2  Province &lt;NA&gt;  AR.LR  AR-F 1613964.8    383865\n3  Province &lt;NA&gt;  AR.MN  AR-N 1272355.6   1278873\n4  Province &lt;NA&gt;  AR.RN  &lt;NA&gt; 2829645.1    750768\n5  Province &lt;NA&gt;  AR.FM  AR-P 1887284.9    607419\n6  Province &lt;NA&gt;  AR.CH  AR-U 4072813.0    592621\n\n\n\npnts_clip &lt;- extract(clip, pnts)\nhead(pnts_clip)\n\n  id.y Zona\n1    1   NA\n2    2   NA\n3    3   NA\n4    4    4\n5    5   NA\n6    6    3"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#igual-podemos-hacer-con-respecto-a-los-valores-de-los-píxeles-en-cada-punto-de-un-vectorial",
     "href": "AEMER-2_Analisis_espacial.html#igual-podemos-hacer-con-respecto-a-los-valores-de-los-píxeles-en-cada-punto-de-un-vectorial",
     "title": "Análisis de datos espaciales en R",
     "section": "Igual podemos hacer con respecto a los valores de los píxeles en cada punto de un vectorial",
-    "text": "Igual podemos hacer con respecto a los valores de los píxeles en cada punto de un vectorial\n\npnts_tavg &lt;- extract(tavg, pnts)\nhead(pnts_tavg)\n\n  ID ARG_wc2.1_30s_tavg_1 ARG_wc2.1_30s_tavg_2 ARG_wc2.1_30s_tavg_3\n1  1                 26.4                 25.1                 23.6\n2  2                 16.1                 15.7                 12.6\n3  3                 24.8                 23.4                 21.7\n4  4                 16.0                 15.7                 12.6\n5  5                 23.9                 22.8                 20.7\n6  6                  9.9                  9.5                  8.8\n  ARG_wc2.1_30s_tavg_4 ARG_wc2.1_30s_tavg_5 ARG_wc2.1_30s_tavg_6\n1                 20.0                 16.6                 13.8\n2                  8.5                  4.7                  1.8\n3                 17.6                 14.4                 11.2\n4                  8.7                  4.8                  1.9\n5                 17.2                 14.0                 10.6\n6                  6.9                  4.8                  2.2\n  ARG_wc2.1_30s_tavg_7 ARG_wc2.1_30s_tavg_8 ARG_wc2.1_30s_tavg_9\n1                 13.7                 15.4                 17.0\n2                  1.6                  3.3                  6.0\n3                 11.1                 12.4                 14.5\n4                  1.9                  3.4                  6.1\n5                 10.1                 11.5                 14.0\n6                  2.4                  3.4                  5.5\n  ARG_wc2.1_30s_tavg_10 ARG_wc2.1_30s_tavg_11 ARG_wc2.1_30s_tavg_12\n1                  20.1                  22.5                  25.2\n2                   9.2                  12.4                  14.6\n3                  17.4                  20.3                  23.2\n4                   9.5                  12.4                  14.4\n5                  17.4                  20.3                  23.0\n6                   7.0                   8.5                   9.7\n\n\n\n\n\n\n\n\nWarning\n\n\nFijaros que extráe un valor de cada capa del ráster stack"
+    "text": "Igual podemos hacer con respecto a los valores de los píxeles en cada punto de un vectorial\n\npnts_tavg &lt;- extract(tavg, pnts)\nhead(pnts_tavg)\n\n  ID ARG_wc2.1_30s_tavg_1 ARG_wc2.1_30s_tavg_2 ARG_wc2.1_30s_tavg_3\n1  1                 24.3                 23.8                 21.1\n2  2                  1.3                  0.7                 -0.2\n3  3                 25.8                 25.4                 23.8\n4  4                 21.5                 20.8                 18.3\n5  5                 27.4                 26.7                 25.2\n6  6                 17.7                 17.4                 14.0\n  ARG_wc2.1_30s_tavg_4 ARG_wc2.1_30s_tavg_5 ARG_wc2.1_30s_tavg_6\n1                 18.8                 16.1                 12.7\n2                 -2.1                 -3.7                 -5.9\n3                 20.9                 17.6                 15.6\n4                 14.7                 10.7                  7.8\n5                 22.0                 19.2                 16.9\n6                  9.9                  5.8                  2.9\n  ARG_wc2.1_30s_tavg_7 ARG_wc2.1_30s_tavg_8 ARG_wc2.1_30s_tavg_9\n1                 14.3                 15.2                 18.3\n2                 -6.0                 -5.7                 -4.2\n3                 15.5                 17.0                 18.3\n4                  7.2                  8.7                 11.0\n5                 16.5                 17.9                 19.8\n6                  3.0                  4.6                  7.5\n  ARG_wc2.1_30s_tavg_10 ARG_wc2.1_30s_tavg_11 ARG_wc2.1_30s_tavg_12\n1                  20.2                  23.2                  23.7\n2                  -3.3                  -1.1                   0.6\n3                  21.0                  22.9                  25.0\n4                  14.2                  17.5                  20.0\n5                  22.6                  24.3                  26.5\n6                  10.9                  14.0                  16.1\n\n\n\n\n\n\n\n\nWarning\n\n\nFijaros que extráe un valor de cada capa del ráster stack"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#también-funciona-con-polígonos",
@@ -555,51 +555,51 @@
   {
     "objectID": "AEMER-2_Ejercicios.html",
     "href": "AEMER-2_Ejercicios.html",
-    "title": "Análisis espaciales y multivariantes con R aplicados a estudios de biodiversidad",
+    "title": "Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad",
     "section": "",
     "text": "Nota\n\n\n\nLos ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre ejercicios_t2_[nombre]_[apellido].R. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla # delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la #) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandarmelos por email.\n\n# Ejercicio 1.\n# Parte 1\nseq(1, 40, by = 2)\n\n# Parte 2\nseq(1, 40, by = -2)\n# Este código da error porque especifiqué algo mal :)"
   },
   {
     "objectID": "AEMER-2_Ejercicios.html#funciones-útiles",
     "href": "AEMER-2_Ejercicios.html#funciones-útiles",
-    "title": "Análisis espaciales y multivariantes con R aplicados a estudios de biodiversidad",
+    "title": "Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad",
     "section": "Funciones útiles",
     "text": "Funciones útiles\nvect()\nSe usa para generar o leer datos vectoriales. Es muy flexible en su forma de funcionar, por lo que tendrás que leer bien la documentación para ver que argumentos necesita.\ngadm()\nEsta función del paquete geodata se usa para cargar datos de los límites administrativos de los distintos países del planeta.\nproject()\nProyecta las coordenadas de los objetos espaciales a un sistema de coordenadas diferentes. Para conseguir los códigos EPSG de distintos sistemas de proyeccion podéis usar la siguiente página: https://epsg.io/\n[]\nLos corchetes sirven para extraer elementos de ciertas posiciones en los objetos de R. Se pueden usar también con los objetos espaciales\n==\nSe usa para realizar comparaciones y generar un vector de valores lógicos que indican cuando se cumple una condición de igualdad.\nwriteVector\nEsta función se usa para guardar objetos vectoriales en el disco duro del ordenador."
   },
   {
     "objectID": "AEMER-2_Ejercicios.html#ejercicios",
     "href": "AEMER-2_Ejercicios.html#ejercicios",
-    "title": "Análisis espaciales y multivariantes con R aplicados a estudios de biodiversidad",
+    "title": "Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad",
     "section": "Ejercicios",
     "text": "Ejercicios\n1. Cargue los límites administrativos de los departamentos de Argentina en un objeto llamado departamentos y filtre los departamentos para retener sólo los departamentos de la provincia de \"Buenos Aires\".\n\n\nSolución (no mirar de primeras)\nlibrary(geodata)\ndepartamentos &lt;- gadm(\"ARG\", 2, path = \".\")\ni &lt;- which(departamentos$NAME_1 == \"Buenos Aires\")\nba &lt;- departamentos[i]\n\n\n2. Ahora, proyecte los datos de estos municipios desde el sistema de coordenadas en longitud-latitud y WGS84 al sistema UTM21 sur. Para ello necesitaréis buscar el código EPSG en https://epsg.io.\n\n\nSolución (no mirar de primeras)\nba_utm &lt;- project(ba, \"epsg:32721\")\n\n\n3. Guarda el objeto vectorial de Buenos Aires con las coordenadas en UTM21s como un fichero geopackge nuevo, llamado BuenosAires.gpkg\n\n\nSolución (no mirar de primeras)\nwriteVector(ba_utm, \"BuenosAires.gpkg\", overwrite = TRUE)\n\n\n4. Finalmente, dibuje dos mapas uno con el mapa de la provincia de Buenos Aires en longitud-latitud (WGS84) y el otro en UTM21s. Por último .\n\n\nSolución (no mirar de primeras)\npar(mfrow = c(1, 2))\nplot(ba)\nplot(ba_utm)"
   },
   {
     "objectID": "AEMER-2_Ejercicios.html#funciones-útiles-1",
     "href": "AEMER-2_Ejercicios.html#funciones-útiles-1",
-    "title": "Análisis espaciales y multivariantes con R aplicados a estudios de biodiversidad",
+    "title": "Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad",
     "section": "Funciones útiles",
     "text": "Funciones útiles\nrast()\nSe utiliza para generar o cargar datos raster. Es muy flexible también en su forma de usarse, por lo que tendrás que tener cuidad con los argumentos que usas con ella.\nworldclim_country()\nEsta función del paquete geodata se usa para cargar datos climáticos de cualquier país del planeta. Los datos proceden del proyecto WorldClim.\nproject()\nSe usa para proyectar tanto datos vectoriales como raster.\nwriteRaster()\nSe usa para guardar objetos ráster en el disco duro del ordenador."
   },
   {
     "objectID": "AEMER-2_Ejercicios.html#ejercicios-1",
     "href": "AEMER-2_Ejercicios.html#ejercicios-1",
-    "title": "Análisis espaciales y multivariantes con R aplicados a estudios de biodiversidad",
+    "title": "Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad",
     "section": "Ejercicios",
-    "text": "Ejercicios\n1. Carga las variables bioclimáticas (v.gr. var = \"bio\") del proyecto WorldClim a 0.5 minutos de grado de resolución.\n\n\nSolución (no mirar de primeras)\nlibrary(geodata)\narg_bio &lt;- worldclim_country(\"ARG\", var = \"bio\", path = \".\")\n\n\n2. Fíjese el nombre tan largo y poco intuitivo de los nombres de las distintas capas (puede consultarlo usando el siguiente código names(bio)). Cambie el nombre de las variables por algo más corto e intuitivo (v.gr. “bio1”, “bio2”, etc.).\n\n\nSolución (no mirar de primeras)\nnames(arg_bio)\nnames(arg_bio) &lt;- paste0(\"bio\", 1:19)\n\n\n3. Revisa el CRS de los datos que has descargado. ¿Coinciden con los datos que has generado como resultado de los ejercicios de la Parte 1? Si no es así, proyecta los datos raster para que coincidan con esos datos y mantengan una resolución exacta dde 1000 metros.\n\n\nSolución (no mirar de primeras)\narg_bio_utm &lt;- project(arg_bio, \"epsg:32721\", res = 1000)\n\n\n4. Guarde los dos objetos ráster (original y resultante) como un fichero en el disco duro de su ordenador, de modo que pueda reutilizarlos más adelante cuando los vuelva a necesitar.\n\n\nSolución (no mirar de primeras)\nwriteRaster(arg_bio, \"arg_bio.tif\", overwrite = TRUE) \nwriteRaster(arg_bio_utm, \"arg_bio_utm.tif\", overwrite = TRUE) \n\n\n5. Finalmente, para cerciorarnos que todo esté correcto, dibuje el mapa original con los datos vectoriales de los municipios de la provincia de “Buenos Aires” encima.\n\n\nSolución (no mirar de primeras)\nplot(arg_bio_utm[[\"bio4\"]])\nplot(ba_utm, add = TRUE)"
+    "text": "Ejercicios\n1. Carga las variables bioclimáticas (v.gr. var = \"bio\") del proyecto WorldClim a 0.5 minutos de grado de resolución.\n\n\nSolución (no mirar de primeras)\nlibrary(geodata)\narg_bio &lt;- worldclim_country(\"ARG\", var = \"bio\", path = \".\")\n\n\n2. Fíjese el nombre tan largo y poco intuitivo de los nombres de las distintas capas (puede consultarlo usando el siguiente código names(bio)). Cambie el nombre de las variables por algo más corto e intuitivo (v.gr. “bio1”, “bio2”, etc.).\n\n\nSolución (no mirar de primeras)\nnames(arg_bio)\nnames(arg_bio) &lt;- paste0(\"bio\", 1:19)\n\n\n3. Revisa el CRS de los datos que has descargado. ¿Coinciden con los datos que has generado como resultado de los ejercicios de la Parte 1? Si no es así, proyecta los datos raster para que coincidan con esos datos y mantengan una resolución exacta dde 1000 metros.\n\n\nSolución (no mirar de primeras)\narg_bio_utm &lt;- project(arg_bio, \"epsg:32721\", res = 1000)\n\n\n4. Guarde los dos objetos ráster (original y resultante) como un fichero en el disco duro de su ordenador, de modo que pueda reutilizarlos más adelante cuando los vuelva a necesitar.\n\n\nSolución (no mirar de primeras)\nwriteRaster(arg_bio, \"arg_bio.tif\", overwrite = TRUE) \nwriteRaster(arg_bio_utm, \"arg_bio_utm.tif\", overwrite = TRUE) \n\n\n5. Finalmente, para cerciorarnos que todo esté correcto, dibuje el mapa de la variable \"bio4\" en UTM19s con los polígonos de los municipios de la provincia de “Buenos Aires” superpuestos.\n\n\nSolución (no mirar de primeras)\nplot(arg_bio_utm[[\"bio4\"]])\nplot(ba_utm, add = TRUE)"
   },
   {
     "objectID": "AEMER-2_Ejercicios.html#funciones-útiles-2",
     "href": "AEMER-2_Ejercicios.html#funciones-útiles-2",
-    "title": "Análisis espaciales y multivariantes con R aplicados a estudios de biodiversidad",
+    "title": "Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad",
     "section": "Funciones útiles",
-    "text": "Funciones útiles"
+    "text": "Funciones útiles\naggregate()\nSirve para agregar formas vectoriales que tienen el mismo valor en alguno de los campos de los atributos, el cual se usa como criterio de agregación. También se usa para agregar los valores de varios píxeles contiguos en datos ráster."
   },
   {
     "objectID": "AEMER-2_Ejercicios.html#ejercicios-2",
     "href": "AEMER-2_Ejercicios.html#ejercicios-2",
-    "title": "Análisis espaciales y multivariantes con R aplicados a estudios de biodiversidad",
+    "title": "Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad",
     "section": "Ejercicios",
-    "text": "Ejercicios\n1."
+    "text": "Ejercicios\n1. Añade una columna de atributos a la capa de los municipios de “Buenos Aires” en la que se recoja el área (superficie) de cada municipio. Posteriormente, dibuja un mapa de los municipios en los que se pueda observar con colores diferentes el área de cada uno de ellos. ¿Hay un patrón geográfico en el tamaño de los municipios de la provincia?\n\n\nSolución (no mirar de primeras)\nba$area &lt;- expanse(ba)\nplot(ba, \"area\", type = \"interval\")\n\n\n2. Agrega todos los municipios de la provincia de “Buenos Aires” para generar un polígono con la forma de la provincia. Dibuja el mapa del ejercicio anterior y adiciona el borde de la provincia con los colores de la bandera argentina.\n\n\nSolución (no mirar de primeras)\nba_borde &lt;- aggregate(ba, \"NAME_1\")\nplot(ba, \"area\", type = \"interval\")\nplot(ba_borde, lwd = 4, border = \"cyan\", add = TRUE)\nplot(ba_borde, lwd = 2, border = \"white\", add = TRUE)\n\n\n3. Recorta el objeto ráster con las variables bioclimáticas de Argentina para quedarte sólo con los datos de la provincia de “Buenos Aires”. Dibuja el mapa de la variable bio4 de dichos datos. ¿Ves algo raro?\n\n\nSolución (no mirar de primeras)\nba_bio &lt;- mask(arg_bio, ba)\nplot(ba_bio[[\"bio4\"]])\n\n\n**4. Usa el siguiente código x &lt;- trim(x) (donde x es el nombre del objeto resultante del ejercicio anterior) y vuelve a dibujar el mapa raster resultante. ¿Que diferencia observas con el mapa del ejercicio anterior? ¿Qué crees que hace la función ``?\n\n\nSolución (no mirar de primeras)\nba_bio &lt;- trim(ba_bio)\nplot(ba_bio[[\"bio4\"]])"
   },
   {
     "objectID": "index.html",
