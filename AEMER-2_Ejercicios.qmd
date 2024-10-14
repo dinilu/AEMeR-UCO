@@ -35,11 +35,11 @@ seq(1, 40, by = -2)
 
 ## Funciones útiles
 
-**vect()**
+**`vect()`**
 
 Se usa para generar o leer datos vectoriales. Es muy flexible en su forma de funcionar, por lo que tendrás que leer bien la documentación para ver que argumentos necesita.
 
-**gadm()**
+**`gadm()`**
 
 Esta función del paquete `geodata` se usa para cargar datos de los límites administrativos de los distintos países del planeta.
 
@@ -114,19 +114,19 @@ plot(ba_utm)
 
 ## Funciones útiles
 
-**rast()**
+**`rast()`**
 
 Se utiliza para generar o cargar datos raster. Es muy flexible también en su forma de usarse, por lo que tendrás que tener cuidad con los argumentos que usas con ella.
 
-**worldclim_country()**
+**`worldclim_country()`**
 
 Esta función del paquete `geodata` se usa para cargar datos climáticos de cualquier país del planeta. Los datos proceden del proyecto [WorldClim](https://worldclim.org).
 
-**project()**
+**`project()`**
 
 Se usa para proyectar tanto datos vectoriales como raster.
 
-**writeRaster()**
+**`writeRaster()`**
 
 Se usa para guardar objetos ráster en el disco duro del ordenador.
 
@@ -193,15 +193,15 @@ plot(ba_utm, add = TRUE)
 
 ## Funciones útiles
 
-**expanse()**
+**`expanse()`**
 
 Se usa para calcular la superficie de cada uno de los polígonos en una capa vectorial.
 
-**aggregate()**
+**`aggregate()`**
 
 Sirve para agregar formas vectoriales que tienen el mismo valor en alguno de los campos de los atributos, el cual se usa como criterio de agregación. También se usa para agregar los valores de varios píxeles contiguos en datos ráster.
 
-**mask()**
+**`mask()`**
 
 Se usa para eliminar la información de un ráster que queda fuera de la superficie delimitada por los polígonos de una capa vectorial.
 
