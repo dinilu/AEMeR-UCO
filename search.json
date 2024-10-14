@@ -592,7 +592,7 @@
     "href": "AEMER-2_Ejercicios.html#funciones-útiles-2",
     "title": "Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad",
     "section": "Funciones útiles",
-    "text": "Funciones útiles\naggregate()\nSirve para agregar formas vectoriales que tienen el mismo valor en alguno de los campos de los atributos, el cual se usa como criterio de agregación. También se usa para agregar los valores de varios píxeles contiguos en datos ráster."
+    "text": "Funciones útiles\nexpanse()\nSe usa para calcular la superficie de cada uno de los polígonos en una capa vectorial.\naggregate()\nSirve para agregar formas vectoriales que tienen el mismo valor en alguno de los campos de los atributos, el cual se usa como criterio de agregación. También se usa para agregar los valores de varios píxeles contiguos en datos ráster.\nmask()\nSe usa para eliminar la información de un ráster que queda fuera de la superficie delimitada por los polígonos de una capa vectorial."
   },
   {
     "objectID": "AEMER-2_Ejercicios.html#ejercicios-2",
