@@ -9,10 +9,10 @@ format:
   html:
     code-fold: true
     code-summary: "Solución (no mirar de primeras)"
-editor: visual
+editor: source
 ---
 
-::: {.callout-note}
+::: callout-note
 Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre `ejercicios_t2_[nombre]_[apellido].R`. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla `#` delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la `#`) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandarmelos por email.
 
 ```{r}
@@ -84,7 +84,7 @@ i <- which(departamentos$NAME_1 == "Buenos Aires")
 ba <- departamentos[i]
 ```
 
-**2. Ahora, proyecte los datos de estos municipios desde el sistema de coordenadas en longitud-latitud y WGS84 al sistema UTM21 sur. Para ello necesitaréis buscar el código EPSG en [https://epsg.io](https://epsg.io).**
+**2. Ahora, proyecte los datos de estos municipios desde el sistema de coordenadas en longitud-latitud y WGS84 al sistema UTM21 sur. Para ello necesitaréis buscar el código EPSG en <https://epsg.io>.**
 
 ```{r}
 #| warning: false
@@ -193,11 +193,17 @@ plot(ba_utm, add = TRUE)
 
 ## Funciones útiles
 
+**expanse()**
+
+Se usa para calcular la superficie de cada uno de los polígonos en una capa vectorial.
+
 **aggregate()**
 
 Sirve para agregar formas vectoriales que tienen el mismo valor en alguno de los campos de los atributos, el cual se usa como criterio de agregación. También se usa para agregar los valores de varios píxeles contiguos en datos ráster.
 
+**mask()**
 
+Se usa para eliminar la información de un ráster que queda fuera de la superficie delimitada por los polígonos de una capa vectorial.
 
 ## Ejercicios
 
@@ -209,7 +215,6 @@ Sirve para agregar formas vectoriales que tienen el mismo valor en alguno de los
 ba$area <- expanse(ba)
 plot(ba, "area", type = "interval")
 ```
-
 
 **2. Agrega todos los municipios de la provincia de "Buenos Aires" para generar un polígono con la forma de la provincia. Dibuja el mapa del ejercicio anterior y adiciona el borde de la provincia con los colores de la bandera argentina.**
 
@@ -231,7 +236,7 @@ ba_bio <- mask(arg_bio, ba)
 plot(ba_bio[["bio4"]])
 ```
 
-**4. Usa el siguiente código `x <- trim(x)` (donde `x` es el nombre del objeto resultante del ejercicio anterior) y vuelve a dibujar el mapa raster resultante. ¿Que diferencia observas con el mapa del ejercicio anterior? ¿Qué crees que hace la función ``?
+**4. Usa el siguiente código `x <- trim(x)` (donde `x` es el nombre del objeto resultante del ejercicio anterior) y vuelve a dibujar el mapa raster resultante. ¿Que diferencia observas con el mapa del ejercicio anterior? ¿Qué crees que hace la función?**
 
 ```{r}
 #| output: false
@@ -239,4 +244,3 @@ plot(ba_bio[["bio4"]])
 ba_bio <- trim(ba_bio)
 plot(ba_bio[["bio4"]])
 ```
-
