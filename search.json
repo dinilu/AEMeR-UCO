@@ -602,165 +602,165 @@
     "text": "Ejercicios\n1. Añade una columna de atributos a la capa de los municipios de “Buenos Aires” en la que se recoja el área (superficie) de cada municipio. Posteriormente, dibuja un mapa de los municipios en los que se pueda observar con colores diferentes el área de cada uno de ellos. ¿Hay un patrón geográfico en el tamaño de los municipios de la provincia?\n\n\nSolución (no mirar de primeras)\nba$area &lt;- expanse(ba)\nplot(ba, \"area\", type = \"interval\")\n\n\n2. Agrega todos los municipios de la provincia de “Buenos Aires” para generar un polígono con la forma de la provincia. Dibuja el mapa del ejercicio anterior y adiciona el borde de la provincia con los colores de la bandera argentina.\n\n\nSolución (no mirar de primeras)\nba_borde &lt;- aggregate(ba, \"NAME_1\")\nplot(ba, \"area\", type = \"interval\")\nplot(ba_borde, lwd = 4, border = \"cyan\", add = TRUE)\nplot(ba_borde, lwd = 2, border = \"white\", add = TRUE)\n\n\n3. Recorta el objeto ráster con las variables bioclimáticas de Argentina para quedarte sólo con los datos de la provincia de “Buenos Aires”. Dibuja el mapa de la variable bio4 de dichos datos. ¿Ves algo raro?\n\n\nSolución (no mirar de primeras)\nba_bio &lt;- mask(arg_bio, ba)\nplot(ba_bio[[\"bio4\"]])\n\n\n4. Usa el siguiente código x &lt;- trim(x) (donde x es el nombre del objeto resultante del ejercicio anterior) y vuelve a dibujar el mapa raster resultante. ¿Que diferencia observas con el mapa del ejercicio anterior? ¿Qué crees que hace la función?\n\n\nSolución (no mirar de primeras)\nba_bio &lt;- trim(ba_bio)\nplot(ba_bio[[\"bio4\"]])"
   },
   {
-    "objectID": "AEMER-3_Analisis_multivariante.html#análisis-multivariante-necesitan-datos-tabulados",
-    "href": "AEMER-3_Analisis_multivariante.html#análisis-multivariante-necesitan-datos-tabulados",
+    "objectID": "AEMER-3_Analisis_multivariante.html#análisis-multivariante-usa-datos-tabulados",
+    "href": "AEMER-3_Analisis_multivariante.html#análisis-multivariante-usa-datos-tabulados",
     "title": "Análisis multivariante en R",
-    "section": "Análisis multivariante necesitan datos tabulados",
-    "text": "Análisis multivariante necesitan datos tabulados\n\nMatriz de comunidades (sitios x especies)\n\n\n.\nsp_1\nsp_2\n…\nsp_3\n\n\n\n\nsite_1\n1\n0\n…\n1\n\n\nsite_2\n0\n0\n…\n1\n\n\n…\n…\n…\n…\n…\n\n\nsite_n\n0\n1\n…\n1"
+    "section": "Análisis multivariante usa datos tabulados",
+    "text": "Análisis multivariante usa datos tabulados\n\nMatriz de comunidades (sitios x especies)\n\n\n\nsp_1\nsp_2\n…\nsp_n\n\n\n\n\nsite_1\n1\n0\n…\n1\n\n\nsite_2\n0\n0\n…\n1\n\n\n…\n…\n…\n…\n…\n\n\nsite_n\n0\n1\n…\n1"
+  },
+  {
+    "objectID": "AEMER-3_Analisis_multivariante.html#también-los-datos-de-las-variables-ambientales",
+    "href": "AEMER-3_Analisis_multivariante.html#también-los-datos-de-las-variables-ambientales",
+    "title": "Análisis multivariante en R",
+    "section": "También los datos de las variables ambientales",
+    "text": "También los datos de las variables ambientales\n\nMatriz de variables (sitios x variables)\n\n\n\nv_1\nv_2\n…\nv_n\n\n\n\n\nsite_1\n1\n0\n…\n1\n\n\nsite_2\n0\n0\n…\n1\n\n\n…\n…\n…\n…\n…\n\n\nsite_n\n0\n1\n…\n1"
   },
   {
     "objectID": "AEMER-3_Analisis_multivariante.html#cargando-de-datos-en-r",
     "href": "AEMER-3_Analisis_multivariante.html#cargando-de-datos-en-r",
     "title": "Análisis multivariante en R",
     "section": "Cargando de datos en R",
-    "text": "Cargando de datos en R\n\ncomm &lt;- read.csv2(\"data/Inventarios.csv\", header=T)\nhead(comm)\n\n       Sp_1 Sp_2 Sp_3 Sp_4 Sp_5 Sp_6\nSite_1    0    0    9    0    2    0\nSite_2    1    0    8    0    1    0\nSite_3    2    1    7    0    1    0\nSite_4    2    1    0    1    5    0\nSite_5    1    2    0    0    6    0\nSite_6    0    4    0    2    3    0"
+    "text": "Cargando de datos en R\n\nlibrary(xlsx)\ncom &lt;- read.xlsx(\"data/Inventarios.xlsx\", sheetIndex = 1, row.names = 1)\nhead(com)\n\n       Sp_1 Sp_2 Sp_3 Sp_4 Sp_5 Sp_6\nSite_1    0    0    9    0    2    0\nSite_2    1    0    8    0    1    0\nSite_3    2    1    7    0    1    0\nSite_4    2    1    0    1    5    0\nSite_5    1    2    0    0    6    0\nSite_6    0    4    0    2    3    0\n\nenv &lt;- read.xlsx(\"data/Variables.xlsx\", sheetIndex = 1, row.names = 1)\nhead(env)\n\n              v1         v2         v3\nSite_1 5.1789918 -0.4380167  2.8471131\nSite_2 4.4714402  1.8806640 -0.3560559\nSite_3 2.9379526 -0.3054643  3.2177157\nSite_4 0.7354044 -1.9925002  1.2593483\nSite_5 2.6035489 -2.5324108  1.9391404\nSite_6 0.6951173  2.8438965 -1.2821121"
   },
   {
-    "objectID": "AEMER-3_Analisis_multivariante.html#nombre-de-las-especies",
-    "href": "AEMER-3_Analisis_multivariante.html#nombre-de-las-especies",
+    "objectID": "AEMER-3_Analisis_multivariante.html#los-nombres-de-especies-largos-pueden-saturar-los-gráficos",
+    "href": "AEMER-3_Analisis_multivariante.html#los-nombres-de-especies-largos-pueden-saturar-los-gráficos",
     "title": "Análisis multivariante en R",
-    "section": "Nombre de las especies",
-    "text": "Nombre de las especies\nLos gráficos se pueden saturar con nombres de especies y sitios largos\n\nSi la identidad es irrelevante: usar nombres genéricos\n\nQuercus ilex: SP_1\n\nSi la identidad de la especie es relevante: acortar\n\nQuercus ilex: Q_ILEX\n\nCornell Ecology Program (CEP) proporciona una abreviatura estandarizada:\n\n8 caracteres: 4 primeros del género y 4 de la especie:\nQuercus ilex: QUERILEX"
+    "section": "Los nombres de especies largos pueden saturar los gráficos",
+    "text": "Los nombres de especies largos pueden saturar los gráficos\n\nSi la identidad es irrelevante: usar nombres genéricos\n\nQuercus ilex: SP_1\n\nSi la identidad de la especie es relevante: acortar\n\nQuercus ilex: Q_ILEX\n\nCornell Ecology Program (CEP) proporciona una abreviatura estandarizada:\n\n8 caracteres: 4 primeros del género y 4 de la especie:\nQuercus ilex: QUERILEX"
   },
   {
-    "objectID": "AEMER-3_Analisis_multivariante.html#dominancia-abundancia-de-braun-blanquet",
-    "href": "AEMER-3_Analisis_multivariante.html#dominancia-abundancia-de-braun-blanquet",
+    "objectID": "AEMER-3_Analisis_multivariante.html#transformación-de-valores-de-dominancia-abundancia",
+    "href": "AEMER-3_Analisis_multivariante.html#transformación-de-valores-de-dominancia-abundancia",
     "title": "Análisis multivariante en R",
-    "section": "Dominancia-abundancia de Braun-Blanquet",
-    "text": "Dominancia-abundancia de Braun-Blanquet\n\nTransformación estandarización de Van deer Maarel\n\n\nÍndice Braun-Blanquet\nValor de Van deer Maarel\n\n\n\n\nausencia\n0\n\n\nr\n1\n\n\n+\n2\n\n\n1\n3\n\n\n2m\n4\n\n\n2a\n5\n\n\n2b\n6\n\n\n3\n7\n\n\n4\n8\n\n\n5\n9"
+    "section": "Transformación de valores de dominancia-abundancia",
+    "text": "Transformación de valores de dominancia-abundancia\n\n\n\n\nÍndice Braun-Blanquet\nValor de Van deer Maarel\n\n\n\n\nausencia\n0\n\n\nr\n1\n\n\n+\n2\n\n\n1\n3\n\n\n2m\n4\n\n\n2a\n5\n\n\n2b\n6\n\n\n3\n7\n\n\n4\n8\n\n\n5\n9"
   },
   {
     "objectID": "AEMER-3_Analisis_multivariante.html#datos-de-presencia-ausencia",
     "href": "AEMER-3_Analisis_multivariante.html#datos-de-presencia-ausencia",
     "title": "Análisis multivariante en R",
     "section": "Datos de presencia-ausencia",
-    "text": "Datos de presencia-ausencia\nLos datos de presencia-ausencia suelen ser más fiables que los de abundacia o cobertura\n\nTransformar los datos en presencia-ausencia\n\n\nifelse(comm &gt; 0, 1, 0)"
+    "text": "Datos de presencia-ausencia\nLos análisis con datos de presencia-ausencia suelen ser más robustos que los de abundancia o cobertura\n\npres &lt;- ifelse(com &gt; 0, 1, 0)\nhead(pres)\n\n       Sp_1 Sp_2 Sp_3 Sp_4 Sp_5 Sp_6\nSite_1    0    0    1    0    1    0\nSite_2    1    0    1    0    1    0\nSite_3    1    1    1    0    1    0\nSite_4    1    1    0    1    1    0\nSite_5    1    1    0    0    1    0\nSite_6    0    1    0    1    1    0"
   },
   {
-    "objectID": "AEMER-3_Analisis_multivariante.html#datos-de-presencia-ausencia-1",
-    "href": "AEMER-3_Analisis_multivariante.html#datos-de-presencia-ausencia-1",
+    "objectID": "AEMER-3_Analisis_multivariante.html#análisis-de-componentes-principales-pca",
+    "href": "AEMER-3_Analisis_multivariante.html#análisis-de-componentes-principales-pca",
     "title": "Análisis multivariante en R",
-    "section": "Datos de presencia-ausencia",
-    "text": "Datos de presencia-ausencia\n\npres &lt;- ifelse(comm &gt; 0, 1, 0)\nhead(pres)\n\n       Sp_1 Sp_2 Sp_3 Sp_4 Sp_5 Sp_6\nSite_1    0    0    1    0    1    0\nSite_2    1    0    1    0    1    0\nSite_3    1    1    1    0    1    0\nSite_4    1    1    0    1    1    0\nSite_5    1    1    0    0    1    0\nSite_6    0    1    0    1    1    0"
+    "section": "Análisis de componentes principales (PCA)",
+    "text": "Análisis de componentes principales (PCA)\nAunque parezca confuso, se usa la función rda.\n\n\n\n\n\n\nNote\n\n\nAsí se juntan la aproximación unconstrained y su equivalente constrained en la misma función. Si se especifican variables ambientales se ejecuta la versión constrained. Si no se especifican se ejecuta la versión unconstrained.\n\n\n\n\nlibrary(vegan)\ncom_pca &lt;- rda(com)\ncom_pca\n\nCall: rda(X = com)\n\n              Inertia Rank\nTotal           25.54     \nUnconstrained   25.54    6\nInertia is variance \n\nEigenvalues for unconstrained axes:\n   PC1    PC2    PC3    PC4    PC5    PC6 \n11.855  8.544  3.847  0.941  0.325  0.027"
   },
   {
-    "objectID": "AEMER-3_Analisis_multivariante.html#técnicas-de-ordenación",
-    "href": "AEMER-3_Analisis_multivariante.html#técnicas-de-ordenación",
+    "objectID": "AEMER-3_Analisis_multivariante.html#análisis-de-redundancia-rda",
+    "href": "AEMER-3_Analisis_multivariante.html#análisis-de-redundancia-rda",
     "title": "Análisis multivariante en R",
-    "section": "Técnicas de ordenación",
-    "text": "Técnicas de ordenación\nHay numerosas técnicas:\n\nAnálisis de componentes principales (PCA)\n\nBasado en distancia euclídea y respuesta lineal\n\nAnálisis de correspondencia (CA)\n\nBasado en $X2 y respuesta unimodal\n\nAnálisis de correspondencia segmentado (DCA)\n\nComo el CA, pero elimina tendencias curvilineas cuando analizamos gradientes muy grandes"
+    "section": "Análisis de redundancia (RDA)",
+    "text": "Análisis de redundancia (RDA)\n\ncom_rda &lt;- rda(com, env)\ncom_rda\n\nCall: rda(X = com, Y = env)\n\n              Inertia Proportion Rank\nTotal         25.5395     1.0000     \nConstrained   14.2138     0.5565    3\nUnconstrained 11.3256     0.4435    6\nInertia is variance \n\nEigenvalues for constrained axes:\n RDA1  RDA2  RDA3 \n7.435 6.190 0.589 \n\nEigenvalues for unconstrained axes:\n  PC1   PC2   PC3   PC4   PC5   PC6 \n8.109 1.250 1.054 0.694 0.200 0.018"
   },
   {
-    "objectID": "AEMER-3_Analisis_multivariante.html#análisis-de-correspondencia-ca-en-r",
-    "href": "AEMER-3_Analisis_multivariante.html#análisis-de-correspondencia-ca-en-r",
+    "objectID": "AEMER-3_Analisis_multivariante.html#análisis-de-correspondencia-ca",
+    "href": "AEMER-3_Analisis_multivariante.html#análisis-de-correspondencia-ca",
     "title": "Análisis multivariante en R",
-    "section": "Análisis de correspondencia (CA) en R",
-    "text": "Análisis de correspondencia (CA) en R\nSe usa la función cca\n\nlibrary(vegan)\nord &lt;- cca(comm)\nord\n\nCall: cca(X = comm)\n\n              Inertia Rank\nTotal           1.336     \nUnconstrained   1.336    5\nInertia is scaled Chi-square \n\nEigenvalues for unconstrained axes:\n   CA1    CA2    CA3    CA4    CA5 \n0.5359 0.3371 0.3013 0.1014 0.0600"
+    "section": "Análisis de correspondencia (CA)",
+    "text": "Análisis de correspondencia (CA)\nAunque parezca confuso, para CA y CCA se usa la función cca.\n\n\n\n\n\n\nNote\n\n\nAsí se juntan la aproximación unconstrained y su equivalente constrained en la misma función. Si se especifican variables ambientales se ejecuta la versión constrained. Si no se especifican se ejecuta la versión unconstrained.\n\n\n\n\ncom_ca &lt;- cca(com)\ncom_ca\n\nCall: cca(X = com)\n\n              Inertia Rank\nTotal           1.336     \nUnconstrained   1.336    5\nInertia is scaled Chi-square \n\nEigenvalues for unconstrained axes:\n   CA1    CA2    CA3    CA4    CA5 \n0.5359 0.3371 0.3013 0.1014 0.0600"
+  },
+  {
+    "objectID": "AEMER-3_Analisis_multivariante.html#análisis-de-correspondencia-sin-tendencia-dca",
+    "href": "AEMER-3_Analisis_multivariante.html#análisis-de-correspondencia-sin-tendencia-dca",
+    "title": "Análisis multivariante en R",
+    "section": "Análisis de correspondencia sin tendencia (DCA)",
+    "text": "Análisis de correspondencia sin tendencia (DCA)\nPara DCA se usa la función decorana\n\ncom_dca &lt;- decorana(com)\ncom_dca\n\n\nCall:\ndecorana(veg = com) \n\nDetrended correspondence analysis with 26 segments.\nRescaling of axes with 4 iterations.\nTotal inertia (scaled Chi-square): 1.3356 \n\n                       DCA1   DCA2    DCA3    DCA4\nEigenvalues          0.5017 0.3112 0.16425 0.17184\nAdditive Eigenvalues 0.5017 0.3102 0.14014 0.09521\nDecorana values      0.5359 0.1160 0.05699 0.01393\nAxis lengths         2.8105 1.6228 1.09955 1.12945"
+  },
+  {
+    "objectID": "AEMER-3_Analisis_multivariante.html#análisis-de-correspondencia-canónica-cca",
+    "href": "AEMER-3_Analisis_multivariante.html#análisis-de-correspondencia-canónica-cca",
+    "title": "Análisis multivariante en R",
+    "section": "Análisis de correspondencia canónica (CCA)",
+    "text": "Análisis de correspondencia canónica (CCA)\n\ncom_cca &lt;- cca(com, env)\ncom_cca\n\nCall: cca(X = com, Y = env)\n\n              Inertia Proportion Rank\nTotal          1.3356     1.0000     \nConstrained    0.6556     0.4909    3\nUnconstrained  0.6800     0.5091    5\nInertia is scaled Chi-square \n\nEigenvalues for constrained axes:\n  CCA1   CCA2   CCA3 \n0.3345 0.2740 0.0471 \n\nEigenvalues for unconstrained axes:\n   CA1    CA2    CA3    CA4    CA5 \n0.4669 0.1206 0.0436 0.0395 0.0093"
+  },
+  {
+    "objectID": "AEMER-3_Analisis_multivariante.html#pca-basado-en-transformaciones",
+    "href": "AEMER-3_Analisis_multivariante.html#pca-basado-en-transformaciones",
+    "title": "Análisis multivariante en R",
+    "section": "PCA basado en transformaciones",
+    "text": "PCA basado en transformaciones\nPara ello se transforman los datos con la función decostand\n\ncom_hel &lt;- decostand(com, 'hellinger')\n\ncom_tbpca &lt;- rda(com_hel)\ncom_tbpca\n\nCall: rda(X = com_hel)\n\n              Inertia Rank\nTotal          0.3778     \nUnconstrained  0.3778    6\nInertia is variance \n\nEigenvalues for unconstrained axes:\n    PC1     PC2     PC3     PC4     PC5     PC6 \n0.16155 0.10550 0.07101 0.03200 0.00440 0.00333"
+  },
+  {
+    "objectID": "AEMER-3_Analisis_multivariante.html#pca-basado-en-transformaciones-1",
+    "href": "AEMER-3_Analisis_multivariante.html#pca-basado-en-transformaciones-1",
+    "title": "Análisis multivariante en R",
+    "section": "PCA basado en transformaciones",
+    "text": "PCA basado en transformaciones\nPara ello se transforman los datos con la función decostand\n\ncom_tbrda &lt;- rda(com_hel, env)\ncom_tbrda\n\nCall: rda(X = com_hel, Y = env)\n\n              Inertia Proportion Rank\nTotal          0.3778     1.0000     \nConstrained    0.1657     0.4387    3\nUnconstrained  0.2120     0.5613    6\nInertia is variance \n\nEigenvalues for constrained axes:\n   RDA1    RDA2    RDA3 \n0.09114 0.06063 0.01398 \n\nEigenvalues for unconstrained axes:\n    PC1     PC2     PC3     PC4     PC5     PC6 \n0.15218 0.03174 0.01660 0.00743 0.00243 0.00165"
   },
   {
     "objectID": "AEMER-3_Analisis_multivariante.html#visualizar-ordenación",
     "href": "AEMER-3_Analisis_multivariante.html#visualizar-ordenación",
     "title": "Análisis multivariante en R",
     "section": "Visualizar ordenación",
-    "text": "Visualizar ordenación\nUna vez realizado el análisis es interesante observar como se disponen especies y sitios en el espacio bidimensional"
-  },
-  {
-    "objectID": "AEMER-3_Analisis_multivariante.html#visualizar-ordenación-en-r",
-    "href": "AEMER-3_Analisis_multivariante.html#visualizar-ordenación-en-r",
-    "title": "Análisis multivariante en R",
-    "section": "Visualizar ordenación en R",
-    "text": "Visualizar ordenación en R\nPara ello usamos la función plot sobre un objeto de ordenación\n\nplot(ord)"
+    "text": "Visualizar ordenación\nEs interesante observar como se disponen especies y sitios en el espacio bidimensional.\nPara ello usamos la función plot sobre cualquiera de los objetos de ordenación.\n\nplot(com_ca)"
   },
   {
     "objectID": "AEMER-3_Analisis_multivariante.html#gráficos-sobrecargados",
     "href": "AEMER-3_Analisis_multivariante.html#gráficos-sobrecargados",
     "title": "Análisis multivariante en R",
-    "section": "Gráficos sobrecargados",
-    "text": "Gráficos sobrecargados\nRepresentar solo ‘especies’ o ‘sitios’ con el argumento display\n\nplot(ord, display=\"sites\")\n\n\n\nplot(ord, display=\"species\")"
-  },
-  {
-    "objectID": "AEMER-3_Analisis_multivariante.html#clasificación-en-r",
-    "href": "AEMER-3_Analisis_multivariante.html#clasificación-en-r",
-    "title": "Análisis multivariante en R",
-    "section": "Clasificación en R",
-    "text": "Clasificación en R\nPara el análisis de vegetación en R hay un paquete muy útil: vegan\n\n#install.packages(\"vegan\")\nlibrary(vegan)"
+    "section": "¿Gráficos sobrecargados?",
+    "text": "¿Gráficos sobrecargados?\nPuedes representar solo ‘especies’ o ‘sitios’ con el argumento display\n\nplot(com_ca, display = \"sites\")\n\n\n\nplot(com_ca, display = \"species\")"
   },
   {
     "objectID": "AEMER-3_Analisis_multivariante.html#medida-de-disimilitud",
     "href": "AEMER-3_Analisis_multivariante.html#medida-de-disimilitud",
     "title": "Análisis multivariante en R",
-    "section": "2. Medida de disimilitud",
-    "text": "2. Medida de disimilitud\nPara calcular la disimilitud entre todos los ‘sitios’ usamos la función vegdist\n\ndist &lt;- vegdist(comm)\ndist\n\n            Site_1     Site_2     Site_3     Site_4     Site_5     Site_6\nSite_2  0.14285714                                                       \nSite_3  0.27272727 0.14285714                                            \nSite_4  0.80000000 0.78947368 0.60000000                                 \nSite_5  0.80000000 0.78947368 0.70000000 0.22222222                      \nSite_6  0.80000000 0.89473684 0.80000000 0.44444444 0.44444444           \nSite_7  0.77777778 0.88235294 0.88888889 0.37500000 0.50000000 0.37500000\nSite_8  0.88235294 0.87500000 0.76470588 0.60000000 0.60000000 0.20000000\nSite_9  0.77777778 0.76470588 0.66666667 0.25000000 0.50000000 0.50000000\nSite_10 0.81818182 0.80952381 0.63636364 0.50000000 0.50000000 0.40000000\nSite_11 0.47826087 0.45454545 0.39130435 0.61904762 0.71428571 0.80952381\nSite_12 0.52380952 0.50000000 0.42857143 0.57894737 0.68421053 0.78947368\nSite_13 0.71428571 0.70000000 0.61904762 0.47368421 0.57894737 0.68421053\nSite_14 0.90909091 0.80952381 0.72727273 0.60000000 0.80000000 0.80000000\nSite_15 0.80000000 0.78947368 0.80000000 0.33333333 0.22222222 0.66666667\nSite_16 0.78947368 0.77777778 0.78947368 0.29411765 0.17647059 0.64705882\nSite_17 0.78947368 0.77777778 0.68421053 0.29411765 0.52941176 0.52941176\nSite_18 0.65217391 0.63636364 0.65217391 0.33333333 0.33333333 0.61904762\nSite_19 0.83333333 0.91304348 0.83333333 0.36363636 0.36363636 0.45454545\nSite_20 0.61904762 0.70000000 0.71428571 0.36842105 0.36842105 0.57894737\n            Site_7     Site_8     Site_9    Site_10    Site_11    Site_12\nSite_2                                                                   \nSite_3                                                                   \nSite_4                                                                   \nSite_5                                                                   \nSite_6                                                                   \nSite_7                                                                   \nSite_8  0.69230769                                                       \nSite_9  0.42857143 0.69230769                                            \nSite_10 0.77777778 0.41176471 0.44444444                                 \nSite_11 0.78947368 0.88888889 0.47368421 0.39130435                      \nSite_12 0.76470588 0.87500000 0.41176471 0.33333333 0.09090909           \nSite_13 0.64705882 0.87500000 0.29411765 0.33333333 0.18181818 0.20000000\nSite_14 0.77777778 0.76470588 0.44444444 0.45454545 0.39130435 0.42857143\nSite_15 0.50000000 0.86666667 0.50000000 0.70000000 0.71428571 0.68421053\nSite_16 0.46666667 0.85714286 0.46666667 0.68421053 0.70000000 0.66666667\nSite_17 0.46666667 0.71428571 0.06666667 0.36842105 0.40000000 0.33333333\nSite_18 0.47368421 0.77777778 0.47368421 0.73913043 0.58333333 0.54545455\nSite_19 0.40000000 0.68421053 0.60000000 0.75000000 0.84000000 0.82608696\nSite_20 0.41176471 0.75000000 0.52941176 0.80952381 0.63636364 0.60000000\n           Site_13    Site_14    Site_15    Site_16    Site_17    Site_18\nSite_2                                                                   \nSite_3                                                                   \nSite_4                                                                   \nSite_5                                                                   \nSite_6                                                                   \nSite_7                                                                   \nSite_8                                                                   \nSite_9                                                                   \nSite_10                                                                  \nSite_11                                                                  \nSite_12                                                                  \nSite_13                                                                  \nSite_14 0.33333333                                                       \nSite_15 0.57894737 0.80000000                                            \nSite_16 0.55555556 0.78947368 0.05882353                                 \nSite_17 0.22222222 0.36842105 0.52941176 0.50000000                      \nSite_18 0.54545455 0.73913043 0.14285714 0.20000000 0.50000000           \nSite_19 0.73913043 0.83333333 0.27272727 0.33333333 0.61904762 0.28000000\nSite_20 0.60000000 0.80952381 0.26315789 0.22222222 0.55555556 0.09090909\n           Site_19\nSite_2            \nSite_3            \nSite_4            \nSite_5            \nSite_6            \nSite_7            \nSite_8            \nSite_9            \nSite_10           \nSite_11           \nSite_12           \nSite_13           \nSite_14           \nSite_15           \nSite_16           \nSite_17           \nSite_18           \nSite_19           \nSite_20 0.30434783"
+    "section": "Medida de disimilitud",
+    "text": "Medida de disimilitud\nPara calcular la disimilitud entre todos los ‘sitios’ usamos la función vegdist\n\ndist &lt;- vegdist(com)\ndist\n\n            Site_1     Site_2     Site_3     Site_4     Site_5     Site_6\nSite_2  0.14285714                                                       \nSite_3  0.27272727 0.14285714                                            \nSite_4  0.80000000 0.78947368 0.60000000                                 \nSite_5  0.80000000 0.78947368 0.70000000 0.22222222                      \nSite_6  0.80000000 0.89473684 0.80000000 0.44444444 0.44444444           \nSite_7  0.77777778 0.88235294 0.88888889 0.37500000 0.50000000 0.37500000\nSite_8  0.88235294 0.87500000 0.76470588 0.60000000 0.60000000 0.20000000\nSite_9  0.77777778 0.76470588 0.66666667 0.25000000 0.50000000 0.50000000\nSite_10 0.81818182 0.80952381 0.63636364 0.50000000 0.50000000 0.40000000\nSite_11 0.47826087 0.45454545 0.39130435 0.61904762 0.71428571 0.80952381\nSite_12 0.52380952 0.50000000 0.42857143 0.57894737 0.68421053 0.78947368\nSite_13 0.71428571 0.70000000 0.61904762 0.47368421 0.57894737 0.68421053\nSite_14 0.90909091 0.80952381 0.72727273 0.60000000 0.80000000 0.80000000\nSite_15 0.80000000 0.78947368 0.80000000 0.33333333 0.22222222 0.66666667\nSite_16 0.78947368 0.77777778 0.78947368 0.29411765 0.17647059 0.64705882\nSite_17 0.78947368 0.77777778 0.68421053 0.29411765 0.52941176 0.52941176\nSite_18 0.65217391 0.63636364 0.65217391 0.33333333 0.33333333 0.61904762\nSite_19 0.83333333 0.91304348 0.83333333 0.36363636 0.36363636 0.45454545\nSite_20 0.61904762 0.70000000 0.71428571 0.36842105 0.36842105 0.57894737\n            Site_7     Site_8     Site_9    Site_10    Site_11    Site_12\nSite_2                                                                   \nSite_3                                                                   \nSite_4                                                                   \nSite_5                                                                   \nSite_6                                                                   \nSite_7                                                                   \nSite_8  0.69230769                                                       \nSite_9  0.42857143 0.69230769                                            \nSite_10 0.77777778 0.41176471 0.44444444                                 \nSite_11 0.78947368 0.88888889 0.47368421 0.39130435                      \nSite_12 0.76470588 0.87500000 0.41176471 0.33333333 0.09090909           \nSite_13 0.64705882 0.87500000 0.29411765 0.33333333 0.18181818 0.20000000\nSite_14 0.77777778 0.76470588 0.44444444 0.45454545 0.39130435 0.42857143\nSite_15 0.50000000 0.86666667 0.50000000 0.70000000 0.71428571 0.68421053\nSite_16 0.46666667 0.85714286 0.46666667 0.68421053 0.70000000 0.66666667\nSite_17 0.46666667 0.71428571 0.06666667 0.36842105 0.40000000 0.33333333\nSite_18 0.47368421 0.77777778 0.47368421 0.73913043 0.58333333 0.54545455\nSite_19 0.40000000 0.68421053 0.60000000 0.75000000 0.84000000 0.82608696\nSite_20 0.41176471 0.75000000 0.52941176 0.80952381 0.63636364 0.60000000\n           Site_13    Site_14    Site_15    Site_16    Site_17    Site_18\nSite_2                                                                   \nSite_3                                                                   \nSite_4                                                                   \nSite_5                                                                   \nSite_6                                                                   \nSite_7                                                                   \nSite_8                                                                   \nSite_9                                                                   \nSite_10                                                                  \nSite_11                                                                  \nSite_12                                                                  \nSite_13                                                                  \nSite_14 0.33333333                                                       \nSite_15 0.57894737 0.80000000                                            \nSite_16 0.55555556 0.78947368 0.05882353                                 \nSite_17 0.22222222 0.36842105 0.52941176 0.50000000                      \nSite_18 0.54545455 0.73913043 0.14285714 0.20000000 0.50000000           \nSite_19 0.73913043 0.83333333 0.27272727 0.33333333 0.61904762 0.28000000\nSite_20 0.60000000 0.80952381 0.26315789 0.22222222 0.55555556 0.09090909\n           Site_19\nSite_2            \nSite_3            \nSite_4            \nSite_5            \nSite_6            \nSite_7            \nSite_8            \nSite_9            \nSite_10           \nSite_11           \nSite_12           \nSite_13           \nSite_14           \nSite_15           \nSite_16           \nSite_17           \nSite_18           \nSite_19           \nSite_20 0.30434783"
   },
   {
     "objectID": "AEMER-3_Analisis_multivariante.html#tipos-de-distancias",
     "href": "AEMER-3_Analisis_multivariante.html#tipos-de-distancias",
     "title": "Análisis multivariante en R",
     "section": "Tipos de distancias",
-    "text": "Tipos de distancias\nLa disimilitud entre ‘sitios’ se puede calcular de varias maneras: euclidean, manhattan, gower, canberra, bray, jaccard…"
-  },
-  {
-    "objectID": "AEMER-3_Analisis_multivariante.html#tipos-de-distancias-en-r",
-    "href": "AEMER-3_Analisis_multivariante.html#tipos-de-distancias-en-r",
-    "title": "Análisis multivariante en R",
-    "section": "Tipos de distancias en R",
-    "text": "Tipos de distancias en R\nPara especificar el tipo de medida en la función vegdist usamos el argumento method\n\ndist &lt;- vegdist(comm, method=\"euclidean\")\ndist &lt;- vegdist(comm, method=\"bray\")\ndist &lt;- vegdist(comm, method=\"jaccard\")\ndist\n\n           Site_1    Site_2    Site_3    Site_4    Site_5    Site_6    Site_7\nSite_2  0.2500000                                                            \nSite_3  0.4285714 0.2500000                                                  \nSite_4  0.8888889 0.8823529 0.7500000                                        \nSite_5  0.8888889 0.8823529 0.8235294 0.3636364                              \nSite_6  0.8888889 0.9444444 0.8888889 0.6153846 0.6153846                    \nSite_7  0.8750000 0.9375000 0.9411765 0.5454545 0.6666667 0.5454545          \nSite_8  0.9375000 0.9333333 0.8666667 0.7500000 0.7500000 0.3333333 0.8181818\nSite_9  0.8750000 0.8666667 0.8000000 0.4000000 0.6666667 0.6666667 0.6000000\nSite_10 0.9000000 0.8947368 0.7777778 0.6666667 0.6666667 0.5714286 0.8750000\nSite_11 0.6470588 0.6250000 0.5625000 0.7647059 0.8333333 0.8947368 0.8823529\nSite_12 0.6875000 0.6666667 0.6000000 0.7333333 0.8125000 0.8823529 0.8666667\nSite_13 0.8333333 0.8235294 0.7647059 0.6428571 0.7333333 0.8125000 0.7857143\nSite_14 0.9523810 0.8947368 0.8421053 0.7500000 0.8888889 0.8888889 0.8750000\nSite_15 0.8888889 0.8823529 0.8888889 0.5000000 0.3636364 0.8000000 0.6666667\nSite_16 0.8823529 0.8750000 0.8823529 0.4545455 0.3000000 0.7857143 0.6363636\nSite_17 0.8823529 0.8750000 0.8125000 0.4545455 0.6923077 0.6923077 0.6363636\nSite_18 0.7894737 0.7777778 0.7894737 0.5000000 0.5000000 0.7647059 0.6428571\nSite_19 0.9090909 0.9545455 0.9090909 0.5333333 0.5333333 0.6250000 0.5714286\nSite_20 0.7647059 0.8235294 0.8333333 0.5384615 0.5384615 0.7333333 0.5833333\n           Site_8    Site_9   Site_10   Site_11   Site_12   Site_13   Site_14\nSite_2                                                                       \nSite_3                                                                       \nSite_4                                                                       \nSite_5                                                                       \nSite_6                                                                       \nSite_7                                                                       \nSite_8                                                                       \nSite_9  0.8181818                                                            \nSite_10 0.5833333 0.6153846                                                  \nSite_11 0.9411765 0.6428571 0.5625000                                        \nSite_12 0.9333333 0.5833333 0.5000000 0.1666667                              \nSite_13 0.9333333 0.4545455 0.5000000 0.3076923 0.3333333                    \nSite_14 0.8666667 0.6153846 0.6250000 0.5625000 0.6000000 0.5000000          \nSite_15 0.9285714 0.6666667 0.8235294 0.8333333 0.8125000 0.7333333 0.8888889\nSite_16 0.9230769 0.6363636 0.8125000 0.8235294 0.8000000 0.7142857 0.8823529\nSite_17 0.8333333 0.1250000 0.5384615 0.5714286 0.5000000 0.3636364 0.5384615\nSite_18 0.8750000 0.6428571 0.8500000 0.7368421 0.7058824 0.7058824 0.8500000\nSite_19 0.8125000 0.7500000 0.8571429 0.9130435 0.9047619 0.8500000 0.9090909\nSite_20 0.8571429 0.6923077 0.8947368 0.7777778 0.7500000 0.7500000 0.8947368\n          Site_15   Site_16   Site_17   Site_18   Site_19\nSite_2                                                   \nSite_3                                                   \nSite_4                                                   \nSite_5                                                   \nSite_6                                                   \nSite_7                                                   \nSite_8                                                   \nSite_9                                                   \nSite_10                                                  \nSite_11                                                  \nSite_12                                                  \nSite_13                                                  \nSite_14                                                  \nSite_15                                                  \nSite_16 0.1111111                                        \nSite_17 0.6923077 0.6666667                              \nSite_18 0.2500000 0.3333333 0.6666667                    \nSite_19 0.4285714 0.5000000 0.7647059 0.4375000          \nSite_20 0.4166667 0.3636364 0.7142857 0.1666667 0.4666667"
+    "text": "Tipos de distancias\nLa disimilitud entre ‘sitios’ se puede calcular de varias maneras: euclidean, manhattan, gower, canberra, bray, jaccard…\nPara ello usamos el argumento method\n\ndist &lt;- vegdist(com, method=\"euclidean\")\ndist &lt;- vegdist(com, method=\"bray\")\ndist &lt;- vegdist(com, method=\"jaccard\")\nhead(dist)\n\n[1] 0.2500000 0.4285714 0.8888889 0.8888889 0.8888889 0.8750000"
   },
   {
     "objectID": "AEMER-3_Analisis_multivariante.html#clasificación-jerárquica",
     "href": "AEMER-3_Analisis_multivariante.html#clasificación-jerárquica",
     "title": "Análisis multivariante en R",
-    "section": "3. Clasificación jerárquica",
-    "text": "3. Clasificación jerárquica\nPara ello usamos la función hclust sobre la matriz de distancias\n\nhc &lt;- hclust(dist)\nhc\n\n\nCall:\nhclust(d = dist)\n\nCluster method   : complete \nDistance         : jaccard \nNumber of objects: 20"
+    "section": "Clasificación jerárquica",
+    "text": "Clasificación jerárquica\nPara ello usamos la función hclust sobre la matriz de distancias\n\nhc &lt;- hclust(dist)\nhc\n\n\nCall:\nhclust(d = dist)\n\nCluster method   : complete \nDistance         : jaccard \nNumber of objects: 20"
   },
   {
     "objectID": "AEMER-3_Analisis_multivariante.html#métodos-de-agrupación",
     "href": "AEMER-3_Analisis_multivariante.html#métodos-de-agrupación",
     "title": "Análisis multivariante en R",
     "section": "Métodos de agrupación",
-    "text": "Métodos de agrupación\nMétodos para realizar la agrupación hay varios: single, complete, average, centroid…"
-  },
-  {
-    "objectID": "AEMER-3_Analisis_multivariante.html#métodos-de-agrupación-1",
-    "href": "AEMER-3_Analisis_multivariante.html#métodos-de-agrupación-1",
-    "title": "Análisis multivariante en R",
-    "section": "Métodos de agrupación",
-    "text": "Métodos de agrupación\nPara especificar el tipo de agrupación en la función hclust usamos el argumento method.\n\nhc &lt;- hclust(dist, method=\"single\")\nhc &lt;- hclust(dist, method=\"centroid\")\nhc &lt;- hclust(dist, method=\"average\")\nhc &lt;- hclust(dist, method=\"complete\")\nhc\n\n\nCall:\nhclust(d = dist, method = \"complete\")\n\nCluster method   : complete \nDistance         : jaccard \nNumber of objects: 20"
+    "text": "Métodos de agrupación\nMétodos para realizar la agrupación hay varios: single, complete, average, centroid…\nEspecificamos el método con el argumento method.\n\nhc &lt;- hclust(dist, method=\"single\")\nhc &lt;- hclust(dist, method=\"centroid\")\nhc &lt;- hclust(dist, method=\"average\")\nhc &lt;- hclust(dist, method=\"complete\")\nhc\n\n\nCall:\nhclust(d = dist, method = \"complete\")\n\nCluster method   : complete \nDistance         : jaccard \nNumber of objects: 20"
   },
   {
     "objectID": "AEMER-3_Analisis_multivariante.html#visualizar-clasificaciones",
     "href": "AEMER-3_Analisis_multivariante.html#visualizar-clasificaciones",
     "title": "Análisis multivariante en R",
     "section": "Visualizar clasificaciones",
-    "text": "Visualizar clasificaciones\nLas clasificaciones jerárquicas se pueden visualizar como un árbol filogenético con la función plot"
-  },
-  {
-    "objectID": "AEMER-3_Analisis_multivariante.html#visualizar-clasificaciones-en-r",
-    "href": "AEMER-3_Analisis_multivariante.html#visualizar-clasificaciones-en-r",
-    "title": "Análisis multivariante en R",
-    "section": "Visualizar clasificaciones en R",
-    "text": "Visualizar clasificaciones en R\n\nplot(hc, hang=-1)"
+    "text": "Visualizar clasificaciones\nLas clasificaciones jerárquicas se pueden visualizar como un árbol filogenético con la función plot\n\nplot(hc, hang=-1)"
   },
   {
     "objectID": "AEMER-3_Analisis_multivariante.html#interpretación",
     "href": "AEMER-3_Analisis_multivariante.html#interpretación",
     "title": "Análisis multivariante en R",
-    "section": "4. Interpretación",
-    "text": "4. Interpretación\nEstablecer grupos en un árbol no es siempre trivial\n\nSe puede usar un umbral para determinar los grupos\nO establecer un número determinado de grupos"
+    "section": "Interpretación",
+    "text": "Interpretación\nEstablecer grupos en un árbol no es siempre trivial\n\nSe puede usar un umbral para determinar los grupos\nO establecer un número determinado de grupos"
   },
   {
-    "objectID": "AEMER-3_Analisis_multivariante.html#visualizar-clasificaciones-en-r-con-un-umbral",
-    "href": "AEMER-3_Analisis_multivariante.html#visualizar-clasificaciones-en-r-con-un-umbral",
+    "objectID": "AEMER-3_Analisis_multivariante.html#visualizar-clasificaciones-con-un-umbral",
+    "href": "AEMER-3_Analisis_multivariante.html#visualizar-clasificaciones-con-un-umbral",
     "title": "Análisis multivariante en R",
-    "section": "Visualizar clasificaciones en R con un umbral",
-    "text": "Visualizar clasificaciones en R con un umbral\n\nplot(hc, hang=-1) \nrect.hclust(hc, h=0.7)"
+    "section": "Visualizar clasificaciones con un umbral",
+    "text": "Visualizar clasificaciones con un umbral\n\nplot(hc, hang=-1) \nrect.hclust(hc, h=0.7)"
   },
   {
-    "objectID": "AEMER-3_Analisis_multivariante.html#visualizar-clasificaciones-en-r-con-número-de-grupos",
-    "href": "AEMER-3_Analisis_multivariante.html#visualizar-clasificaciones-en-r-con-número-de-grupos",
+    "objectID": "AEMER-3_Analisis_multivariante.html#visualizar-clasificaciones-con-número-de-grupos",
+    "href": "AEMER-3_Analisis_multivariante.html#visualizar-clasificaciones-con-número-de-grupos",
     "title": "Análisis multivariante en R",
-    "section": "Visualizar clasificaciones en R con número de grupos",
-    "text": "Visualizar clasificaciones en R con número de grupos\n\nplot(hc, hang=-1)\nrect.hclust(hc, k=4)"
+    "section": "Visualizar clasificaciones con número de grupos",
+    "text": "Visualizar clasificaciones con número de grupos\n\nplot(hc, hang=-1)\nrect.hclust(hc, k=4)"
   },
   {
     "objectID": "AEMER-3_Analisis_multivariante.html#extraer-grupos",
@@ -770,25 +770,46 @@
     "text": "Extraer grupos\nEn ocasiones es interesante extraer la asignación de cada sitio a un grupo\nPara ello podemos usar la función cutree\n\ngrp &lt;- cutree(hc, h=0.7)\ngrp &lt;- cutree(hc, k=4)\ngrp\n\n Site_1  Site_2  Site_3  Site_4  Site_5  Site_6  Site_7  Site_8  Site_9 Site_10 \n      1       1       1       2       2       3       2       3       4       4 \nSite_11 Site_12 Site_13 Site_14 Site_15 Site_16 Site_17 Site_18 Site_19 Site_20 \n      4       4       4       4       2       2       4       2       2       2"
   },
   {
-    "objectID": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-1",
-    "href": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-1",
+    "objectID": "AEMER-3_Analisis_multivariante.html#dibujar-agrupamientos-sobre-los-gráficos-de-ordenación",
+    "href": "AEMER-3_Analisis_multivariante.html#dibujar-agrupamientos-sobre-los-gráficos-de-ordenación",
     "title": "Análisis multivariante en R",
-    "section": "Combinar ordenación y agrupamientos",
-    "text": "Combinar ordenación y agrupamientos\nPara ello usamos la función ordihull\n\nplot(ord, display=\"sites\")\nordihull(ord, grp, lty=2, col=\"red\")"
+    "section": "Dibujar agrupamientos sobre los gráficos de ordenación",
+    "text": "Dibujar agrupamientos sobre los gráficos de ordenación\nPara ello usamos la función ordihull\n\nplot(com_ca, display=\"sites\")\nordihull(com_ca, grp, lty=2, col=\"red\")"
   },
   {
-    "objectID": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-2",
-    "href": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-2",
+    "objectID": "AEMER-3_Analisis_multivariante.html#hay-más-opciones",
+    "href": "AEMER-3_Analisis_multivariante.html#hay-más-opciones",
     "title": "Análisis multivariante en R",
-    "section": "Combinar ordenación y agrupamientos",
-    "text": "Combinar ordenación y agrupamientos\nTambién se pueden usar las funciones ordispider y ordiellipse\n\nplot(ord, display=\"sites\")\nordispider(ord, grp, lty=2, col=\"red\")"
+    "section": "Hay más opciones…",
+    "text": "Hay más opciones…\nTambién se pueden usar las funciones ordispider y ordiellipse\n\nplot(com_ca, display=\"sites\")\nordispider(com_ca, grp, lty=2, col=\"red\")"
   },
   {
-    "objectID": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-3",
-    "href": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-3",
+    "objectID": "AEMER-3_Analisis_multivariante.html#que-elegirás-en-función-de-tu-necesidad",
+    "href": "AEMER-3_Analisis_multivariante.html#que-elegirás-en-función-de-tu-necesidad",
     "title": "Análisis multivariante en R",
-    "section": "Combinar ordenación y agrupamientos",
-    "text": "Combinar ordenación y agrupamientos\nPara ello usamos las funciones ordispider y ordiellipse\n\nplot(ord, display=\"sites\")\nordiellipse(ord, grp, lty=2, col=\"red\")\n\n\n\n\n\n\n\nAEMeR"
+    "section": "… que elegirás en función de tu necesidad",
+    "text": "… que elegirás en función de tu necesidad\nPara ello usamos las funciones ordispider y ordiellipse\n\nplot(com_ca, display=\"sites\")\nordiellipse(com_ca, grp, lty=2, col=\"red\")\n\n\n\n\n\n\n\nAEMeR"
+  },
+  {
+    "objectID": "AEMER-3_Ejercicios.html",
+    "href": "AEMER-3_Ejercicios.html",
+    "title": "Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad",
+    "section": "",
+    "text": "Nota\n\n\n\nLos ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre ejercicios_t3_[nombre]_[apellido].R. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla # delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la #) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandármelos por email.\n\n# Ejercicio 1.\n# Parte 1\nseq(1, 40, by = 2)\n\n# Parte 2\nseq(1, 40, by = -2)\n# Este código da error porque especifiqué algo mal :)"
+  },
+  {
+    "objectID": "AEMER-3_Ejercicios.html#funciones-útiles",
+    "href": "AEMER-3_Ejercicios.html#funciones-útiles",
+    "title": "Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad",
+    "section": "Funciones útiles",
+    "text": "Funciones útiles\nvect()\nSe usa para generar o leer datos vectoriales. Es muy flexible en su forma de funcionar, por lo que tendrás que leer bien la documentación para ver que argumentos necesita."
+  },
+  {
+    "objectID": "AEMER-3_Ejercicios.html#ejercicios",
+    "href": "AEMER-3_Ejercicios.html#ejercicios",
+    "title": "Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad",
+    "section": "Ejercicios",
+    "text": "Ejercicios\n1. Carga los datos que os he dejado en la página web (muchas gracias Michelle :). Se trata de dos tablas de excel. Una con variables abióticas (ambiente) y otra de variables bióticas (especies) tomados en las zonas de desembocaduras de varios ríos entre Bahía Blanca y Mar de Plata. A la primera llámala env y a la segunda llámala com.\n\n\nSolución (no mirar de primeras)\nlibrary(xlsx)\ncom &lt;- read.xlsx(\"data/sciberras_especies.xlsx\", 1)\nenv &lt;- read.xlsx(\"data/sciberras_ambiente.xlsx\", 1)"
   },
   {
     "objectID": "index.html",
