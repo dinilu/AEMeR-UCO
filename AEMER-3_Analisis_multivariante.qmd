@@ -10,144 +10,91 @@ format:
     footer: "[AEMeR](https://dnietolugilde.com/AEMeR)"
     scrollable: true
     chalkboard: true
+include-in-header: 
+  text: |
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 editor: source
 ---
 
 # Preparación de datos
 
-## Análisis multivariante necesitan **datos tabulados**
+## Análisis multivariante usa **datos tabulados**
 
-   .      | sp_1 | sp_2 |  ... | sp_3 
-:--------:|:----:|:----:|:----:|:----:
-**site_1**|   1  |   0  |  ... |   1  
-**site_2**|   0  |   0  |  ... |   1  
-**...**   |  ... |  ... |  ... |  ... 
-**site_n**|   0  |   1  |  ... |   1  
+|            | sp_1 | sp_2 | ... | sp_n |
+|:----------:|:----:|:----:|:---:|:----:|
+| **site_1** |  1   |  0   | ... |  1   |
+| **site_2** |  0   |  0   | ... |  1   |
+|  **...**   | ...  | ...  | ... | ...  |
+| **site_n** |  0   |  1   | ... |  1   |
 
-: Matriz de comunidades (sitios x especies) {.striped .sm}
+: Matriz de comunidades (sitios x especies) {.table}
 
-## Cargando de datos en R 
+## También los datos de las variables ambientales
 
-```{r}
-#| echo: true
+|            | v_1 | v_2 | ... | v_n |
+|:----------:|:---:|:---:|:---:|:---:|
+| **site_1** |  1  |  0  | ... |  1  |
+| **site_2** |  0  |  0  | ... |  1  |
+|  **...**   | ... | ... | ... | ... |
+| **site_n** |  0  |  1  | ... |  1  |
 
-comm <- read.csv2("data/Inventarios.csv", header=T)
-head(comm)
-```
+: Matriz de variables (sitios x variables) {.table}
 
-
-## Nombre de las especies
-
-Los gráficos se pueden saturar con nombres de especies y sitios largos
-
-> - Si la identidad es irrelevante: **usar nombres genéricos** 
->   - Quercus ilex: SP_1
-> - Si la identidad de la especie es relevante: **acortar**
->   - Quercus ilex: Q_ILEX
-> - Cornell Ecology Program (CEP) proporciona una abreviatura estandarizada:
->   - 8 caracteres: 4 primeros del género y 4 de la especie:
->   - Quercus ilex: QUERILEX
-  
-  
-## Dominancia-abundancia de Braun-Blanquet 
-
- Índice Braun-Blanquet | Valor de Van deer Maarel | 
-:----------:|:-----:|
-ausencia | 0 |
-r | 1 |
-+ | 2 | 
-1 | 3 |
-2m | 4 |
-2a | 5 |
-2b | 6 |
-3 | 7 |
-4 | 8 |
-5 | 9 |
-Table: Transformación estandarización de Van deer Maarel
-
-## Datos de presencia-ausencia
-
-Los datos de presencia-ausencia suelen ser más fiables que los de abundacia o cobertura
- 
-> - Transformar los datos en presencia-ausencia
-
-```{r, eval=FALSE}
-#| echo: true
-#| output: false
-
-ifelse(comm > 0, 1, 0)
-```
-
-## Datos de presencia-ausencia
+## Cargando de datos en R
 
 ```{r}
 #| echo: true
 
-pres <- ifelse(comm > 0, 1, 0)
+library(xlsx)
+com <- read.xlsx("data/Inventarios.xlsx", sheetIndex = 1, row.names = 1)
+head(com)
+
+env <- read.xlsx("data/Variables.xlsx", sheetIndex = 1, row.names = 1)
+head(env)
+
+```
+
+## Los nombres de especies largos pueden saturar los gráficos 
+
+-   Si la identidad es irrelevante: **usar nombres genéricos**
+    -   Quercus ilex: SP_1
+-   Si la identidad de la especie es relevante: **acortar**
+    -   Quercus ilex: Q_ILEX
+-   Cornell Ecology Program (CEP) proporciona una abreviatura estandarizada:
+    -   8 caracteres: 4 primeros del género y 4 de la especie:
+    -   Quercus ilex: QUERILEX
+
+
+## Transformación de valores de dominancia-abundancia
+
+| Índice Braun-Blanquet | Valor de Van deer Maarel |
+|:---------------------:|:------------------------:|
+|       ausencia        |            0             |
+|           r           |            1             |
+|          \+           |            2             |
+|           1           |            3             |
+|          2m           |            4             |
+|          2a           |            5             |
+|          2b           |            6             |
+|           3           |            7             |
+|           4           |            8             |
+|           5           |            9             |
+: {.table .table-striped .sm}
+
+
+## Datos de presencia-ausencia
+
+Los análisis con datos de presencia-ausencia suelen ser más robustos que los de abundancia o cobertura
+
+```{r}
+#| echo: true
+
+pres <- ifelse(com > 0, 1, 0)
 head(pres)
 ```
 
-# Análisis de ordenación
-
-Tratan de reducir la multidimensionalidad (número de especies) a los dos ejes que muestran más variabilidad
-
-> Ejemplos en pizarra con 1 y 2 especies...
-
-## Técnicas de ordenación
-
-Hay numerosas técnicas:
-
-> - Análisis de componentes principales (PCA)
->   - Basado en distancia euclídea y respuesta lineal
-> - Análisis de correspondencia (CA)
->   - Basado en $X^2^ y respuesta unimodal
-> - Análisis de correspondencia segmentado (DCA)
->   - Como el CA, pero elimina tendencias curvilineas cuando analizamos gradientes muy grandes
-
-
-## Análisis de correspondencia (CA) en R
-
-Se usa la función `cca`
-
-```{r}
-#| echo: true
-
-library(vegan)
-ord <- cca(comm)
-ord
-```
-
-## Visualizar ordenación
-
-Una vez realizado el análisis es interesante observar como se disponen especies y sitios en el espacio bidimensional
-
-
-## Visualizar ordenación en R
-
-Para ello usamos la función `plot` sobre un objeto de ordenación
-
-```{r}
-#| echo: true
-
-plot(ord)
-```
-
-
-## Gráficos sobrecargados
-
-Representar solo 'especies' o 'sitios' con el argumento `display`
-
-```{r}
-#| echo: true
-
-plot(ord, display="sites")
-plot(ord, display="species")
-```
-
-
-# Análisis de clasificación
-
-## Clasificación en R
+# Análisis de ordenación en R
 
 Para el análisis de vegetación en R hay un paquete muy útil: `vegan`
 
@@ -159,38 +106,152 @@ Para el análisis de vegetación en R hay un paquete muy útil: `vegan`
 library(vegan)
 ```
 
-## 2. Medida de disimilitud
+## Análisis de componentes principales (PCA)
+
+Aunque parezca confuso, se usa la función `rda`.
+
+::: callout-note
+Así se juntan la aproximación *unconstrained* y su equivalente *constrained* en la misma función. Si se especifican variables ambientales se ejecuta la versión *constrained*. Si no se especifican se ejecuta la versión *unconstrained*.
+:::
+
+```{r}
+#| echo: true
+
+library(vegan)
+com_pca <- rda(com)
+com_pca
+```
+
+
+## Análisis de redundancia (RDA)
+
+```{r}
+#| echo: true
+
+com_rda <- rda(com, env)
+com_rda
+```
+
+
+## Análisis de correspondencia (CA)
+
+Aunque parezca confuso, para CA y CCA se usa la función `cca`.
+
+::: callout-note
+Así se juntan la aproximación *unconstrained* y su equivalente *constrained* en la misma función. Si se especifican variables ambientales se ejecuta la versión *constrained*. Si no se especifican se ejecuta la versión *unconstrained*.
+:::
+
+```{r}
+#| echo: true
+
+com_ca <- cca(com)
+com_ca
+```
+
+
+## Análisis de correspondencia sin tendencia (DCA)
+
+Para DCA se usa la función `decorana`
+
+```{r}
+#| echo: true
+
+com_dca <- decorana(com)
+com_dca
+```
+
+
+## Análisis de correspondencia canónica (CCA)
+
+```{r}
+#| echo: true
+
+com_cca <- cca(com, env)
+com_cca
+```
+
+
+## PCA basado en transformaciones
+
+Para ello se transforman los datos con la función `decostand`
+
+```{r}
+#| echo: true
+
+com_hel <- decostand(com, 'hellinger')
+
+com_tbpca <- rda(com_hel)
+com_tbpca
+```
+
+
+## PCA basado en transformaciones
+
+Para ello se transforman los datos con la función `decostand`
+
+```{r}
+#| echo: true
+
+com_tbrda <- rda(com_hel, env)
+com_tbrda
+```
+
+
+## Visualizar ordenación
+
+Es interesante observar como se disponen especies y sitios en el espacio bidimensional. 
+
+Para ello usamos la función `plot` sobre cualquiera de los objetos de ordenación.
+
+```{r}
+#| echo: true
+
+plot(com_ca)
+```
+
+
+## ¿Gráficos sobrecargados?
+
+Puedes representar solo 'especies' o 'sitios' con el argumento `display`
+
+```{r}
+#| echo: true
+
+plot(com_ca, display = "sites")
+plot(com_ca, display = "species")
+```
+
+
+# Análisis de clasificación en R
+
+## Medida de disimilitud
 
 Para calcular la disimilitud entre todos los 'sitios' usamos la función `vegdist`
 
 ```{r}
 #| echo: true
 
-dist <- vegdist(comm)
+dist <- vegdist(com)
 dist
 ```
-
 
 ## Tipos de distancias
 
 La disimilitud entre 'sitios' se puede calcular de varias maneras: `euclidean`, `manhattan`, `gower`, `canberra`, `bray`, `jaccard`...
 
-
-## Tipos de distancias en R
-
-Para especificar el tipo de medida en la función `vegdist` usamos el argumento `method`
+Para ello usamos el argumento `method`
 
 ```{r}
 #| echo: true
 
-dist <- vegdist(comm, method="euclidean")
-dist <- vegdist(comm, method="bray")
-dist <- vegdist(comm, method="jaccard")
-dist
+dist <- vegdist(com, method="euclidean")
+dist <- vegdist(com, method="bray")
+dist <- vegdist(com, method="jaccard")
+head(dist)
 ```
 
 
-## 3. Clasificación jerárquica
+## Clasificación jerárquica
 
 Para ello usamos la función `hclust` sobre la matriz de distancias
 
@@ -206,9 +267,7 @@ hc
 
 Métodos para realizar la agrupación hay varios: `single`, `complete`, `average`, `centroid`...
 
-## Métodos de agrupación
-
-Para especificar el tipo de agrupación en la función `hclust` usamos el argumento `method`.
+Especificamos el método con el argumento `method`.
 
 ```{r}
 #| echo: true
@@ -220,12 +279,10 @@ hc <- hclust(dist, method="complete")
 hc
 ```
 
+
 ## Visualizar clasificaciones
 
 Las clasificaciones jerárquicas se pueden visualizar como un árbol filogenético con la función `plot`
-
-
-## Visualizar clasificaciones en R
 
 ```{r}
 #| echo: true
@@ -233,14 +290,22 @@ Las clasificaciones jerárquicas se pueden visualizar como un árbol filogenéti
 plot(hc, hang=-1)
 ```
 
-## 4. Interpretación
+
+## Interpretación
 
 Establecer grupos en un árbol no es siempre trivial
 
-> - Se puede usar un umbral para determinar los grupos
-> - O establecer un número determinado de grupos
+-   Se puede usar un umbral para determinar los grupos
+-   O establecer un número determinado de grupos
 
-## Visualizar clasificaciones en R con un umbral
+```{r}
+#| echo: false
+
+plot(hc, hang=-1)
+```
+
+
+## Visualizar clasificaciones con un umbral
 
 ```{r}
 #| echo: true
@@ -249,7 +314,8 @@ plot(hc, hang=-1)
 rect.hclust(hc, h=0.7)
 ```
 
-## Visualizar clasificaciones en R con número de grupos
+
+## Visualizar clasificaciones con número de grupos
 
 ```{r}
 #| echo: true
@@ -257,6 +323,7 @@ rect.hclust(hc, h=0.7)
 plot(hc, hang=-1)
 rect.hclust(hc, k=4)
 ```
+
 
 ## Extraer grupos
 
@@ -272,39 +339,38 @@ grp <- cutree(hc, k=4)
 grp
 ```
 
+
 # Combinar ordenación y agrupamientos
 
-## Combinar ordenación y agrupamientos
+## Dibujar agrupamientos sobre los gráficos de ordenación
 
 Para ello usamos la función `ordihull`
 
 ```{r}
 #| echo: true
 
-plot(ord, display="sites")
-ordihull(ord, grp, lty=2, col="red")
+plot(com_ca, display="sites")
+ordihull(com_ca, grp, lty=2, col="red")
 ```
 
-## Combinar ordenación y agrupamientos
+## Hay más opciones...
 
-También se pueden usar las funciones `ordispider` y `ordiellipse` 
+También se pueden usar las funciones `ordispider` y `ordiellipse`
 
 ```{r}
 #| echo: true
 
-plot(ord, display="sites")
-ordispider(ord, grp, lty=2, col="red")
+plot(com_ca, display="sites")
+ordispider(com_ca, grp, lty=2, col="red")
 ```
 
-## Combinar ordenación y agrupamientos
+## ... que elegirás en función de tu necesidad
 
-Para ello usamos las funciones `ordispider` y `ordiellipse` 
+Para ello usamos las funciones `ordispider` y `ordiellipse`
 
 ```{r}
 #| echo: true
 
-plot(ord, display="sites")
-ordiellipse(ord, grp, lty=2, col="red")
+plot(com_ca, display="sites")
+ordiellipse(com_ca, grp, lty=2, col="red")
 ```
-
-
