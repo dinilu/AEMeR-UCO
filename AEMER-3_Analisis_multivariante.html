@@ -575,6 +575,79 @@ Site_6    0    1    0    1    1    0</code></pre>
 </div>
 </section></section>
 <section>
+<section id="análisis-de-ordenación" class="title-slide slide level1 center">
+<h1>Análisis de ordenación</h1>
+<p>Tratan de reducir la multidimensionalidad (número de especies) a los dos ejes que muestran más variabilidad</p>
+<blockquote>
+<p>Ejemplos en pizarra con 1 y 2 especies…</p>
+</blockquote>
+</section>
+<section id="técnicas-de-ordenación" class="slide level2">
+<h2>Técnicas de ordenación</h2>
+<p>Hay numerosas técnicas:</p>
+<ul>
+<li class="fragment">Análisis de componentes principales (PCA)
+<ul>
+<li class="fragment">Basado en distancia euclídea y respuesta lineal</li>
+</ul></li>
+<li class="fragment">Análisis de correspondencia (CA)
+<ul>
+<li class="fragment">Basado en $X<sup>2</sup> y respuesta unimodal</li>
+</ul></li>
+<li class="fragment">Análisis de correspondencia segmentado (DCA)
+<ul>
+<li class="fragment">Como el CA, pero elimina tendencias curvilineas cuando analizamos gradientes muy grandes</li>
+</ul></li>
+</ul>
+</section>
+<section id="análisis-de-correspondencia-ca-en-r" class="slide level2">
+<h2>Análisis de correspondencia (CA) en R</h2>
+<p>Se usa la función <code>cca</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>ord <span class="ot">&lt;-</span> <span class="fu">cca</span>(comm)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>ord</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: cca(X = comm)
+
+              Inertia Rank
+Total           1.336     
+Unconstrained   1.336    5
+Inertia is scaled Chi-square 
+
+Eigenvalues for unconstrained axes:
+   CA1    CA2    CA3    CA4    CA5 
+0.5359 0.3371 0.3013 0.1014 0.0600 </code></pre>
+</div>
+</div>
+</section>
+<section id="visualizar-ordenación" class="slide level2">
+<h2>Visualizar ordenación</h2>
+<p>Una vez realizado el análisis es interesante observar como se disponen especies y sitios en el espacio bidimensional</p>
+</section>
+<section id="visualizar-ordenación-en-r" class="slide level2">
+<h2>Visualizar ordenación en R</h2>
+<p>Para ello usamos la función <code>plot</code> sobre un objeto de ordenación</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">plot</span>(ord)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="gráficos-sobrecargados" class="slide level2">
+<h2>Gráficos sobrecargados</h2>
+<p>Representar solo ‘especies’ o ‘sitios’ con el argumento <code>display</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">plot</span>(ord, <span class="at">display=</span><span class="st">"sites"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">plot</span>(ord, <span class="at">display=</span><span class="st">"species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-6-2.png" width="960"></p>
+</div>
+</div>
+</section></section>
+<section>
 <section id="análisis-de-clasificación" class="title-slide slide level1 center">
 <h1>Análisis de clasificación</h1>
 
@@ -583,16 +656,16 @@ Site_6    0    1    0    1    1    0</code></pre>
 <h2>Clasificación en R</h2>
 <p>Para el análisis de vegetación en R hay un paquete muy útil: <code>vegan</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#install.packages("vegan")</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">library</span>(vegan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">#install.packages("vegan")</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">library</span>(vegan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="medida-de-disimilitud" class="slide level2">
 <h2>2. Medida de disimilitud</h2>
 <p>Para calcular la disimilitud entre todos los ‘sitios’ usamos la función <code>vegdist</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(comm)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(comm)</span>
+<span id="cb12-2"><a href="#cb12-2"></a>dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Site_1     Site_2     Site_3     Site_4     Site_5     Site_6
 Site_2  0.14285714                                                       
@@ -685,10 +758,10 @@ Site_20 0.30434783</code></pre>
 <h2>Tipos de distancias en R</h2>
 <p>Para especificar el tipo de medida en la función <code>vegdist</code> usamos el argumento <code>method</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(comm, <span class="at">method=</span><span class="st">"euclidean"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2"></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(comm, <span class="at">method=</span><span class="st">"bray"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(comm, <span class="at">method=</span><span class="st">"jaccard"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a>dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(comm, <span class="at">method=</span><span class="st">"euclidean"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2"></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(comm, <span class="at">method=</span><span class="st">"bray"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3"></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(comm, <span class="at">method=</span><span class="st">"jaccard"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4"></a>dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           Site_1    Site_2    Site_3    Site_4    Site_5    Site_6    Site_7
 Site_2  0.2500000                                                            
@@ -757,8 +830,8 @@ Site_20 0.4166667 0.3636364 0.7142857 0.1666667 0.4666667</code></pre>
 <h2>3. Clasificación jerárquica</h2>
 <p>Para ello usamos la función <code>hclust</code> sobre la matriz de distancias</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>hc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist)</span>
+<span id="cb16-2"><a href="#cb16-2"></a>hc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -778,11 +851,11 @@ Number of objects: 20 </code></pre>
 <h2>Métodos de agrupación</h2>
 <p>Para especificar el tipo de agrupación en la función <code>hclust</code> usamos el argumento <code>method</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"single"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2"></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"centroid"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3"></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"average"</span>)</span>
-<span id="cb13-4"><a href="#cb13-4"></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"complete"</span>)</span>
-<span id="cb13-5"><a href="#cb13-5"></a>hc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"single"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2"></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"centroid"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3"></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"average"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4"></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"complete"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5"></a>hc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -801,10 +874,10 @@ Number of objects: 20 </code></pre>
 <section id="visualizar-clasificaciones-en-r" class="slide level2">
 <h2>Visualizar clasificaciones en R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
 <section id="interpretación" class="slide level2">
 <h2>4. Interpretación</h2>
 <p>Establecer grupos en un árbol no es siempre trivial</p>
@@ -816,27 +889,27 @@ Number of objects: 20 </code></pre>
 <section id="visualizar-clasificaciones-en-r-con-un-umbral" class="slide level2">
 <h2>Visualizar clasificaciones en R con un umbral</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>) </span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">rect.hclust</span>(hc, <span class="at">h=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>) </span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">rect.hclust</span>(hc, <span class="at">h=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
 <section id="visualizar-clasificaciones-en-r-con-número-de-grupos" class="slide level2">
 <h2>Visualizar clasificaciones en R con número de grupos</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">rect.hclust</span>(hc, <span class="at">k=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">rect.hclust</span>(hc, <span class="at">k=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
 <section id="extraer-grupos" class="slide level2">
 <h2>Extraer grupos</h2>
 <p>En ocasiones es interesante extraer la asignación de cada sitio a un grupo</p>
 <p>Para ello podemos usar la función <code>cutree</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>grp <span class="ot">&lt;-</span> <span class="fu">cutree</span>(hc, <span class="at">h=</span><span class="fl">0.7</span>)</span>
-<span id="cb18-2"><a href="#cb18-2"></a>grp <span class="ot">&lt;-</span> <span class="fu">cutree</span>(hc, <span class="at">k=</span><span class="dv">4</span>)</span>
-<span id="cb18-3"><a href="#cb18-3"></a>grp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>grp <span class="ot">&lt;-</span> <span class="fu">cutree</span>(hc, <span class="at">h=</span><span class="fl">0.7</span>)</span>
+<span id="cb23-2"><a href="#cb23-2"></a>grp <span class="ot">&lt;-</span> <span class="fu">cutree</span>(hc, <span class="at">k=</span><span class="dv">4</span>)</span>
+<span id="cb23-3"><a href="#cb23-3"></a>grp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Site_1  Site_2  Site_3  Site_4  Site_5  Site_6  Site_7  Site_8  Site_9 Site_10 
       1       1       1       2       2       3       2       3       4       4 
@@ -846,78 +919,11 @@ Site_11 Site_12 Site_13 Site_14 Site_15 Site_16 Site_17 Site_18 Site_19 Site_20
 </div>
 </section></section>
 <section>
-<section id="análisis-de-ordenación" class="title-slide slide level1 center">
-<h1>Análisis de ordenación</h1>
-<p>Tratan de reducir la multidimensionalidad (número de especies) a los dos ejes que muestran más variabilidad</p>
-<blockquote>
-<p>Ejemplos en pizarra con 1 y 2 especies…</p>
-</blockquote>
-</section>
-<section id="técnicas-de-ordenación" class="slide level2">
-<h2>Técnicas de ordenación</h2>
-<p>Hay numerosas técnicas:</p>
-<ul>
-<li class="fragment">Análisis de componentes principales (PCA)
-<ul>
-<li class="fragment">Basado en distancia euclídea y respuesta lineal</li>
-</ul></li>
-<li class="fragment">Análisis de correspondencia (CA)
-<ul>
-<li class="fragment">Basado en $X<sup>2</sup> y respuesta unimodal</li>
-</ul></li>
-<li class="fragment">Análisis de correspondencia segmentado (DCA)
-<ul>
-<li class="fragment">Como el CA, pero elimina tendencias curvilineas cuando analizamos gradientes muy grandes</li>
-</ul></li>
-</ul>
-</section>
-<section id="análisis-de-correspondencia-ca-en-r" class="slide level2">
-<h2>Análisis de correspondencia (CA) en R</h2>
-<p>Se usa la función <code>cca</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">cca</span>(comm)</span>
-<span id="cb20-2"><a href="#cb20-2"></a>ord</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Call: cca(X = comm)
+<section id="combinar-ordenación-y-agrupamientos" class="title-slide slide level1 center">
+<h1>Combinar ordenación y agrupamientos</h1>
 
-              Inertia Rank
-Total           1.336     
-Unconstrained   1.336    5
-Inertia is scaled Chi-square 
-
-Eigenvalues for unconstrained axes:
-   CA1    CA2    CA3    CA4    CA5 
-0.5359 0.3371 0.3013 0.1014 0.0600 </code></pre>
-</div>
-</div>
 </section>
-<section id="visualizar-ordenación" class="slide level2">
-<h2>Visualizar ordenación</h2>
-<p>Una vez realizado el análisis es interesante observar como se disponen especies y sitios en el espacio bidimensional</p>
-</section>
-<section id="visualizar-ordenación-en-r" class="slide level2">
-<h2>Visualizar ordenación en R</h2>
-<p>Para ello usamos la función <code>plot</code> sobre un objeto de ordenación</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">plot</span>(ord)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
-<section id="gráficos-sobrecargados" class="slide level2">
-<h2>Gráficos sobrecargados</h2>
-<p>Representar solo ‘especies’ o ‘sitios’ con el argumento <code>display</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">plot</span>(ord, <span class="at">display=</span><span class="st">"sites"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
-</div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">plot</span>(ord, <span class="at">display=</span><span class="st">"species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-15-2.png" width="960"></p>
-</div>
-</div>
-</section>
-<section id="combinar-ordenación-y-agrupamientos" class="slide level2">
+<section id="combinar-ordenación-y-agrupamientos-1" class="slide level2">
 <h2>Combinar ordenación y agrupamientos</h2>
 <p>Para ello usamos la función <code>ordihull</code></p>
 <div class="cell">
@@ -926,7 +932,7 @@ Eigenvalues for unconstrained axes:
 
 </div>
 <img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
-<section id="combinar-ordenación-y-agrupamientos-1" class="slide level2">
+<section id="combinar-ordenación-y-agrupamientos-2" class="slide level2">
 <h2>Combinar ordenación y agrupamientos</h2>
 <p>También se pueden usar las funciones <code>ordispider</code> y <code>ordiellipse</code></p>
 <div class="cell">
@@ -935,7 +941,7 @@ Eigenvalues for unconstrained axes:
 
 </div>
 <img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
-<section id="combinar-ordenación-y-agrupamientos-2" class="slide level2">
+<section id="combinar-ordenación-y-agrupamientos-3" class="slide level2">
 <h2>Combinar ordenación y agrupamientos</h2>
 <p>Para ello usamos las funciones <code>ordispider</code> y <code>ordiellipse</code></p>
 <div class="cell">

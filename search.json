@@ -151,7 +151,7 @@
     "href": "AEMER-2_Analisis_espacial.html#la-ubicación-sola-no-es-muy-interesante",
     "title": "Análisis de datos espaciales en R",
     "section": "La ubicación sola no es muy interesante…",
-    "text": "La ubicación sola no es muy interesante…\nVoy a simular valores de precipitación al azar (sample), un valor para cada punto\n\nprecipvalue &lt;- sample(1:100, 10)\ndf &lt;- data.frame(ID = 1:nrow(lonlat), \n                 precip = precipvalue)\npts &lt;- vect(lonlat, atts = df, crs = crdref)\npts\n\n class       : SpatVector \n geometry    : points \n dimensions  : 10, 2  (geometries, attributes)\n extent      : -120.8, -110.7, 35.7, 45.3  (xmin, xmax, ymin, ymax)\n coord. ref. : +proj=longlat +datum=WGS84 +no_defs \n names       :    ID precip\n type        : &lt;int&gt;  &lt;int&gt;\n values      :     1     12\n                   2     80\n                   3     82"
+    "text": "La ubicación sola no es muy interesante…\nVoy a simular valores de precipitación al azar (sample), un valor para cada punto\n\nprecipvalue &lt;- sample(1:100, 10)\ndf &lt;- data.frame(ID = 1:nrow(lonlat), \n                 precip = precipvalue)\npts &lt;- vect(lonlat, atts = df, crs = crdref)\npts\n\n class       : SpatVector \n geometry    : points \n dimensions  : 10, 2  (geometries, attributes)\n extent      : -120.8, -110.7, 35.7, 45.3  (xmin, xmax, ymin, ymax)\n coord. ref. : +proj=longlat +datum=WGS84 +no_defs \n names       :    ID precip\n type        : &lt;int&gt;  &lt;int&gt;\n values      :     1     61\n                   2     97\n                   3     10"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#veamos-las-precipitaciones-en-su-contexto-espacial",
@@ -270,7 +270,7 @@
     "href": "AEMER-2_Analisis_espacial.html#podemos-crear-datos-ráster-desde-cero",
     "title": "Análisis de datos espaciales en R",
     "section": "Podemos crear datos ráster desde cero",
-    "text": "Podemos crear datos ráster desde cero\n\nr &lt;- rast(ncol = 10, nrow = 10, \n          xmin = -150, xmax = -80, \n          ymin = 20, ymax = 60)\nvalues(r) &lt;- runif(ncell(r))\nr\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nname        :      lyr.1 \nmin value   : 0.01769024 \nmax value   : 0.99512654"
+    "text": "Podemos crear datos ráster desde cero\n\nr &lt;- rast(ncol = 10, nrow = 10, \n          xmin = -150, xmax = -80, \n          ymin = 20, ymax = 60)\nvalues(r) &lt;- runif(ncell(r))\nr\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nname        :       lyr.1 \nmin value   : 0.001228657 \nmax value   : 0.974688977"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#veamos-que-aspecto-tienen",
@@ -291,7 +291,7 @@
     "href": "AEMER-2_Analisis_espacial.html#si-trabajamos-con-muchas-capas-mejor-crear-un-objeto-multicapa",
     "title": "Análisis de datos espaciales en R",
     "section": "Si trabajamos con muchas capas, mejor crear un objeto multicapa",
-    "text": "Si trabajamos con muchas capas, mejor crear un objeto multicapa\n\nstck &lt;- c(r, r2, r3)\nstck\n\nclass       : SpatRaster \ndimensions  : 10, 10, 3  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nnames       :      lyr.1,        lyr.1,     lyr.1 \nmin values  : 0.01769024, 0.0003129445, 0.1330047 \nmax values  : 0.99512654, 0.9902768257, 0.9975603"
+    "text": "Si trabajamos con muchas capas, mejor crear un objeto multicapa\n\nstck &lt;- c(r, r2, r3)\nstck\n\nclass       : SpatRaster \ndimensions  : 10, 10, 3  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nnames       :       lyr.1,        lyr.1,     lyr.1 \nmin values  : 0.001228657, 1.509598e-06, 0.0350522 \nmax values  : 0.974688977, 9.500186e-01, 0.9872634"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#veamos-que-aspecto-tiene-el-objeto-multicapa",
@@ -305,7 +305,7 @@
     "href": "AEMER-2_Analisis_espacial.html#también-se-pueden-extraer-capas-de-objetos-multicapa",
     "title": "Análisis de datos espaciales en R",
     "section": "También se pueden extraer capas de objetos multicapa",
-    "text": "También se pueden extraer capas de objetos multicapa\n\nr2 &lt;- stck[[2]]\nr2\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nname        :        lyr.1 \nmin value   : 0.0003129445 \nmax value   : 0.9902768257"
+    "text": "También se pueden extraer capas de objetos multicapa\n\nr2 &lt;- stck[[2]]\nr2\n\nclass       : SpatRaster \ndimensions  : 10, 10, 1  (nrow, ncol, nlyr)\nresolution  : 7, 4  (x, y)\nextent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)\ncoord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) \nsource(s)   : memory\nname        :        lyr.1 \nmin value   : 1.509598e-06 \nmax value   : 9.500186e-01"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#como-antes-lo-normal-es-cargar-datos-generados-en-sig",
@@ -340,7 +340,7 @@
     "href": "AEMER-2_Analisis_espacial.html#los-datos-ráster-también-se-pueden-proyectar",
     "title": "Análisis de datos espaciales en R",
     "section": "Los datos ráster también se pueden proyectar",
-    "text": "Los datos ráster también se pueden proyectar\n\ntavg_utm19s &lt;- project(tavg, \"EPSG:32719\")\n\n\n|---------|---------|---------|---------|\n=========================================\n                                          \n\ntavg_utm19s\n\nclass       : SpatRaster \ndimensions  : 4455, 2454, 12  (nrow, ncol, nlyr)\nresolution  : 871.5251, 871.5251  (x, y)\nextent      : -18378.29, 2120344, 3739870, 7622514  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \nsource      : spat_5cbc474133d_23740.tif \nnames       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... \nmin values  :   -10.05951,   -10.72017,    -11.4837,   -13.54722,   -15.83121,   -19.14115, ... \nmax values  :    29.20000,    28.40000,     27.3000,    25.00000,    22.20000,    20.97471, ..."
+    "text": "Los datos ráster también se pueden proyectar\n\ntavg_utm19s &lt;- project(tavg, \"EPSG:32719\")\n\n\n|---------|---------|---------|---------|\n=========================================\n                                          \n\ntavg_utm19s\n\nclass       : SpatRaster \ndimensions  : 4455, 2454, 12  (nrow, ncol, nlyr)\nresolution  : 871.5251, 871.5251  (x, y)\nextent      : -18378.29, 2120344, 3739870, 7622514  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \nsource      : spat_1ebc9b445d1_7868.tif \nnames       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... \nmin values  :    -10.0642,   -10.73793,   -11.50063,   -13.56332,   -15.83558,   -19.14522, ... \nmax values  :     29.2000,    28.40000,    27.30000,    25.00000,    22.20000,    20.98165, ..."
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#ahora-las-coordenadas-si-aparecen-desplazadas",
@@ -354,7 +354,7 @@
     "href": "AEMER-2_Analisis_espacial.html#para-controlar-el-número-de-pixeles-y-su-resolución-podemos-crear-una-plantilla",
     "title": "Análisis de datos espaciales en R",
     "section": "Para controlar el número de pixeles y su resolución podemos crear una “plantilla”",
-    "text": "Para controlar el número de pixeles y su resolución podemos crear una “plantilla”\n\nplantilla &lt;- rast(tavg_utm19s)\nres(plantilla) &lt;- 800\nplantilla\n\nclass       : SpatRaster \ndimensions  : 4853, 2673, 12  (nrow, ncol, nlyr)\nresolution  : 800, 800  (x, y)\nextent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \n\n\n\ntavg_utm19s_plantilla &lt;- project(tavg, plantilla)\n\n\n|---------|---------|---------|---------|\n=========================================\n                                          \n\ntavg_utm19s_plantilla\n\nclass       : SpatRaster \ndimensions  : 4853, 2673, 12  (nrow, ncol, nlyr)\nresolution  : 800, 800  (x, y)\nextent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \nsource      : spat_5cbc64b422db_23740.tif \nnames       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... \nmin values  :   -10.77633,   -11.47463,   -12.17463,   -14.20292,   -16.40292,   -19.51049, ... \nmax values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.94339, ..."
+    "text": "Para controlar el número de pixeles y su resolución podemos crear una “plantilla”\n\nplantilla &lt;- rast(tavg_utm19s)\nres(plantilla) &lt;- 800\nplantilla\n\nclass       : SpatRaster \ndimensions  : 4853, 2673, 12  (nrow, ncol, nlyr)\nresolution  : 800, 800  (x, y)\nextent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \n\n\n\ntavg_utm19s_plantilla &lt;- project(tavg, plantilla)\n\n\n|---------|---------|---------|---------|\n=========================================\n                                          \n\ntavg_utm19s_plantilla\n\nclass       : SpatRaster \ndimensions  : 4853, 2673, 12  (nrow, ncol, nlyr)\nresolution  : 800, 800  (x, y)\nextent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)\ncoord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) \nsource      : spat_1ebc43bb6f26_7868.tif \nnames       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... \nmin values  :   -10.77633,   -11.47463,   -12.17463,   -14.20292,   -16.40292,   -19.51049, ... \nmax values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.94756, ..."
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#veamos-el-resultado",
@@ -501,14 +501,14 @@
     "href": "AEMER-2_Analisis_espacial.html#veamos-los-valores-de-las-capas-en-los-puntos",
     "title": "Análisis de datos espaciales en R",
     "section": "Veamos los valores de las capas en los puntos",
-    "text": "Veamos los valores de las capas en los puntos\n\npnts_arg &lt;- extract(arg, pnts)\nhead(pnts_arg)\n\n  id.y              NAME_1    GID_1 GID_0   COUNTRY\n1    1             Tucumán ARG.24_1   ARG Argentina\n2    2           Río Negro ARG.16_1   ARG Argentina\n3    3 Santiago del Estero ARG.22_1   ARG Argentina\n4    4             Córdoba  ARG.6_1   ARG Argentina\n5    5    Tierra del Fuego ARG.23_1   ARG Argentina\n6    6             Formosa  ARG.9_1   ARG Argentina\n                        VARNAME_1 NL_NAME_1    TYPE_1 ENGTYPE_1 CC_1 HASC_1\n1                         Tucumão      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.TM\n2                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.RN\n3                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SE\n4                         Cordova      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CB\n5 Feuerland|Terra del Fuoco|Terre      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.TF\n6                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.FM\n  ISO_1 perimetro poblacion\n1  &lt;NA&gt;  814874.3   1731820\n2  &lt;NA&gt; 2829645.1    750768\n3  AR-G 1709915.4   1060906\n4  &lt;NA&gt; 1898966.0   3840905\n5  AR-V 2035550.6    185732\n6  AR-P 1887284.9    607419\n\n\n\npnts_clip &lt;- extract(clip, pnts)\nhead(pnts_clip)\n\n  id.y Zona\n1    1   NA\n2    2    3\n3    3   NA\n4    4    2\n5    5   NA\n6    6   NA"
+    "text": "Veamos los valores de las capas en los puntos\n\npnts_arg &lt;- extract(arg, pnts)\nhead(pnts_arg)\n\n  id.y           NAME_1    GID_1 GID_0   COUNTRY\n1    1       Entre Ríos  ARG.8_1   ARG Argentina\n2    2           Chubut  ARG.4_1   ARG Argentina\n3    3 Tierra del Fuego ARG.23_1   ARG Argentina\n4    4          Mendoza ARG.13_1   ARG Argentina\n5    5            Chaco  ARG.3_1   ARG Argentina\n6    6     Buenos Aires  ARG.1_1   ARG Argentina\n                        VARNAME_1 NL_NAME_1    TYPE_1 ENGTYPE_1 CC_1 HASC_1\n1                      Entre-Rios      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.ER\n2                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH\n3 Feuerland|Terra del Fuoco|Terre      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.TF\n4                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ\n5  El Chaco|Presidente Juan Peron      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CC\n6             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA\n  ISO_1 perimetro poblacion\n1  &lt;NA&gt;   1391963   1425578\n2  AR-U   4072813    592621\n3  AR-V   2035551    185732\n4  AR-M   2160729   2043540\n5  AR-H   1833194   1129606\n6  AR-B   6542993  17523996\n\n\n\npnts_clip &lt;- extract(clip, pnts)\nhead(pnts_clip)\n\n  id.y Zona\n1    1   NA\n2    2    4\n3    3   NA\n4    4    1\n5    5   NA\n6    6    4"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#igual-podemos-hacer-con-respecto-a-los-valores-de-los-píxeles-en-cada-punto-de-un-vectorial",
     "href": "AEMER-2_Analisis_espacial.html#igual-podemos-hacer-con-respecto-a-los-valores-de-los-píxeles-en-cada-punto-de-un-vectorial",
     "title": "Análisis de datos espaciales en R",
     "section": "Igual podemos hacer con respecto a los valores de los píxeles en cada punto de un vectorial",
-    "text": "Igual podemos hacer con respecto a los valores de los píxeles en cada punto de un vectorial\n\npnts_tavg &lt;- extract(tavg, pnts)\nhead(pnts_tavg)\n\n  ID ARG_wc2.1_30s_tavg_1 ARG_wc2.1_30s_tavg_2 ARG_wc2.1_30s_tavg_3\n1  1                 19.3                 18.5                 16.7\n2  2                 19.1                 18.2                 15.1\n3  3                 27.0                 26.0                 23.8\n4  4                 19.9                 18.9                 16.7\n5  5                  8.6                  8.3                  6.7\n6  6                 28.1                 27.5                 25.5\n  ARG_wc2.1_30s_tavg_4 ARG_wc2.1_30s_tavg_5 ARG_wc2.1_30s_tavg_6\n1                 13.6                 10.9                  7.9\n2                 10.4                  6.7                  3.4\n3                 21.0                 17.3                 14.4\n4                 13.2                 10.1                  7.0\n5                  4.7                  2.3                  0.3\n6                 22.6                 19.9                 17.8\n  ARG_wc2.1_30s_tavg_7 ARG_wc2.1_30s_tavg_8 ARG_wc2.1_30s_tavg_9\n1                  8.3                 10.2                 13.1\n2                  3.1                  5.1                  7.7\n3                 14.3                 16.0                 20.0\n4                  6.5                  8.4                 10.9\n5                  0.0                  1.0                  2.7\n6                 17.1                 19.5                 21.4\n  ARG_wc2.1_30s_tavg_10 ARG_wc2.1_30s_tavg_11 ARG_wc2.1_30s_tavg_12\n1                  15.4                  17.7                  18.9\n2                  11.4                  15.1                  17.9\n3                  22.5                  24.8                  26.5\n4                  14.0                  16.7                  19.3\n5                   4.8                   6.7                   7.8\n6                  23.5                  25.1                  27.3\n\n\n\n\n\n\n\n\nWarning\n\n\nFijaros que extrae un valor de cada capa del ráster stack"
+    "text": "Igual podemos hacer con respecto a los valores de los píxeles en cada punto de un vectorial\n\npnts_tavg &lt;- extract(tavg, pnts)\nhead(pnts_tavg)\n\n  ID ARG_wc2.1_30s_tavg_1 ARG_wc2.1_30s_tavg_2 ARG_wc2.1_30s_tavg_3\n1  1                 25.9                 24.7                 22.6\n2  2                 19.8                 19.3                 17.1\n3  3                  8.1                  8.0                  6.7\n4  4                 24.8                 23.3                 20.1\n5  5                 27.2                 26.2                 24.3\n6  6                 23.8                 22.4                 19.1\n  ARG_wc2.1_30s_tavg_4 ARG_wc2.1_30s_tavg_5 ARG_wc2.1_30s_tavg_6\n1                 18.9                 15.9                 13.2\n2                 13.9                 10.2                  7.3\n3                  4.8                  2.5                  0.6\n4                 15.6                 11.2                  7.6\n5                 20.8                 18.0                 15.6\n6                 14.9                 10.9                  7.8\n  ARG_wc2.1_30s_tavg_7 ARG_wc2.1_30s_tavg_8 ARG_wc2.1_30s_tavg_9\n1                 12.8                 14.3                 16.2\n2                  6.8                  8.1                 10.3\n3                  0.1                  1.1                  2.7\n4                  7.0                  9.3                 12.8\n5                 15.6                 17.9                 19.7\n6                  7.5                  9.1                 12.0\n  ARG_wc2.1_30s_tavg_10 ARG_wc2.1_30s_tavg_11 ARG_wc2.1_30s_tavg_12\n1                  19.1                  21.8                  24.4\n2                  13.3                  15.9                  18.3\n3                   4.5                   5.9                   7.2\n4                  17.5                  20.8                  23.8\n5                  22.8                  24.5                  26.6\n6                  15.5                  19.3                  22.4\n\n\n\n\n\n\n\n\nWarning\n\n\nFijaros que extrae un valor de cada capa del ráster stack"
   },
   {
     "objectID": "AEMER-2_Analisis_espacial.html#también-funciona-con-polígonos",
@@ -644,6 +644,41 @@
     "text": "Datos de presencia-ausencia\n\npres &lt;- ifelse(comm &gt; 0, 1, 0)\nhead(pres)\n\n       Sp_1 Sp_2 Sp_3 Sp_4 Sp_5 Sp_6\nSite_1    0    0    1    0    1    0\nSite_2    1    0    1    0    1    0\nSite_3    1    1    1    0    1    0\nSite_4    1    1    0    1    1    0\nSite_5    1    1    0    0    1    0\nSite_6    0    1    0    1    1    0"
   },
   {
+    "objectID": "AEMER-3_Analisis_multivariante.html#técnicas-de-ordenación",
+    "href": "AEMER-3_Analisis_multivariante.html#técnicas-de-ordenación",
+    "title": "Análisis multivariante en R",
+    "section": "Técnicas de ordenación",
+    "text": "Técnicas de ordenación\nHay numerosas técnicas:\n\nAnálisis de componentes principales (PCA)\n\nBasado en distancia euclídea y respuesta lineal\n\nAnálisis de correspondencia (CA)\n\nBasado en $X2 y respuesta unimodal\n\nAnálisis de correspondencia segmentado (DCA)\n\nComo el CA, pero elimina tendencias curvilineas cuando analizamos gradientes muy grandes"
+  },
+  {
+    "objectID": "AEMER-3_Analisis_multivariante.html#análisis-de-correspondencia-ca-en-r",
+    "href": "AEMER-3_Analisis_multivariante.html#análisis-de-correspondencia-ca-en-r",
+    "title": "Análisis multivariante en R",
+    "section": "Análisis de correspondencia (CA) en R",
+    "text": "Análisis de correspondencia (CA) en R\nSe usa la función cca\n\nlibrary(vegan)\nord &lt;- cca(comm)\nord\n\nCall: cca(X = comm)\n\n              Inertia Rank\nTotal           1.336     \nUnconstrained   1.336    5\nInertia is scaled Chi-square \n\nEigenvalues for unconstrained axes:\n   CA1    CA2    CA3    CA4    CA5 \n0.5359 0.3371 0.3013 0.1014 0.0600"
+  },
+  {
+    "objectID": "AEMER-3_Analisis_multivariante.html#visualizar-ordenación",
+    "href": "AEMER-3_Analisis_multivariante.html#visualizar-ordenación",
+    "title": "Análisis multivariante en R",
+    "section": "Visualizar ordenación",
+    "text": "Visualizar ordenación\nUna vez realizado el análisis es interesante observar como se disponen especies y sitios en el espacio bidimensional"
+  },
+  {
+    "objectID": "AEMER-3_Analisis_multivariante.html#visualizar-ordenación-en-r",
+    "href": "AEMER-3_Analisis_multivariante.html#visualizar-ordenación-en-r",
+    "title": "Análisis multivariante en R",
+    "section": "Visualizar ordenación en R",
+    "text": "Visualizar ordenación en R\nPara ello usamos la función plot sobre un objeto de ordenación\n\nplot(ord)"
+  },
+  {
+    "objectID": "AEMER-3_Analisis_multivariante.html#gráficos-sobrecargados",
+    "href": "AEMER-3_Analisis_multivariante.html#gráficos-sobrecargados",
+    "title": "Análisis multivariante en R",
+    "section": "Gráficos sobrecargados",
+    "text": "Gráficos sobrecargados\nRepresentar solo ‘especies’ o ‘sitios’ con el argumento display\n\nplot(ord, display=\"sites\")\n\n\n\nplot(ord, display=\"species\")"
+  },
+  {
     "objectID": "AEMER-3_Analisis_multivariante.html#clasificación-en-r",
     "href": "AEMER-3_Analisis_multivariante.html#clasificación-en-r",
     "title": "Análisis multivariante en R",
@@ -735,57 +770,22 @@
     "text": "Extraer grupos\nEn ocasiones es interesante extraer la asignación de cada sitio a un grupo\nPara ello podemos usar la función cutree\n\ngrp &lt;- cutree(hc, h=0.7)\ngrp &lt;- cutree(hc, k=4)\ngrp\n\n Site_1  Site_2  Site_3  Site_4  Site_5  Site_6  Site_7  Site_8  Site_9 Site_10 \n      1       1       1       2       2       3       2       3       4       4 \nSite_11 Site_12 Site_13 Site_14 Site_15 Site_16 Site_17 Site_18 Site_19 Site_20 \n      4       4       4       4       2       2       4       2       2       2"
   },
   {
-    "objectID": "AEMER-3_Analisis_multivariante.html#técnicas-de-ordenación",
-    "href": "AEMER-3_Analisis_multivariante.html#técnicas-de-ordenación",
-    "title": "Análisis multivariante en R",
-    "section": "Técnicas de ordenación",
-    "text": "Técnicas de ordenación\nHay numerosas técnicas:\n\nAnálisis de componentes principales (PCA)\n\nBasado en distancia euclídea y respuesta lineal\n\nAnálisis de correspondencia (CA)\n\nBasado en $X2 y respuesta unimodal\n\nAnálisis de correspondencia segmentado (DCA)\n\nComo el CA, pero elimina tendencias curvilineas cuando analizamos gradientes muy grandes"
-  },
-  {
-    "objectID": "AEMER-3_Analisis_multivariante.html#análisis-de-correspondencia-ca-en-r",
-    "href": "AEMER-3_Analisis_multivariante.html#análisis-de-correspondencia-ca-en-r",
-    "title": "Análisis multivariante en R",
-    "section": "Análisis de correspondencia (CA) en R",
-    "text": "Análisis de correspondencia (CA) en R\nSe usa la función cca\n\nord &lt;- cca(comm)\nord\n\nCall: cca(X = comm)\n\n              Inertia Rank\nTotal           1.336     \nUnconstrained   1.336    5\nInertia is scaled Chi-square \n\nEigenvalues for unconstrained axes:\n   CA1    CA2    CA3    CA4    CA5 \n0.5359 0.3371 0.3013 0.1014 0.0600"
-  },
-  {
-    "objectID": "AEMER-3_Analisis_multivariante.html#visualizar-ordenación",
-    "href": "AEMER-3_Analisis_multivariante.html#visualizar-ordenación",
-    "title": "Análisis multivariante en R",
-    "section": "Visualizar ordenación",
-    "text": "Visualizar ordenación\nUna vez realizado el análisis es interesante observar como se disponen especies y sitios en el espacio bidimensional"
-  },
-  {
-    "objectID": "AEMER-3_Analisis_multivariante.html#visualizar-ordenación-en-r",
-    "href": "AEMER-3_Analisis_multivariante.html#visualizar-ordenación-en-r",
-    "title": "Análisis multivariante en R",
-    "section": "Visualizar ordenación en R",
-    "text": "Visualizar ordenación en R\nPara ello usamos la función plot sobre un objeto de ordenación\n\nplot(ord)"
-  },
-  {
-    "objectID": "AEMER-3_Analisis_multivariante.html#gráficos-sobrecargados",
-    "href": "AEMER-3_Analisis_multivariante.html#gráficos-sobrecargados",
-    "title": "Análisis multivariante en R",
-    "section": "Gráficos sobrecargados",
-    "text": "Gráficos sobrecargados\nRepresentar solo ‘especies’ o ‘sitios’ con el argumento display\n\nplot(ord, display=\"sites\")\n\n\n\nplot(ord, display=\"species\")"
-  },
-  {
-    "objectID": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos",
-    "href": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos",
+    "objectID": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-1",
+    "href": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-1",
     "title": "Análisis multivariante en R",
     "section": "Combinar ordenación y agrupamientos",
     "text": "Combinar ordenación y agrupamientos\nPara ello usamos la función ordihull\n\nplot(ord, display=\"sites\")\nordihull(ord, grp, lty=2, col=\"red\")"
   },
   {
-    "objectID": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-1",
-    "href": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-1",
+    "objectID": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-2",
+    "href": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-2",
     "title": "Análisis multivariante en R",
     "section": "Combinar ordenación y agrupamientos",
     "text": "Combinar ordenación y agrupamientos\nTambién se pueden usar las funciones ordispider y ordiellipse\n\nplot(ord, display=\"sites\")\nordispider(ord, grp, lty=2, col=\"red\")"
   },
   {
-    "objectID": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-2",
-    "href": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-2",
+    "objectID": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-3",
+    "href": "AEMER-3_Analisis_multivariante.html#combinar-ordenación-y-agrupamientos-3",
     "title": "Análisis multivariante en R",
     "section": "Combinar ordenación y agrupamientos",
     "text": "Combinar ordenación y agrupamientos\nPara ello usamos las funciones ordispider y ordiellipse\n\nplot(ord, display=\"sites\")\nordiellipse(ord, grp, lty=2, col=\"red\")\n\n\n\n\n\n\n\nAEMeR"
@@ -795,6 +795,6 @@
     "href": "index.html",
     "title": "Análisis Espacial y Multivariante en R (AEMeR) aplicados a estudios de Biodiversidad",
     "section": "",
-    "text": "Esta es la web con los materiales del curso:\n\nTema 1: Introducción a R. Presentación - Ejercicios\nTema 2: Manejo de datos espaciales en R. Presentación - Ejercicios\nTema 3: Análisis multivariantes en R. Presentación 1 Presentación 1\nTema 4: Modelos generalizados de dissimilitud.\nTema 5: Modelos jerarquicos de comunidades de especies.\n\nPara saber más sobre páginas web creadas con Quarto visita https://quarto.org/docs/websites."
+    "text": "Esta es la web con los materiales del curso:\n\nTema 1: Introducción a R. Presentación - Ejercicios\nTema 2: Manejo de datos espaciales en R. Presentación - Ejercicios\nTema 3: Análisis multivariantes en R. Presentación 1\nTema 4: Modelos generalizados de dissimilitud.\nTema 5: Modelos jerarquicos de comunidades de especies.\n\nPara saber más sobre páginas web creadas con Quarto visita https://quarto.org/docs/websites."
   }
 ]
