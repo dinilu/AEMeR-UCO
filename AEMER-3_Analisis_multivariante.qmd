@@ -1,0 +1,310 @@
+---
+title: "Análisis multivariante en R"
+author: "Diego Nieto Lugilde"
+date: 10/16/2024
+institute: "Universidad de Córdoba (España)"
+slide-number: true
+format:
+  revealjs:
+    logo: img/logos.png
+    footer: "[AEMeR](https://dnietolugilde.com/AEMeR)"
+    scrollable: true
+    chalkboard: true
+editor: source
+---
+
+# Preparación de datos
+
+## Análisis multivariante necesitan **datos tabulados**
+
+   .      | sp_1 | sp_2 |  ... | sp_3 
+:--------:|:----:|:----:|:----:|:----:
+**site_1**|   1  |   0  |  ... |   1  
+**site_2**|   0  |   0  |  ... |   1  
+**...**   |  ... |  ... |  ... |  ... 
+**site_n**|   0  |   1  |  ... |   1  
+
+: Matriz de comunidades (sitios x especies) {.striped .sm}
+
+## Cargando de datos en R 
+
+```{r}
+#| echo: true
+
+comm <- read.csv2("data/Inventarios.csv", header=T)
+head(comm)
+```
+
+
+## Nombre de las especies
+
+Los gráficos se pueden saturar con nombres de especies y sitios largos
+
+> - Si la identidad es irrelevante: **usar nombres genéricos** 
+>   - Quercus ilex: SP_1
+> - Si la identidad de la especie es relevante: **acortar**
+>   - Quercus ilex: Q_ILEX
+> - Cornell Ecology Program (CEP) proporciona una abreviatura estandarizada:
+>   - 8 caracteres: 4 primeros del género y 4 de la especie:
+>   - Quercus ilex: QUERILEX
+  
+  
+## Dominancia-abundancia de Braun-Blanquet 
+
+ Índice Braun-Blanquet | Valor de Van deer Maarel | 
+:----------:|:-----:|
+ausencia | 0 |
+r | 1 |
++ | 2 | 
+1 | 3 |
+2m | 4 |
+2a | 5 |
+2b | 6 |
+3 | 7 |
+4 | 8 |
+5 | 9 |
+Table: Transformación estandarización de Van deer Maarel
+
+## Datos de presencia-ausencia
+
+Los datos de presencia-ausencia suelen ser más fiables que los de abundacia o cobertura
+ 
+> - Transformar los datos en presencia-ausencia
+
+```{r, eval=FALSE}
+#| echo: true
+#| output: false
+
+ifelse(comm > 0, 1, 0)
+```
+
+## Datos de presencia-ausencia
+
+```{r}
+#| echo: true
+
+pres <- ifelse(comm > 0, 1, 0)
+head(pres)
+```
+
+# Análisis de ordenación
+
+Tratan de reducir la multidimensionalidad (número de especies) a los dos ejes que muestran más variabilidad
+
+> Ejemplos en pizarra con 1 y 2 especies...
+
+## Técnicas de ordenación
+
+Hay numerosas técnicas:
+
+> - Análisis de componentes principales (PCA)
+>   - Basado en distancia euclídea y respuesta lineal
+> - Análisis de correspondencia (CA)
+>   - Basado en $X^2^ y respuesta unimodal
+> - Análisis de correspondencia segmentado (DCA)
+>   - Como el CA, pero elimina tendencias curvilineas cuando analizamos gradientes muy grandes
+
+
+## Análisis de correspondencia (CA) en R
+
+Se usa la función `cca`
+
+```{r}
+#| echo: true
+
+library(vegan)
+ord <- cca(comm)
+ord
+```
+
+## Visualizar ordenación
+
+Una vez realizado el análisis es interesante observar como se disponen especies y sitios en el espacio bidimensional
+
+
+## Visualizar ordenación en R
+
+Para ello usamos la función `plot` sobre un objeto de ordenación
+
+```{r}
+#| echo: true
+
+plot(ord)
+```
+
+
+## Gráficos sobrecargados
+
+Representar solo 'especies' o 'sitios' con el argumento `display`
+
+```{r}
+#| echo: true
+
+plot(ord, display="sites")
+plot(ord, display="species")
+```
+
+
+# Análisis de clasificación
+
+## Clasificación en R
+
+Para el análisis de vegetación en R hay un paquete muy útil: `vegan`
+
+```{r, warning=FALSE}
+#| echo: true
+#| output: false
+
+#install.packages("vegan")
+library(vegan)
+```
+
+## 2. Medida de disimilitud
+
+Para calcular la disimilitud entre todos los 'sitios' usamos la función `vegdist`
+
+```{r}
+#| echo: true
+
+dist <- vegdist(comm)
+dist
+```
+
+
+## Tipos de distancias
+
+La disimilitud entre 'sitios' se puede calcular de varias maneras: `euclidean`, `manhattan`, `gower`, `canberra`, `bray`, `jaccard`...
+
+
+## Tipos de distancias en R
+
+Para especificar el tipo de medida en la función `vegdist` usamos el argumento `method`
+
+```{r}
+#| echo: true
+
+dist <- vegdist(comm, method="euclidean")
+dist <- vegdist(comm, method="bray")
+dist <- vegdist(comm, method="jaccard")
+dist
+```
+
+
+## 3. Clasificación jerárquica
+
+Para ello usamos la función `hclust` sobre la matriz de distancias
+
+```{r}
+#| echo: true
+
+hc <- hclust(dist)
+hc
+```
+
+
+## Métodos de agrupación
+
+Métodos para realizar la agrupación hay varios: `single`, `complete`, `average`, `centroid`...
+
+## Métodos de agrupación
+
+Para especificar el tipo de agrupación en la función `hclust` usamos el argumento `method`.
+
+```{r}
+#| echo: true
+
+hc <- hclust(dist, method="single")
+hc <- hclust(dist, method="centroid")
+hc <- hclust(dist, method="average")
+hc <- hclust(dist, method="complete")
+hc
+```
+
+## Visualizar clasificaciones
+
+Las clasificaciones jerárquicas se pueden visualizar como un árbol filogenético con la función `plot`
+
+
+## Visualizar clasificaciones en R
+
+```{r}
+#| echo: true
+
+plot(hc, hang=-1)
+```
+
+## 4. Interpretación
+
+Establecer grupos en un árbol no es siempre trivial
+
+> - Se puede usar un umbral para determinar los grupos
+> - O establecer un número determinado de grupos
+
+## Visualizar clasificaciones en R con un umbral
+
+```{r}
+#| echo: true
+
+plot(hc, hang=-1) 
+rect.hclust(hc, h=0.7)
+```
+
+## Visualizar clasificaciones en R con número de grupos
+
+```{r}
+#| echo: true
+
+plot(hc, hang=-1)
+rect.hclust(hc, k=4)
+```
+
+## Extraer grupos
+
+En ocasiones es interesante extraer la asignación de cada sitio a un grupo
+
+Para ello podemos usar la función `cutree`
+
+```{r}
+#| echo: true
+
+grp <- cutree(hc, h=0.7)
+grp <- cutree(hc, k=4)
+grp
+```
+
+# Combinar ordenación y agrupamientos
+
+## Combinar ordenación y agrupamientos
+
+Para ello usamos la función `ordihull`
+
+```{r}
+#| echo: true
+
+plot(ord, display="sites")
+ordihull(ord, grp, lty=2, col="red")
+```
+
+## Combinar ordenación y agrupamientos
+
+También se pueden usar las funciones `ordispider` y `ordiellipse` 
+
+```{r}
+#| echo: true
+
+plot(ord, display="sites")
+ordispider(ord, grp, lty=2, col="red")
+```
+
+## Combinar ordenación y agrupamientos
+
+Para ello usamos las funciones `ordispider` y `ordiellipse` 
+
+```{r}
+#| echo: true
+
+plot(ord, display="sites")
+ordiellipse(ord, grp, lty=2, col="red")
+```
+
+

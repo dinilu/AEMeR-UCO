@@ -14,6 +14,8 @@ format:
 editor: source
 ---
 
+# Introducción a los datos espaciales
+
 ## ¿Qué son los datos espaciales?
 
 ![](img/datos_espaciales.jpg)
