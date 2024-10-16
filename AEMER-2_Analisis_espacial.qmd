@@ -434,7 +434,7 @@ plot(tavg, range = c(-20, 30))
 #| echo: true
 #| eval: false
 
-writeRaster(tavg_arg.tif, "raster_tavg_arg.tif", overwrite = TRUE)
+writeRaster(tavg, "raster_tavg_arg.tif", overwrite = TRUE)
 ```
 
 ## Los datos ráster también se pueden proyectar
