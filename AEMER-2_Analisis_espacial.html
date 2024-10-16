@@ -576,9 +576,9 @@ attr(,"package")
  coord. ref. : +proj=longlat +datum=WGS84 +no_defs 
  names       :    ID precip
  type        : &lt;int&gt;  &lt;int&gt;
- values      :     1     61
-                   2     97
-                   3     10</code></pre>
+ values      :     1     19
+                   2     22
+                   3     48</code></pre>
 </div>
 </div>
 </section>
@@ -810,9 +810,9 @@ resolution  : 7, 4  (x, y)
 extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
-name        :       lyr.1 
-min value   : 0.001228657 
-max value   : 0.974688977 </code></pre>
+name        :      lyr.1 
+min value   : 0.02280905 
+max value   : 0.99481791 </code></pre>
 </div>
 </div>
 </section>
@@ -855,9 +855,9 @@ resolution  : 7, 4  (x, y)
 extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
-names       :       lyr.1,        lyr.1,     lyr.1 
-min values  : 0.001228657, 1.509598e-06, 0.0350522 
-max values  : 0.974688977, 9.500186e-01, 0.9872634 </code></pre>
+names       :      lyr.1,        lyr.1,     lyr.1 
+min values  : 0.02280905, 0.0005202528, 0.1510267 
+max values  : 0.99481791, 0.9896626838, 0.9974056 </code></pre>
 </div>
 </div>
 </section>
@@ -881,8 +881,8 @@ extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
 name        :        lyr.1 
-min value   : 1.509598e-06 
-max value   : 9.500186e-01 </code></pre>
+min value   : 0.0005202528 
+max value   : 0.9896626838 </code></pre>
 </div>
 </div>
 </section>
@@ -923,7 +923,7 @@ max values  :        29.2,        28.4,        27.3,        25.0,        22.2,  
 <section id="también-podemos-guardar-estos-datos-para-no-tener-que-volver-a-descargarlos" class="slide level2">
 <h2>También podemos guardar estos datos para no tener que volver a descargarlos</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">writeRaster</span>(tavg_arg.tif, <span class="st">"raster_tavg_arg.tif"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">writeRaster</span>(tavg, <span class="st">"raster_tavg_arg.tif"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="los-datos-ráster-también-se-pueden-proyectar" class="slide level2">
@@ -943,10 +943,10 @@ dimensions  : 4455, 2454, 12  (nrow, ncol, nlyr)
 resolution  : 871.5251, 871.5251  (x, y)
 extent      : -18378.29, 2120344, 3739870, 7622514  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_1ebc9b445d1_7868.tif 
+source      : spat_3c08230519b2_15368.tif 
 names       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... 
-min values  :    -10.0642,   -10.73793,   -11.50063,   -13.56332,   -15.83558,   -19.14522, ... 
-max values  :     29.2000,    28.40000,    27.30000,    25.00000,    22.20000,    20.98165, ... </code></pre>
+min values  :   -10.06347,   -10.73788,   -11.50058,   -13.56328,    -15.8349,   -19.14458, ... 
+max values  :    29.20000,    28.40000,    27.30000,    25.00000,     22.2000,    20.99198, ... </code></pre>
 </div>
 </div>
 </section>
@@ -1001,10 +1001,10 @@ dimensions  : 4853, 2673, 12  (nrow, ncol, nlyr)
 resolution  : 800, 800  (x, y)
 extent      : -18378.29, 2120022, 3739870, 7622270  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 19S (EPSG:32719) 
-source      : spat_1ebc43bb6f26_7868.tif 
+source      : spat_3c0872d2fb0_15368.tif 
 names       : ARG_w~avg_1, ARG_w~avg_2, ARG_w~avg_3, ARG_w~avg_4, ARG_w~avg_5, ARG_w~avg_6, ... 
 min values  :   -10.77633,   -11.47463,   -12.17463,   -14.20292,   -16.40292,   -19.51049, ... 
-max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.94756, ... </code></pre>
+max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,    20.95641, ... </code></pre>
 </div>
 </div>
 </section>
@@ -1356,27 +1356,20 @@ max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,  
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1"></a>pnts_arg <span class="ot">&lt;-</span> <span class="fu">extract</span>(arg, pnts)</span>
 <span id="cb102-2"><a href="#cb102-2"></a><span class="fu">head</span>(pnts_arg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  id.y           NAME_1    GID_1 GID_0   COUNTRY
-1    1       Entre Ríos  ARG.8_1   ARG Argentina
-2    2           Chubut  ARG.4_1   ARG Argentina
-3    3 Tierra del Fuego ARG.23_1   ARG Argentina
-4    4          Mendoza ARG.13_1   ARG Argentina
-5    5            Chaco  ARG.3_1   ARG Argentina
-6    6     Buenos Aires  ARG.1_1   ARG Argentina
-                        VARNAME_1 NL_NAME_1    TYPE_1 ENGTYPE_1 CC_1 HASC_1
-1                      Entre-Rios      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.ER
-2                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CH
-3 Feuerland|Terra del Fuoco|Terre      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.TF
-4                            &lt;NA&gt;      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.MZ
-5  El Chaco|Presidente Juan Peron      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.CC
-6             Baires|Buenos Ayres      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA
-  ISO_1 perimetro poblacion
-1  &lt;NA&gt;   1391963   1425578
-2  AR-U   4072813    592621
-3  AR-V   2035551    185732
-4  AR-M   2160729   2043540
-5  AR-H   1833194   1129606
-6  AR-B   6542993  17523996</code></pre>
+<pre><code>  id.y              NAME_1    GID_1 GID_0   COUNTRY           VARNAME_1
+1    1            San Juan ARG.18_1   ARG Argentina                &lt;NA&gt;
+2    2 Santiago del Estero ARG.22_1   ARG Argentina                &lt;NA&gt;
+3    3        Buenos Aires  ARG.1_1   ARG Argentina Baires|Buenos Ayres
+4    4          Santa Cruz ARG.20_1   ARG Argentina                &lt;NA&gt;
+5    5               Salta ARG.17_1   ARG Argentina                &lt;NA&gt;
+6    6        Buenos Aires  ARG.1_1   ARG Argentina Baires|Buenos Ayres
+  NL_NAME_1    TYPE_1 ENGTYPE_1 CC_1 HASC_1 ISO_1 perimetro poblacion
+1      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SJ  AR-J   1897254    822853
+2      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SE  AR-G   1709915   1060906
+3      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA  AR-B   6542993  17523996
+4      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SC  AR-Z   3552444    337226
+5      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.SA  AR-A   3018997   1441351
+6      &lt;NA&gt; Provincia  Province &lt;NA&gt;  AR.BA  AR-B   6542993  17523996</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1384,12 +1377,12 @@ max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,  
 <span id="cb104-2"><a href="#cb104-2"></a><span class="fu">head</span>(pnts_clip)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id.y Zona
-1    1   NA
-2    2    4
-3    3   NA
-4    4    1
+1    1    1
+2    2   NA
+3    3    2
+4    4   NA
 5    5   NA
-6    6    4</code></pre>
+6    6   NA</code></pre>
 </div>
 </div>
 </section>
@@ -1400,33 +1393,33 @@ max values  :    29.20000,    28.40000,    27.30000,    25.00000,    22.20000,  
 <span id="cb106-2"><a href="#cb106-2"></a><span class="fu">head</span>(pnts_tavg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  ID ARG_wc2.1_30s_tavg_1 ARG_wc2.1_30s_tavg_2 ARG_wc2.1_30s_tavg_3
-1  1                 25.9                 24.7                 22.6
-2  2                 19.8                 19.3                 17.1
-3  3                  8.1                  8.0                  6.7
-4  4                 24.8                 23.3                 20.1
-5  5                 27.2                 26.2                 24.3
-6  6                 23.8                 22.4                 19.1
+1  1                 13.5                 12.9                 11.0
+2  2                 27.8                 26.7                 24.3
+3  3                 21.4                 20.3                 17.8
+4  4                 11.5                 11.0                  8.9
+5  5                 12.9                 12.4                 11.5
+6  6                 21.1                 20.4                 18.1
   ARG_wc2.1_30s_tavg_4 ARG_wc2.1_30s_tavg_5 ARG_wc2.1_30s_tavg_6
-1                 18.9                 15.9                 13.2
-2                 13.9                 10.2                  7.3
-3                  4.8                  2.5                  0.6
-4                 15.6                 11.2                  7.6
-5                 20.8                 18.0                 15.6
-6                 14.9                 10.9                  7.8
+1                  8.0                  5.3                  2.9
+2                 21.3                 18.4                 15.6
+3                 13.6                 10.0                  7.0
+4                  5.8                  1.9                 -0.6
+5                  9.4                  7.1                  4.3
+6                 14.2                 10.8                  8.2
   ARG_wc2.1_30s_tavg_7 ARG_wc2.1_30s_tavg_8 ARG_wc2.1_30s_tavg_9
-1                 12.8                 14.3                 16.2
-2                  6.8                  8.1                 10.3
-3                  0.1                  1.1                  2.7
-4                  7.0                  9.3                 12.8
-5                 15.6                 17.9                 19.7
-6                  7.5                  9.1                 12.0
+1                  2.6                  3.5                  5.2
+2                 15.4                 18.1                 20.9
+3                  6.6                  8.0                 10.2
+4                 -0.7                  0.3                  3.0
+5                  4.7                  5.9                  8.2
+6                  7.8                  8.8                 10.4
   ARG_wc2.1_30s_tavg_10 ARG_wc2.1_30s_tavg_11 ARG_wc2.1_30s_tavg_12
-1                  19.1                  21.8                  24.4
-2                  13.3                  15.9                  18.3
-3                   4.5                   5.9                   7.2
-4                  17.5                  20.8                  23.8
-5                  22.8                  24.5                  26.6
-6                  15.5                  19.3                  22.4</code></pre>
+1                   7.4                  10.4                  12.6
+2                  23.9                  25.5                  27.6
+3                  13.3                  16.8                  19.8
+4                   6.3                   8.7                  10.7
+5                   9.9                  11.4                  12.6
+6                  13.2                  16.0                  19.1</code></pre>
 </div>
 </div>
 <div class="callout callout-warning callout-titled callout-style-default">
