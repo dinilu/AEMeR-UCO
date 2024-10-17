@@ -140,11 +140,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">En esta página</h2>
    
   <ul class="collapse">
-  <li><a href="#parte-1.-trabajando-con-datos-vectoriales" id="toc-parte-1.-trabajando-con-datos-vectoriales" class="nav-link active" data-scroll-target="#parte-1.-trabajando-con-datos-vectoriales">Parte 1. Trabajando con datos vectoriales</a>
-  <ul class="collapse">
-  <li><a href="#funciones-útiles" id="toc-funciones-útiles" class="nav-link" data-scroll-target="#funciones-útiles">Funciones útiles</a></li>
-  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios">Ejercicios</a></li>
-  </ul></li>
+  <li><a href="#parte-1.-análisis-de-ordenación" id="toc-parte-1.-análisis-de-ordenación" class="nav-link active" data-scroll-target="#parte-1.-análisis-de-ordenación">Parte 1. Análisis de ordenación</a></li>
+  <li><a href="#parte-2.-análisis-de-clasificación" id="toc-parte-2.-análisis-de-clasificación" class="nav-link" data-scroll-target="#parte-2.-análisis-de-clasificación">Parte 2. Análisis de clasificación</a></li>
   </ul>
 </nav>
     </div>
@@ -203,27 +200,277 @@ Nota
 </div>
 </div>
 </div>
-<section id="parte-1.-trabajando-con-datos-vectoriales" class="level1">
-<h1>Parte 1. Trabajando con datos vectoriales</h1>
-<section id="funciones-útiles" class="level2">
-<h2 class="anchored" data-anchor-id="funciones-útiles">Funciones útiles</h2>
-<p><strong><code>vect()</code></strong></p>
-<p>Se usa para generar o leer datos vectoriales. Es muy flexible en su forma de funcionar, por lo que tendrás que leer bien la documentación para ver que argumentos necesita.</p>
-</section>
-<section id="ejercicios" class="level2">
-<h2 class="anchored" data-anchor-id="ejercicios">Ejercicios</h2>
+<section id="parte-1.-análisis-de-ordenación" class="level1">
+<h1>Parte 1. Análisis de ordenación</h1>
 <p><strong>1. Carga los datos que os he dejado en la página web (muchas gracias Michelle :). Se trata de dos tablas de excel. Una con variables abióticas (ambiente) y otra de variables bióticas (especies) tomados en las zonas de desembocaduras de varios ríos entre Bahía Blanca y Mar de Plata. A la primera llámala <code>env</code> y a la segunda llámala <code>com</code>.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>He modificado los datos originales de Michelle en varios sentidos. Por un lado, he rellenado varios datos de las variables ambientales que no se habían podido medir. Por otro lado, había varios puntos de muestreo que no presentaban ningún individuo de las especies estudiadas. En estos casos, he seleccionado una especie al azar y le he añadido un individuo. Esto no es correcto, pero los análisis de ordenación no aceptan puntos sin observación alguna, ni datos ausentes. Lo he hecho intencionadamente para que los datos de Michelle no estén en bruto y podamos realizar los ejercicios sin preocuparnos de los datos NA o sin observaciones.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Aquí vas a necesitar la función <code>read.xlsx</code>, además, deberás especificar el argumento <code>row.names = 1</code> para asegurarte que lee correctamente los nombres de las filas y los carga como tales. Así no te tendrás que preocupar de eliminar la columna 1 con los nombres de los sitios de muestreo.</p>
+</div>
+</div>
+</div>
 <div class="cell">
 <details>
 <summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xlsx)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>com <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_especies.xlsx"</span>, <span class="dv">1</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_ambiente.xlsx"</span>, <span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_ambiente.xlsx"</span>, <span class="dv">1</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>com <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_especies.xlsx"</span>, <span class="dv">1</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
+<p><strong>2. Vamos a preparar un poco los datos. Los datos de comunidades son datos de abundancia, por lo que tienen una distribución muy sesgada hacia la izquierda (valores próximos a cero). En estos casos, es frecuente aplicar una transformación para reducir dicho sesgo. Utiliza la función <code>log1p()</code> sobre la matriz <code>com</code>. El resultado puedes llamarlo <code>comm</code>. Además, la tabla (<em>data frame</em>) <code>env</code> tiene varias columnas y sólo 3 de ellas son variables ambientales. Las otras dos son información que caracteriza el punto de muestreo (información del río, més de muestreo y ubicación con respecto a la desembocadura). Genera dos <em>data frame</em> distintos; uno llamado <code>sites</code> que tenga la información de caracterización del punto de muestreo (<code>rio</code>, <code>sitio</code> y <code>mes</code>)y otro llamado <code>envm</code> con los datos de las variables ambientales medidas (<code>materia_org</code>, <code>temperatura</code>, <code>salinidad</code> y <code>ph</code>).</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Aquí deberás usar los corchetes (<code>[]</code>), tal y como hemos aprendido en días anteriores.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>comm <span class="ot">&lt;-</span> <span class="fu">log1p</span>(com)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sites <span class="ot">&lt;-</span> env[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>envm <span class="ot">&lt;-</span> <span class="fu">scale</span>(env[, <span class="dv">4</span><span class="sc">:</span><span class="dv">7</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>3. Como hemos comentado en clase, una primera aproximación puede ser realizar un análisis DCA para saber si en nuestros datos dominan las respuestas lineares o unimodales. Ejecuta un DCA sobre los datos de las comunidades transformados (<code>comm</code>).</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Recuerda que el análisis DCA se hace con una función del paquete <code>vegan</code> llamada <code>decorana</code>. Una vez realizado el análisis, indica si optas por un análisis linear (PCA) o unimodal (CA). Para ello, comprueba el <code>Axis lengths</code> del primer eje (<code>DCA1</code>) del DCA para ver si presenta un valor inferior a 3 o superior a 4.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">decorana</span>(comm)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>4. Realiza el análisis <em>unconstrained</em> por el que hayas optado tras realizar el DCA. Guarda el resultado de dicho análisis en un objeto (ponle el nombre que quieras) y dibuja el gráfico de ordenación correspondiente. Asegúrate que el gráfico representa los puntos de los sitio con un color para cada río que se ha muestrado.</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Los gráficos de ordenación se pueden realizar con la función <code>plot()</code> o, alternativamente, con la función <code>ordiplot()</code>. La función <code>ordiplot()</code> admite varios argumentos. Uno de ellos es <code>display</code>, que permite representar <code>"sites"</code>, <code>"species"</code> o <code>c("sites", "species")</code>. Otro argumento es <code>type = "n"</code>, que permite controlar si los elementos del gráfico se representan con <code>"points"</code>, <code>"text"</code> o <code>"none"</code>. Sin embargo, no acepta el argumento <code>col</code>. Por ello, para dibujar los puntos de diferentes colores deberás especificar <code>type = "n"</code> y luego usar la función <code>points()</code> para dibujar los puntos con un color diferente en cada río.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>comm_rda <span class="ot">&lt;-</span> <span class="fu">rda</span>(comm)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ordiplot</span>(comm_rda, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type =</span> <span class="st">"n"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(comm_rda, <span class="at">col =</span> <span class="fu">as.numeric</span>(<span class="fu">as.factor</span>(sites[, <span class="st">"rio"</span>])))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="AEMER-3_Ejercicios_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>5. Ahora, realiza un análisis <em>constrained</em> del conjunto de datos <code>comm</code>, incorporando el objeto <code>envm</code> al análisis PCA. Consulta la inercia total, y la proporción explicada por la parte <em>constrained</em> y <em>unconstrained</em>. Finalmente, dibuja el gráfico de ordenación resultante. ¿Qué variables explican el principal eje de variación en cuanto a composición de los puntos de muestreo?</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Para calibrar el modelo RDA, basta con incorporar un segundo argumento a la función <code>rda()</code> con el <em>data frame</em> de variables ambientales.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>comm_envm_rda <span class="ot">&lt;-</span> <span class="fu">rda</span>(comm, envm)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>comm_envm_rda</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ordiplot</span>(comm_envm_rda)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="parte-2.-análisis-de-clasificación" class="level1">
+<h1>Parte 2. Análisis de clasificación</h1>
+<p><strong>6. Calcula la matriz de disimilitud, usando la métrica de “Bray Curtis”.</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Aqui deberas usar la función <code>vegdist</code> sobre el objeto de comunidades original.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dis <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(com)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>7. Realiza un análisis <em>clúster</em> en base a la matriz de diferencias que se generó en el ejercicio anterior. Para ello, modifica el argumento <code>method</code> para que muestre los valores (e.gr. .</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Para realizar el análisis necesitas la función <code>hclust()</code>.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>com_hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dis, <span class="at">method =</span> <span class="st">"complete"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>8. Grafica el análisis <em>clúster</em> y usa el argumento <code>hang = -1</code> para que dibuje el gráfico de manera más amigable con el usuario. Posteriormente, añade una serie de rectángulos en el gráfico agrupando con los puntos de muestreo que son similares entre si.</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Aquí puedes consultar la función <code>rect.hclust</code>. En esta función podrás elegir usar un valor de umbral (<code>h = xxx</code>) o un número preestablecido de grupos (<code>n = xxx</code>).</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(com_hc, <span class="at">hang =</span> <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rect.hclust</span>(com_hc, <span class="at">h =</span> <span class="fl">0.7</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="AEMER-3_Ejercicios_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>9. Usando el mismo sistema que antes, genera un vector con el grupo resultante de cada sitio.</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Aquí deberás usar la función <code>cutree()</code> especifican el número de grupos igual que antes.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>grp <span class="ot">&lt;-</span> <span class="fu">cutree</span>(com_hc, <span class="at">h=</span><span class="fl">0.7</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>9. Por último, genera de nuevo el gráfico del resultado del análisis <em>constrained</em> RDA. Dibuja el biplot del análisis RDA e incorpora la información de los grupos identificados con el análisis de clasificación.</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Para ello deberás dibujar el gráfico con la función <code>ordiplot</code>, <code>points</code> y <code>ordihull</code>, a la cual se especifica el objeto RDA y la matríz de grupos identificados previamente.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Solución (no mirar de primeras)</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ordiplot</span>(comm_envm_rda, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type =</span> <span class="st">"n"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(comm_envm_rda, <span class="at">col =</span> <span class="fu">as.numeric</span>(<span class="fu">as.factor</span>(sites[, <span class="st">"rio"</span>])))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ordihull</span>(comm_envm_rda, grp, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="AEMER-3_Ejercicios_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
