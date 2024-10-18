@@ -422,13 +422,12 @@ Diego Nieto Lugilde
 <section id="preparamos-un-poco-los-datos" class="slide level2">
 <h2>Preparamos un poco los datos</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>comm <span class="ot">&lt;-</span> <span class="fu">log1p</span>(com)</span>
-<span id="cb2-2"><a href="#cb2-2"></a>comm <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(comm)</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a>envm <span class="ot">&lt;-</span> <span class="fu">scale</span>(env[, <span class="dv">4</span><span class="sc">:</span><span class="dv">7</span>])</span>
-<span id="cb2-5"><a href="#cb2-5"></a>envm <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(envm)</span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a>sites <span class="ot">&lt;-</span> env[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>comm <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(com)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>envm <span class="ot">&lt;-</span> <span class="fu">scale</span>(env[, <span class="dv">4</span><span class="sc">:</span><span class="dv">7</span>])</span>
+<span id="cb2-4"><a href="#cb2-4"></a>envm <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(envm)</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a>sites <span class="ot">&lt;-</span> env[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="simulamos-unos-datos-filogenéticos" class="slide level2">
@@ -588,12 +587,12 @@ Diego Nieto Lugilde
 <span id="cb14-2"><a href="#cb14-2"></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m0, <span class="at">predY =</span> preds_m0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 1.5674753 1.5324990 0.9903418 1.1474299 0.6077643 0.8638920 0.9776185
- [8] 1.4909599 0.4241463 0.7674493
+ [1] 175.2130058 114.9316990  20.0403538  26.6885303   1.7539271   1.2194992
+ [7]   0.5084995   0.5458199   0.8273857   0.8822432
 
 $SR2
- [1]  0.418676554  0.433150533  0.144853213  0.357803730 -0.004391966
- [6]  0.082436027  0.021168275  0.003787419  0.006733189 -0.004993985
+ [1] 0.4381139117 0.4351279511 0.1462363160 0.3228083056 0.0018700743
+ [6] 0.1215510808 0.0381720151 0.0177798259 0.0105206071 0.0006220881
 
 $O.AUC
  [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
@@ -606,12 +605,12 @@ $O.RMSE
  [8] 0.9786452 0.9786452 0.9858149
 
 $C.SR2
- [1]  3.302462e-01  3.765758e-01  6.984236e-02  1.150386e-01 -2.910022e-05
- [6]            NA            NA            NA            NA            NA
+ [1] 0.34118334 0.34213153 0.01582344 0.10372210 0.02796531         NA
+ [7]         NA         NA         NA         NA
 
 $C.RMSE
- [1] 1.73441965 1.45521157 2.03268304 1.61511786 0.61484203 0.91884376
- [7] 0.32028011 0.83159672 0.26073792 0.07915031</code></pre>
+ [1] 214.0827338 137.5843125  44.9448587  43.3426222   3.0950574   5.7090512
+ [7]   0.4500486   0.4471912   0.1403243   0.1081842</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -619,12 +618,12 @@ $C.RMSE
 <span id="cb16-2"><a href="#cb16-2"></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m1, <span class="at">predY =</span> preds_m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 1.6207604 1.5624016 1.1108832 1.1784753 0.5650280 0.4608028 0.2079385
- [8] 0.3358703 0.2994920 0.2938879
+ [1] 275.5229338 133.2896301  19.5646777  25.1958771   1.4450794   1.3431708
+ [7]   0.3551950   0.2998875   0.2487680   0.2438358
 
 $SR2
- [1]  0.212588408  0.286600946  0.037393351  0.162843885  0.013052881
- [6] -0.061396998  0.001104210  0.006174136  0.029178338  0.027605245
+ [1]  2.276017e-01  2.800169e-01  6.040798e-02  1.669794e-01  1.251573e-03
+ [6] -1.762715e-02  1.725328e-05  1.685341e-02 -3.781513e-03 -2.087647e-03
 
 $O.AUC
  [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
@@ -637,12 +636,12 @@ $O.RMSE
  [8] 0.9786452 0.9786452 0.9858149
 
 $C.SR2
- [1] 0.20352740 0.15274192 0.04733930 0.13983628 0.01274345 1.00000000
- [7]         NA         NA         NA         NA
+ [1] 0.163546022 0.142752039 0.189357182 0.008523534 0.081170895 1.000000000
+ [7]          NA          NA          NA          NA
 
 $C.RMSE
- [1] 1.7072582 1.6933759 1.7357791 1.7200574 0.8114837 1.4505247 0.5315817
- [8] 0.3898156 0.3327837 0.3310055</code></pre>
+ [1] 329.4368899 156.5884756  43.6540427  40.2126288   3.4090259   5.8300236
+ [7]   0.7657595   0.7097883   0.8704928   0.8464277</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -650,12 +649,12 @@ $C.RMSE
 <span id="cb18-2"><a href="#cb18-2"></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 1.5127614 1.4072394 1.0183282 1.0863265 0.4124548 0.6337676 0.3675816
- [8] 0.2766954 0.6047332 0.2094089
+ [1] 230.4683897 187.4291436  19.2390494  25.7547650   1.5147773   1.4259269
+ [7]   0.5127047   0.2655462   0.3231189   0.3002315
 
 $SR2
- [1]  0.320764655  0.408338602  0.042617086  0.293938751 -0.007770002
- [6] -0.008265852 -0.004416839  0.007294585  0.016853408  0.036507937
+ [1]  0.352935239  0.472921538  0.094725358  0.359434766  0.006764579
+ [6]  0.004865193  0.052191166  0.015978058  0.002626050 -0.002087647
 
 $O.AUC
  [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
@@ -668,12 +667,12 @@ $O.RMSE
  [8] 0.9786452 0.9786452 0.9858149
 
 $C.SR2
- [1]  0.2386914  0.2615559  0.1072622  0.1884196  0.3496503 -1.0000000
- [7]         NA         NA         NA         NA
+ [1]  0.27537182  0.31038103  0.08460227  0.11468174 -0.14566838  0.25000000
+ [7]          NA          NA          NA          NA
 
 $C.RMSE
- [1] 1.6556052 1.5046540 1.8261959 1.5604164 0.7935567 1.3944031 0.3930838
- [8] 0.4595005 0.6451622 0.3512258</code></pre>
+ [1] 280.9472703 224.7450840  42.4610873  41.3444857   3.4329286   5.5829138
+ [7]   0.5807846   0.7672244   0.8132708   0.7917638</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -681,12 +680,12 @@ $C.RMSE
 <span id="cb20-2"><a href="#cb20-2"></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env_phy, <span class="at">predY =</span> preds_m_env_phy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 1.4957731 1.4484827 0.9397625 1.1284862 0.4163260 0.3753498 0.2418194
- [8] 0.2178063 0.2240977 0.2394606
+ [1] 200.2699519 117.9058102  19.5869778  24.9484062   1.4386876   1.1856447
+ [7]   0.2267468   0.3941265   0.3315811   0.3042893
 
 $SR2
- [1]  0.300428178  0.359054686  0.077457099  0.253225250  0.002411908
- [6]  0.023814022  0.012577640 -0.029178338  0.006722689  0.036507937
+ [1]  0.2909253942  0.4894203161  0.1020107852  0.3180775907  0.0038497095
+ [6]  0.0536038223  0.0431331953  0.0085084034 -0.0009453782  0.0069013112
 
 $O.AUC
  [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
@@ -699,12 +698,12 @@ $O.RMSE
  [8] 0.9786452 0.9786452 0.9858149
 
 $C.SR2
- [1] 0.2534122 0.2245509 0.2291222 0.1084629 0.0811709 1.0000000        NA
+ [1] 0.2594832 0.3151886 0.1699494 0.1363765 0.3496503 1.0000000        NA
  [8]        NA        NA        NA
 
 $C.RMSE
- [1] 1.6387292 1.5197556 1.9007383 1.6199302 0.8158226 1.3624710 0.4518354
- [8] 0.5849275 0.5201934 0.3954366</code></pre>
+ [1] 243.7013625 141.4557015  43.7744468  41.0258336   3.4137838   5.6064513
+ [7]   0.7541530   0.5892972   0.7346148   0.6488686</code></pre>
 </div>
 </div>
 </section>
@@ -724,12 +723,12 @@ Cross-validation, fold 4 out of 4</code></pre>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 1.8953443 1.5432020 0.9821820 1.1781705 0.4247404 0.4590126 0.2833764
- [8] 0.2915940 0.1849185 0.1934017
+ [1] 211.6762000 123.9660222  19.7629929  25.8720251   1.4979833   1.2325126
+ [7]   0.3621027   0.3363635   0.3235731   0.3178303
 
 $SR2
- [1]  0.1378319302  0.2415328641  0.0030452794  0.1705978558  0.0001193567
- [6] -0.0119343372 -0.0484644582 -0.0029878618  0.0098155929 -0.0334023464
+ [1]  0.154759013  0.249553442  0.033317201  0.181719505 -0.003051860
+ [6]  0.015823677 -0.041425121  0.002987862 -0.040627918 -0.001397516
 
 $O.AUC
  [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
@@ -742,12 +741,12 @@ $O.RMSE
  [8] 0.9786452 0.9786452 0.9858149
 
 $C.SR2
- [1]  0.12445926  0.21329938  0.31485221  0.05096966  0.15399064 -1.00000000
- [7]          NA          NA          NA          NA
+ [1]  0.0814509744  0.1127726412  0.1551784731  0.0100162514 -0.0007224181
+ [6] -0.2500000000            NA            NA            NA            NA
 
 $C.RMSE
- [1] 2.0232605 1.5954907 1.9666099 1.7160348 0.8409174 1.5272447 0.6420213
- [8] 0.5273182 0.5369037 0.6200739</code></pre>
+ [1] 257.4368567 147.1724391  44.1079910  41.9602920   3.5132200   5.8713640
+ [7]   0.8854147   0.7381677   0.8857665   0.8038661</code></pre>
 </div>
 </div>
 </section>
@@ -850,14 +849,14 @@ $C.RMSE
 <p><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></p>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9925</code></pre>
+<pre><code>[1] 0.945</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">plotGradient</span>(m1, Gradient, <span class="at">pred=</span>predY, <span class="at">measure=</span><span class="st">"Y"</span>, <span class="at">index =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-24-2.png" width="960"></p>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9975</code></pre>
+<pre><code>[1] 0.9475</code></pre>
 </div>
 </div>
 
