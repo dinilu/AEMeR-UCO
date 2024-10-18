@@ -233,39 +233,87 @@ Nota
 <section id="ejercicios" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicios">Ejercicios</h2>
 <p><strong>1. Cargue los límites administrativos de los departamentos de Argentina en un objeto llamado <code>departamentos</code> y filtre los departamentos para retener sólo los departamentos de la provincia de <code>"Buenos Aires"</code>.</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución: Mirar sólo en caso de extrema necesidad.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<details>
-<summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geodata)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>departamentos <span class="ot">&lt;-</span> <span class="fu">gadm</span>(<span class="st">"ARG"</span>, <span class="dv">2</span>, <span class="at">path =</span> <span class="st">"."</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">which</span>(departamentos<span class="sc">$</span>NAME_1 <span class="sc">==</span> <span class="st">"Buenos Aires"</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>ba <span class="ot">&lt;-</span> departamentos[i]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</div>
+</div>
+</div>
 </div>
 <p><strong>2. Ahora, proyecte los datos de estos municipios desde el sistema de coordenadas en longitud-latitud y WGS84 al sistema UTM21 sur. Para ello necesitaréis buscar el código EPSG en <a href="https://epsg.io" class="uri">https://epsg.io</a>.</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución: Mirar sólo en caso de extrema necesidad.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<details>
-<summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ba_utm <span class="ot">&lt;-</span> <span class="fu">project</span>(ba, <span class="st">"epsg:32721"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</div>
+</div>
+</div>
 </div>
 <p><strong>3. Guarda el objeto vectorial de Buenos Aires con las coordenadas en UTM21s como un fichero geopackage nuevo, llamado <code>BuenosAires.gpkg</code></strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución: Mirar sólo en caso de extrema necesidad.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<details>
-<summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeVector</span>(ba_utm, <span class="st">"BuenosAires.gpkg"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</div>
+</div>
+</div>
 </div>
 <p><strong>4. Finalmente, dibuje dos mapas uno con el mapa de la provincia de Buenos Aires en longitud-latitud (WGS84) y el otro en UTM21s. Por último .</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución: Mirar sólo en caso de extrema necesidad.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<details>
-<summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_utm)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <p><img src="AEMER-2_Ejercicios_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -286,45 +334,105 @@ Nota
 <section id="ejercicios-1" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicios-1">Ejercicios</h2>
 <p><strong>1. Carga las variables bioclimáticas (v.gr. <code>var = "bio"</code>) del proyecto WorldClim a 0.5 minutos de grado de resolución.</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución: Mirar sólo en caso de extrema necesidad.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<details>
-<summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geodata)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>arg_bio <span class="ot">&lt;-</span> <span class="fu">worldclim_country</span>(<span class="st">"ARG"</span>, <span class="at">var =</span> <span class="st">"bio"</span>, <span class="at">path =</span> <span class="st">"."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</div>
+</div>
+</div>
 </div>
 <p><strong>2. Fíjese el nombre tan largo y poco intuitivo de los nombres de las distintas capas (puede consultarlo usando el siguiente código <code>names(bio)</code>). Cambie el nombre de las variables por algo más corto e intuitivo (v.gr. “bio1”, “bio2”, etc.).</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución: Mirar sólo en caso de extrema necesidad.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<details>
-<summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(arg_bio)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(arg_bio) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"bio"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">19</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</div>
+</div>
+</div>
 </div>
 <p><strong>3. Revisa el CRS de los datos que has descargado. ¿Coinciden con los datos que has generado como resultado de los ejercicios de la Parte 1? Si no es así, proyecta los datos raster para que coincidan con esos datos y mantengan una resolución exacta de 1000 metros.</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución: Mirar sólo en caso de extrema necesidad.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<details>
-<summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>arg_bio_utm <span class="ot">&lt;-</span> <span class="fu">project</span>(arg_bio, <span class="st">"epsg:32721"</span>, <span class="at">res =</span> <span class="dv">1000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</div>
+</div>
+</div>
 </div>
 <p><strong>4. Guarde los dos objetos ráster (original y resultante) como un fichero en el disco duro de su ordenador, de modo que pueda reutilizarlos más adelante cuando los vuelva a necesitar.</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución: Mirar sólo en caso de extrema necesidad.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<details>
-<summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(arg_bio, <span class="st">"arg_bio.tif"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>) </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(arg_bio_utm, <span class="st">"arg_bio_utm.tif"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</div>
+</div>
+</div>
 </div>
 <p><strong>5. Finalmente, para cerciorarnos que todo esté correcto, dibuje el mapa de la variable <code>"bio4"</code> en UTM19s con los polígonos de los municipios de la provincia de “Buenos Aires” superpuestos.</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución: Mirar sólo en caso de extrema necesidad.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<details>
-<summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(arg_bio_utm[[<span class="st">"bio4"</span>]])</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_utm, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <p><img src="AEMER-2_Ejercicios_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -343,38 +451,86 @@ Nota
 <section id="ejercicios-2" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicios-2">Ejercicios</h2>
 <p><strong>1. Añade una columna de atributos a la capa de los municipios de “Buenos Aires” en la que se recoja el área (superficie) de cada municipio. Posteriormente, dibuja un mapa de los municipios en los que se pueda observar con colores diferentes el área de cada uno de ellos. ¿Hay un patrón geográfico en el tamaño de los municipios de la provincia?</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución: Mirar sólo en caso de extrema necesidad.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<details>
-<summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ba<span class="sc">$</span>area <span class="ot">&lt;-</span> <span class="fu">expanse</span>(ba)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba, <span class="st">"area"</span>, <span class="at">type =</span> <span class="st">"interval"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</div>
+</div>
+</div>
 </div>
 <p><strong>2. Agrega todos los municipios de la provincia de “Buenos Aires” para generar un polígono con la forma de la provincia. Dibuja el mapa del ejercicio anterior y adiciona el borde de la provincia con los colores de la bandera argentina.</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución: Mirar sólo en caso de extrema necesidad.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<details>
-<summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ba_borde <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(ba, <span class="st">"NAME_1"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba, <span class="st">"area"</span>, <span class="at">type =</span> <span class="st">"interval"</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_borde, <span class="at">lwd =</span> <span class="dv">4</span>, <span class="at">border =</span> <span class="st">"cyan"</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_borde, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">border =</span> <span class="st">"white"</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</div>
+</div>
+</div>
 </div>
 <p><strong>3. Recorta el objeto ráster con las variables bioclimáticas de Argentina para quedarte sólo con los datos de la provincia de “Buenos Aires”. Dibuja el mapa de la variable <code>bio4</code> de dichos datos. ¿Ves algo raro?</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución: Mirar sólo en caso de extrema necesidad.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<details>
-<summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ba_bio <span class="ot">&lt;-</span> <span class="fu">mask</span>(arg_bio, ba)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_bio[[<span class="st">"bio4"</span>]])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</div>
+</div>
+</div>
 </div>
 <p><strong>4. Usa el siguiente código <code>x &lt;- trim(x)</code> (donde <code>x</code> es el nombre del objeto resultante del ejercicio anterior) y vuelve a dibujar el mapa raster resultante. ¿Que diferencia observas con el mapa del ejercicio anterior? ¿Qué crees que hace la función?</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución: Mirar sólo en caso de extrema necesidad.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<details>
-<summary>Solución (no mirar de primeras)</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ba_bio <span class="ot">&lt;-</span> <span class="fu">trim</span>(ba_bio)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ba_bio[[<span class="st">"bio4"</span>]])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</div>
+</div>
+</div>
 </div>
 
 
