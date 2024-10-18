@@ -798,10 +798,129 @@
     "text": "Nota\n\n\n\nLos ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre ejercicios_t3_[nombre]_[apellido].R. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla # delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la #) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandármelos por email.\n\n# Ejercicio 1.\n# Parte 1\nseq(1, 40, by = 2)\n\n# Parte 2\nseq(1, 40, by = -2)\n# Este código da error porque especifiqué algo mal :)\n\n\n\n\nParte 1. Análisis de ordenación\n1. Carga los datos que os he dejado en la página web (muchas gracias Michelle :). Se trata de dos tablas de excel. Una con variables abióticas (ambiente) y otra de variables bióticas (especies) tomados en las zonas de desembocaduras de varios ríos entre Bahía Blanca y Mar de Plata. A la primera llámala env y a la segunda llámala com.\n\n\n\n\n\n\nNota\n\n\n\nHe modificado los datos originales de Michelle en varios sentidos. Por un lado, he rellenado/inventado varios datos de las variables ambientales que no se habían podido medir. Por otro lado, había varios puntos de muestreo que no presentaban ningún individuo de las especies estudiadas. En estos casos, he seleccionado una especie al azar y le he añadido un individuo. Ninguna de las dos cosas es correcta, pero los análisis de ordenación no aceptan puntos sin observación alguna, ni datos ausentes. Lo he hecho intencionadamente para que los datos de Michelle no estén en bruto y podamos realizar los ejercicios sin preocuparnos de los datos NA o sin observaciones.\n\n\n\n\n\n\n\n\nPista\n\n\n\n\n\nAquí vas a necesitar la función read.xlsx, además, deberás especificar el argumento row.names = 1 para asegurarte que lee correctamente los nombres de las filas y los carga como tales. Así no te tendrás que preocupar de eliminar la columna 1 con los nombres de los sitios de muestreo.\n\n\n\n\n\n\n\n\n\nSolución: Mirar sólo en caso de extrema necesidad.\n\n\n\n\n\n\nlibrary(xlsx)\nenv &lt;- read.xlsx(\"data/sciberras_ambiente.xlsx\", 1, row.names = 1)\ncom &lt;- read.xlsx(\"data/sciberras_especies.xlsx\", 1, row.names = 1)\n\n\n\n\n2. Vamos a preparar un poco los datos. Los datos de comunidades son abundancias, por lo que tienen una distribución muy sesgada hacia la izquierda (muchos valores próximos a cero). En estos casos, es frecuente aplicar una transformación para reducir dicho sesgo. Utiliza la función log1p() sobre la matriz com. El resultado puedes llamarlo comm. Además, la tabla (data frame) env tiene varias columnas y sólo 3 de ellas son variables ambientales. Las otras dos son información que caracteriza el punto de muestreo (información del río, mes de muestreo y ubicación con respecto a la desembocadura: 100 metros al norte, 100 metros al sur, o en la misma desembocadura). Partiendo de este data frame, genera dos data frame distintos; uno llamado sites que tenga la información de caracterización del punto de muestreo (río, sitio y mes) y otro llamado envm con los datos de las variables ambientales medidas (materia_org, temperatura, salinidad y ph).\n\n\n\n\n\n\nPista\n\n\n\n\n\nAquí deberás usar los corchetes ([]), tal y como hemos aprendido en días anteriores.\n\n\n\n\n\n\n\n\n\nSolución: Mirar sólo en caso de extrema\n\n\n\n\n\n\ncomm &lt;- log1p(com)\nsites &lt;- env[, 1:3]\nenvm &lt;- scale(env[, 4:7])\n\n\n\n\n3. Como hemos comentado en clase, una primera aproximación puede ser realizar un análisis DCA para saber si en nuestros datos dominan las respuestas lineares o unimodales. Ejecuta un DCA sobre los datos transformados de las comunidades (comm) y explica que tipo de análisis realizarás a continuación y justifica por qué.\n\n\n\n\n\n\nPista\n\n\n\n\n\nRecuerda que el análisis DCA se hace con una función del paquete vegan llamada decorana. Una vez realizado el análisis, indica si optas por un análisis linear (PCA) o unimodal (CA). Para ello, comprueba el Axis lengths del primer eje (DCA1) del DCA para ver si presenta un valor inferior a 3 o superior a 4.\n\n\n\n\n\n\n\n\n\nSolución: Mirar sólo en caso de extrema\n\n\n\n\n\n\nlibrary(vegan)\ndecorana(comm)\n\n\n\n\n4. Realiza el análisis unconstrained que hayas seleccionado en el ejercicio anterior. Guarda el resultado de dicho análisis en un objeto (ponle el nombre que quieras) y dibuja el gráfico de ordenación correspondiente. Asegúrate que el gráfico representa los puntos de los sitio con un color para cada río que se ha muestrado.\n\n\n\n\n\n\nPista\n\n\n\n\n\nLos gráficos de ordenación se pueden realizar con la función plot() o, alternativamente, con la función ordiplot(). La función ordiplot() admite varios argumentos. Uno de ellos es display, que permite representar \"sites\", \"species\" o c(\"sites\", \"species\"). Otro argumento es type = \"n\", que permite controlar si los elementos del gráfico se representan con \"points\", \"text\" o \"none\". Sin embargo, no acepta el argumento col. Por ello, para dibujar los puntos de diferentes colores deberás especificar type = \"n\" y luego usar la función points() para dibujar los puntos con un color diferente en cada río.\n\n\n\n\n\n\n\n\n\nSolución: Mirar sólo en caso de extrema\n\n\n\n\n\n\ncomm_rda &lt;- rda(comm)\nordiplot(comm_rda, display = \"sites\", type = \"n\")\npoints(comm_rda, col = as.numeric(as.factor(sites[, \"rio\"])))\n\n\n\n\n\n\n\n5. Ahora, realiza un análisis constrained del conjunto de datos comm, incorporando el objeto envm al análisis. Consulta la inercia total, y la proporción explicada por la parte constrained y unconstrained. Finalmente, dibuja el gráfico de ordenación resultante. ¿Qué variables explican el eje principal de variación en cuanto a composición?\n\n\n\n\n\n\nPista\n\n\n\n\n\nPara calibrar el modelo constrained, basta con incorporar un segundo argumento a las funciones rda() y cca() con el data frame de variables ambientales.\n\n\n\n\n\n\n\n\n\nSolución: Mirar sólo en caso de extrema\n\n\n\n\n\n\ncomm_envm_rda &lt;- rda(comm, envm)\ncomm_envm_rda\nordiplot(comm_envm_rda)\n\n\n\n\n\n\nParte 2. Análisis de clasificación\n6. Calcula la matriz de disimilitud, usando la métrica de “Bray Curtis”.\n\n\n\n\n\n\nPista\n\n\n\n\n\nAquí deberás usar la función vegdist sobre el objeto de comunidades original (no el transformado).\n\n\n\n\n\n\n\n\n\nSolución: Mirar sólo en caso de extrema\n\n\n\n\n\n\ndis &lt;- vegdist(com)\n\n\n\n\n7. Realiza un análisis clúster en base a la matriz de diferencias que se generó en el ejercicio anterior. Para ello, modifica el argumento method para que realice la agrupación con diferentes algoritmos.\n\n\n\n\n\n\nPista\n\n\n\n\n\nPara realizar el análisis necesitas la función hclust(). Los valores del argumento method los puedes consultar en su ayuda (?hclust).\n\n\n\n\n\n\n\n\n\nSolución: Mirar sólo en caso de extrema\n\n\n\n\n\n\ncom_hc &lt;- hclust(dis, method = \"complete\")\n\n\n\n\n8. Grafica el análisis clúster y usa el argumento hang = -1 para que dibuje el gráfico de manera más amigable. Posteriormente, añade una serie de rectángulos en el gráfico agrupando los puntos de muestreo que son similares entre si. Usa un valor de umbral o un número preestablecido de grupos (a tu elección)\n\n\n\n\n\n\nPista\n\n\n\n\n\nAquí puedes usar la función rect.hclust. En esta función podrás usar un valor de umbral (h = xxx) o un número preestablecido de grupos (n = xxx).\n\n\n\n\n\n\n\n\n\nSolución: Mirar sólo en caso de extrema\n\n\n\n\n\n\nplot(com_hc, hang = - 1)\nrect.hclust(com_hc, h = 0.7)\n\n\n\n\n\n\n\n9. Usando el mismo criterio que en el ejercicio anterior, genera un vector con el grupo resultante de cada sitio.\n\n\n\n\n\n\nPista\n\n\n\n\n\nAquí deberás usar la función cutree(), especificando los grupos con el mismo argumento que en el ejercicio anterior.\n\n\n\n\n\n\n\n\n\nSolución: Mirar sólo en caso de extrema\n\n\n\n\n\n\ngrp &lt;- cutree(com_hc, h=0.7)\n\n\n\n\n10. Por último, genera de nuevo el gráfico del resultado del análisis constrained RDA. Dibuja el biplot del análisis e incorpora la información de los grupos identificados con el análisis de clasificación.\n\n\n\n\n\n\nPista\n\n\n\n\n\nPara ello deberás dibujar el gráfico con la función ordiplot, points y ordihull, a la cual se especifica el objeto RDA y la matríz de grupos identificados previamente.\n\n\n\n\n\n\n\n\n\nSolución: Mirar sólo en caso de extrema\n\n\n\n\n\n\nordiplot(comm_envm_rda, display = \"sites\", type = \"n\")\npoints(comm_envm_rda, col = as.numeric(as.factor(sites[, \"rio\"])))\nordihull(comm_envm_rda, grp, lty=2, col=\"red\")"
   },
   {
+    "objectID": "AEMER-4_HMSC.html#cargamos-algunos-datos",
+    "href": "AEMER-4_HMSC.html#cargamos-algunos-datos",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "Cargamos algunos datos",
+    "text": "Cargamos algunos datos"
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#preparamos-un-poco-los-datos",
+    "href": "AEMER-4_HMSC.html#preparamos-un-poco-los-datos",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "Preparamos un poco los datos",
+    "text": "Preparamos un poco los datos"
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#simulamos-unos-datos-filogenéticos",
+    "href": "AEMER-4_HMSC.html#simulamos-unos-datos-filogenéticos",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "Simulamos unos datos filogenéticos",
+    "text": "Simulamos unos datos filogenéticos"
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#definimos-los-parámetros-para-las-cadenas-de-markov-monte-carlo",
+    "href": "AEMER-4_HMSC.html#definimos-los-parámetros-para-las-cadenas-de-markov-monte-carlo",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "Definimos los parámetros para las Cadenas de Markov Monte Carlo",
+    "text": "Definimos los parámetros para las Cadenas de Markov Monte Carlo"
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#se-calibran-y-estiman-los-parámetros-del-modelos-con-las-mcmc",
+    "href": "AEMER-4_HMSC.html#se-calibran-y-estiman-los-parámetros-del-modelos-con-las-mcmc",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "Se calibran y estiman los parámetros del modelos con las MCMC",
+    "text": "Se calibran y estiman los parámetros del modelos con las MCMC"
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#convertimos-los-resultados-en-objetos-coda-son-un-tipo-de-datos-de-análisis-bayesianos-en-r",
+    "href": "AEMER-4_HMSC.html#convertimos-los-resultados-en-objetos-coda-son-un-tipo-de-datos-de-análisis-bayesianos-en-r",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "Convertimos los resultados en objetos CODA, son un tipo de datos de análisis bayesianos en R",
+    "text": "Convertimos los resultados en objetos CODA, son un tipo de datos de análisis bayesianos en R"
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#calculamos-dos-estadísticos-de-calibración-de-mcmc",
+    "href": "AEMER-4_HMSC.html#calculamos-dos-estadísticos-de-calibración-de-mcmc",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "Calculamos dos estadísticos de calibración de MCMC",
+    "text": "Calculamos dos estadísticos de calibración de MCMC"
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#dibujamos-las-gráficas-de-esos-dos-parámetros",
+    "href": "AEMER-4_HMSC.html#dibujamos-las-gráficas-de-esos-dos-parámetros",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "Dibujamos las gráficas de esos dos parámetros",
+    "text": "Dibujamos las gráficas de esos dos parámetros\nEffective size debería estar entorno al número de muestras de las MCMC (samples * nChains). El diagnóstico de Gelman debería estar entorno a 1."
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#lo-mismo-pero-con-los-valores-de-omega-que-son-los-coeficientes-de-interacciones-entre-especies",
+    "href": "AEMER-4_HMSC.html#lo-mismo-pero-con-los-valores-de-omega-que-son-los-coeficientes-de-interacciones-entre-especies",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "… lo mismo pero con los valores de Omega, que son los coeficientes de interacciones entre especies",
+    "text": "… lo mismo pero con los valores de Omega, que son los coeficientes de interacciones entre especies"
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#tambien-podemos-dibujar-algunas-de-las-cadenas-para-visulizar-su-forma-y-ver-si-se-han-estabilizado",
+    "href": "AEMER-4_HMSC.html#tambien-podemos-dibujar-algunas-de-las-cadenas-para-visulizar-su-forma-y-ver-si-se-han-estabilizado",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "Tambien podemos dibujar algunas de las cadenas para visulizar su forma y ver si se han estabilizado",
+    "text": "Tambien podemos dibujar algunas de las cadenas para visulizar su forma y ver si se han estabilizado"
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#para-evaluar-el-modelo-en-términos-de-la-distribuciónabundancia-de-las-especies-debemos-hacer-predicciones-primero.",
+    "href": "AEMER-4_HMSC.html#para-evaluar-el-modelo-en-términos-de-la-distribuciónabundancia-de-las-especies-debemos-hacer-predicciones-primero.",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "Para evaluar el modelo en términos de la distribución/abundancia de las especies, debemos hacer predicciones primero.",
+    "text": "Para evaluar el modelo en términos de la distribución/abundancia de las especies, debemos hacer predicciones primero.\n\n\n$RMSE\n [1] 1.5144387 1.3791034 1.4098966 1.1696523 0.9650899 0.6398662 0.3680749\n [8] 0.6264471 0.3343986 0.4799472\n\n$SR2\n [1]  3.810614e-01  4.249746e-01 -5.197951e-02  3.198194e-01  8.341205e-04\n [6]  3.795843e-02  2.495264e-02  4.208243e-04  1.168956e-03 -1.728022e-05\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1]  0.30099187  0.35105803 -0.08257464  0.11085573 -0.12676056          NA\n [7]          NA          NA          NA          NA\n\n$C.RMSE\n [1] 1.62914733 1.41530211 1.60319749 1.77298697 0.57054672 1.10552206\n [7] 0.31951761 0.06027818 0.35722294 0.21530368\n\n\n\n\n$RMSE\n [1] 1.6318757 1.7560680 0.9778967 1.1828481 0.4138881 0.4607354 0.2698887\n [8] 0.2479474 0.1835532 0.3095784\n\n$SR2\n [1]  0.218827102  0.168938211  0.050391063  0.165856571 -0.004708226\n [6] -0.054993742 -0.014510007 -0.008508403  0.043429038  0.023619738\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1] 0.169147485 0.071833980 0.209814052 0.008812447 0.260792926 1.000000000\n [7]          NA          NA          NA          NA\n\n$C.RMSE\n [1] 1.7657089 1.9983488 2.0111056 1.7443301 0.8643704 1.4264795 0.5971507\n [8] 0.5201872 0.4579804 0.3084426\n\n\n\n\n$RMSE\n [1] 1.5131706 1.3451952 0.9380184 1.1204898 0.4286305 0.3457456 0.5305234\n [8] 0.3108098 0.3568081 0.2539573\n\n$SR2\n [1]  0.307969185  0.479270038  0.099328929  0.309903595  0.012298709\n [6]  0.052760729 -0.033402346  0.018674136  0.044864613 -0.009937888\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1] 0.2572351 0.3228762 0.1624800 0.1791081 0.2607929 0.2500000        NA\n [8]        NA        NA        NA\n\n$C.RMSE\n [1] 1.6726485 1.4750023 1.9329756 1.6698289 0.7700871 1.4318121 0.3021325\n [8] 0.3537940 0.2697933 0.5395949\n\n\n\n\n$RMSE\n [1] 1.5319340 1.3622045 0.9854918 1.0799047 0.4607690 0.3567149 0.2066089\n [8] 0.2431638 0.1784999 0.1749931\n\n$SR2\n [1]  0.326691798  0.466545534  0.058710578  0.335336526 -0.003515185\n [6]  0.008344762  0.064199448  0.012710084  0.020588235  0.026242236\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1]  0.22084137  0.32772069  0.05457264  0.20004349  0.04857539 -0.25000000\n [7]          NA          NA          NA          NA\n\n$C.RMSE\n [1] 1.7295348 1.4915442 2.0550788 1.6369205 0.8229328 1.4914531 0.4014506\n [8] 0.4682974 0.5112235 0.5161601"
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#también-es-posible-realizar-evaluación-por-validación-cruzada",
+    "href": "AEMER-4_HMSC.html#también-es-posible-realizar-evaluación-por-validación-cruzada",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "También es posible realizar evaluación por validación cruzada",
+    "text": "También es posible realizar evaluación por validación cruzada\n\n\nCross-validation, fold 1 out of 4\nCross-validation, fold 2 out of 4\nCross-validation, fold 3 out of 4\nCross-validation, fold 4 out of 4\n\n\n$RMSE\n [1] 1.8707546 2.3289125 1.0733946 1.4709779 0.5367715 0.3793690 0.2093531\n [8] 0.2972633 0.2411549 0.1953920\n\n$SR2\n [1]  0.0732034334  0.1727127781  0.0045368222  0.0525033920 -0.0294131555\n [6]  0.0013684115  0.0001552795  0.0019724556 -0.0061741363 -0.0062284334\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1]  0.06244813  0.11914933 -0.23797634 -0.01502588  0.06383286 -0.25000000\n [7]          NA          NA          NA          NA\n\n$C.RMSE\n [1] 2.0628459 2.6528466 2.1937765 2.3073201 0.8993151 1.4635141 0.5366395\n [8] 0.4475239 0.5475139 0.5725698"
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#también-podemos-ver-su-relación-con-la-información-filogenética-si-la-hemos-incluido-en-el-modelo",
+    "href": "AEMER-4_HMSC.html#también-podemos-ver-su-relación-con-la-información-filogenética-si-la-hemos-incluido-en-el-modelo",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "También podemos ver su relación con la información filogenética, si la hemos incluido en el modelo",
+    "text": "También podemos ver su relación con la información filogenética, si la hemos incluido en el modelo\n\n\n[1] 0.3 1.0 0.0 1.0"
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#otro-aspecto-importantenovedoso-es-estimar-las-correlaciones-entre-especies",
+    "href": "AEMER-4_HMSC.html#otro-aspecto-importantenovedoso-es-estimar-las-correlaciones-entre-especies",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "Otro aspecto importante/novedoso es estimar las correlaciones entre especies",
+    "text": "Otro aspecto importante/novedoso es estimar las correlaciones entre especies"
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#cuando-especificamos-un-modelo-sin-variables-ambientales-estamos-haciendo-un-modelo-unconstrained-o-indirecto.-por-lo-que-se-puede-usar-para-generar-gráficos-de-ordenación.",
+    "href": "AEMER-4_HMSC.html#cuando-especificamos-un-modelo-sin-variables-ambientales-estamos-haciendo-un-modelo-unconstrained-o-indirecto.-por-lo-que-se-puede-usar-para-generar-gráficos-de-ordenación.",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "Cuando especificamos un modelo sin variables ambientales, estamos haciendo un modelo “unconstrained” o indirecto. Por lo que se puede usar para generar gráficos de ordenación.",
+    "text": "Cuando especificamos un modelo sin variables ambientales, estamos haciendo un modelo “unconstrained” o indirecto. Por lo que se puede usar para generar gráficos de ordenación."
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#en-este-tipo-de-modelos-la-importancia-de-cada-variable-se-mide-en-términos-de-variación-explicada-y-se-calcula-con-análisis-de-particionado-de-la-varianza",
+    "href": "AEMER-4_HMSC.html#en-este-tipo-de-modelos-la-importancia-de-cada-variable-se-mide-en-términos-de-variación-explicada-y-se-calcula-con-análisis-de-particionado-de-la-varianza",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "En este tipo de modelos, la importancia de cada variable se mide en términos de variación explicada y se calcula con análisis de particionado de la varianza",
+    "text": "En este tipo de modelos, la importancia de cada variable se mide en términos de variación explicada y se calcula con análisis de particionado de la varianza"
+  },
+  {
+    "objectID": "AEMER-4_HMSC.html#como-en-los-modelos-de-distribución-de-especies-podemos-calcular-curvas-de-respuesta-de-cada-especiecomunidad-a-las-variables-ambientales",
+    "href": "AEMER-4_HMSC.html#como-en-los-modelos-de-distribución-de-especies-podemos-calcular-curvas-de-respuesta-de-cada-especiecomunidad-a-las-variables-ambientales",
+    "title": "Modelos Jerárquicos de Comunidades de Especies en R",
+    "section": "Como en los Modelos de Distribución de Especies, podemos calcular curvas de respuesta de cada especie/comunidad a las variables ambientales",
+    "text": "Como en los Modelos de Distribución de Especies, podemos calcular curvas de respuesta de cada especie/comunidad a las variables ambientales\n\n\n    temperatura   materia_org    salinidad          ph\n1  -2.065315281 -0.1667234554 -0.501380262  0.37285247\n2  -1.878146837 -0.1516142030 -0.455942859  0.33906285\n3  -1.690978393 -0.1365049507 -0.410505456  0.30527323\n4  -1.503809949 -0.1213956984 -0.365068052  0.27148361\n5  -1.316641505 -0.1062864460 -0.319630649  0.23769400\n6  -1.129473060 -0.0911771937 -0.274193245  0.20390438\n7  -0.942304616 -0.0760679413 -0.228755842  0.17011476\n8  -0.755136172 -0.0609586890 -0.183318438  0.13632514\n9  -0.567967728 -0.0458494366 -0.137881035  0.10253552\n10 -0.380799284 -0.0307401843 -0.092443632  0.06874590\n11 -0.193630840 -0.0156309320 -0.047006228  0.03495628\n12 -0.006462395 -0.0005216796 -0.001568825  0.00116666\n13  0.180706049  0.0145875727  0.043868579 -0.03262296\n14  0.367874493  0.0296968251  0.089305982 -0.06641258\n15  0.555042937  0.0448060774  0.134743386 -0.10020220\n16  0.742211381  0.0599153298  0.180180789 -0.13399182\n17  0.929379825  0.0750245821  0.225618193 -0.16778144\n18  1.116548270  0.0901338344  0.271055596 -0.20157106\n19  1.303716714  0.1052430868  0.316492999 -0.23536068\n20  1.490885158  0.1203523391  0.361930403 -0.26915030\n\n\n\n\n\n[1] 0.74\n\n\n\n\n\n[1] 0.7425\n\n\n\n\n\nAEMeR"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Análisis Espacial y Multivariante en R (AEMeR) aplicados a estudios de Biodiversidad",
     "section": "",
-    "text": "Esta es la web con los materiales del curso:\n\nTema 1: Introducción a R. Presentación - Ejercicios - Ficheros\nTema 2: Manejo de datos espaciales en R. Presentación - Ejercicios\nTema 3: Análisis multivariantes en R. Presentación 1 - Presentación 2 - Ejercicios - Datos ambiente - datos comunidades\nTema 4: Modelos generalizados de dissimilitud.\nTema 5: Modelos jerarquicos de comunidades de especies.\n\nPara saber más sobre páginas web creadas con Quarto visita https://quarto.org/docs/websites."
+    "text": "Esta es la web con los materiales del curso:\n\nTema 1: Introducción a R. Presentación - Ejercicios - Ficheros\nTema 2: Manejo de datos espaciales en R. Presentación - Ejercicios\nTema 3: Análisis multivariantes en R. Presentación 1 - Presentación 2 - Ejercicios - Datos ambiente - datos comunidades\nTema 4: Modelos generalizados de dissimilitud.\nTema 5: Modelos jerarquicos de comunidades de especies. Presentación\n\nPara saber más sobre páginas web creadas con Quarto visita https://quarto.org/docs/websites."
   }
 ]
