@@ -33,8 +33,7 @@ com <- read.xlsx("data/sciberras_especies.xlsx", 1, row.names = 1)
 ```{r}
 #| echo: true
 
-comm <- log1p(com)
-comm <- as.matrix(comm)
+comm <- as.matrix(com)
 
 envm <- scale(env[, 4:7])
 envm <- as.data.frame(envm)
@@ -53,7 +52,7 @@ phy <- ape::rcoal(n = ncol(comm),
 plot(phy, no.margin = TRUE)
 ```
 
-# Definimos el diseño experimental
+## Definimos el diseño experimental
 
 ```{r}
 #| echo: true
@@ -68,7 +67,7 @@ rioL$nfMin <- 2
 mesL$nfMin <- 2
 ```
 
-# Especificamos la estructura del modelo
+## Especificamos la estructura del modelo
 
 ```{r}
 #| echo: true
@@ -254,7 +253,7 @@ preds_m_env = computePredictedValues(m_env,
 evaluateModelFit(hM = m_env, predY = preds_m_env)
 ```
 
-# Una vez que tengamos un modelo sólido. Nos interesa ver que papel juegan las variables ambientales en las especies/comunidades.
+## Una vez que tengamos un modelo sólido. Nos interesa ver que papel juegan las variables ambientales en las especies/comunidades.
 
 ```{r}
 #| echo: true
