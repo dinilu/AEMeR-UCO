@@ -802,119 +802,119 @@
     "href": "AEMER-4_HMSC.html#cargamos-algunos-datos",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "Cargamos algunos datos",
-    "text": "Cargamos algunos datos"
+    "text": "Cargamos algunos datos\n\nlibrary(xlsx)\nenv &lt;- read.xlsx(\"data/sciberras_ambiente.xlsx\", 1, row.names = 1)\ncom &lt;- read.xlsx(\"data/sciberras_especies.xlsx\", 1, row.names = 1)"
   },
   {
     "objectID": "AEMER-4_HMSC.html#preparamos-un-poco-los-datos",
     "href": "AEMER-4_HMSC.html#preparamos-un-poco-los-datos",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "Preparamos un poco los datos",
-    "text": "Preparamos un poco los datos"
+    "text": "Preparamos un poco los datos\n\ncomm &lt;- log1p(com)\ncomm &lt;- as.matrix(comm)\n\nenvm &lt;- scale(env[, 4:7])\nenvm &lt;- as.data.frame(envm)\n\nsites &lt;- env[, 1:3]"
   },
   {
     "objectID": "AEMER-4_HMSC.html#simulamos-unos-datos-filogenéticos",
     "href": "AEMER-4_HMSC.html#simulamos-unos-datos-filogenéticos",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "Simulamos unos datos filogenéticos",
-    "text": "Simulamos unos datos filogenéticos"
+    "text": "Simulamos unos datos filogenéticos\n\nphy &lt;- ape::rcoal(n = ncol(comm), \n                 tip.label = colnames(comm), \n                 br = \"coalescent\")\nplot(phy, no.margin = TRUE)"
   },
   {
     "objectID": "AEMER-4_HMSC.html#definimos-los-parámetros-para-las-cadenas-de-markov-monte-carlo",
     "href": "AEMER-4_HMSC.html#definimos-los-parámetros-para-las-cadenas-de-markov-monte-carlo",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "Definimos los parámetros para las Cadenas de Markov Monte Carlo",
-    "text": "Definimos los parámetros para las Cadenas de Markov Monte Carlo"
+    "text": "Definimos los parámetros para las Cadenas de Markov Monte Carlo\n\nsamples &lt;- 100 # Este valor debería ser más alto. Del orden de 100000 hacia arriba.\nthin &lt;- 1 # Este valor también suele ser más alto. Del orden de 50-100 hacia arriba.\ntransient &lt;- 500*thin\nnChains &lt;- 4"
   },
   {
     "objectID": "AEMER-4_HMSC.html#se-calibran-y-estiman-los-parámetros-del-modelos-con-las-mcmc",
     "href": "AEMER-4_HMSC.html#se-calibran-y-estiman-los-parámetros-del-modelos-con-las-mcmc",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "Se calibran y estiman los parámetros del modelos con las MCMC",
-    "text": "Se calibran y estiman los parámetros del modelos con las MCMC"
+    "text": "Se calibran y estiman los parámetros del modelos con las MCMC\n\nm0 &lt;- sampleMcmc(m0, \n               thin = thin, \n               samples = samples, \n               transient = transient, \n               nChains = nChains, \n               nParallel = nChains)\nm1 &lt;- sampleMcmc(m1, \n               thin = thin, \n               samples = samples, \n               transient = transient, \n               nChains = nChains, \n               nParallel = nChains)\nm_env &lt;- sampleMcmc(m_env, \n               thin = thin, \n               samples = samples, \n               transient = transient, \n               nChains = nChains, \n               nParallel = nChains)\nm_env_phy &lt;- sampleMcmc(m_env_phy, \n               thin = thin, \n               samples = samples, \n               transient = transient, \n               nChains = nChains, \n               nParallel = nChains)"
   },
   {
     "objectID": "AEMER-4_HMSC.html#convertimos-los-resultados-en-objetos-coda-son-un-tipo-de-datos-de-análisis-bayesianos-en-r",
     "href": "AEMER-4_HMSC.html#convertimos-los-resultados-en-objetos-coda-son-un-tipo-de-datos-de-análisis-bayesianos-en-r",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "Convertimos los resultados en objetos CODA, son un tipo de datos de análisis bayesianos en R",
-    "text": "Convertimos los resultados en objetos CODA, son un tipo de datos de análisis bayesianos en R"
+    "text": "Convertimos los resultados en objetos CODA, son un tipo de datos de análisis bayesianos en R\n\nmpost_m0 &lt;- convertToCodaObject(m0)\nmpost_m1 &lt;- convertToCodaObject(m1)\nmpost_m_env &lt;- convertToCodaObject(m_env)\nmpost_m_env_phy &lt;- convertToCodaObject(m_env_phy)"
   },
   {
     "objectID": "AEMER-4_HMSC.html#calculamos-dos-estadísticos-de-calibración-de-mcmc",
     "href": "AEMER-4_HMSC.html#calculamos-dos-estadísticos-de-calibración-de-mcmc",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "Calculamos dos estadísticos de calibración de MCMC",
-    "text": "Calculamos dos estadísticos de calibración de MCMC"
+    "text": "Calculamos dos estadísticos de calibración de MCMC\n\nes_m0 &lt;- effectiveSize(mpost_m0$Beta)\nes_m1 &lt;- effectiveSize(mpost_m1$Beta)\nes_m_env &lt;- effectiveSize(mpost_m_env$Beta)\nes_m_env_phy &lt;- effectiveSize(mpost_m_env_phy$Beta)\n\n\ngd_m0 &lt;- gelman.diag(mpost_m0$Beta, multivariate=FALSE)$psrf\ngd_m_env &lt;- gelman.diag(mpost_m_env$Beta, multivariate=FALSE)$psrf\ngd_m_env_phy &lt;- gelman.diag(mpost_m_env_phy$Beta, multivariate=FALSE)$psrf"
   },
   {
     "objectID": "AEMER-4_HMSC.html#dibujamos-las-gráficas-de-esos-dos-parámetros",
     "href": "AEMER-4_HMSC.html#dibujamos-las-gráficas-de-esos-dos-parámetros",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "Dibujamos las gráficas de esos dos parámetros",
-    "text": "Dibujamos las gráficas de esos dos parámetros\nEffective size debería estar entorno al número de muestras de las MCMC (samples * nChains). El diagnóstico de Gelman debería estar entorno a 1."
+    "text": "Dibujamos las gráficas de esos dos parámetros\nEffective size debería estar entorno al número de muestras de las MCMC (samples * nChains). El diagnóstico de Gelman debería estar entorno a 1.\n\npar(mfrow=c(3,2))\nhist(es_m0, main=\"ess(beta)\")\nhist(gd_m0, main=\"psrf(beta)\")\nhist(es_m_env, main=\"ess(beta)\")\nhist(gd_m_env, main=\"psrf(beta)\")\nhist(es_m_env_phy, main=\"ess(beta)\")\nhist(gd_m_env_phy, main=\"psrf(beta)\")"
   },
   {
     "objectID": "AEMER-4_HMSC.html#lo-mismo-pero-con-los-valores-de-omega-que-son-los-coeficientes-de-interacciones-entre-especies",
     "href": "AEMER-4_HMSC.html#lo-mismo-pero-con-los-valores-de-omega-que-son-los-coeficientes-de-interacciones-entre-especies",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "… lo mismo pero con los valores de Omega, que son los coeficientes de interacciones entre especies",
-    "text": "… lo mismo pero con los valores de Omega, que son los coeficientes de interacciones entre especies"
+    "text": "… lo mismo pero con los valores de Omega, que son los coeficientes de interacciones entre especies\n\npar(mfrow=c(3,2))\nhist(effectiveSize(mpost_m0$Omega[[1]]), main=\"ess(omega)\")\nhist(gelman.diag(mpost_m0$Omega[[1]], multivariate=FALSE)$psrf, main=\"psrf(omega)\")\nhist(effectiveSize(mpost_m_env$Omega[[1]]), main=\"ess(omega)\")\nhist(gelman.diag(mpost_m_env$Omega[[1]], multivariate=FALSE)$psrf, main=\"psrf(omega)\")\nhist(effectiveSize(mpost_m_env_phy$Omega[[1]]), main=\"ess(omega)\")\nhist(gelman.diag(mpost_m_env_phy$Omega[[1]], multivariate=FALSE)$psrf, main=\"psrf(omega)\")"
   },
   {
     "objectID": "AEMER-4_HMSC.html#tambien-podemos-dibujar-algunas-de-las-cadenas-para-visulizar-su-forma-y-ver-si-se-han-estabilizado",
     "href": "AEMER-4_HMSC.html#tambien-podemos-dibujar-algunas-de-las-cadenas-para-visulizar-su-forma-y-ver-si-se-han-estabilizado",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "Tambien podemos dibujar algunas de las cadenas para visulizar su forma y ver si se han estabilizado",
-    "text": "Tambien podemos dibujar algunas de las cadenas para visulizar su forma y ver si se han estabilizado"
+    "text": "Tambien podemos dibujar algunas de las cadenas para visulizar su forma y ver si se han estabilizado\n\nplot(mpost_m0$Beta[[1]][,2])"
   },
   {
     "objectID": "AEMER-4_HMSC.html#para-evaluar-el-modelo-en-términos-de-la-distribuciónabundancia-de-las-especies-debemos-hacer-predicciones-primero.",
     "href": "AEMER-4_HMSC.html#para-evaluar-el-modelo-en-términos-de-la-distribuciónabundancia-de-las-especies-debemos-hacer-predicciones-primero.",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "Para evaluar el modelo en términos de la distribución/abundancia de las especies, debemos hacer predicciones primero.",
-    "text": "Para evaluar el modelo en términos de la distribución/abundancia de las especies, debemos hacer predicciones primero.\n\n\n$RMSE\n [1] 1.5144387 1.3791034 1.4098966 1.1696523 0.9650899 0.6398662 0.3680749\n [8] 0.6264471 0.3343986 0.4799472\n\n$SR2\n [1]  3.810614e-01  4.249746e-01 -5.197951e-02  3.198194e-01  8.341205e-04\n [6]  3.795843e-02  2.495264e-02  4.208243e-04  1.168956e-03 -1.728022e-05\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1]  0.30099187  0.35105803 -0.08257464  0.11085573 -0.12676056          NA\n [7]          NA          NA          NA          NA\n\n$C.RMSE\n [1] 1.62914733 1.41530211 1.60319749 1.77298697 0.57054672 1.10552206\n [7] 0.31951761 0.06027818 0.35722294 0.21530368\n\n\n\n\n$RMSE\n [1] 1.6318757 1.7560680 0.9778967 1.1828481 0.4138881 0.4607354 0.2698887\n [8] 0.2479474 0.1835532 0.3095784\n\n$SR2\n [1]  0.218827102  0.168938211  0.050391063  0.165856571 -0.004708226\n [6] -0.054993742 -0.014510007 -0.008508403  0.043429038  0.023619738\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1] 0.169147485 0.071833980 0.209814052 0.008812447 0.260792926 1.000000000\n [7]          NA          NA          NA          NA\n\n$C.RMSE\n [1] 1.7657089 1.9983488 2.0111056 1.7443301 0.8643704 1.4264795 0.5971507\n [8] 0.5201872 0.4579804 0.3084426\n\n\n\n\n$RMSE\n [1] 1.5131706 1.3451952 0.9380184 1.1204898 0.4286305 0.3457456 0.5305234\n [8] 0.3108098 0.3568081 0.2539573\n\n$SR2\n [1]  0.307969185  0.479270038  0.099328929  0.309903595  0.012298709\n [6]  0.052760729 -0.033402346  0.018674136  0.044864613 -0.009937888\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1] 0.2572351 0.3228762 0.1624800 0.1791081 0.2607929 0.2500000        NA\n [8]        NA        NA        NA\n\n$C.RMSE\n [1] 1.6726485 1.4750023 1.9329756 1.6698289 0.7700871 1.4318121 0.3021325\n [8] 0.3537940 0.2697933 0.5395949\n\n\n\n\n$RMSE\n [1] 1.5319340 1.3622045 0.9854918 1.0799047 0.4607690 0.3567149 0.2066089\n [8] 0.2431638 0.1784999 0.1749931\n\n$SR2\n [1]  0.326691798  0.466545534  0.058710578  0.335336526 -0.003515185\n [6]  0.008344762  0.064199448  0.012710084  0.020588235  0.026242236\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1]  0.22084137  0.32772069  0.05457264  0.20004349  0.04857539 -0.25000000\n [7]          NA          NA          NA          NA\n\n$C.RMSE\n [1] 1.7295348 1.4915442 2.0550788 1.6369205 0.8229328 1.4914531 0.4014506\n [8] 0.4682974 0.5112235 0.5161601"
+    "text": "Para evaluar el modelo en términos de la distribución/abundancia de las especies, debemos hacer predicciones primero.\n\npreds_m0 &lt;- computePredictedValues(m0)\nevaluateModelFit(hM = m0, predY = preds_m0)\n\n$RMSE\n [1] 1.6472969 1.4683777 0.9484456 1.1459686 0.4517475 0.3457444 0.3758551\n [8] 0.3700370 0.5917811 0.2019217\n\n$SR2\n [1]  0.3918487190  0.3773871863  0.2088227092  0.3718979941  0.0067624144\n [6]  0.0177700109 -0.0024883523 -0.0236713659 -0.0001052061  0.0211682746\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1]  0.31810560  0.34984503  0.10516243  0.26161470 -0.05633803          NA\n [7]          NA          NA          NA          NA\n\n$C.RMSE\n [1] 1.79118319 1.57518650 1.91120721 1.69739501 0.77017642 1.50663105\n [7] 0.31875407 0.33566833 0.09102244 0.49512299\n\n\n\npreds_m1 &lt;- computePredictedValues(m1)\nevaluateModelFit(hM = m1, predY = preds_m1)\n\n$RMSE\n [1] 1.6502574 1.5458190 0.9516162 1.2234295 0.4517266 0.4154289 0.2428015\n [8] 0.3338536 0.2183469 0.3227751\n\n$SR2\n [1] 0.214203058 0.253467008 0.052871284 0.113297691 0.013153162 0.006057886\n [7] 0.004986197 0.032784781 0.071008403 0.005590062\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1]  0.157299406  0.094505872  0.240216108  0.007550259 -0.153990637\n [6]  1.000000000           NA           NA           NA           NA\n\n$C.RMSE\n [1] 1.7260161 1.6880155 1.9810833 1.8868659 0.8638031 1.3094848 0.4706285\n [8] 0.4069993 0.4143910 0.3804192\n\n\n\npreds_m_env &lt;- computePredictedValues(m_env)\nevaluateModelFit(hM = m_env, predY = preds_m_env)\n\n$RMSE\n [1] 1.4360046 1.4026072 0.9380186 1.0848328 0.4092013 0.4180792 0.2170651\n [8] 0.1676858 0.2964402 0.2766443\n\n$SR2\n [1]  3.796010e-01  4.082515e-01  1.156765e-01  2.740152e-01  5.485835e-04\n [6] -2.681286e-02  1.725328e-05 -8.508403e-03 -2.158030e-02  2.491373e-02\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1]  0.2714160389  0.2902506459  0.1309449500  0.1678006501 -0.0001155869\n [6]  0.2500000000            NA            NA            NA            NA\n\n$C.RMSE\n [1] 1.5804634 1.5047155 1.9247271 1.5923606 0.8657100 1.4471823 0.5012370\n [8] 0.6147194 0.5342602 0.3266350\n\n\n\npreds_m_env_phy &lt;- computePredictedValues(m_env_phy)\nevaluateModelFit(hM = m_env_phy, predY = preds_m_env_phy)\n\n$RMSE\n [1] 1.5123595 1.4090097 0.9692472 1.0832936 0.4113107 0.4637337 0.1940032\n [8] 0.1706901 0.1935673 0.1309370\n\n$SR2\n [1]  3.227668e-01  4.076421e-01  7.347677e-02  3.273696e-01  6.533386e-04\n [6] -5.003454e-04  6.901311e-05  1.685341e-02  2.469655e-02  6.228433e-03\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1] 0.23046128 0.26134660 0.09559653 0.13580414 0.01155869 1.00000000\n [7]         NA         NA         NA         NA\n\n$C.RMSE\n [1] 1.6739865 1.5115817 1.9396994 1.5497910 0.8413123 1.4591181 0.5378561\n [8] 0.5550580 0.4582202 0.5707305"
   },
   {
     "objectID": "AEMER-4_HMSC.html#también-es-posible-realizar-evaluación-por-validación-cruzada",
     "href": "AEMER-4_HMSC.html#también-es-posible-realizar-evaluación-por-validación-cruzada",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "También es posible realizar evaluación por validación cruzada",
-    "text": "También es posible realizar evaluación por validación cruzada\n\n\nCross-validation, fold 1 out of 4\nCross-validation, fold 2 out of 4\nCross-validation, fold 3 out of 4\nCross-validation, fold 4 out of 4\n\n\n$RMSE\n [1] 1.8707546 2.3289125 1.0733946 1.4709779 0.5367715 0.3793690 0.2093531\n [8] 0.2972633 0.2411549 0.1953920\n\n$SR2\n [1]  0.0732034334  0.1727127781  0.0045368222  0.0525033920 -0.0294131555\n [6]  0.0013684115  0.0001552795  0.0019724556 -0.0061741363 -0.0062284334\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1]  0.06244813  0.11914933 -0.23797634 -0.01502588  0.06383286 -0.25000000\n [7]          NA          NA          NA          NA\n\n$C.RMSE\n [1] 2.0628459 2.6528466 2.1937765 2.3073201 0.8993151 1.4635141 0.5366395\n [8] 0.4475239 0.5475139 0.5725698"
+    "text": "También es posible realizar evaluación por validación cruzada\n\npartition_env &lt;- createPartition(m_env, nfolds = 4)\npreds_m_env = computePredictedValues(m_env, \n                               partition = partition_env,\n                               nParallel = nChains)\n\nCross-validation, fold 1 out of 4\nCross-validation, fold 2 out of 4\nCross-validation, fold 3 out of 4\nCross-validation, fold 4 out of 4\n\nevaluateModelFit(hM = m_env, predY = preds_m_env)\n\n$RMSE\n [1] 1.7003950 1.6755475 1.0168222 1.2217380 0.4887221 0.4045580 0.2956033\n [8] 0.3072247 0.3025086 0.2631700\n\n$SR2\n [1]  0.178756444  0.182186164  0.013026933  0.079436260 -0.019395742\n [6] -0.015594570 -0.011663216 -0.001972456  0.003373016 -0.034937888\n\n$O.AUC\n [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n\n$O.TjurR2\n [1] 0 0 0 0 0 0 0 0 0 0\n\n$O.RMSE\n [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149\n [8] 0.9786452 0.9786452 0.9858149\n\n$C.SR2\n [1]  0.102936962  0.162202957  0.003823861  0.023716293 -0.090620124\n [6] -0.250000000           NA           NA           NA           NA\n\n$C.RMSE\n [1] 1.9204146 1.8058400 1.9771521 1.7772109 0.9043357 1.5023692 0.5703187\n [8] 0.4624190 0.4038897 0.6209553"
   },
   {
     "objectID": "AEMER-4_HMSC.html#también-podemos-ver-su-relación-con-la-información-filogenética-si-la-hemos-incluido-en-el-modelo",
     "href": "AEMER-4_HMSC.html#también-podemos-ver-su-relación-con-la-información-filogenética-si-la-hemos-incluido-en-el-modelo",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "También podemos ver su relación con la información filogenética, si la hemos incluido en el modelo",
-    "text": "También podemos ver su relación con la información filogenética, si la hemos incluido en el modelo\n\n\n[1] 0.3 1.0 0.0 1.0"
+    "text": "También podemos ver su relación con la información filogenética, si la hemos incluido en el modelo\n\npostBeta &lt;- getPostEstimate(m_env_phy, parName = \"Beta\")\nplotBeta(m_env_phy, \n         post = postBeta, \n         param = \"Support\", \n         supportLevel = 0.9,\n         plotTree = TRUE)\n\n[1] 0.3 1.0 0.0 1.0"
   },
   {
     "objectID": "AEMER-4_HMSC.html#otro-aspecto-importantenovedoso-es-estimar-las-correlaciones-entre-especies",
     "href": "AEMER-4_HMSC.html#otro-aspecto-importantenovedoso-es-estimar-las-correlaciones-entre-especies",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "Otro aspecto importante/novedoso es estimar las correlaciones entre especies",
-    "text": "Otro aspecto importante/novedoso es estimar las correlaciones entre especies"
+    "text": "Otro aspecto importante/novedoso es estimar las correlaciones entre especies\n\nlibrary(corrplot)\nOmegaCor &lt;- computeAssociations(m_env)\nsupportLevel &lt;- 0.95\ntoPlot &lt;- ((OmegaCor[[1]]$support &gt; supportLevel) +\n           (OmegaCor[[1]]$support &lt; (1-supportLevel)\n            ) &gt; 0) * OmegaCor[[1]]$mean\ncorrplot(toPlot)"
   },
   {
     "objectID": "AEMER-4_HMSC.html#cuando-especificamos-un-modelo-sin-variables-ambientales-estamos-haciendo-un-modelo-unconstrained-o-indirecto.-por-lo-que-se-puede-usar-para-generar-gráficos-de-ordenación.",
     "href": "AEMER-4_HMSC.html#cuando-especificamos-un-modelo-sin-variables-ambientales-estamos-haciendo-un-modelo-unconstrained-o-indirecto.-por-lo-que-se-puede-usar-para-generar-gráficos-de-ordenación.",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "Cuando especificamos un modelo sin variables ambientales, estamos haciendo un modelo “unconstrained” o indirecto. Por lo que se puede usar para generar gráficos de ordenación.",
-    "text": "Cuando especificamos un modelo sin variables ambientales, estamos haciendo un modelo “unconstrained” o indirecto. Por lo que se puede usar para generar gráficos de ordenación."
+    "text": "Cuando especificamos un modelo sin variables ambientales, estamos haciendo un modelo “unconstrained” o indirecto. Por lo que se puede usar para generar gráficos de ordenación.\n\netaPost &lt;- getPostEstimate(m0, \"Eta\")\nlambdaPost &lt;- getPostEstimate(m0, \"Lambda\")\nbiPlot(m0, \n       etaPost = etaPost, \n       lambdaPost = lambdaPost, \n       factors = c(1,2), \n       \"ph\")"
   },
   {
     "objectID": "AEMER-4_HMSC.html#en-este-tipo-de-modelos-la-importancia-de-cada-variable-se-mide-en-términos-de-variación-explicada-y-se-calcula-con-análisis-de-particionado-de-la-varianza",
     "href": "AEMER-4_HMSC.html#en-este-tipo-de-modelos-la-importancia-de-cada-variable-se-mide-en-términos-de-variación-explicada-y-se-calcula-con-análisis-de-particionado-de-la-varianza",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "En este tipo de modelos, la importancia de cada variable se mide en términos de variación explicada y se calcula con análisis de particionado de la varianza",
-    "text": "En este tipo de modelos, la importancia de cada variable se mide en términos de variación explicada y se calcula con análisis de particionado de la varianza"
+    "text": "En este tipo de modelos, la importancia de cada variable se mide en términos de variación explicada y se calcula con análisis de particionado de la varianza\n\nVP = computeVariancePartitioning(m_env)\nplotVariancePartitioning(m_env, VP = VP)"
   },
   {
     "objectID": "AEMER-4_HMSC.html#como-en-los-modelos-de-distribución-de-especies-podemos-calcular-curvas-de-respuesta-de-cada-especiecomunidad-a-las-variables-ambientales",
     "href": "AEMER-4_HMSC.html#como-en-los-modelos-de-distribución-de-especies-podemos-calcular-curvas-de-respuesta-de-cada-especiecomunidad-a-las-variables-ambientales",
     "title": "Modelos Jerárquicos de Comunidades de Especies en R",
     "section": "Como en los Modelos de Distribución de Especies, podemos calcular curvas de respuesta de cada especie/comunidad a las variables ambientales",
-    "text": "Como en los Modelos de Distribución de Especies, podemos calcular curvas de respuesta de cada especie/comunidad a las variables ambientales\n\n\n    temperatura   materia_org    salinidad          ph\n1  -2.065315281 -0.1667234554 -0.501380262  0.37285247\n2  -1.878146837 -0.1516142030 -0.455942859  0.33906285\n3  -1.690978393 -0.1365049507 -0.410505456  0.30527323\n4  -1.503809949 -0.1213956984 -0.365068052  0.27148361\n5  -1.316641505 -0.1062864460 -0.319630649  0.23769400\n6  -1.129473060 -0.0911771937 -0.274193245  0.20390438\n7  -0.942304616 -0.0760679413 -0.228755842  0.17011476\n8  -0.755136172 -0.0609586890 -0.183318438  0.13632514\n9  -0.567967728 -0.0458494366 -0.137881035  0.10253552\n10 -0.380799284 -0.0307401843 -0.092443632  0.06874590\n11 -0.193630840 -0.0156309320 -0.047006228  0.03495628\n12 -0.006462395 -0.0005216796 -0.001568825  0.00116666\n13  0.180706049  0.0145875727  0.043868579 -0.03262296\n14  0.367874493  0.0296968251  0.089305982 -0.06641258\n15  0.555042937  0.0448060774  0.134743386 -0.10020220\n16  0.742211381  0.0599153298  0.180180789 -0.13399182\n17  0.929379825  0.0750245821  0.225618193 -0.16778144\n18  1.116548270  0.0901338344  0.271055596 -0.20157106\n19  1.303716714  0.1052430868  0.316492999 -0.23536068\n20  1.490885158  0.1203523391  0.361930403 -0.26915030\n\n\n\n\n\n[1] 0.74\n\n\n\n\n\n[1] 0.7425\n\n\n\n\n\nAEMeR"
+    "text": "Como en los Modelos de Distribución de Especies, podemos calcular curvas de respuesta de cada especie/comunidad a las variables ambientales\n\nGradient = constructGradient(m1, focalVariable = \"temperatura\",\nnon.focalVariables = list(\"habitat\"=list(3,\"open\")))\nGradient$XDataNew\n\n    temperatura   materia_org    salinidad          ph\n1  -2.065315281 -0.1667234554 -0.501380262  0.37285247\n2  -1.878146837 -0.1516142030 -0.455942859  0.33906285\n3  -1.690978393 -0.1365049507 -0.410505456  0.30527323\n4  -1.503809949 -0.1213956984 -0.365068052  0.27148361\n5  -1.316641505 -0.1062864460 -0.319630649  0.23769400\n6  -1.129473060 -0.0911771937 -0.274193245  0.20390438\n7  -0.942304616 -0.0760679413 -0.228755842  0.17011476\n8  -0.755136172 -0.0609586890 -0.183318438  0.13632514\n9  -0.567967728 -0.0458494366 -0.137881035  0.10253552\n10 -0.380799284 -0.0307401843 -0.092443632  0.06874590\n11 -0.193630840 -0.0156309320 -0.047006228  0.03495628\n12 -0.006462395 -0.0005216796 -0.001568825  0.00116666\n13  0.180706049  0.0145875727  0.043868579 -0.03262296\n14  0.367874493  0.0296968251  0.089305982 -0.06641258\n15  0.555042937  0.0448060774  0.134743386 -0.10020220\n16  0.742211381  0.0599153298  0.180180789 -0.13399182\n17  0.929379825  0.0750245821  0.225618193 -0.16778144\n18  1.116548270  0.0901338344  0.271055596 -0.20157106\n19  1.303716714  0.1052430868  0.316492999 -0.23536068\n20  1.490885158  0.1203523391  0.361930403 -0.26915030\n\npredY &lt;- predict(m1, \n                XData=Gradient$XDataNew, \n                studyDesign=Gradient$studyDesignNew,\n                ranLevels=Gradient$rLNew, \n                expected=TRUE)\nplotGradient(m1, Gradient, pred=predY, measure=\"S\")\n\n\n\n\n[1] 0.7275\n\nplotGradient(m1, Gradient, pred=predY, measure=\"Y\", index = 3)\n\n\n\n\n[1] 0.75\n\n\n\n\n\nAEMeR"
   },
   {
     "objectID": "index.html",
