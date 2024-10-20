@@ -11,6 +11,7 @@ format:
     footer: "[AEMeR](https://dnietolugilde.com/AEMeR)"
     scrollable: true
     chalkboard: true
+lightbox: auto
 editor: source
 ---
 

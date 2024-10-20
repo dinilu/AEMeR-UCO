@@ -1,5 +1,6 @@
 ---
 title: "Análisis Espacial y Multivariante en R (AEMeR) aplicados a estudios de Biodiversidad"
+lightbox: auto
 ---
 
 Esta es la web con los materiales del curso:

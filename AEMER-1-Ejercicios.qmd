@@ -6,6 +6,7 @@ date: 10/14/2024
 format: html
 toc: true
 toc-depth: 2
+lightbox: auto
 editor: source
 ---
 
