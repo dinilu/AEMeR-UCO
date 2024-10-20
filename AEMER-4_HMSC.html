@@ -7,8 +7,11 @@
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.340">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Diego Nieto Lugilde">
   <meta name="dcterms.date" content="2024-10-18">
@@ -32,7 +35,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -43,7 +46,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -71,7 +74,7 @@
     code span.at { color: #657422; } /* Attribute */
     code span.bn { color: #ad0000; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #20794d; } /* Char */
     code span.cn { color: #8f5902; } /* Constant */
     code span.co { color: #5e5e5e; } /* Comment */
@@ -85,7 +88,7 @@
     code span.fu { color: #4758ab; } /* Function */
     code span.im { color: #00769e; } /* Import */
     code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
     code span.op { color: #5e5e5e; } /* Operator */
     code span.ot { color: #003b4f; } /* Other */
     code span.pp { color: #ad0000; } /* Preprocessor */
@@ -96,7 +99,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -224,7 +227,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -414,185 +418,209 @@ Diego Nieto Lugilde
 <section id="cargamos-algunos-datos" class="slide level2">
 <h2>Cargamos algunos datos</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(xlsx)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_ambiente.xlsx"</span>, <span class="dv">1</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a>com <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_especies.xlsx"</span>, <span class="dv">1</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(xlsx)</span>
+<span id="cb1-2"><a></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_ambiente.xlsx"</span>, <span class="dv">1</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb1-3"><a></a>com <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_especies.xlsx"</span>, <span class="dv">1</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="preparamos-un-poco-los-datos" class="slide level2">
 <h2>Preparamos un poco los datos</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>comm <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(com)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>envm <span class="ot">&lt;-</span> <span class="fu">scale</span>(env[, <span class="dv">4</span><span class="sc">:</span><span class="dv">7</span>])</span>
-<span id="cb2-4"><a href="#cb2-4"></a>envm <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(envm)</span>
-<span id="cb2-5"><a href="#cb2-5"></a></span>
-<span id="cb2-6"><a href="#cb2-6"></a>sites <span class="ot">&lt;-</span> env[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>comm <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(com)</span>
+<span id="cb2-2"><a></a></span>
+<span id="cb2-3"><a></a>envm <span class="ot">&lt;-</span> <span class="fu">scale</span>(env[, <span class="dv">4</span><span class="sc">:</span><span class="dv">7</span>])</span>
+<span id="cb2-4"><a></a>envm <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(envm)</span>
+<span id="cb2-5"><a></a></span>
+<span id="cb2-6"><a></a>sites <span class="ot">&lt;-</span> env[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="simulamos-unos-datos-filogenéticos" class="slide level2">
 <h2>Simulamos unos datos filogenéticos</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>phy <span class="ot">&lt;-</span> ape<span class="sc">::</span><span class="fu">rcoal</span>(<span class="at">n =</span> <span class="fu">ncol</span>(comm), </span>
-<span id="cb3-2"><a href="#cb3-2"></a>                 <span class="at">tip.label =</span> <span class="fu">colnames</span>(comm), </span>
-<span id="cb3-3"><a href="#cb3-3"></a>                 <span class="at">br =</span> <span class="st">"coalescent"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">plot</span>(phy, <span class="at">no.margin =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>phy <span class="ot">&lt;-</span> ape<span class="sc">::</span><span class="fu">rcoal</span>(<span class="at">n =</span> <span class="fu">ncol</span>(comm), </span>
+<span id="cb3-2"><a></a>                 <span class="at">tip.label =</span> <span class="fu">colnames</span>(comm), </span>
+<span id="cb3-3"><a></a>                 <span class="at">br =</span> <span class="st">"coalescent"</span>)</span>
+<span id="cb3-4"><a></a><span class="fu">plot</span>(phy, <span class="at">no.margin =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></a></p>
+</figure>
 </div>
-<img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+</div>
+</div>
+</section>
 <section id="definimos-el-diseño-experimental" class="slide level2">
 <h2>Definimos el diseño experimental</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(Hmsc)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>studyDesign <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">rio =</span> <span class="fu">as.factor</span>(sites<span class="sc">$</span>rio),</span>
-<span id="cb4-3"><a href="#cb4-3"></a>                         <span class="at">mes =</span> <span class="fu">as.factor</span>(sites<span class="sc">$</span>mes))</span>
-<span id="cb4-4"><a href="#cb4-4"></a>rioL <span class="ot">&lt;-</span> <span class="fu">HmscRandomLevel</span>(<span class="at">units =</span> <span class="fu">levels</span>(sites<span class="sc">$</span>rio))</span>
-<span id="cb4-5"><a href="#cb4-5"></a>mesL <span class="ot">&lt;-</span> <span class="fu">HmscRandomLevel</span>(<span class="at">units =</span> <span class="fu">levels</span>(sites<span class="sc">$</span>mes))</span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a>rioL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>mesL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(Hmsc)</span>
+<span id="cb4-2"><a></a>studyDesign <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">rio =</span> <span class="fu">as.factor</span>(sites<span class="sc">$</span>rio),</span>
+<span id="cb4-3"><a></a>                         <span class="at">mes =</span> <span class="fu">as.factor</span>(sites<span class="sc">$</span>mes))</span>
+<span id="cb4-4"><a></a>rioL <span class="ot">&lt;-</span> <span class="fu">HmscRandomLevel</span>(<span class="at">units =</span> <span class="fu">levels</span>(sites<span class="sc">$</span>rio))</span>
+<span id="cb4-5"><a></a>mesL <span class="ot">&lt;-</span> <span class="fu">HmscRandomLevel</span>(<span class="at">units =</span> <span class="fu">levels</span>(sites<span class="sc">$</span>mes))</span>
+<span id="cb4-6"><a></a></span>
+<span id="cb4-7"><a></a>rioL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb4-8"><a></a>mesL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="especificamos-la-estructura-del-modelo" class="slide level2">
 <h2>Especificamos la estructura del modelo</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm, </span>
-<span id="cb5-2"><a href="#cb5-2"></a>         <span class="at">XData =</span> envm, </span>
-<span id="cb5-3"><a href="#cb5-3"></a>         <span class="at">XFormula =</span> <span class="sc">~</span><span class="dv">1</span>,</span>
-<span id="cb5-4"><a href="#cb5-4"></a>         <span class="at">studyDesign =</span> studyDesign, </span>
-<span id="cb5-5"><a href="#cb5-5"></a>         <span class="at">ranLevels =</span> <span class="fu">list</span>(<span class="at">rio =</span> rioL, <span class="at">mes =</span> mesL),</span>
-<span id="cb5-6"><a href="#cb5-6"></a>         <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span>
-<span id="cb5-7"><a href="#cb5-7"></a></span>
-<span id="cb5-8"><a href="#cb5-8"></a>m1 <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm, </span>
-<span id="cb5-9"><a href="#cb5-9"></a>           <span class="at">XData =</span> envm,</span>
-<span id="cb5-10"><a href="#cb5-10"></a>           <span class="at">XFormula =</span> <span class="sc">~</span>materia_org <span class="sc">+</span> <span class="fu">poly</span>(temperatura ,<span class="at">degree =</span> <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> salinidad <span class="sc">+</span> ph,</span>
-<span id="cb5-11"><a href="#cb5-11"></a>           <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span>
-<span id="cb5-12"><a href="#cb5-12"></a></span>
-<span id="cb5-13"><a href="#cb5-13"></a></span>
-<span id="cb5-14"><a href="#cb5-14"></a>m_env <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm, </span>
-<span id="cb5-15"><a href="#cb5-15"></a>          <span class="at">XData =</span> envm,</span>
-<span id="cb5-16"><a href="#cb5-16"></a>          <span class="at">XFormula =</span> <span class="sc">~</span>materia_org <span class="sc">+</span> <span class="fu">poly</span>(temperatura ,<span class="at">degree =</span> <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>)  <span class="sc">+</span> salinidad <span class="sc">+</span> ph,</span>
-<span id="cb5-17"><a href="#cb5-17"></a>          <span class="at">studyDesign =</span> studyDesign, </span>
-<span id="cb5-18"><a href="#cb5-18"></a>          <span class="at">ranLevels =</span> <span class="fu">list</span>(<span class="at">rio =</span> rioL, <span class="at">mes =</span> mesL),</span>
-<span id="cb5-19"><a href="#cb5-19"></a>          <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span>
-<span id="cb5-20"><a href="#cb5-20"></a></span>
-<span id="cb5-21"><a href="#cb5-21"></a>m_env_phy <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm,</span>
-<span id="cb5-22"><a href="#cb5-22"></a>         <span class="at">XData =</span> envm, </span>
-<span id="cb5-23"><a href="#cb5-23"></a>         <span class="at">XFormula =</span> <span class="sc">~</span>materia_org <span class="sc">+</span> <span class="fu">poly</span>(temperatura ,<span class="at">degree =</span> <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>)  <span class="sc">+</span> salinidad <span class="sc">+</span> ph,</span>
-<span id="cb5-24"><a href="#cb5-24"></a>         <span class="at">phyloTree =</span> phy,</span>
-<span id="cb5-25"><a href="#cb5-25"></a>         <span class="at">studyDesign =</span> studyDesign, </span>
-<span id="cb5-26"><a href="#cb5-26"></a>         <span class="at">ranLevels =</span> <span class="fu">list</span>(<span class="at">rio =</span> rioL, <span class="at">mes =</span> mesL),</span>
-<span id="cb5-27"><a href="#cb5-27"></a>         <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>m0 <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm, </span>
+<span id="cb5-2"><a></a>         <span class="at">XData =</span> envm, </span>
+<span id="cb5-3"><a></a>         <span class="at">XFormula =</span> <span class="sc">~</span><span class="dv">1</span>,</span>
+<span id="cb5-4"><a></a>         <span class="at">studyDesign =</span> studyDesign, </span>
+<span id="cb5-5"><a></a>         <span class="at">ranLevels =</span> <span class="fu">list</span>(<span class="at">rio =</span> rioL, <span class="at">mes =</span> mesL),</span>
+<span id="cb5-6"><a></a>         <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span>
+<span id="cb5-7"><a></a></span>
+<span id="cb5-8"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm, </span>
+<span id="cb5-9"><a></a>           <span class="at">XData =</span> envm,</span>
+<span id="cb5-10"><a></a>           <span class="at">XFormula =</span> <span class="sc">~</span>materia_org <span class="sc">+</span> <span class="fu">poly</span>(temperatura ,<span class="at">degree =</span> <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> salinidad <span class="sc">+</span> ph,</span>
+<span id="cb5-11"><a></a>           <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span>
+<span id="cb5-12"><a></a></span>
+<span id="cb5-13"><a></a></span>
+<span id="cb5-14"><a></a>m_env <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm, </span>
+<span id="cb5-15"><a></a>          <span class="at">XData =</span> envm,</span>
+<span id="cb5-16"><a></a>          <span class="at">XFormula =</span> <span class="sc">~</span>materia_org <span class="sc">+</span> <span class="fu">poly</span>(temperatura ,<span class="at">degree =</span> <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>)  <span class="sc">+</span> salinidad <span class="sc">+</span> ph,</span>
+<span id="cb5-17"><a></a>          <span class="at">studyDesign =</span> studyDesign, </span>
+<span id="cb5-18"><a></a>          <span class="at">ranLevels =</span> <span class="fu">list</span>(<span class="at">rio =</span> rioL, <span class="at">mes =</span> mesL),</span>
+<span id="cb5-19"><a></a>          <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span>
+<span id="cb5-20"><a></a></span>
+<span id="cb5-21"><a></a>m_env_phy <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm,</span>
+<span id="cb5-22"><a></a>         <span class="at">XData =</span> envm, </span>
+<span id="cb5-23"><a></a>         <span class="at">XFormula =</span> <span class="sc">~</span>materia_org <span class="sc">+</span> <span class="fu">poly</span>(temperatura ,<span class="at">degree =</span> <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>)  <span class="sc">+</span> salinidad <span class="sc">+</span> ph,</span>
+<span id="cb5-24"><a></a>         <span class="at">phyloTree =</span> phy,</span>
+<span id="cb5-25"><a></a>         <span class="at">studyDesign =</span> studyDesign, </span>
+<span id="cb5-26"><a></a>         <span class="at">ranLevels =</span> <span class="fu">list</span>(<span class="at">rio =</span> rioL, <span class="at">mes =</span> mesL),</span>
+<span id="cb5-27"><a></a>         <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="definimos-los-parámetros-para-las-cadenas-de-markov-monte-carlo" class="slide level2">
 <h2>Definimos los parámetros para las Cadenas de Markov Monte Carlo</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>samples <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># Este valor debería ser más alto. Del orden de 100000 hacia arriba.</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>thin <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Este valor también suele ser más alto. Del orden de 50-100 hacia arriba.</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>transient <span class="ot">&lt;-</span> <span class="dv">500</span><span class="sc">*</span>thin</span>
-<span id="cb6-4"><a href="#cb6-4"></a>nChains <span class="ot">&lt;-</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>samples <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># Este valor debería ser más alto. Del orden de 100000 hacia arriba.</span></span>
+<span id="cb6-2"><a></a>thin <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Este valor también suele ser más alto. Del orden de 50-100 hacia arriba.</span></span>
+<span id="cb6-3"><a></a>transient <span class="ot">&lt;-</span> <span class="dv">500</span><span class="sc">*</span>thin</span>
+<span id="cb6-4"><a></a>nChains <span class="ot">&lt;-</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="se-calibran-y-estiman-los-parámetros-del-modelos-con-las-mcmc" class="slide level2">
 <h2>Se calibran y estiman los parámetros del modelos con las MCMC</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m0, </span>
-<span id="cb7-2"><a href="#cb7-2"></a>               <span class="at">thin =</span> thin, </span>
-<span id="cb7-3"><a href="#cb7-3"></a>               <span class="at">samples =</span> samples, </span>
-<span id="cb7-4"><a href="#cb7-4"></a>               <span class="at">transient =</span> transient, </span>
-<span id="cb7-5"><a href="#cb7-5"></a>               <span class="at">nChains =</span> nChains, </span>
-<span id="cb7-6"><a href="#cb7-6"></a>               <span class="at">nParallel =</span> nChains)</span>
-<span id="cb7-7"><a href="#cb7-7"></a>m1 <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m1, </span>
-<span id="cb7-8"><a href="#cb7-8"></a>               <span class="at">thin =</span> thin, </span>
-<span id="cb7-9"><a href="#cb7-9"></a>               <span class="at">samples =</span> samples, </span>
-<span id="cb7-10"><a href="#cb7-10"></a>               <span class="at">transient =</span> transient, </span>
-<span id="cb7-11"><a href="#cb7-11"></a>               <span class="at">nChains =</span> nChains, </span>
-<span id="cb7-12"><a href="#cb7-12"></a>               <span class="at">nParallel =</span> nChains)</span>
-<span id="cb7-13"><a href="#cb7-13"></a>m_env <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m_env, </span>
-<span id="cb7-14"><a href="#cb7-14"></a>               <span class="at">thin =</span> thin, </span>
-<span id="cb7-15"><a href="#cb7-15"></a>               <span class="at">samples =</span> samples, </span>
-<span id="cb7-16"><a href="#cb7-16"></a>               <span class="at">transient =</span> transient, </span>
-<span id="cb7-17"><a href="#cb7-17"></a>               <span class="at">nChains =</span> nChains, </span>
-<span id="cb7-18"><a href="#cb7-18"></a>               <span class="at">nParallel =</span> nChains)</span>
-<span id="cb7-19"><a href="#cb7-19"></a>m_env_phy <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m_env_phy, </span>
-<span id="cb7-20"><a href="#cb7-20"></a>               <span class="at">thin =</span> thin, </span>
-<span id="cb7-21"><a href="#cb7-21"></a>               <span class="at">samples =</span> samples, </span>
-<span id="cb7-22"><a href="#cb7-22"></a>               <span class="at">transient =</span> transient, </span>
-<span id="cb7-23"><a href="#cb7-23"></a>               <span class="at">nChains =</span> nChains, </span>
-<span id="cb7-24"><a href="#cb7-24"></a>               <span class="at">nParallel =</span> nChains)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>m0 <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m0, </span>
+<span id="cb7-2"><a></a>               <span class="at">thin =</span> thin, </span>
+<span id="cb7-3"><a></a>               <span class="at">samples =</span> samples, </span>
+<span id="cb7-4"><a></a>               <span class="at">transient =</span> transient, </span>
+<span id="cb7-5"><a></a>               <span class="at">nChains =</span> nChains, </span>
+<span id="cb7-6"><a></a>               <span class="at">nParallel =</span> nChains)</span>
+<span id="cb7-7"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m1, </span>
+<span id="cb7-8"><a></a>               <span class="at">thin =</span> thin, </span>
+<span id="cb7-9"><a></a>               <span class="at">samples =</span> samples, </span>
+<span id="cb7-10"><a></a>               <span class="at">transient =</span> transient, </span>
+<span id="cb7-11"><a></a>               <span class="at">nChains =</span> nChains, </span>
+<span id="cb7-12"><a></a>               <span class="at">nParallel =</span> nChains)</span>
+<span id="cb7-13"><a></a>m_env <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m_env, </span>
+<span id="cb7-14"><a></a>               <span class="at">thin =</span> thin, </span>
+<span id="cb7-15"><a></a>               <span class="at">samples =</span> samples, </span>
+<span id="cb7-16"><a></a>               <span class="at">transient =</span> transient, </span>
+<span id="cb7-17"><a></a>               <span class="at">nChains =</span> nChains, </span>
+<span id="cb7-18"><a></a>               <span class="at">nParallel =</span> nChains)</span>
+<span id="cb7-19"><a></a>m_env_phy <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m_env_phy, </span>
+<span id="cb7-20"><a></a>               <span class="at">thin =</span> thin, </span>
+<span id="cb7-21"><a></a>               <span class="at">samples =</span> samples, </span>
+<span id="cb7-22"><a></a>               <span class="at">transient =</span> transient, </span>
+<span id="cb7-23"><a></a>               <span class="at">nChains =</span> nChains, </span>
+<span id="cb7-24"><a></a>               <span class="at">nParallel =</span> nChains)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="convertimos-los-resultados-en-objetos-coda-son-un-tipo-de-datos-de-análisis-bayesianos-en-r" class="slide level2">
 <h2>Convertimos los resultados en objetos CODA, son un tipo de datos de análisis bayesianos en R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>mpost_m0 <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m0)</span>
-<span id="cb8-2"><a href="#cb8-2"></a>mpost_m1 <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m1)</span>
-<span id="cb8-3"><a href="#cb8-3"></a>mpost_m_env <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m_env)</span>
-<span id="cb8-4"><a href="#cb8-4"></a>mpost_m_env_phy <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m_env_phy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>mpost_m0 <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m0)</span>
+<span id="cb8-2"><a></a>mpost_m1 <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m1)</span>
+<span id="cb8-3"><a></a>mpost_m_env <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m_env)</span>
+<span id="cb8-4"><a></a>mpost_m_env_phy <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m_env_phy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="calculamos-dos-estadísticos-de-calibración-de-mcmc" class="slide level2">
 <h2>Calculamos dos estadísticos de calibración de MCMC</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>es_m0 <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m0<span class="sc">$</span>Beta)</span>
-<span id="cb9-2"><a href="#cb9-2"></a>es_m1 <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m1<span class="sc">$</span>Beta)</span>
-<span id="cb9-3"><a href="#cb9-3"></a>es_m_env <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m_env<span class="sc">$</span>Beta)</span>
-<span id="cb9-4"><a href="#cb9-4"></a>es_m_env_phy <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m_env_phy<span class="sc">$</span>Beta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>es_m0 <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m0<span class="sc">$</span>Beta)</span>
+<span id="cb9-2"><a></a>es_m1 <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m1<span class="sc">$</span>Beta)</span>
+<span id="cb9-3"><a></a>es_m_env <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m_env<span class="sc">$</span>Beta)</span>
+<span id="cb9-4"><a></a>es_m_env_phy <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m_env_phy<span class="sc">$</span>Beta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>gd_m0 <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m0<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span>
-<span id="cb10-2"><a href="#cb10-2"></a>gd_m_env <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m_env<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span>
-<span id="cb10-3"><a href="#cb10-3"></a>gd_m_env_phy <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m_env_phy<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>gd_m0 <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m0<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span>
+<span id="cb10-2"><a></a>gd_m_env <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m_env<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span>
+<span id="cb10-3"><a></a>gd_m_env_phy <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m_env_phy<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="dibujamos-las-gráficas-de-esos-dos-parámetros" class="slide level2">
 <h2>Dibujamos las gráficas de esos dos parámetros</h2>
 <p>Effective size debería estar entorno al número de muestras de las MCMC (samples * nChains). El diagnóstico de Gelman debería estar entorno a 1.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">hist</span>(es_m0, <span class="at">main=</span><span class="st">"ess(beta)"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="fu">hist</span>(gd_m0, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="fu">hist</span>(es_m_env, <span class="at">main=</span><span class="st">"ess(beta)"</span>)</span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="fu">hist</span>(gd_m_env, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="fu">hist</span>(es_m_env_phy, <span class="at">main=</span><span class="st">"ess(beta)"</span>)</span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="fu">hist</span>(gd_m_env_phy, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<span id="cb11-2"><a></a><span class="fu">hist</span>(es_m0, <span class="at">main=</span><span class="st">"ess(beta)"</span>)</span>
+<span id="cb11-3"><a></a><span class="fu">hist</span>(gd_m0, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span>
+<span id="cb11-4"><a></a><span class="fu">hist</span>(es_m_env, <span class="at">main=</span><span class="st">"ess(beta)"</span>)</span>
+<span id="cb11-5"><a></a><span class="fu">hist</span>(gd_m_env, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span>
+<span id="cb11-6"><a></a><span class="fu">hist</span>(es_m_env_phy, <span class="at">main=</span><span class="st">"ess(beta)"</span>)</span>
+<span id="cb11-7"><a></a><span class="fu">hist</span>(gd_m_env_phy, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-11-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></a></p>
+</figure>
 </div>
-<img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+</div>
+</div>
+</section>
 <section id="lo-mismo-pero-con-los-valores-de-omega-que-son-los-coeficientes-de-interacciones-entre-especies" class="slide level2">
 <h2>… lo mismo pero con los valores de Omega, que son los coeficientes de interacciones entre especies</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">hist</span>(<span class="fu">effectiveSize</span>(mpost_m0<span class="sc">$</span>Omega[[<span class="dv">1</span>]]), <span class="at">main=</span><span class="st">"ess(omega)"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="fu">hist</span>(<span class="fu">gelman.diag</span>(mpost_m0<span class="sc">$</span>Omega[[<span class="dv">1</span>]], <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf, <span class="at">main=</span><span class="st">"psrf(omega)"</span>)</span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="fu">hist</span>(<span class="fu">effectiveSize</span>(mpost_m_env<span class="sc">$</span>Omega[[<span class="dv">1</span>]]), <span class="at">main=</span><span class="st">"ess(omega)"</span>)</span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="fu">hist</span>(<span class="fu">gelman.diag</span>(mpost_m_env<span class="sc">$</span>Omega[[<span class="dv">1</span>]], <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf, <span class="at">main=</span><span class="st">"psrf(omega)"</span>)</span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="fu">hist</span>(<span class="fu">effectiveSize</span>(mpost_m_env_phy<span class="sc">$</span>Omega[[<span class="dv">1</span>]]), <span class="at">main=</span><span class="st">"ess(omega)"</span>)</span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="fu">hist</span>(<span class="fu">gelman.diag</span>(mpost_m_env_phy<span class="sc">$</span>Omega[[<span class="dv">1</span>]], <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf, <span class="at">main=</span><span class="st">"psrf(omega)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<span id="cb12-2"><a></a><span class="fu">hist</span>(<span class="fu">effectiveSize</span>(mpost_m0<span class="sc">$</span>Omega[[<span class="dv">1</span>]]), <span class="at">main=</span><span class="st">"ess(omega)"</span>)</span>
+<span id="cb12-3"><a></a><span class="fu">hist</span>(<span class="fu">gelman.diag</span>(mpost_m0<span class="sc">$</span>Omega[[<span class="dv">1</span>]], <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf, <span class="at">main=</span><span class="st">"psrf(omega)"</span>)</span>
+<span id="cb12-4"><a></a><span class="fu">hist</span>(<span class="fu">effectiveSize</span>(mpost_m_env<span class="sc">$</span>Omega[[<span class="dv">1</span>]]), <span class="at">main=</span><span class="st">"ess(omega)"</span>)</span>
+<span id="cb12-5"><a></a><span class="fu">hist</span>(<span class="fu">gelman.diag</span>(mpost_m_env<span class="sc">$</span>Omega[[<span class="dv">1</span>]], <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf, <span class="at">main=</span><span class="st">"psrf(omega)"</span>)</span>
+<span id="cb12-6"><a></a><span class="fu">hist</span>(<span class="fu">effectiveSize</span>(mpost_m_env_phy<span class="sc">$</span>Omega[[<span class="dv">1</span>]]), <span class="at">main=</span><span class="st">"ess(omega)"</span>)</span>
+<span id="cb12-7"><a></a><span class="fu">hist</span>(<span class="fu">gelman.diag</span>(mpost_m_env_phy<span class="sc">$</span>Omega[[<span class="dv">1</span>]], <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf, <span class="at">main=</span><span class="st">"psrf(omega)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></a></p>
+</figure>
 </div>
-<img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+</div>
+</div>
+</section>
 <section id="tambien-podemos-dibujar-algunas-de-las-cadenas-para-visulizar-su-forma-y-ver-si-se-han-estabilizado" class="slide level2">
 <h2>Tambien podemos dibujar algunas de las cadenas para visulizar su forma y ver si se han estabilizado</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta[[<span class="dv">1</span>]][,<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta[[<span class="dv">1</span>]][,<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></a></p>
+</figure>
 </div>
-<img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
+</div>
+</div>
+</section>
 <section id="para-evaluar-el-modelo-en-términos-de-la-distribuciónabundancia-de-las-especies-debemos-hacer-predicciones-primero." class="slide level2">
 <h2>Para evaluar el modelo en términos de la distribución/abundancia de las especies, debemos hacer predicciones primero.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>preds_m0 <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m0)</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m0, <span class="at">predY =</span> preds_m0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>preds_m0 <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m0)</span>
+<span id="cb14-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m0, <span class="at">predY =</span> preds_m0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 175.2130058 114.9316990  20.0403538  26.6885303   1.7539271   1.2194992
- [7]   0.5084995   0.5458199   0.8273857   0.8822432
+ [1] 174.7834424 112.1405208  20.0952105  26.2189170   1.4725569   1.2314100
+ [7]   0.3489733   0.2750693   0.3424508   0.3315053
 
 $SR2
- [1] 0.4381139117 0.4351279511 0.1462363160 0.3228083056 0.0018700743
- [6] 0.1215510808 0.0381720151 0.0177798259 0.0105206071 0.0006220881
+ [1]  4.188541e-01  4.048755e-01  1.385216e-01  3.131561e-01 -3.366338e-05
+ [6]  1.215511e-01  1.769495e-02  3.040455e-02  2.992528e-03  3.345451e-02
 
 $O.AUC
  [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
@@ -605,25 +633,25 @@ $O.RMSE
  [8] 0.9786452 0.9786452 0.9858149
 
 $C.SR2
- [1] 0.34118334 0.34213153 0.01582344 0.10372210 0.02796531         NA
+ [1] 0.32750642 0.35776706 0.01253116 0.11503860 0.13063089         NA
  [7]         NA         NA         NA         NA
 
 $C.RMSE
- [1] 214.0827338 137.5843125  44.9448587  43.3426222   3.0950574   5.7090512
- [7]   0.4500486   0.4471912   0.1403243   0.1081842</code></pre>
+ [1] 212.9256907 134.4051504  45.1262228  42.7373117   3.4819839   5.7342325
+ [7]   0.6456721   0.7564441   0.6740194   0.6795304</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>preds_m1 <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m1)</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m1, <span class="at">predY =</span> preds_m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>preds_m1 <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m1)</span>
+<span id="cb16-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m1, <span class="at">predY =</span> preds_m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 275.5229338 133.2896301  19.5646777  25.1958771   1.4450794   1.3431708
- [7]   0.3551950   0.2998875   0.2487680   0.2438358
+ [1] 225.1999804 124.3439733  19.5577231  25.7348654   1.4571405   1.4892190
+ [7]   0.3288673   0.2977259   0.9006101   0.5019959
 
 $SR2
- [1]  2.276017e-01  2.800169e-01  6.040798e-02  1.669794e-01  1.251573e-03
- [6] -1.762715e-02  1.725328e-05  1.685341e-02 -3.781513e-03 -2.087647e-03
+ [1]  0.2213671888  0.2821487833  0.0459089960  0.1777521684 -0.0021248862
+ [6] -0.0490282041 -0.0001552795 -0.0205882353  0.0004201681  0.0155279503
 
 $O.AUC
  [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
@@ -636,25 +664,25 @@ $O.RMSE
  [8] 0.9786452 0.9786452 0.9858149
 
 $C.SR2
- [1] 0.163546022 0.142752039 0.189357182 0.008523534 0.081170895 1.000000000
- [7]          NA          NA          NA          NA
+ [1]  1.358787e-01  1.236058e-01  2.161557e-01 -1.820754e-05  2.237762e-01
+ [6]  2.500000e-01            NA            NA            NA            NA
 
 $C.RMSE
- [1] 329.4368899 156.5884756  43.6540427  40.2126288   3.4090259   5.8300236
- [7]   0.7657595   0.7097883   0.8704928   0.8464277</code></pre>
+ [1] 271.8081263 146.0586974  43.5289749  39.3725646   3.0068346   5.7241011
+ [7]   0.7630593   0.9072968   0.5617268   0.4144878</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>preds_m_env <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m_env)</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>preds_m_env <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m_env)</span>
+<span id="cb18-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 230.4683897 187.4291436  19.2390494  25.7547650   1.5147773   1.4259269
- [7]   0.5127047   0.2655462   0.3231189   0.3002315
+ [1] 1.465246e+04 1.061569e+02 1.909200e+01 2.471155e+01 1.448170e+00
+ [6] 1.457076e+00 2.300696e-01 2.380184e-01 3.450898e-01 1.889918e+00
 
 $SR2
- [1]  0.352935239  0.472921538  0.094725358  0.359434766  0.006764579
- [6]  0.004865193  0.052191166  0.015978058  0.002626050 -0.002087647
+ [1]  0.2967767282  0.4140857011  0.0918486902  0.2892887179  0.0059712867
+ [6]  0.0394315104 -0.0001552795  0.0033730159 -0.0215802988  0.0000000000
 
 $O.AUC
  [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
@@ -667,68 +695,68 @@ $O.RMSE
  [8] 0.9786452 0.9786452 0.9858149
 
 $C.SR2
- [1]  0.27537182  0.31038103  0.08460227  0.11468174 -0.14566838  0.25000000
- [7]          NA          NA          NA          NA
-
-$C.RMSE
- [1] 280.9472703 224.7450840  42.4610873  41.3444857   3.4329286   5.5829138
- [7]   0.5807846   0.7672244   0.8132708   0.7917638</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>preds_m_env_phy <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m_env_phy)</span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env_phy, <span class="at">predY =</span> preds_m_env_phy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$RMSE
- [1] 200.2699519 117.9058102  19.5869778  24.9484062   1.4386876   1.1856447
- [7]   0.2267468   0.3941265   0.3315811   0.3042893
-
-$SR2
- [1]  0.2909253942  0.4894203161  0.1020107852  0.3180775907  0.0038497095
- [6]  0.0536038223  0.0431331953  0.0085084034 -0.0009453782  0.0069013112
-
-$O.AUC
- [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
-
-$O.TjurR2
- [1] 0 0 0 0 0 0 0 0 0 0
-
-$O.RMSE
- [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149
- [8] 0.9786452 0.9786452 0.9858149
-
-$C.SR2
- [1] 0.2594832 0.3151886 0.1699494 0.1363765 0.3496503 1.0000000        NA
+ [1] 0.2337135 0.2579571 0.2204359 0.1105166 0.1183610 1.0000000        NA
  [8]        NA        NA        NA
 
 $C.RMSE
- [1] 243.7013625 141.4557015  43.7744468  41.0258336   3.4137838   5.6064513
- [7]   0.7541530   0.5892972   0.7346148   0.6488686</code></pre>
+ [1] 1.782440e+04 1.271648e+02 4.239084e+01 3.942671e+01 3.414488e+00
+ [6] 5.795007e+00 8.382147e-01 8.368212e-01 7.739042e-01 7.328291e-01</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>preds_m_env_phy <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m_env_phy)</span>
+<span id="cb20-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env_phy, <span class="at">predY =</span> preds_m_env_phy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$RMSE
+ [1] 197.8583390 230.5494199  19.1380050  27.6366747   1.5256255   1.2037573
+ [7]   0.2632342   0.5044313   0.2660315   0.2598768
+
+$SR2
+ [1]  0.3111531942  0.4561531066  0.0859733099  0.2768008901  0.0002527466
+ [6]  0.0710204737  0.0002760524  0.0029878618  0.0257819795 -0.0033816425
+
+$O.AUC
+ [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
+
+$O.TjurR2
+ [1] 0 0 0 0 0 0 0 0 0 0
+
+$O.RMSE
+ [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149
+ [8] 0.9786452 0.9786452 0.9858149
+
+$C.SR2
+ [1] 0.24625660 0.29003015 0.10428283 0.04371629 0.19430157 0.25000000
+ [7]         NA         NA         NA         NA
+
+$C.RMSE
+ [1] 242.1563622 276.7283234  41.7248906  43.1332335   3.3806429   5.6544342
+ [7]   0.8150554   0.5969726   0.7261602   0.8875469</code></pre>
 </div>
 </div>
 </section>
 <section id="también-es-posible-realizar-evaluación-por-validación-cruzada" class="slide level2">
 <h2>También es posible realizar evaluación por validación cruzada</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>partition_env <span class="ot">&lt;-</span> <span class="fu">createPartition</span>(m_env, <span class="at">nfolds =</span> <span class="dv">4</span>)</span>
-<span id="cb22-2"><a href="#cb22-2"></a>preds_m_env <span class="ot">=</span> <span class="fu">computePredictedValues</span>(m_env, </span>
-<span id="cb22-3"><a href="#cb22-3"></a>                               <span class="at">partition =</span> partition_env,</span>
-<span id="cb22-4"><a href="#cb22-4"></a>                               <span class="at">nParallel =</span> nChains)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>partition_env <span class="ot">&lt;-</span> <span class="fu">createPartition</span>(m_env, <span class="at">nfolds =</span> <span class="dv">4</span>)</span>
+<span id="cb22-2"><a></a>preds_m_env <span class="ot">=</span> <span class="fu">computePredictedValues</span>(m_env, </span>
+<span id="cb22-3"><a></a>                               <span class="at">partition =</span> partition_env,</span>
+<span id="cb22-4"><a></a>                               <span class="at">nParallel =</span> nChains)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Cross-validation, fold 1 out of 4
 Cross-validation, fold 2 out of 4
 Cross-validation, fold 3 out of 4
 Cross-validation, fold 4 out of 4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 211.6762000 123.9660222  19.7629929  25.8720251   1.4979833   1.2325126
- [7]   0.3621027   0.3363635   0.3235731   0.3178303
+ [1] 341.2021394 154.7191771  19.9924565  32.4716018   1.5116068   1.2495641
+ [7]   0.2050508   0.3700445   0.2846689   0.2874106
 
 $SR2
- [1]  0.154759013  0.249553442  0.033317201  0.181719505 -0.003051860
- [6]  0.015823677 -0.041425121  0.002987862 -0.040627918 -0.001397516
+ [1]  0.0907607626  0.1502679073 -0.0004766412  0.0892057214 -0.0269482273
+ [6] -0.0036446136  0.0663216011 -0.0142973856  0.0019724556  0.0099378882
 
 $O.AUC
  [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
@@ -741,81 +769,111 @@ $O.RMSE
  [8] 0.9786452 0.9786452 0.9858149
 
 $C.SR2
- [1]  0.0814509744  0.1127726412  0.1551784731  0.0100162514 -0.0007224181
- [6] -0.2500000000            NA            NA            NA            NA
+ [1]  5.799310e-02  7.793771e-02  2.161557e-01 -9.630432e-06 -2.959024e-02
+ [6] -2.500000e-01            NA            NA            NA            NA
 
 $C.RMSE
- [1] 257.4368567 147.1724391  44.1079910  41.9602920   3.5132200   5.8713640
- [7]   0.8854147   0.7381677   0.8857665   0.8038661</code></pre>
+ [1] 396.7048541 182.0979481  44.6002601  48.9105750   3.5511059   5.9833988
+ [7]   0.6932697   0.8872849   0.8057546   0.7538436</code></pre>
 </div>
 </div>
 </section>
 <section id="una-vez-que-tengamos-un-modelo-sólido.-nos-interesa-ver-que-papel-juegan-las-variables-ambientales-en-las-especiescomunidades." class="slide level2">
 <h2>Una vez que tengamos un modelo sólido. Nos interesa ver que papel juegan las variables ambientales en las especies/comunidades.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>postBeta <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m_env, <span class="at">parName =</span> <span class="st">"Beta"</span>)</span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">plotBeta</span>(m_env, </span>
-<span id="cb26-3"><a href="#cb26-3"></a>         <span class="at">post =</span> postBeta, </span>
-<span id="cb26-4"><a href="#cb26-4"></a>         <span class="at">param =</span> <span class="st">"Support"</span>, </span>
-<span id="cb26-5"><a href="#cb26-5"></a>         <span class="at">supportLevel =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>postBeta <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m_env, <span class="at">parName =</span> <span class="st">"Beta"</span>)</span>
+<span id="cb26-2"><a></a><span class="fu">plotBeta</span>(m_env, </span>
+<span id="cb26-3"><a></a>         <span class="at">post =</span> postBeta, </span>
+<span id="cb26-4"><a></a>         <span class="at">param =</span> <span class="st">"Support"</span>, </span>
+<span id="cb26-5"><a></a>         <span class="at">supportLevel =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></a></p>
+</figure>
 </div>
-<img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
+</div>
+</div>
+</section>
 <section id="también-podemos-ver-su-relación-con-la-información-filogenética-si-la-hemos-incluido-en-el-modelo" class="slide level2">
 <h2>También podemos ver su relación con la información filogenética, si la hemos incluido en el modelo</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>postBeta <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m_env_phy, <span class="at">parName =</span> <span class="st">"Beta"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">plotBeta</span>(m_env_phy, </span>
-<span id="cb27-3"><a href="#cb27-3"></a>         <span class="at">post =</span> postBeta, </span>
-<span id="cb27-4"><a href="#cb27-4"></a>         <span class="at">param =</span> <span class="st">"Support"</span>, </span>
-<span id="cb27-5"><a href="#cb27-5"></a>         <span class="at">supportLevel =</span> <span class="fl">0.9</span>,</span>
-<span id="cb27-6"><a href="#cb27-6"></a>         <span class="at">plotTree =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>postBeta <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m_env_phy, <span class="at">parName =</span> <span class="st">"Beta"</span>)</span>
+<span id="cb27-2"><a></a><span class="fu">plotBeta</span>(m_env_phy, </span>
+<span id="cb27-3"><a></a>         <span class="at">post =</span> postBeta, </span>
+<span id="cb27-4"><a></a>         <span class="at">param =</span> <span class="st">"Support"</span>, </span>
+<span id="cb27-5"><a></a>         <span class="at">supportLevel =</span> <span class="fl">0.9</span>,</span>
+<span id="cb27-6"><a></a>         <span class="at">plotTree =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3 1.0 0.0 1.0</code></pre>
 </div>
-
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-20-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></a></p>
+</figure>
 </div>
-<img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"></section>
+</div>
+</div>
+</section>
 <section id="otro-aspecto-importantenovedoso-es-estimar-las-correlaciones-entre-especies" class="slide level2">
 <h2>Otro aspecto importante/novedoso es estimar las correlaciones entre especies</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">library</span>(corrplot)</span>
-<span id="cb29-2"><a href="#cb29-2"></a>OmegaCor <span class="ot">&lt;-</span> <span class="fu">computeAssociations</span>(m_env)</span>
-<span id="cb29-3"><a href="#cb29-3"></a>supportLevel <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
-<span id="cb29-4"><a href="#cb29-4"></a>toPlot <span class="ot">&lt;-</span> ((OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>support <span class="sc">&gt;</span> supportLevel) <span class="sc">+</span></span>
-<span id="cb29-5"><a href="#cb29-5"></a>           (OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>support <span class="sc">&lt;</span> (<span class="dv">1</span><span class="sc">-</span>supportLevel)</span>
-<span id="cb29-6"><a href="#cb29-6"></a>            ) <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">*</span> OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>mean</span>
-<span id="cb29-7"><a href="#cb29-7"></a><span class="fu">corrplot</span>(toPlot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb29-2"><a></a>OmegaCor <span class="ot">&lt;-</span> <span class="fu">computeAssociations</span>(m_env)</span>
+<span id="cb29-3"><a></a>supportLevel <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
+<span id="cb29-4"><a></a>toPlot <span class="ot">&lt;-</span> ((OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>support <span class="sc">&gt;</span> supportLevel) <span class="sc">+</span></span>
+<span id="cb29-5"><a></a>           (OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>support <span class="sc">&lt;</span> (<span class="dv">1</span><span class="sc">-</span>supportLevel)</span>
+<span id="cb29-6"><a></a>            ) <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">*</span> OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>mean</span>
+<span id="cb29-7"><a></a><span class="fu">corrplot</span>(toPlot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-21-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></a></p>
+</figure>
 </div>
-<img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section>
+</div>
+</div>
+</section>
 <section id="cuando-especificamos-un-modelo-sin-variables-ambientales-estamos-haciendo-un-modelo-unconstrained-o-indirecto.-por-lo-que-se-puede-usar-para-generar-gráficos-de-ordenación." class="slide level2">
 <h2>Cuando especificamos un modelo sin variables ambientales, estamos haciendo un modelo “unconstrained” o indirecto. Por lo que se puede usar para generar gráficos de ordenación.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>etaPost <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m0, <span class="st">"Eta"</span>)</span>
-<span id="cb30-2"><a href="#cb30-2"></a>lambdaPost <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m0, <span class="st">"Lambda"</span>)</span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="fu">biPlot</span>(m0, </span>
-<span id="cb30-4"><a href="#cb30-4"></a>       <span class="at">etaPost =</span> etaPost, </span>
-<span id="cb30-5"><a href="#cb30-5"></a>       <span class="at">lambdaPost =</span> lambdaPost, </span>
-<span id="cb30-6"><a href="#cb30-6"></a>       <span class="at">factors =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), </span>
-<span id="cb30-7"><a href="#cb30-7"></a>       <span class="st">"ph"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>etaPost <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m0, <span class="st">"Eta"</span>)</span>
+<span id="cb30-2"><a></a>lambdaPost <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m0, <span class="st">"Lambda"</span>)</span>
+<span id="cb30-3"><a></a><span class="fu">biPlot</span>(m0, </span>
+<span id="cb30-4"><a></a>       <span class="at">etaPost =</span> etaPost, </span>
+<span id="cb30-5"><a></a>       <span class="at">lambdaPost =</span> lambdaPost, </span>
+<span id="cb30-6"><a></a>       <span class="at">factors =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), </span>
+<span id="cb30-7"><a></a>       <span class="st">"ph"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-22-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></a></p>
+</figure>
 </div>
-<img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
+</div>
+</div>
+</section>
 <section id="en-este-tipo-de-modelos-la-importancia-de-cada-variable-se-mide-en-términos-de-variación-explicada-y-se-calcula-con-análisis-de-particionado-de-la-varianza" class="slide level2">
 <h2>En este tipo de modelos, la importancia de cada variable se mide en términos de variación explicada y se calcula con análisis de particionado de la varianza</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>VP <span class="ot">=</span> <span class="fu">computeVariancePartitioning</span>(m_env)</span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">plotVariancePartitioning</span>(m_env, <span class="at">VP =</span> VP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>VP <span class="ot">=</span> <span class="fu">computeVariancePartitioning</span>(m_env)</span>
+<span id="cb31-2"><a></a><span class="fu">plotVariancePartitioning</span>(m_env, <span class="at">VP =</span> VP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-23-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></a></p>
+</figure>
 </div>
-<img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section>
+</div>
+</div>
+</section>
 <section id="como-en-los-modelos-de-distribución-de-especies-podemos-calcular-curvas-de-respuesta-de-cada-especiecomunidad-a-las-variables-ambientales" class="slide level2">
 <h2>Como en los Modelos de Distribución de Especies, podemos calcular curvas de respuesta de cada especie/comunidad a las variables ambientales</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>Gradient <span class="ot">=</span> <span class="fu">constructGradient</span>(m1, <span class="at">focalVariable =</span> <span class="st">"temperatura"</span>,</span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="at">non.focalVariables =</span> <span class="fu">list</span>(<span class="st">"habitat"</span><span class="ot">=</span><span class="fu">list</span>(<span class="dv">3</span>,<span class="st">"open"</span>)))</span>
-<span id="cb32-3"><a href="#cb32-3"></a>Gradient<span class="sc">$</span>XDataNew</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>Gradient <span class="ot">=</span> <span class="fu">constructGradient</span>(m1, <span class="at">focalVariable =</span> <span class="st">"temperatura"</span>,</span>
+<span id="cb32-2"><a></a><span class="at">non.focalVariables =</span> <span class="fu">list</span>(<span class="st">"habitat"</span><span class="ot">=</span><span class="fu">list</span>(<span class="dv">3</span>,<span class="st">"open"</span>)))</span>
+<span id="cb32-3"><a></a>Gradient<span class="sc">$</span>XDataNew</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    temperatura   materia_org    salinidad          ph
 1  -2.065315281 -0.1667234554 -0.501380262  0.37285247
@@ -839,30 +897,40 @@ $C.RMSE
 19  1.303716714  0.1052430868  0.316492999 -0.23536068
 20  1.490885158  0.1203523391  0.361930403 -0.26915030</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>predY <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, </span>
-<span id="cb34-2"><a href="#cb34-2"></a>                <span class="at">XData=</span>Gradient<span class="sc">$</span>XDataNew, </span>
-<span id="cb34-3"><a href="#cb34-3"></a>                <span class="at">studyDesign=</span>Gradient<span class="sc">$</span>studyDesignNew,</span>
-<span id="cb34-4"><a href="#cb34-4"></a>                <span class="at">ranLevels=</span>Gradient<span class="sc">$</span>rLNew, </span>
-<span id="cb34-5"><a href="#cb34-5"></a>                <span class="at">expected=</span><span class="cn">TRUE</span>)</span>
-<span id="cb34-6"><a href="#cb34-6"></a><span class="fu">plotGradient</span>(m1, Gradient, <span class="at">pred=</span>predY, <span class="at">measure=</span><span class="st">"S"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>predY <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, </span>
+<span id="cb34-2"><a></a>                <span class="at">XData=</span>Gradient<span class="sc">$</span>XDataNew, </span>
+<span id="cb34-3"><a></a>                <span class="at">studyDesign=</span>Gradient<span class="sc">$</span>studyDesignNew,</span>
+<span id="cb34-4"><a></a>                <span class="at">ranLevels=</span>Gradient<span class="sc">$</span>rLNew, </span>
+<span id="cb34-5"><a></a>                <span class="at">expected=</span><span class="cn">TRUE</span>)</span>
+<span id="cb34-6"><a></a><span class="fu">plotGradient</span>(m1, Gradient, <span class="at">pred=</span>predY, <span class="at">measure=</span><span class="st">"S"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></p>
+<div>
+<figure>
+<p><a href="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-24-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></a></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.945</code></pre>
+<pre><code>[1] 0.82</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">plotGradient</span>(m1, Gradient, <span class="at">pred=</span>predY, <span class="at">measure=</span><span class="st">"Y"</span>, <span class="at">index =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">plotGradient</span>(m1, Gradient, <span class="at">pred=</span>predY, <span class="at">measure=</span><span class="st">"Y"</span>, <span class="at">index =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-24-2.png" width="960"></p>
+<div>
+<figure>
+<p><a href="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-24-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img data-src="AEMER-4_HMSC_files/figure-revealjs/unnamed-chunk-24-2.png" width="960"></a></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9475</code></pre>
+<pre><code>[1] 0.8575</code></pre>
 </div>
 </div>
 
+<div class="quarto-auto-generated-content">
 <p><img src="img/logos.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="https://dnietolugilde.com/AEMeR">AEMeR</a></p>
+</div>
 </div>
 </section>
     </div>
@@ -892,7 +960,6 @@ $C.RMSE
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1079,42 +1146,80 @@ $C.RMSE
       });
     </script>
     
+
     <script>
+
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
       // slide changes (different for each slide format).
+
       (function () {
+
         // dispatch for htmlwidgets
+
         function fireSlideEnter() {
+
           const event = window.document.createEvent("Event");
+
           event.initEvent("slideenter", true, true);
+
           window.document.dispatchEvent(event);
+
         }
+
+    
 
         function fireSlideChanged(previousSlide, currentSlide) {
+
           fireSlideEnter();
 
+    
+
           // dispatch for shiny
+
           if (window.jQuery) {
+
             if (previousSlide) {
+
               window.jQuery(previousSlide).trigger("hidden");
+
             }
+
             if (currentSlide) {
+
               window.jQuery(currentSlide).trigger("shown");
+
             }
+
           }
+
         }
+
+    
 
         // hookup for slidy
+
         if (window.w3c_slidy) {
+
           window.w3c_slidy.add_observer(function (slide_num) {
+
             // slide_num starts at position 1
+
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
           });
+
         }
 
+    
+
       })();
+
     </script>
+
+    
 
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1148,18 +1253,7 @@ $C.RMSE
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1191,11 +1285,50 @@ $C.RMSE
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
-      function tippyHover(el, contentFn) {
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/dinilu\.github\.io\/AEMeR\/");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1205,8 +1338,17 @@ $C.RMSE
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1220,7 +1362,11 @@ $C.RMSE
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {
@@ -1262,6 +1408,38 @@ $C.RMSE
       }
     });
     </script>
+    <script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false});
+    (function() {
+      let previousOnload = window.onload;
+      window.onload = () => {
+        if (previousOnload) {
+          previousOnload();
+        }
+        lightboxQuarto.on('slide_before_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          const href = trigger.getAttribute('href');
+          if (href !== null) {
+            const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+            if (imgEl !== null) {
+              const srcAttr = imgEl.getAttribute("src");
+              if (srcAttr && srcAttr.startsWith("data:")) {
+                slideConfig.href = srcAttr;
+              }
+            }
+          } 
+        });
+      
+        lightboxQuarto.on('slide_after_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(slideNode);
+          }
+        });
+      
+      };
+      
+    })();
+              </script>
     
 
 </body></html>

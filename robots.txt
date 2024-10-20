@@ -1,1 +1,1 @@
-Sitemap: https://github.com/dinilu/AEMeR/sitemap.xml
+Sitemap: https://dinilu.github.io/AEMeR/sitemap.xml
