@@ -233,7 +233,7 @@ gdmRast.sp_trans
 ```{r}
 #| echo: true
 
-terra::plot(gdmRast.sp_trans, col=colorRamps::rgb.tables(1000))
+terra::plot(gdmRast.sp_trans)
 ```
 
 
@@ -280,8 +280,6 @@ timePred <- predict(gdmRast.fit,
                     bioclim, 
                     time = T, 
                     predRasts = fut_bioclim)
-library(colorRamps)
-terra::plot(timePred, 
-            col = rgb.tables(1000))
+terra::plot(timePred)
 ```
 
