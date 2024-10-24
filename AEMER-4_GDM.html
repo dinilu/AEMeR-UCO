@@ -618,7 +618,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <pre><code>[1] 
 [1] 
 [1] GDM Modelling Summary
-[1] Creation Date:  Thu Oct 24 23:00:44 2024
+[1] Creation Date:  Thu Oct 24 23:19:35 2024
 [1] 
 [1] Name:  gdmTab.fit
 [1] 
@@ -696,7 +696,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <pre><code>[1] 
 [1] 
 [1] GDM Modelling Summary
-[1] Creation Date:  Thu Oct 24 23:00:44 2024
+[1] Creation Date:  Thu Oct 24 23:19:35 2024
 [1] 
 [1] Name:  gdmRast.fit
 [1] 
@@ -1013,14 +1013,14 @@ dimensions  : 500, 700, 7  (nrow, ncol, nlyr)
 resolution  : 1000, 1000  (x, y)
 extent      : -100055.4, 599944.6, 5500177, 6000177  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 21S (EPSG:32721) 
-source      : spat_9cd07f796864_40144_o8up7yuDdJ6XHBX.tif 
+source      : spat_1e486d47d28_7752_o8up7yuDdJ6XHBX.tif 
 names       : xCoord, yCoord,     bio1,      bio5,     bio10,     bio11, ... 
 min values  :      0,      0, 0.000000, 0.0000000, 0.0000000, 0.0000000, ... 
 max values  :      0,      0, 1.603295, 0.1485767, 0.9152355, 0.4735476, ... </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>terra<span class="sc">::</span><span class="fu">plot</span>(gdmRast.sp_trans, <span class="at">col=</span>colorRamps<span class="sc">::</span><span class="fu">rgb.tables</span>(<span class="dv">1000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>terra<span class="sc">::</span><span class="fu">plot</span>(gdmRast.sp_trans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1068,9 +1068,7 @@ max values  :      0,      0, 1.603295, 0.1485767, 0.9152355, 0.4735476, ... </c
 <span id="cb28-2"><a></a>                    bioclim, </span>
 <span id="cb28-3"><a></a>                    <span class="at">time =</span> T, </span>
 <span id="cb28-4"><a></a>                    <span class="at">predRasts =</span> fut_bioclim)</span>
-<span id="cb28-5"><a></a><span class="fu">library</span>(colorRamps)</span>
-<span id="cb28-6"><a></a>terra<span class="sc">::</span><span class="fu">plot</span>(timePred, </span>
-<span id="cb28-7"><a></a>            <span class="at">col =</span> <span class="fu">rgb.tables</span>(<span class="dv">1000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-5"><a></a>terra<span class="sc">::</span><span class="fu">plot</span>(timePred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1562,7 +1560,7 @@ max values  :      0,      0, 1.603295, 0.1485767, 0.9152355, 0.4735476, ... </c
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","descPosition":"bottom"});
+    <script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {
