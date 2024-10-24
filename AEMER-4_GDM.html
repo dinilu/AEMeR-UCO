@@ -14,8 +14,8 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Diego Nieto Lugilde">
-  <meta name="dcterms.date" content="2024-10-16">
-  <title>Análisis multivariante en R</title>
+  <meta name="dcterms.date" content="2024-10-17">
+  <title>Modelos Generalizados de Disimilitud en R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -399,7 +399,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Análisis multivariante en R</h1>
+  <h1 class="title">Modelos Generalizados de Disimilitud en R</h1>
+  <p class="subtitle">Generalized Dissimilarity Models (GDM)</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -412,231 +413,31 @@ Diego Nieto Lugilde
     </div>
 </div>
 
-  <p class="date">2024-10-16</p>
+  <p class="date">2024-10-17</p>
 </section>
 <section>
-<section id="preparación-de-datos" class="title-slide slide level1 center">
-<h1>Preparación de datos</h1>
-
+<section id="preparando-los-datos" class="title-slide slide level1 center">
+<h1>Preparando los datos</h1>
+<p>El paquete <code>gdm</code> tiene una forma particular de funcionar y especificar los datos. Así que necesitamos prepararlos un poco antes de empezar</p>
 </section>
-<section id="análisis-multivariante-usa-datos-tabulados" class="slide level2">
-<h2>Análisis multivariante usa <strong>datos tabulados</strong></h2>
-<table class="table caption-top">
-<caption>Matriz de comunidades (sitios x especies)</caption>
-<thead>
-<tr class="header">
-<th style="text-align: center;"></th>
-<th style="text-align: center;">sp_1</th>
-<th style="text-align: center;">sp_2</th>
-<th style="text-align: center;">…</th>
-<th style="text-align: center;">sp_n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><strong>site_1</strong></td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><strong>site_2</strong></td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><strong>…</strong></td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><strong>site_n</strong></td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">1</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="también-los-datos-de-las-variables-ambientales" class="slide level2">
-<h2>También los datos de las variables ambientales</h2>
-<table class="table caption-top">
-<caption>Matriz de variables (sitios x variables)</caption>
-<thead>
-<tr class="header">
-<th style="text-align: center;"></th>
-<th style="text-align: center;">v_1</th>
-<th style="text-align: center;">v_2</th>
-<th style="text-align: center;">…</th>
-<th style="text-align: center;">v_n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><strong>site_1</strong></td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><strong>site_2</strong></td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><strong>…</strong></td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><strong>site_n</strong></td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">1</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="cargando-de-datos-en-r" class="slide level2">
-<h2>Cargando de datos en R</h2>
+<section id="cargamos-los-datos-de-michelle-incluyendo-las-coordenadas-geográficas" class="slide level2">
+<h2>Cargamos los datos de Michelle, incluyendo las coordenadas geográficas</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(xlsx)</span>
-<span id="cb1-2"><a></a>com <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/Inventarios.xlsx"</span>, <span class="at">sheetIndex =</span> <span class="dv">1</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb1-3"><a></a><span class="fu">head</span>(com)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       Sp_1 Sp_2 Sp_3 Sp_4 Sp_5 Sp_6
-Site_1    0    0    9    0    2    0
-Site_2    1    0    8    0    1    0
-Site_3    2    1    7    0    1    0
-Site_4    2    1    0    1    5    0
-Site_5    1    2    0    0    6    0
-Site_6    0    4    0    2    3    0</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/Variables.xlsx"</span>, <span class="at">sheetIndex =</span> <span class="dv">1</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb3-2"><a></a><span class="fu">head</span>(env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>              v1         v2         v3
-Site_1 5.1789918 -0.4380167  2.8471131
-Site_2 4.4714402  1.8806640 -0.3560559
-Site_3 2.9379526 -0.3054643  3.2177157
-Site_4 0.7354044 -1.9925002  1.2593483
-Site_5 2.6035489 -2.5324108  1.9391404
-Site_6 0.6951173  2.8438965 -1.2821121</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb1-2"><a></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_ambiente.xlsx"</span>, </span>
+<span id="cb1-3"><a></a>                 <span class="dv">1</span>, </span>
+<span id="cb1-4"><a></a>                 <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-5"><a></a>com <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_especies.xlsx"</span>, </span>
+<span id="cb1-6"><a></a>                 <span class="dv">1</span>, </span>
+<span id="cb1-7"><a></a>                 <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-8"><a></a>coords <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_coords.xlsx"</span>, </span>
+<span id="cb1-9"><a></a>                    <span class="dv">1</span>, </span>
+<span id="cb1-10"><a></a>                    <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="los-nombres-de-especies-largos-pueden-saturar-los-gráficos" class="slide level2">
-<h2>Los nombres de especies largos pueden saturar los gráficos</h2>
-<ul>
-<li>Si la identidad es irrelevante: <strong>usar nombres genéricos</strong>
-<ul>
-<li>Quercus ilex: SP_1</li>
-</ul></li>
-<li>Si la identidad de la especie es relevante: <strong>acortar</strong>
-<ul>
-<li>Quercus ilex: Q_ILEX</li>
-</ul></li>
-<li>Cornell Ecology Program (CEP) proporciona una abreviatura estandarizada:
-<ul>
-<li>8 caracteres: 4 primeros del género y 4 de la especie:</li>
-<li>Quercus ilex: QUERILEX</li>
-</ul></li>
-</ul>
-</section>
-<section id="transformación-de-valores-de-dominancia-abundancia" class="slide level2">
-<h2>Transformación de valores de dominancia-abundancia</h2>
-<table class="table table-striped table-sm small caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: center;">Índice Braun-Blanquet</th>
-<th style="text-align: center;">Valor de Van deer Maarel</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">ausencia</td>
-<td style="text-align: center;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">r</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">+</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">3</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">2m</td>
-<td style="text-align: center;">4</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2a</td>
-<td style="text-align: center;">5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">2b</td>
-<td style="text-align: center;">6</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">8</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">9</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="datos-de-presencia-ausencia" class="slide level2">
-<h2>Datos de presencia-ausencia</h2>
-<p>Los análisis con datos de presencia-ausencia suelen ser más robustos que los de abundancia o cobertura</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>pres <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(com <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb5-2"><a></a><span class="fu">head</span>(pres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       Sp_1 Sp_2 Sp_3 Sp_4 Sp_5 Sp_6
-Site_1    0    0    1    0    1    0
-Site_2    1    0    1    0    1    0
-Site_3    1    1    1    0    1    0
-Site_4    1    1    0    1    1    0
-Site_5    1    1    0    0    1    0
-Site_6    0    1    0    1    1    0</code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="análisis-de-ordenación-en-r" class="title-slide slide level1 center">
-<h1>Análisis de ordenación en R</h1>
-<p>Para el análisis de vegetación en R hay un paquete muy útil: <code>vegan</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co">#install.packages("vegan")</span></span>
-<span id="cb7-2"><a></a><span class="fu">library</span>(vegan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="análisis-de-componentes-principales-pca" class="slide level2">
-<h2>Análisis de componentes principales (PCA)</h2>
-<p>Aunque parezca confuso, se usa la función <code>rda</code>.</p>
+<section id="cargamos-los-datos-bioclimáticos" class="slide level2">
+<h2>Cargamos los datos bioclimáticos</h2>
+<p>En particular cargamos los datos de argentina en formato ráster y en UTM 21s y los recorto para la región de interés</p>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -646,483 +447,601 @@ Site_6    0    1    0    1    1    0</code></pre>
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>Así se juntan la aproximación <em>unconstrained</em> y su equivalente <em>constrained</em> en la misma función. Si se especifican variables ambientales se ejecuta la versión <em>constrained</em>. Si no se especifican se ejecuta la versión <em>unconstrained</em>.</p>
+<p>Estos datos los generamos durante la clase sobre análisis de datos espaciales en R.</p>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(vegan)</span>
-<span id="cb8-2"><a></a>com_pca <span class="ot">&lt;-</span> <span class="fu">rda</span>(com)</span>
-<span id="cb8-3"><a></a>com_pca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Call: rda(X = com)
-
-              Inertia Rank
-Total           25.54     
-Unconstrained   25.54    6
-Inertia is variance 
-
-Eigenvalues for unconstrained axes:
-   PC1    PC2    PC3    PC4    PC5    PC6 
-11.855  8.544  3.847  0.941  0.325  0.027 </code></pre>
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="1-2|3-4|5|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(terra)</span>
+<span id="cb2-2"><a></a>bioclim <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"arg_bio_utm.tif"</span>)</span>
+<span id="cb2-3"><a></a>bioclim <span class="ot">&lt;-</span> <span class="fu">crop</span>(bioclim, </span>
+<span id="cb2-4"><a></a>                <span class="fu">ext</span>(<span class="sc">-</span><span class="dv">100000</span>, <span class="dv">600000</span>, <span class="dv">5500000</span>, <span class="dv">6000000</span>))</span>
+<span id="cb2-5"><a></a>bioclim <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">stack</span>(bioclim)</span>
+<span id="cb2-6"><a></a><span class="fu">plot</span>(bioclim[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-4_GDM_files/figure-revealjs/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="AEMER-4_GDM_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></a></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="análisis-de-redundancia-rda" class="slide level2">
-<h2>Análisis de redundancia (RDA)</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>com_rda <span class="ot">&lt;-</span> <span class="fu">rda</span>(com, env)</span>
-<span id="cb10-2"><a></a>com_rda</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Call: rda(X = com, Y = env)
-
-              Inertia Proportion Rank
-Total         25.5395     1.0000     
-Constrained   14.2138     0.5565    3
-Unconstrained 11.3256     0.4435    6
-Inertia is variance 
-
-Eigenvalues for constrained axes:
- RDA1  RDA2  RDA3 
-7.435 6.190 0.589 
-
-Eigenvalues for unconstrained axes:
-  PC1   PC2   PC3   PC4   PC5   PC6 
-8.109 1.250 1.054 0.694 0.200 0.018 </code></pre>
-</div>
-</div>
-</section>
-<section id="análisis-de-correspondencia-ca" class="slide level2">
-<h2>Análisis de correspondencia (CA)</h2>
-<p>Aunque parezca confuso, para CA y CCA se usa la función <code>cca</code>.</p>
-<div class="callout callout-note callout-titled callout-style-default">
+<section id="reproyecto-los-datos-de-coordenadas-a-utm-21s-y-los-combino-con-los-datos-de-comunidades" class="slide level2">
+<h2>Reproyecto los datos de coordenadas a UTM 21s y los combino con los datos de comunidades</h2>
+<div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Note</strong></p>
+<p><strong>Important</strong></p>
 </div>
 <div class="callout-content">
-<p>Así se juntan la aproximación <em>unconstrained</em> y su equivalente <em>constrained</em> en la misma función. Si se especifican variables ambientales se ejecuta la versión <em>constrained</em>. Si no se especifican se ejecuta la versión <em>unconstrained</em>.</p>
+<p>El paquete <code>gdm</code> requiere que las coordenadas estén especificadas como columnas en la matriz de comunidades, en la matriz de variables ambientales, o en las dos; pero no se pueden especificar como un objeto independiente.</p>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>com_ca <span class="ot">&lt;-</span> <span class="fu">cca</span>(com)</span>
-<span id="cb12-2"><a></a>com_ca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="1-3|4-6|7-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>utm <span class="ot">&lt;-</span> <span class="fu">project</span>(<span class="fu">as.matrix</span>(coords), </span>
+<span id="cb3-2"><a></a>               <span class="at">from =</span> <span class="st">"EPSG: 4326"</span>, </span>
+<span id="cb3-3"><a></a>               <span class="at">to =</span> <span class="st">"EPSG:32721"</span>)</span>
+<span id="cb3-4"><a></a>utm <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> utm[,<span class="dv">1</span>], </span>
+<span id="cb3-5"><a></a>                  <span class="at">y =</span> utm[,<span class="dv">2</span>],</span>
+<span id="cb3-6"><a></a>                  <span class="at">rio =</span> <span class="fu">rownames</span>(coords))</span>
+<span id="cb3-7"><a></a>com<span class="sc">$</span>rio <span class="ot">&lt;-</span> env<span class="sc">$</span>rio</span>
+<span id="cb3-8"><a></a>com <span class="ot">&lt;-</span> <span class="fu">merge</span>(com, utm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="genero-un-identificador-de-sitio-común-para-la-matriz-de-comunidades-y-la-de-variables-ambientales" class="slide level2">
+<h2>Genero un identificador de sitio común para la matriz de comunidades y la de variables ambientales</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>com<span class="sc">$</span>site_id <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(com))</span>
+<span id="cb4-2"><a></a>env<span class="sc">$</span>site_id <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(com))</span>
+<span id="cb4-3"><a></a><span class="fu">head</span>(env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Call: cca(X = com)
-
-              Inertia Rank
-Total           1.336     
-Unconstrained   1.336    5
-Inertia is scaled Chi-square 
-
-Eigenvalues for unconstrained axes:
-   CA1    CA2    CA3    CA4    CA5 
-0.5359 0.3371 0.3013 0.1014 0.0600 </code></pre>
+<pre><code>              rio sitio     mes materia_org temperatura salinidad   ph site_id
+chapad_f_d chapad   des febrero   0.6026517        22.1      1.18 8.71       1
+chapad_f_n chapad norte febrero   0.8458035        21.7      2.89 8.61       2
+chapad_f_s chapad   sur febrero   0.6467259        22.8      2.86 8.62       3
+chapad_j_d chapad   des   julio   0.7584830        11.0      2.20 9.09       4
+chapad_j_n chapad norte   julio   0.8047438        10.8      3.20 9.07       5
+chapad_j_s chapad   sur   julio   0.7331378        12.4      0.98 9.07       6</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="calibrando-modelos-gdm" class="title-slide slide level1 center">
+<h1>Calibrando modelos GDM</h1>
+<p>Usamos el paquete <code>gdm</code></p>
+</section>
+<section id="creamos-la-tabla-de-disimilaridades" class="slide level2">
+<h2>Creamos la tabla de disimilaridades</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="1-8|10-16|18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">library</span>(gdm)</span>
+<span id="cb6-2"><a></a>gdmTab <span class="ot">&lt;-</span> <span class="fu">formatsitepair</span>(com[,<span class="sc">-</span><span class="dv">1</span>], <span class="co"># Quito la columna `río`</span></span>
+<span id="cb6-3"><a></a>               <span class="at">bioFormat =</span> <span class="dv">1</span>, </span>
+<span id="cb6-4"><a></a>               <span class="at">abundance =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb6-5"><a></a>               <span class="at">XColumn =</span> <span class="st">"x"</span>, <span class="co"># Nombre de la coordenada X</span></span>
+<span id="cb6-6"><a></a>               <span class="at">YColumn =</span> <span class="st">"y"</span>, <span class="co"># Nombre de la coordenada Y</span></span>
+<span id="cb6-7"><a></a>               <span class="at">siteColumn =</span> <span class="st">"site_id"</span>, <span class="co"># Nombre del identificador</span></span>
+<span id="cb6-8"><a></a>               <span class="at">predData =</span> env[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)]) <span class="co"># Quito columnas de texto</span></span>
+<span id="cb6-9"><a></a></span>
+<span id="cb6-10"><a></a>gdmRast <span class="ot">&lt;-</span> <span class="fu">formatsitepair</span>(com[,<span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb6-11"><a></a>               <span class="at">bioFormat =</span> <span class="dv">1</span>, </span>
+<span id="cb6-12"><a></a>               <span class="at">abundance =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb6-13"><a></a>               <span class="at">XColumn =</span> <span class="st">"x"</span>,</span>
+<span id="cb6-14"><a></a>               <span class="at">YColumn =</span> <span class="st">"y"</span>, </span>
+<span id="cb6-15"><a></a>               <span class="at">siteColumn =</span> <span class="st">"site_id"</span>,</span>
+<span id="cb6-16"><a></a>               <span class="at">predData =</span> bioclim)</span>
+<span id="cb6-17"><a></a></span>
+<span id="cb6-18"><a></a><span class="fu">head</span>(gdmTab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              distance weights s1.xCoord s1.yCoord s2.xCoord s2.yCoord
+chapad_f_d   0.9047619       1  438444.6   5770677  438444.6   5770677
+chapad_f_d.1 1.0000000       1  438444.6   5770677  438444.6   5770677
+chapad_f_d.2 1.0000000       1  438444.6   5770677  438444.6   5770677
+chapad_f_d.3 1.0000000       1  438444.6   5770677  438444.6   5770677
+chapad_f_d.4 1.0000000       1  438444.6   5770677  438444.6   5770677
+chapad_f_d.5 1.0000000       1  438444.6   5770677  438444.6   5770677
+             s1.materia_org s1.temperatura s1.salinidad s1.ph s2.materia_org
+chapad_f_d        0.6026517           22.1         1.18  8.71      0.8458035
+chapad_f_d.1      0.6026517           22.1         1.18  8.71      0.6467259
+chapad_f_d.2      0.6026517           22.1         1.18  8.71      0.7584830
+chapad_f_d.3      0.6026517           22.1         1.18  8.71      0.8047438
+chapad_f_d.4      0.6026517           22.1         1.18  8.71      0.7331378
+chapad_f_d.5      0.6026517           22.1         1.18  8.71      0.8279125
+             s2.temperatura s2.salinidad s2.ph
+chapad_f_d             21.7         2.89  8.61
+chapad_f_d.1           22.8         2.86  8.62
+chapad_f_d.2           11.0         2.20  9.09
+chapad_f_d.3           10.8         3.20  9.07
+chapad_f_d.4           12.4         0.98  9.07
+chapad_f_d.5           17.2         2.49  8.90</code></pre>
 </div>
 </div>
 </section>
-<section id="análisis-de-correspondencia-sin-tendencia-dca" class="slide level2">
-<h2>Análisis de correspondencia sin tendencia (DCA)</h2>
-<p>Para DCA se usa la función <code>decorana</code></p>
+<section id="calibramos-los-modelos" class="slide level2">
+<h2>Calibramos los modelos</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>com_dca <span class="ot">&lt;-</span> <span class="fu">decorana</span>(com)</span>
-<span id="cb14-2"><a></a>com_dca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># Activo que incluya la distancia geográfica en el análisis</span></span>
+<span id="cb8-2"><a></a>gdmTab.fit <span class="ot">&lt;-</span> <span class="fu">gdm</span>(<span class="at">data=</span>gdmTab, <span class="at">geo=</span><span class="cn">TRUE</span>)</span>
+<span id="cb8-3"><a></a>gdmRast.fit <span class="ot">&lt;-</span> <span class="fu">gdm</span>(<span class="at">data=</span>gdmRast, <span class="at">geo=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="analicemos-los-resultados" class="title-slide slide level1 center">
+<h1>Analicemos los resultados</h1>
+
+</section>
+<section id="veamos-los-resultados-de-los-datos-de-michelle" class="slide level2">
+<h2>Veamos los resultados de los datos de Michelle</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">summary</span>(gdmTab.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-decorana(veg = com) 
-
-Detrended correspondence analysis with 26 segments.
-Rescaling of axes with 4 iterations.
-Total inertia (scaled Chi-square): 1.3356 
-
-                       DCA1   DCA2    DCA3    DCA4
-Eigenvalues          0.5017 0.3112 0.16425 0.17184
-Additive Eigenvalues 0.5017 0.3102 0.14014 0.09521
-Decorana values      0.5359 0.1160 0.05699 0.01393
-Axis lengths         2.8105 1.6228 1.09955 1.12945</code></pre>
+<pre><code>[1] 
+[1] 
+[1] GDM Modelling Summary
+[1] Creation Date:  Thu Oct 24 19:39:18 2024
+[1] 
+[1] Name:  gdmTab.fit
+[1] 
+[1] Data:  gdmTab
+[1] 
+[1] Samples:  2485
+[1] 
+[1] Geographical distance used in model fitting?  TRUE
+[1] 
+[1] NULL Deviance:  884.14
+[1] GDM Deviance:  851.866
+[1] Percent Deviance Explained:  3.65
+[1] 
+[1] Intercept:  1.437
+[1] 
+[1] PREDICTOR ORDER BY SUM OF I-SPLINE COEFFICIENTS:
+[1] 
+[1] Predictor 1: ph
+[1] Splines: 3
+[1] Min Knot: 7.27
+[1] 50% Knot: 8.85
+[1] Max Knot: 9.66
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0.98
+[1] Sum of coefficients for ph: 0.98
+[1] 
+[1] Predictor 2: materia_org
+[1] Splines: 3
+[1] Min Knot: 0.34
+[1] 50% Knot: 0.675
+[1] Max Knot: 1.37
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0.391
+[1] Coefficient[3]: 0.326
+[1] Sum of coefficients for materia_org: 0.718
+[1] 
+[1] Predictor 3: salinidad
+[1] Splines: 3
+[1] Min Knot: 0.15
+[1] 50% Knot: 2.67
+[1] Max Knot: 3.49
+[1] Coefficient[1]: 0.436
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for salinidad: 0.436
+[1] 
+[1] Predictor 4: Geographic
+[1] Splines: 3
+[1] Min Knot: 0
+[1] 50% Knot: 96436.034
+[1] Max Knot: 309976.305
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0.136
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for Geographic: 0.136
+[1] 
+[1] Predictor 5: temperatura
+[1] Splines: 3
+[1] Min Knot: 6.5
+[1] 50% Knot: 17.2
+[1] Max Knot: 24
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for temperatura: 0</code></pre>
 </div>
 </div>
 </section>
-<section id="análisis-de-correspondencia-canónica-cca" class="slide level2">
-<h2>Análisis de correspondencia canónica (CCA)</h2>
+<section id="y-los-del-modelo-calibrado-con-variables-bioclimáticas" class="slide level2">
+<h2>… y los del modelo calibrado con variables bioclimáticas</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>com_cca <span class="ot">&lt;-</span> <span class="fu">cca</span>(com, env)</span>
-<span id="cb16-2"><a></a>com_cca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">summary</span>(gdmRast.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Call: cca(X = com, Y = env)
-
-              Inertia Proportion Rank
-Total          1.3356     1.0000     
-Constrained    0.6556     0.4909    3
-Unconstrained  0.6800     0.5091    5
-Inertia is scaled Chi-square 
-
-Eigenvalues for constrained axes:
-  CCA1   CCA2   CCA3 
-0.3345 0.2740 0.0471 
-
-Eigenvalues for unconstrained axes:
-   CA1    CA2    CA3    CA4    CA5 
-0.4669 0.1206 0.0436 0.0395 0.0093 </code></pre>
+<pre><code>[1] 
+[1] 
+[1] GDM Modelling Summary
+[1] Creation Date:  Thu Oct 24 19:39:18 2024
+[1] 
+[1] Name:  gdmRast.fit
+[1] 
+[1] Data:  gdmRast
+[1] 
+[1] Samples:  28
+[1] 
+[1] Geographical distance used in model fitting?  TRUE
+[1] 
+[1] NULL Deviance:  7.644
+[1] GDM Deviance:  1.315
+[1] Percent Deviance Explained:  82.803
+[1] 
+[1] Intercept:  0.163
+[1] 
+[1] PREDICTOR ORDER BY SUM OF I-SPLINE COEFFICIENTS:
+[1] 
+[1] Predictor 1: bio1
+[1] Splines: 3
+[1] Min Knot: 14.108
+[1] 50% Knot: 14.234
+[1] Max Knot: 14.463
+[1] Coefficient[1]: 0.673
+[1] Coefficient[2]: 0.931
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio1: 1.603
+[1] 
+[1] Predictor 2: bio10
+[1] Splines: 3
+[1] Min Knot: 19.769
+[1] 50% Knot: 20.108
+[1] Max Knot: 20.521
+[1] Coefficient[1]: 0.915
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio10: 0.915
+[1] 
+[1] Predictor 3: bio11
+[1] Splines: 3
+[1] Min Knot: 8.418
+[1] 50% Knot: 8.574
+[1] Max Knot: 8.888
+[1] Coefficient[1]: 0.474
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio11: 0.474
+[1] 
+[1] Predictor 4: bio16
+[1] Splines: 3
+[1] Min Knot: 234
+[1] 50% Knot: 260.931
+[1] Max Knot: 264.396
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0.282
+[1] Sum of coefficients for bio16: 0.282
+[1] 
+[1] Predictor 5: bio5
+[1] Splines: 3
+[1] Min Knot: 26.8
+[1] 50% Knot: 26.99
+[1] Max Knot: 28.2
+[1] Coefficient[1]: 0.149
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio5: 0.149
+[1] 
+[1] Predictor 6: Geographic
+[1] Splines: 3
+[1] Min Knot: 13038.405
+[1] 50% Knot: 137784.596
+[1] Max Knot: 309919.344
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for Geographic: 0
+[1] 
+[1] Predictor 7: bio2
+[1] Splines: 3
+[1] Min Knot: 10.662
+[1] 50% Knot: 11.037
+[1] Max Knot: 12.348
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio2: 0
+[1] 
+[1] Predictor 8: bio3
+[1] Splines: 3
+[1] Min Knot: 46.564
+[1] 50% Knot: 47.057
+[1] Max Knot: 48.5
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio3: 0
+[1] 
+[1] Predictor 9: bio4
+[1] Splines: 3
+[1] Min Knot: 458.967
+[1] 50% Knot: 465.266
+[1] Max Knot: 497.734
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio4: 0
+[1] 
+[1] Predictor 10: bio6
+[1] Splines: 3
+[1] Min Knot: 2.739
+[1] 50% Knot: 3.496
+[1] Max Knot: 4.183
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio6: 0
+[1] 
+[1] Predictor 11: bio7
+[1] Splines: 3
+[1] Min Knot: 22.897
+[1] 50% Knot: 23.354
+[1] Max Knot: 25.461
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio7: 0
+[1] 
+[1] Predictor 12: bio8
+[1] Splines: 3
+[1] Min Knot: 15.425
+[1] 50% Knot: 17.728
+[1] Max Knot: 18.157
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio8: 0
+[1] 
+[1] Predictor 13: bio9
+[1] Splines: 3
+[1] Min Knot: 8.418
+[1] 50% Knot: 9.225
+[1] Max Knot: 11.148
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio9: 0
+[1] 
+[1] Predictor 14: bio12
+[1] Splines: 3
+[1] Min Knot: 699.39
+[1] 50% Knot: 868.324
+[1] Max Knot: 894.967
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio12: 0
+[1] 
+[1] Predictor 15: bio13
+[1] Splines: 3
+[1] Min Knot: 84
+[1] 50% Knot: 91.043
+[1] Max Knot: 99
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio13: 0
+[1] 
+[1] Predictor 16: bio14
+[1] Splines: 3
+[1] Min Knot: 31.893
+[1] 50% Knot: 47.5
+[1] Max Knot: 51
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio14: 0
+[1] 
+[1] Predictor 17: bio15
+[1] Splines: 3
+[1] Min Knot: 16.886
+[1] 50% Knot: 18.46
+[1] Max Knot: 30.844
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio15: 0
+[1] 
+[1] Predictor 18: bio17
+[1] Splines: 3
+[1] Min Knot: 101.893
+[1] 50% Knot: 169.586
+[1] Max Knot: 174
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio17: 0
+[1] 
+[1] Predictor 19: bio18
+[1] Splines: 3
+[1] Min Knot: 208.392
+[1] 50% Knot: 234.903
+[1] Max Knot: 245.588
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio18: 0
+[1] 
+[1] Predictor 20: bio19
+[1] Splines: 3
+[1] Min Knot: 101.893
+[1] 50% Knot: 176.446
+[1] Max Knot: 204.367
+[1] Coefficient[1]: 0
+[1] Coefficient[2]: 0
+[1] Coefficient[3]: 0
+[1] Sum of coefficients for bio19: 0</code></pre>
+</div>
+</div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>Fijaros como el modelo explica un 80% de la desvianza de los datos. Pero tiene un poco de truco, ya que este modelo solo contempla el río como unidad de muestreo, al caer las 3 parcelas (desembocadura, norte y sur) en el mismo pixel.</p>
+</div>
 </div>
 </div>
 </section>
-<section id="pca-basado-en-transformaciones" class="slide level2">
-<h2>PCA basado en transformaciones</h2>
-<p>Para ello se transforman los datos con la función <code>decostand</code></p>
+<section id="podemos-graficar-los-resultados-del-modelo-y-las-curvas-i-spline" class="slide level2">
+<h2>Podemos graficar los resultados del modelo y las curvas i-spline</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>com_hel <span class="ot">&lt;-</span> <span class="fu">decostand</span>(com, <span class="st">'hellinger'</span>)</span>
-<span id="cb18-2"><a></a></span>
-<span id="cb18-3"><a></a>com_tbpca <span class="ot">&lt;-</span> <span class="fu">rda</span>(com_hel)</span>
-<span id="cb18-4"><a></a>com_tbpca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Call: rda(X = com_hel)
-
-              Inertia Rank
-Total          0.3778     
-Unconstrained  0.3778    6
-Inertia is variance 
-
-Eigenvalues for unconstrained axes:
-    PC1     PC2     PC3     PC4     PC5     PC6 
-0.16155 0.10550 0.07101 0.03200 0.00440 0.00333 </code></pre>
-</div>
-</div>
-</section>
-<section id="pca-basado-en-transformaciones-1" class="slide level2">
-<h2>PCA basado en transformaciones</h2>
-<p>Para ello se transforman los datos con la función <code>decostand</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>com_tbrda <span class="ot">&lt;-</span> <span class="fu">rda</span>(com_hel, env)</span>
-<span id="cb20-2"><a></a>com_tbrda</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Call: rda(X = com_hel, Y = env)
-
-              Inertia Proportion Rank
-Total          0.3778     1.0000     
-Constrained    0.1657     0.4387    3
-Unconstrained  0.2120     0.5613    6
-Inertia is variance 
-
-Eigenvalues for constrained axes:
-   RDA1    RDA2    RDA3 
-0.09114 0.06063 0.01398 
-
-Eigenvalues for unconstrained axes:
-    PC1     PC2     PC3     PC4     PC5     PC6 
-0.15218 0.03174 0.01660 0.00743 0.00243 0.00165 </code></pre>
-</div>
-</div>
-</section>
-<section id="visualizar-ordenación" class="slide level2">
-<h2>Visualizar ordenación</h2>
-<p>Es interesante observar como se disponen especies y sitios en el espacio bidimensional.</p>
-<p>Para ello usamos la función <code>plot</code> sobre cualquiera de los objetos de ordenación.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">plot</span>(com_ca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">plot</span>(gdmTab.fit, <span class="at">plot.layout=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-11-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></a></p>
+<p><a href="AEMER-4_GDM_files/figure-revealjs/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="AEMER-4_GDM_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="gráficos-sobrecargados" class="slide level2">
-<h2>¿Gráficos sobrecargados?</h2>
-<p>Puedes representar solo ‘especies’ o ‘sitios’ con el argumento <code>display</code></p>
+<section id="también-las-del-modelo-bioclimático" class="slide level2">
+<h2>… también las del modelo bioclimático</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display =</span> <span class="st">"sites"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">plot</span>(gdmRast.fit, <span class="at">plot.layout =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></a></p>
+<p><a href="AEMER-4_GDM_files/figure-revealjs/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="AEMER-4_GDM_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display =</span> <span class="st">"species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="si-necesitamos-realizar-gráficos-independientes-podemos-extraer-los-valores-de-las-curvas-i-splines" class="slide level2">
+<h2>Si necesitamos realizar gráficos independientes, podemos extraer los valores de las curvas i-splines</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>gdmRast.splines <span class="ot">&lt;-</span> <span class="fu">isplineExtract</span>(gdmRast.fit)</span>
+<span id="cb15-2"><a></a><span class="fu">str</span>(gdmRast.splines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 2
+ $ x: num [1:200, 1:20] 13038 14530 16022 17514 19006 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : NULL
+  .. ..$ : chr [1:20] "Geographic" "bio1" "bio2" "bio3" ...
+ $ y: num [1:200, 1:20] 0 0 0 0 0 0 0 0 0 0 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : NULL
+  .. ..$ : chr [1:20] "Geographic" "bio1" "bio2" "bio3" ...</code></pre>
+</div>
+</div>
+</section>
+<section id="y-posteriormente-graficarlas-a-mano" class="slide level2">
+<h2>… y posteriormente graficarlas a mano</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">plot</span>(gdmRast.splines[[<span class="st">"x"</span>]][,<span class="st">"bio1"</span>], </span>
+<span id="cb17-2"><a></a>     gdmRast.splines[[<span class="st">"y"</span>]][,<span class="st">"bio1"</span>], </span>
+<span id="cb17-3"><a></a>     <span class="at">lwd=</span><span class="dv">3</span>,</span>
+<span id="cb17-4"><a></a>     <span class="at">type=</span><span class="st">"l"</span>, </span>
+<span id="cb17-5"><a></a>     <span class="at">xlab=</span><span class="st">"Mean Annual Temperature (ºC)"</span>, </span>
+<span id="cb17-6"><a></a>     <span class="at">ylab=</span><span class="st">"Partial ecological distance"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-12-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-12-2.png" width="960"></a></p>
+<p><a href="AEMER-4_GDM_files/figure-revealjs/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img data-src="AEMER-4_GDM_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </section></section>
 <section>
-<section id="análisis-de-clasificación-en-r" class="title-slide slide level1 center">
-<h1>Análisis de clasificación en R</h1>
+<section id="usemos-el-modelo-para-realizar-proyecciones" class="title-slide slide level1 center">
+<h1>Usemos el modelo para realizar proyecciones</h1>
 
 </section>
-<section id="medida-de-disimilitud" class="slide level2">
-<h2>Medida de disimilitud</h2>
-<p>Para calcular la disimilitud entre todos los ‘sitios’ usamos la función <code>vegdist</code></p>
+<section id="podemos-proyectar-el-modelo-para-transformar-cada-variable-ambiental-acorde-a-las-i-splines" class="slide level2">
+<h2>Podemos proyectar el modelo para transformar cada variable ambiental acorde a las i-splines</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(com)</span>
-<span id="cb25-2"><a></a>dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>gdmRast.sp_trans <span class="ot">&lt;-</span> <span class="fu">gdm.transform</span>(gdmRast.fit, bioclim)</span>
+<span id="cb18-2"><a></a><span class="fu">head</span>(gdmRast.sp_trans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            Site_1     Site_2     Site_3     Site_4     Site_5     Site_6
-Site_2  0.14285714                                                       
-Site_3  0.27272727 0.14285714                                            
-Site_4  0.80000000 0.78947368 0.60000000                                 
-Site_5  0.80000000 0.78947368 0.70000000 0.22222222                      
-Site_6  0.80000000 0.89473684 0.80000000 0.44444444 0.44444444           
-Site_7  0.77777778 0.88235294 0.88888889 0.37500000 0.50000000 0.37500000
-Site_8  0.88235294 0.87500000 0.76470588 0.60000000 0.60000000 0.20000000
-Site_9  0.77777778 0.76470588 0.66666667 0.25000000 0.50000000 0.50000000
-Site_10 0.81818182 0.80952381 0.63636364 0.50000000 0.50000000 0.40000000
-Site_11 0.47826087 0.45454545 0.39130435 0.61904762 0.71428571 0.80952381
-Site_12 0.52380952 0.50000000 0.42857143 0.57894737 0.68421053 0.78947368
-Site_13 0.71428571 0.70000000 0.61904762 0.47368421 0.57894737 0.68421053
-Site_14 0.90909091 0.80952381 0.72727273 0.60000000 0.80000000 0.80000000
-Site_15 0.80000000 0.78947368 0.80000000 0.33333333 0.22222222 0.66666667
-Site_16 0.78947368 0.77777778 0.78947368 0.29411765 0.17647059 0.64705882
-Site_17 0.78947368 0.77777778 0.68421053 0.29411765 0.52941176 0.52941176
-Site_18 0.65217391 0.63636364 0.65217391 0.33333333 0.33333333 0.61904762
-Site_19 0.83333333 0.91304348 0.83333333 0.36363636 0.36363636 0.45454545
-Site_20 0.61904762 0.70000000 0.71428571 0.36842105 0.36842105 0.57894737
-            Site_7     Site_8     Site_9    Site_10    Site_11    Site_12
-Site_2                                                                   
-Site_3                                                                   
-Site_4                                                                   
-Site_5                                                                   
-Site_6                                                                   
-Site_7                                                                   
-Site_8  0.69230769                                                       
-Site_9  0.42857143 0.69230769                                            
-Site_10 0.77777778 0.41176471 0.44444444                                 
-Site_11 0.78947368 0.88888889 0.47368421 0.39130435                      
-Site_12 0.76470588 0.87500000 0.41176471 0.33333333 0.09090909           
-Site_13 0.64705882 0.87500000 0.29411765 0.33333333 0.18181818 0.20000000
-Site_14 0.77777778 0.76470588 0.44444444 0.45454545 0.39130435 0.42857143
-Site_15 0.50000000 0.86666667 0.50000000 0.70000000 0.71428571 0.68421053
-Site_16 0.46666667 0.85714286 0.46666667 0.68421053 0.70000000 0.66666667
-Site_17 0.46666667 0.71428571 0.06666667 0.36842105 0.40000000 0.33333333
-Site_18 0.47368421 0.77777778 0.47368421 0.73913043 0.58333333 0.54545455
-Site_19 0.40000000 0.68421053 0.60000000 0.75000000 0.84000000 0.82608696
-Site_20 0.41176471 0.75000000 0.52941176 0.80952381 0.63636364 0.60000000
-           Site_13    Site_14    Site_15    Site_16    Site_17    Site_18
-Site_2                                                                   
-Site_3                                                                   
-Site_4                                                                   
-Site_5                                                                   
-Site_6                                                                   
-Site_7                                                                   
-Site_8                                                                   
-Site_9                                                                   
-Site_10                                                                  
-Site_11                                                                  
-Site_12                                                                  
-Site_13                                                                  
-Site_14 0.33333333                                                       
-Site_15 0.57894737 0.80000000                                            
-Site_16 0.55555556 0.78947368 0.05882353                                 
-Site_17 0.22222222 0.36842105 0.52941176 0.50000000                      
-Site_18 0.54545455 0.73913043 0.14285714 0.20000000 0.50000000           
-Site_19 0.73913043 0.83333333 0.27272727 0.33333333 0.61904762 0.28000000
-Site_20 0.60000000 0.80952381 0.26315789 0.22222222 0.55555556 0.09090909
-           Site_19
-Site_2            
-Site_3            
-Site_4            
-Site_5            
-Site_6            
-Site_7            
-Site_8            
-Site_9            
-Site_10           
-Site_11           
-Site_12           
-Site_13           
-Site_14           
-Site_15           
-Site_16           
-Site_17           
-Site_18           
-Site_19           
-Site_20 0.30434783</code></pre>
+<pre><code>      xCoord yCoord      bio5     bio10     bio11     bio16
+ [1,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+ [2,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+ [3,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+ [4,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+ [5,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+ [6,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+ [7,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+ [8,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+ [9,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+[10,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+[11,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+[12,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+[13,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+[14,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+[15,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+[16,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+[17,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+[18,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+[19,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571
+[20,]      0      0 0.1485767 0.9152355 0.4735476 0.2820571</code></pre>
 </div>
 </div>
-</section>
-<section id="tipos-de-distancias" class="slide level2">
-<h2>Tipos de distancias</h2>
-<p>La disimilitud entre ‘sitios’ se puede calcular de varias maneras: <code>euclidean</code>, <code>manhattan</code>, <code>gower</code>, <code>canberra</code>, <code>bray</code>, <code>jaccard</code>…</p>
-<p>Para ello usamos el argumento <code>method</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(com, <span class="at">method=</span><span class="st">"euclidean"</span>)</span>
-<span id="cb27-2"><a></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(com, <span class="at">method=</span><span class="st">"bray"</span>)</span>
-<span id="cb27-3"><a></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(com, <span class="at">method=</span><span class="st">"jaccard"</span>)</span>
-<span id="cb27-4"><a></a><span class="fu">head</span>(dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2500000 0.4285714 0.8888889 0.8888889 0.8888889 0.8750000</code></pre>
-</div>
-</div>
-</section>
-<section id="clasificación-jerárquica" class="slide level2">
-<h2>Clasificación jerárquica</h2>
-<p>Para ello usamos la función <code>hclust</code> sobre la matriz de distancias</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist)</span>
-<span id="cb29-2"><a></a>hc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-hclust(d = dist)
-
-Cluster method   : complete 
-Distance         : jaccard 
-Number of objects: 20 </code></pre>
-</div>
-</div>
-</section>
-<section id="métodos-de-agrupación" class="slide level2">
-<h2>Métodos de agrupación</h2>
-<p>Métodos para realizar la agrupación hay varios: <code>single</code>, <code>complete</code>, <code>average</code>, <code>centroid</code>…</p>
-<p>Especificamos el método con el argumento <code>method</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"single"</span>)</span>
-<span id="cb31-2"><a></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"centroid"</span>)</span>
-<span id="cb31-3"><a></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"average"</span>)</span>
-<span id="cb31-4"><a></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"complete"</span>)</span>
-<span id="cb31-5"><a></a>hc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-hclust(d = dist, method = "complete")
-
-Cluster method   : complete 
-Distance         : jaccard 
-Number of objects: 20 </code></pre>
-</div>
-</div>
-</section>
-<section id="visualizar-clasificaciones" class="slide level2">
-<h2>Visualizar clasificaciones</h2>
-<p>Las clasificaciones jerárquicas se pueden visualizar como un árbol filogenético con la función <code>plot</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>terra<span class="sc">::</span><span class="fu">plot</span>(gdmRast.sp_trans, <span class="at">col=</span>colorRamps<span class="sc">::</span><span class="fu">rgb.tables</span>(<span class="dv">1000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></a></p>
+<p><a href="AEMER-4_GDM_files/figure-revealjs/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img data-src="AEMER-4_GDM_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="interpretación" class="slide level2">
-<h2>Interpretación</h2>
-<p>Establecer grupos en un árbol no es siempre trivial</p>
-<ul>
-<li>Se puede usar un umbral para determinar los grupos</li>
-<li>O establecer un número determinado de grupos</li>
-</ul>
+<section id="para-reducir-la-dimensionalidad-de-las-distintas-capas-usamos-un-acp-para-seleccionar-los-tres-primeros-ejes" class="slide level2">
+<h2>Para reducir la dimensionalidad de las distintas capas, usamos un ACP para seleccionar los tres primeros ejes</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="1|4|6-9|11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>pca.rast <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(terra<span class="sc">::</span><span class="fu">rast</span>(gdmRast.sp_trans))</span>
+<span id="cb21-2"><a></a></span>
+<span id="cb21-3"><a></a><span class="co"># note the use of the 'index' argument</span></span>
+<span id="cb21-4"><a></a>pca.rast <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">predict</span>(gdmRast.sp_trans, pca.rast, <span class="at">index=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb21-5"><a></a>pca.rast <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(pca.rast)</span>
+<span id="cb21-6"><a></a><span class="co"># scale rasters</span></span>
+<span id="cb21-7"><a></a>pca.rast[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">app</span>(pca.rast[[<span class="dv">1</span>]], <span class="at">fun =</span> scales<span class="sc">::</span>rescale, <span class="at">to =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">255</span>))</span>
+<span id="cb21-8"><a></a>pca.rast[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">app</span>(pca.rast[[<span class="dv">2</span>]], <span class="at">fun =</span> scales<span class="sc">::</span>rescale, <span class="at">to =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">255</span>))</span>
+<span id="cb21-9"><a></a>pca.rast[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">app</span>(pca.rast[[<span class="dv">3</span>]], <span class="at">fun =</span> scales<span class="sc">::</span>rescale, <span class="at">to =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">255</span>))</span>
+<span id="cb21-10"><a></a></span>
+<span id="cb21-11"><a></a>terra<span class="sc">::</span><span class="fu">plotRGB</span>(pca.rast, <span class="at">r=</span><span class="dv">1</span>, <span class="at">g=</span><span class="dv">2</span>, <span class="at">b=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-18-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></a></p>
+<p><a href="AEMER-4_GDM_files/figure-revealjs/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img data-src="AEMER-4_GDM_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="visualizar-clasificaciones-con-un-umbral" class="slide level2">
-<h2>Visualizar clasificaciones con un umbral</h2>
+<section id="también-podemos-analizar-cambios-en-cada-pixel-entre-dos-periodos-concretos" class="slide level2">
+<h2>También podemos analizar cambios en cada pixel entre dos periodos concretos</h2>
+<p>Primero habrá que generar un objeto raster con los datos climáticos modificados</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>) </span>
-<span id="cb34-2"><a></a><span class="fu">rect.hclust</span>(hc, <span class="at">h=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>fut_bioclim <span class="ot">&lt;-</span> bioclim</span>
+<span id="cb22-2"><a></a>fut_bioclim[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> fut_bioclim[[<span class="dv">1</span>]] <span class="sc">+</span> <span class="fl">0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23" data-code-line-numbers="1-4|5-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>timePred <span class="ot">&lt;-</span> <span class="fu">predict</span>(gdmRast.fit, </span>
+<span id="cb23-2"><a></a>                    bioclim, </span>
+<span id="cb23-3"><a></a>                    <span class="at">time =</span> T, </span>
+<span id="cb23-4"><a></a>                    <span class="at">predRasts =</span> fut_bioclim)</span>
+<span id="cb23-5"><a></a><span class="fu">library</span>(colorRamps)</span>
+<span id="cb23-6"><a></a>terra<span class="sc">::</span><span class="fu">plot</span>(timePred, </span>
+<span id="cb23-7"><a></a>            <span class="at">col =</span> <span class="fu">rgb.tables</span>(<span class="dv">1000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></a></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="visualizar-clasificaciones-con-número-de-grupos" class="slide level2">
-<h2>Visualizar clasificaciones con número de grupos</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb35-2"><a></a><span class="fu">rect.hclust</span>(hc, <span class="at">k=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><a href="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-20-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></a></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="extraer-grupos" class="slide level2">
-<h2>Extraer grupos</h2>
-<p>En ocasiones es interesante extraer la asignación de cada sitio a un grupo</p>
-<p>Para ello podemos usar la función <code>cutree</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>grp <span class="ot">&lt;-</span> <span class="fu">cutree</span>(hc, <span class="at">h=</span><span class="fl">0.7</span>)</span>
-<span id="cb36-2"><a></a>grp <span class="ot">&lt;-</span> <span class="fu">cutree</span>(hc, <span class="at">k=</span><span class="dv">4</span>)</span>
-<span id="cb36-3"><a></a>grp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> Site_1  Site_2  Site_3  Site_4  Site_5  Site_6  Site_7  Site_8  Site_9 Site_10 
-      1       1       1       2       2       3       2       3       4       4 
-Site_11 Site_12 Site_13 Site_14 Site_15 Site_16 Site_17 Site_18 Site_19 Site_20 
-      4       4       4       4       2       2       4       2       2       2 </code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="combinar-ordenación-y-agrupamientos" class="title-slide slide level1 center">
-<h1>Combinar ordenación y agrupamientos</h1>
-
-</section>
-<section id="dibujar-agrupamientos-sobre-los-gráficos-de-ordenación" class="slide level2">
-<h2>Dibujar agrupamientos sobre los gráficos de ordenación</h2>
-<p>Para ello usamos la función <code>ordihull</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display=</span><span class="st">"sites"</span>)</span>
-<span id="cb38-2"><a></a><span class="fu">ordihull</span>(com_ca, grp, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><a href="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-22-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></a></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="hay-más-opciones" class="slide level2">
-<h2>Hay más opciones…</h2>
-<p>También se pueden usar las funciones <code>ordispider</code> y <code>ordiellipse</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display=</span><span class="st">"sites"</span>)</span>
-<span id="cb39-2"><a></a><span class="fu">ordispider</span>(com_ca, grp, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><a href="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-23-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></a></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="que-elegirás-en-función-de-tu-necesidad" class="slide level2">
-<h2>… que elegirás en función de tu necesidad</h2>
-<p>Para ello usamos las funciones <code>ordispider</code> y <code>ordiellipse</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display=</span><span class="st">"sites"</span>)</span>
-<span id="cb40-2"><a></a><span class="fu">ordiellipse</span>(com_ca, grp, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><a href="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-24-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img data-src="AEMER-3_Analisis_multivariante_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></a></p>
+<p><a href="AEMER-4_GDM_files/figure-revealjs/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="AEMER-4_GDM_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1610,7 +1529,7 @@ Site_11 Site_12 Site_13 Site_14 Site_15 Site_16 Site_17 Site_18 Site_19 Site_20
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox"});
+    <script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {

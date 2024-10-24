@@ -2,30 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://dinilu.github.io/AEMeR/index.html</loc>
-    <lastmod>2024-10-20T18:31:08.386Z</lastmod>
+    <lastmod>2024-10-24T17:11:12.951Z</lastmod>
   </url>
   <url>
-    <loc>https://dinilu.github.io/AEMeR/AEMER-3_Ejercicios.html</loc>
-    <lastmod>2024-10-20T18:18:07.131Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dinilu.github.io/AEMeR/AEMER-2_Ejercicios.html</loc>
-    <lastmod>2024-10-20T18:32:38.540Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dinilu.github.io/AEMeR/AEMER-1-Ejercicios.html</loc>
-    <lastmod>2024-10-20T18:30:34.288Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dinilu.github.io/AEMeR/AEMER-2_Analisis_espacial.html</loc>
-    <lastmod>2024-10-20T18:32:08.216Z</lastmod>
+    <loc>https://dinilu.github.io/AEMeR/AEMER-4_GDM.html</loc>
+    <lastmod>2024-10-24T17:38:34.267Z</lastmod>
   </url>
   <url>
     <loc>https://dinilu.github.io/AEMeR/AEMER-3_Analisis_multivariante.html</loc>
     <lastmod>2024-10-20T18:32:48.423Z</lastmod>
   </url>
   <url>
-    <loc>https://dinilu.github.io/AEMeR/AEMER-4_HMSC.html</loc>
+    <loc>https://dinilu.github.io/AEMeR/AEMER-2_Analisis_espacial.html</loc>
+    <lastmod>2024-10-20T18:32:08.216Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dinilu.github.io/AEMeR/AEMER-1-Ejercicios.html</loc>
+    <lastmod>2024-10-20T18:30:34.288Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dinilu.github.io/AEMeR/AEMER-2_Ejercicios.html</loc>
+    <lastmod>2024-10-20T18:32:38.540Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dinilu.github.io/AEMeR/AEMER-3_Ejercicios.html</loc>
+    <lastmod>2024-10-20T18:18:07.131Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dinilu.github.io/AEMeR/AEMER-5_HMSC.html</loc>
     <lastmod>2024-10-20T18:31:43.857Z</lastmod>
   </url>
 </urlset>
