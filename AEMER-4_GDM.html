@@ -618,7 +618,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <pre><code>[1] 
 [1] 
 [1] GDM Modelling Summary
-[1] Creation Date:  Thu Oct 24 23:38:59 2024
+[1] Creation Date:  Thu Oct 24 23:43:17 2024
 [1] 
 [1] Name:  gdmTab.fit
 [1] 
@@ -696,7 +696,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <pre><code>[1] 
 [1] 
 [1] GDM Modelling Summary
-[1] Creation Date:  Thu Oct 24 23:38:59 2024
+[1] Creation Date:  Thu Oct 24 23:43:17 2024
 [1] 
 [1] Name:  gdmRast.fit
 [1] 
@@ -1013,7 +1013,7 @@ dimensions  : 500, 700, 7  (nrow, ncol, nlyr)
 resolution  : 1000, 1000  (x, y)
 extent      : -100055.4, 599944.6, 5500177, 6000177  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 21S (EPSG:32721) 
-source      : spat_8f801ae259fe_36736_o8up7yuDdJ6XHBX.tif 
+source      : spat_183429d35181_6196_o8up7yuDdJ6XHBX.tif 
 names       : xCoord, yCoord,     bio1,      bio5,     bio10,     bio11, ... 
 min values  :      0,      0, 0.000000, 0.0000000, 0.0000000, 0.0000000, ... 
 max values  :      0,      0, 1.603295, 0.1485767, 0.9152355, 0.4735476, ... </code></pre>
@@ -1042,7 +1042,7 @@ max values  :      0,      0, 1.603295, 0.1485767, 0.9152355, 0.4735476, ... </c
 <span id="cb26-4"><a></a>pca.rast <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">predict</span>(gdmRast.sp_trans, pca.rast, <span class="at">index=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
 <span id="cb26-5"><a></a></span>
 <span id="cb26-6"><a></a><span class="co"># scale rasters</span></span>
-<span id="cb26-7"><a></a>mnmx <span class="ot">&lt;-</span> <span class="fu">values</span>(pca.rast) <span class="sc">|&gt;</span> <span class="fu">range</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-7"><a></a>mnmx <span class="ot">&lt;-</span> <span class="fu">range</span>(<span class="fu">values</span>(pca.rast), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb26-8"><a></a>pca.rast <span class="ot">&lt;-</span> ((pca.rast <span class="sc">-</span> mnmx[<span class="dv">1</span>]) <span class="sc">/</span> <span class="fu">diff</span>(mnmx)) <span class="sc">*</span> <span class="dv">255</span></span>
 <span id="cb26-9"><a></a></span>
 <span id="cb26-10"><a></a>pca.rast</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1579,7 +1579,7 @@ max values  : 255, 206.29877, 207.57428 </code></pre>
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
+    <script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {
