@@ -20,7 +20,21 @@ editor: source
 
 # Preparando los datos
 
-El paquete `gdm` tiene una forma particular de funcionar y especificar los datos. Así que necesitamos prepararlos un poco antes de empezar
+Usaremos el paquete `gdm`. Éste tiene una forma particular de funcionar y especificar los datos. Así que necesitamos prepararlos un poco antes de empezar
+
+```{r}
+#| echo: true
+
+library(gdm)
+```
+
+```{r}
+#| echo: false
+#| eval: true
+
+source("gdm.transform.R")
+```
+
 
 ## Cargamos los datos de Michelle, incluyendo las coordenadas geográficas
 
@@ -37,6 +51,7 @@ com <- read.xlsx("data/sciberras_especies.xlsx",
 coords <- read.xlsx("data/sciberras_coords.xlsx", 
                     1, 
                     rowNames = TRUE)
+head(coords)
 ```
 
 
@@ -50,13 +65,12 @@ Estos datos los generamos durante la clase sobre análisis de datos espaciales e
 
 ```{r}
 #| echo: true
-#| code-line-numbers: '1-2|3-4|5|6'
+#| code-line-numbers: '1-2|3-4|5'
 
 library(terra)
 bioclim <- rast("arg_bio_utm.tif")
 bioclim <- crop(bioclim, 
                 ext(-100000, 600000, 5500000, 6000000))
-bioclim <- raster::stack(bioclim)
 plot(bioclim[[1]])
 ```
 
@@ -79,6 +93,7 @@ utm <- data.frame(x = utm[,1],
                   rio = rownames(coords))
 com$rio <- env$rio
 com <- merge(com, utm)
+head(com)
 ```
 
 
@@ -212,7 +227,7 @@ plot(gdmRast.splines[["x"]][,"bio1"],
 #| echo: true
 
 gdmRast.sp_trans <- gdm.transform(gdmRast.fit, bioclim)
-head(gdmRast.sp_trans)
+gdmRast.sp_trans
 ```
 
 ```{r}
@@ -226,13 +241,13 @@ terra::plot(gdmRast.sp_trans, col=colorRamps::rgb.tables(1000))
 
 ```{r}
 #| echo: true
-#| code-line-numbers: '1|4|6-9|11'
+#| code-line-numbers: '1|3-4|6-9|11'
 
-pca.rast <- prcomp(terra::rast(gdmRast.sp_trans))
+pca.rast <- prcomp(gdmRast.sp_trans)
 
 # note the use of the 'index' argument
 pca.rast <- terra::predict(gdmRast.sp_trans, pca.rast, index=1:3)
-pca.rast <- terra::rast(pca.rast)
+
 # scale rasters
 pca.rast[[1]] <- terra::app(pca.rast[[1]], fun = scales::rescale, to = c(0, 255))
 pca.rast[[2]] <- terra::app(pca.rast[[2]], fun = scales::rescale, to = c(0, 255))
@@ -254,6 +269,8 @@ fut_bioclim <- bioclim
 fut_bioclim[[1]] <- fut_bioclim[[1]] + 0.5
 ```
 
+
+## Posteriormente hacemos la predicción y se dibuja el mapa
 
 ```{r}
 #| echo: true
