@@ -1,0 +1,270 @@
+---
+title: "Modelos Generalizados de Disimilitud en R"
+subtitle: "Generalized Dissimilarity Models (GDM)"
+author: "Diego Nieto Lugilde"
+date: 10/17/2024
+institute: "Universidad de Córdoba (España)"
+slide-number: true
+format:
+  revealjs:
+    logo: img/logos.png
+    footer: "[AEMeR](https://dnietolugilde.com/AEMeR)"
+    scrollable: true
+    chalkboard: true
+include-in-header: 
+  text: |
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+lightbox: auto
+editor: source
+---
+
+# Preparando los datos
+
+El paquete `gdm` tiene una forma particular de funcionar y especificar los datos. Así que necesitamos prepararlos un poco antes de empezar
+
+## Cargamos los datos de Michelle, incluyendo las coordenadas geográficas
+
+```{r}
+#| echo: true
+
+library(openxlsx)
+env <- read.xlsx("data/sciberras_ambiente.xlsx", 
+                 1, 
+                 rowNames = TRUE)
+com <- read.xlsx("data/sciberras_especies.xlsx", 
+                 1, 
+                 rowNames = TRUE)
+coords <- read.xlsx("data/sciberras_coords.xlsx", 
+                    1, 
+                    rowNames = TRUE)
+```
+
+
+## Cargamos los datos bioclimáticos 
+
+En particular cargamos los datos de argentina en formato ráster y en UTM 21s y los recorto para la región de interés
+
+::: {.callout-note}
+Estos datos los generamos durante la clase sobre análisis de datos espaciales en R.
+:::
+
+```{r}
+#| echo: true
+#| code-line-numbers: '1-2|3-4|5|6'
+
+library(terra)
+bioclim <- rast("arg_bio_utm.tif")
+bioclim <- crop(bioclim, 
+                ext(-100000, 600000, 5500000, 6000000))
+bioclim <- raster::stack(bioclim)
+plot(bioclim[[1]])
+```
+
+
+## Reproyecto los datos de coordenadas a UTM 21s y los combino con los datos de comunidades
+
+::: {.callout-important}
+El paquete `gdm` requiere que las coordenadas estén especificadas como columnas en la matriz de comunidades, en la matriz de variables ambientales, o en las dos; pero no se pueden especificar como un objeto independiente.
+:::
+
+```{r}
+#| echo: true
+#| code-line-numbers: '1-3|4-6|7-8'
+
+utm <- project(as.matrix(coords), 
+               from = "EPSG: 4326", 
+               to = "EPSG:32721")
+utm <- data.frame(x = utm[,1], 
+                  y = utm[,2],
+                  rio = rownames(coords))
+com$rio <- env$rio
+com <- merge(com, utm)
+```
+
+
+## Genero un identificador de sitio común para la matriz de comunidades y la de variables ambientales
+
+```{r}
+#| echo: true
+
+com$site_id <- as.numeric(1:nrow(com))
+env$site_id <- as.numeric(1:nrow(com))
+head(env)
+```
+
+
+# Calibrando modelos GDM
+
+Usamos el paquete `gdm`
+
+## Creamos la tabla de disimilaridades
+
+```{r}
+#| echo: true
+#| code-line-numbers: '1-8|10-16|18'
+
+library(gdm)
+gdmTab <- formatsitepair(com[,-1], # Quito la columna `río`
+               bioFormat = 1, 
+               abundance = TRUE, 
+               XColumn = "x", # Nombre de la coordenada X
+               YColumn = "y", # Nombre de la coordenada Y
+               siteColumn = "site_id", # Nombre del identificador
+               predData = env[,-c(1:3)]) # Quito columnas de texto
+
+gdmRast <- formatsitepair(com[,-1],
+               bioFormat = 1, 
+               abundance = TRUE, 
+               XColumn = "x",
+               YColumn = "y", 
+               siteColumn = "site_id",
+               predData = bioclim)
+
+head(gdmTab)
+```
+
+
+## Calibramos los modelos
+
+```{r}
+#| echo: true
+#| code-line-numbers: '2|3'
+
+# Activo que incluya la distancia geográfica en el análisis
+gdmTab.fit <- gdm(data=gdmTab, geo=TRUE)
+gdmRast.fit <- gdm(data=gdmRast, geo=TRUE)
+```
+
+
+# Analicemos los resultados
+
+## Veamos los resultados de los datos de Michelle
+
+```{r}
+#| echo: true
+
+summary(gdmTab.fit)
+```
+
+
+## ... y los del modelo calibrado con variables bioclimáticas
+
+```{r}
+#| echo: true
+
+summary(gdmRast.fit)
+```
+
+::: {.callout-important}
+Fijaros como el modelo explica un 80% de la desvianza de los datos. Pero tiene un poco de truco, ya que este modelo solo contempla el río como unidad de muestreo, al caer las 3 parcelas (desembocadura, norte y sur) en el mismo pixel.
+:::
+
+
+## Podemos graficar los resultados del modelo y las curvas i-spline
+
+```{r}
+#| echo: true
+
+plot(gdmTab.fit, plot.layout=c(2,3))
+```
+
+
+## ... también las del modelo bioclimático
+
+```{r}
+#| echo: true
+
+plot(gdmRast.fit, plot.layout = c(2, 4))
+```
+
+
+## Si necesitamos realizar gráficos independientes, podemos extraer los valores de las curvas i-splines
+
+```{r}
+#| echo: true
+#| code-line-numbers: '1|2'
+
+gdmRast.splines <- isplineExtract(gdmRast.fit)
+str(gdmRast.splines)
+```
+
+
+## ... y posteriormente graficarlas a mano
+
+```{r}
+#| echo: true
+
+plot(gdmRast.splines[["x"]][,"bio1"], 
+     gdmRast.splines[["y"]][,"bio1"], 
+     lwd=3,
+     type="l", 
+     xlab="Mean Annual Temperature (ºC)", 
+     ylab="Partial ecological distance")
+```
+
+
+# Usemos el modelo para realizar proyecciones
+
+
+## Podemos proyectar el modelo para transformar cada variable ambiental acorde a las i-splines
+
+```{r}
+#| echo: true
+
+gdmRast.sp_trans <- gdm.transform(gdmRast.fit, bioclim)
+head(gdmRast.sp_trans)
+```
+
+```{r}
+#| echo: true
+
+terra::plot(gdmRast.sp_trans, col=colorRamps::rgb.tables(1000))
+```
+
+
+## Para reducir la dimensionalidad de las distintas capas, usamos un ACP para seleccionar los tres primeros ejes
+
+```{r}
+#| echo: true
+#| code-line-numbers: '1|4|6-9|11'
+
+pca.rast <- prcomp(terra::rast(gdmRast.sp_trans))
+
+# note the use of the 'index' argument
+pca.rast <- terra::predict(gdmRast.sp_trans, pca.rast, index=1:3)
+pca.rast <- terra::rast(pca.rast)
+# scale rasters
+pca.rast[[1]] <- terra::app(pca.rast[[1]], fun = scales::rescale, to = c(0, 255))
+pca.rast[[2]] <- terra::app(pca.rast[[2]], fun = scales::rescale, to = c(0, 255))
+pca.rast[[3]] <- terra::app(pca.rast[[3]], fun = scales::rescale, to = c(0, 255))
+
+terra::plotRGB(pca.rast, r=1, g=2, b=3)
+```
+
+
+## También podemos analizar cambios en cada pixel entre dos periodos concretos
+
+Primero habrá que generar un objeto raster con los datos climáticos modificados
+
+```{r}
+#| echo: true
+#| code-line-numbers: '1|2'
+
+fut_bioclim <- bioclim
+fut_bioclim[[1]] <- fut_bioclim[[1]] + 0.5
+```
+
+
+```{r}
+#| echo: true
+#| code-line-numbers: '1-4|5-7'
+
+timePred <- predict(gdmRast.fit, 
+                    bioclim, 
+                    time = T, 
+                    predRasts = fut_bioclim)
+library(colorRamps)
+terra::plot(timePred, 
+            col = rgb.tables(1000))
+```
+
