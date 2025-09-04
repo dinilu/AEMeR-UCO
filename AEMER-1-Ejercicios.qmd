@@ -2,7 +2,7 @@
 title: 'Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad'
 subtitle: 'Ejercicios de introducción a R'
 author: 'Diego Nieto Lugilde'
-date: 10/14/2024
+date: 04/09/2025
 format: html
 toc: true
 toc-depth: 2
