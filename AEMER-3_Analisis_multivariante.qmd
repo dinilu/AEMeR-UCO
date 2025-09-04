@@ -46,11 +46,11 @@ editor: source
 ```{r}
 #| echo: true
 
-library(xlsx)
-com <- read.xlsx("data/Inventarios.xlsx", sheetIndex = 1, row.names = 1)
+library(openxlsx)
+com <- read.xlsx("data/Inventarios.xlsx", sheet = 1, rowNames = TRUE)
 head(com)
 
-env <- read.xlsx("data/Variables.xlsx", sheetIndex = 1, row.names = 1)
+env <- read.xlsx("data/Variables.xlsx", sheet = 1, rowNames = TRUE)
 head(env)
 
 ```

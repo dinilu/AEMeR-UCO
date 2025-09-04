@@ -43,13 +43,13 @@ source("gdm.transform.R")
 
 library(openxlsx)
 env <- read.xlsx("data/sciberras_ambiente.xlsx", 
-                 1, 
+                 sheet = 1, 
                  rowNames = TRUE)
 com <- read.xlsx("data/sciberras_especies.xlsx", 
-                 1, 
+                 sheet = 1, 
                  rowNames = TRUE)
 coords <- read.xlsx("data/sciberras_coords.xlsx", 
-                    1, 
+                    sheet = 1, 
                     rowNames = TRUE)
 head(coords)
 ```

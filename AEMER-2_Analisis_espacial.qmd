@@ -405,7 +405,7 @@ Para ello podemos descargar datos de distintas fuentes (v.gr. [WorldClim](https:
 ```{r}
 #| echo: true
 
-tavg <- rast("tavg_arg.tif")
+tavg <- rast("data/tavg_arg.tif")
 tavg
 ```
 

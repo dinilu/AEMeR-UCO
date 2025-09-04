@@ -23,9 +23,9 @@ editor: source
 ```{r}
 #| echo: true
 
-library(xlsx)
-env <- read.xlsx("data/sciberras_ambiente.xlsx", 1, row.names = 1)
-com <- read.xlsx("data/sciberras_especies.xlsx", 1, row.names = 1)
+library(openxlsx)
+env <- read.xlsx("data/sciberras_ambiente.xlsx", sheet = 1, rowNames = TRUE)
+com <- read.xlsx("data/sciberras_especies.xlsx", sheet = 1, rowNames = TRUE)
 ```
 
 ## Preparamos un poco los datos

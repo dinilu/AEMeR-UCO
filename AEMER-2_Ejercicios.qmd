@@ -80,7 +80,7 @@ ba <- departamentos[i]
 #| eval: true
 #| warning: false
 library(terra)
-departamentos <- vect("gadm/gadm41_ARG_2.shp")
+departamentos <- vect("data/gadm/gadm41_ARG_2.shp")
 i <- which(departamentos$NAME_1 == "Buenos Aires")
 ba <- departamentos[i]
 ```
@@ -167,7 +167,7 @@ arg_bio <- worldclim_country("ARG", var = "bio", path = ".")
 #| eval: true
 #| output: false
 
-arg_bio <- rast("climate/wc2.1_country/ARG_wc2.1_30s_bio.tif")
+arg_bio <- rast("data/climate/wc2.1_country/ARG_wc2.1_30s_bio.tif")
 ```
 :::
 
