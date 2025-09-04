@@ -418,9 +418,9 @@ Diego Nieto Lugilde
 <section id="cargamos-algunos-datos" class="slide level2">
 <h2>Cargamos algunos datos</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(xlsx)</span>
-<span id="cb1-2"><a></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_ambiente.xlsx"</span>, <span class="dv">1</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb1-3"><a></a>com <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_especies.xlsx"</span>, <span class="dv">1</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb1-2"><a></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_ambiente.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-3"><a></a>com <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_especies.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="preparamos-un-poco-los-datos" class="slide level2">
@@ -615,12 +615,12 @@ Diego Nieto Lugilde
 <span id="cb14-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m0, <span class="at">predY =</span> preds_m0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 178.7046818 112.1060668  20.0050140  25.8061127   1.4742253   1.2257749
- [7]   0.3629371   0.5948718   0.4136221   0.7108976
+ [1] 170.9160646 113.0408709  19.9874220  26.2796508   1.4684007   1.2386831
+ [7]   0.2528701   0.5603234   0.2844172   0.2494173
 
 $SR2
- [1]  0.44104705  0.43882516  0.14058017  0.33967948  0.00404370  0.12155108
- [7] -0.01259728  0.05565401  0.03797939  0.06015246
+ [1]  0.4100011564  0.4279812382  0.1562166610  0.3115945422  0.0006877564
+ [6]  0.0657174961 -0.0211682746 -0.0463958771 -0.0016832971 -0.0091412386
 
 $O.AUC
  [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
@@ -633,12 +633,12 @@ $O.RMSE
  [8] 0.9786452 0.9786452 0.9858149
 
 $C.SR2
- [1] 0.3439112993 0.3598536094 0.0257322387 0.1150386032 0.0001164009
- [6]           NA           NA           NA           NA           NA
+ [1]  0.31280448  0.35544222 -0.00145036  0.10073745  0.28521127          NA
+ [7]          NA          NA          NA          NA
 
 $C.RMSE
- [1] 217.0444042 134.5360937  44.7811536  42.4439580   3.4896220   5.6977254
- [7]   0.6537211   0.3809210   0.5918066   0.2427098</code></pre>
+ [1] 209.3191795 135.5270404  44.7413177  42.8196020   3.4705667   5.6457716
+ [7]   0.7880865   0.4455791   0.7674621   0.7916367</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -646,12 +646,12 @@ $C.RMSE
 <span id="cb16-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m1, <span class="at">predY =</span> preds_m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 239.5894479 124.3036980  19.9331009  28.0490736   1.4336509   1.2093620
- [7]   0.2752305   0.3071712   0.3476443   0.2666874
+ [1] 206.2598320 146.6480880  19.7492154  24.9819356   1.4587215   1.2087098
+ [7]   0.5006536   0.3417060   0.5852146   0.2469946
 
 $SR2
- [1]  0.2094872098  0.2722988542  0.0342582931  0.1587915733 -0.0036198349
- [6]  0.0643153798  0.0001552795 -0.0078898226  0.0215802988  0.0038819876
+ [1]  0.2134741261  0.2830001699  0.0409779324  0.1614505749 -0.0016364935
+ [6]  0.0093395061 -0.0521911663  0.0033730159  0.0014122316  0.0002760524
 
 $O.AUC
  [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
@@ -664,12 +664,12 @@ $O.RMSE
  [8] 0.9786452 0.9786452 0.9858149
 
 $C.SR2
- [1] 0.16373436 0.14570572 0.07679719 0.04803554 0.27188927 0.25000000
+ [1] 0.15117442 0.13313732 0.16433161 0.02566646 0.34965035 1.00000000
  [7]         NA         NA         NA         NA
 
 $C.RMSE
- [1] 287.3041422 146.8263550  43.3889397  39.8621564   3.3175464   5.7124472
- [7]   0.8489667   0.8425653   0.6761803   0.7612070</code></pre>
+ [1] 250.2225119 173.0128339  44.0950234  40.5371826   3.3873281   5.7708450
+ [7]   0.7692517   0.7393636   0.5556199   0.7883110</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -677,12 +677,12 @@ $C.RMSE
 <span id="cb18-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 198.0809861 121.5655796  19.7023785  25.8081348   1.4474939   1.1704319
- [7]   0.3259737   0.2917941   0.2623690   0.2711962
+ [1] 204.6395501 107.5342530  19.3972167  24.5422584   1.4653792   1.2047814
+ [7]   0.4648701   0.3008021   0.2597395   0.2052706
 
 $SR2
- [1]  0.3113252526  0.4452635687  0.0845909888  0.2838581631 -0.0005258901
- [6]  0.0908541598 -0.0008454106  0.0042133520  0.0280228758  0.0033816425
+ [1]  0.294020274  0.483596977  0.135766625  0.374054521  0.002925094
+ [6]  0.032644889 -0.017667357  0.015126050 -0.043429038  0.041425121
 
 $O.AUC
  [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
@@ -695,12 +695,12 @@ $O.RMSE
  [8] 0.9786452 0.9786452 0.9858149
 
 $C.SR2
- [1] 0.24034333 0.27846395 0.07058145 0.12653319 0.26079293 1.00000000
+ [1] 0.24137154 0.33106850 0.21615568 0.26218852 0.09720858 1.00000000
  [7]         NA         NA         NA         NA
 
 $C.RMSE
- [1] 242.4261169 145.5229074  43.8888197  40.7282525   3.4359286   5.5406217
- [7]   0.7611457   0.8769854   0.7229513   0.7906554</code></pre>
+ [1] 249.3483777 129.0059641  43.3830982  40.8172092   3.4166134   5.7526462
+ [7]   0.8060446   0.7747066   0.9246509   0.7180132</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -708,12 +708,12 @@ $C.RMSE
 <span id="cb20-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env_phy, <span class="at">predY =</span> preds_m_env_phy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 216.0099471 121.4572935  19.4606626  25.7175698   1.4555382   1.2045312
- [7]   0.2779336   0.4405696   0.7282538   0.2475604
+ [1] 249.3159117 118.8646725  19.6978663  24.7985204   1.4434328   1.2116417
+ [7]   0.2378420   0.2134778   0.5379523   0.3162107
 
 $SR2
- [1]  3.682232e-01  4.713293e-01  1.199537e-01  3.359516e-01  2.578516e-02
- [6]  9.073820e-02 -1.552795e-04  2.689076e-02  1.685341e-02  6.901311e-05
+ [1]  0.2872404992  0.4594733396  0.1545266736  0.3073478796 -0.0018206885
+ [6]  0.0167070345  0.0001552795  0.0315592904  0.0315592904  0.0049861974
 
 $O.AUC
  [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
@@ -726,12 +726,12 @@ $O.RMSE
  [8] 0.9786452 0.9786452 0.9858149
 
 $C.SR2
- [1] 0.25446799 0.30267563 0.17566157 0.07310235 0.16254407 1.00000000
+ [1] 0.19096755 0.30340799 0.25851189 0.06978467 0.12587413 1.00000000
  [7]         NA         NA         NA         NA
 
 $C.RMSE
- [1] 264.5851587 145.7033563  43.2717989  41.7909492   3.4773240   5.6963881
- [7]   0.7905187   0.6136172   0.4047374   0.7921033</code></pre>
+ [1] 302.2992785 142.4983385  44.1984681  39.7219240   3.4211344   5.7171843
+ [7]   0.8105228   0.8594665   0.4117646   0.6479560</code></pre>
 </div>
 </div>
 </section>
@@ -751,12 +751,12 @@ Cross-validation, fold 4 out of 4</code></pre>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 228.5461386 166.9150113  20.1004411  28.3106774   1.4873049   1.2555333
- [7]   0.2856651   0.3612464   0.3271817   0.2471069
+ [1] 214.8840647 245.1848667  19.8995694  27.9810750   1.5122591   1.6239692
+ [7]   0.2357099   0.2470956   0.2729051   0.3088260
 
 $SR2
- [1]  1.205130e-01  2.006534e-01  1.955293e-02  4.666595e-02 -1.003100e-02
- [6]  1.305100e-03  6.901311e-05 -2.987862e-03  1.512605e-02 -5.590062e-03
+ [1]  1.433957e-01  1.650115e-01  5.509319e-02  1.421574e-01 -3.499925e-03
+ [6] -2.649303e-05  5.590062e-03  9.453782e-04 -5.648926e-03  4.665286e-02
 
 $O.AUC
  [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
@@ -769,12 +769,12 @@ $O.RMSE
  [8] 0.9786452 0.9786452 0.9858149
 
 $C.SR2
- [1]  0.074497388  0.096339360  0.004112355  0.001445167 -0.008351153
- [6] -0.250000000           NA           NA           NA           NA
+ [1]  0.077254538  0.049999057  0.045367043  0.009106176 -0.118360978
+ [6] -1.000000000           NA           NA           NA           NA
 
 $C.RMSE
- [1] 278.9709740 198.4772048  44.9055812  43.1712286   3.5037181   5.8779952
- [7]   0.8099910   0.8245285   0.6666862   0.8732730</code></pre>
+ [1] 261.6627433 291.1351402  44.2905333  42.6515808   3.5739678   5.9336715
+ [7]   0.8485605   0.8517013   0.8607454   0.4994370</code></pre>
 </div>
 </div>
 </section>
@@ -911,7 +911,7 @@ $C.RMSE
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.74</code></pre>
+<pre><code>[1] 0.9675</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">plotGradient</span>(m1, Gradient, <span class="at">pred=</span>predY, <span class="at">measure=</span><span class="st">"Y"</span>, <span class="at">index =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -922,7 +922,7 @@ $C.RMSE
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5125</code></pre>
+<pre><code>[1] 0.99</code></pre>
 </div>
 </div>
 
@@ -1310,7 +1310,7 @@ $C.RMSE
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/dinilu\.github\.io\/AEMeR\/");
+          var filterRegex = new RegExp("https:\/\/dinilu\.github\.io\/AEMeR-UCO\/");
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
@@ -1408,7 +1408,7 @@ $C.RMSE
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+    <script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {

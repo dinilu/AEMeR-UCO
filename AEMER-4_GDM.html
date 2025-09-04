@@ -428,13 +428,13 @@ Diego Nieto Lugilde
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(openxlsx)</span>
 <span id="cb2-2"><a></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_ambiente.xlsx"</span>, </span>
-<span id="cb2-3"><a></a>                 <span class="dv">1</span>, </span>
+<span id="cb2-3"><a></a>                 <span class="at">sheet =</span> <span class="dv">1</span>, </span>
 <span id="cb2-4"><a></a>                 <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb2-5"><a></a>com <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_especies.xlsx"</span>, </span>
-<span id="cb2-6"><a></a>                 <span class="dv">1</span>, </span>
+<span id="cb2-6"><a></a>                 <span class="at">sheet =</span> <span class="dv">1</span>, </span>
 <span id="cb2-7"><a></a>                 <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb2-8"><a></a>coords <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_coords.xlsx"</span>, </span>
-<span id="cb2-9"><a></a>                    <span class="dv">1</span>, </span>
+<span id="cb2-9"><a></a>                    <span class="at">sheet =</span> <span class="dv">1</span>, </span>
 <span id="cb2-10"><a></a>                    <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb2-11"><a></a><span class="fu">head</span>(coords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -618,7 +618,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <pre><code>[1] 
 [1] 
 [1] GDM Modelling Summary
-[1] Creation Date:  Thu Oct 24 23:43:17 2024
+[1] Creation Date:  Thu Sep  4 18:12:11 2025
 [1] 
 [1] Name:  gdmTab.fit
 [1] 
@@ -696,7 +696,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <pre><code>[1] 
 [1] 
 [1] GDM Modelling Summary
-[1] Creation Date:  Thu Oct 24 23:43:17 2024
+[1] Creation Date:  Thu Sep  4 18:12:11 2025
 [1] 
 [1] Name:  gdmRast.fit
 [1] 
@@ -707,8 +707,8 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 [1] Geographical distance used in model fitting?  TRUE
 [1] 
 [1] NULL Deviance:  7.644
-[1] GDM Deviance:  1.315
-[1] Percent Deviance Explained:  82.803
+[1] GDM Deviance:  1.314
+[1] Percent Deviance Explained:  82.807
 [1] 
 [1] Intercept:  0.163
 [1] 
@@ -719,16 +719,16 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 [1] Min Knot: 14.108
 [1] 50% Knot: 14.234
 [1] Max Knot: 14.463
-[1] Coefficient[1]: 0.673
-[1] Coefficient[2]: 0.931
+[1] Coefficient[1]: 0.674
+[1] Coefficient[2]: 0.93
 [1] Coefficient[3]: 0
-[1] Sum of coefficients for bio1: 1.603
+[1] Sum of coefficients for bio1: 1.604
 [1] 
 [1] Predictor 2: bio10
 [1] Splines: 3
 [1] Min Knot: 19.769
 [1] 50% Knot: 20.108
-[1] Max Knot: 20.521
+[1] Max Knot: 20.522
 [1] Coefficient[1]: 0.915
 [1] Coefficient[2]: 0
 [1] Coefficient[3]: 0
@@ -748,7 +748,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 [1] Splines: 3
 [1] Min Knot: 234
 [1] 50% Knot: 260.931
-[1] Max Knot: 264.396
+[1] Max Knot: 264.4
 [1] Coefficient[1]: 0
 [1] Coefficient[2]: 0
 [1] Coefficient[3]: 0.282
@@ -796,8 +796,8 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 [1] 
 [1] Predictor 9: bio4
 [1] Splines: 3
-[1] Min Knot: 458.967
-[1] 50% Knot: 465.266
+[1] Min Knot: 458.969
+[1] 50% Knot: 465.264
 [1] Max Knot: 497.734
 [1] Coefficient[1]: 0
 [1] Coefficient[2]: 0
@@ -806,7 +806,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 [1] 
 [1] Predictor 10: bio6
 [1] Splines: 3
-[1] Min Knot: 2.739
+[1] Min Knot: 2.74
 [1] 50% Knot: 3.496
 [1] Max Knot: 4.183
 [1] Coefficient[1]: 0
@@ -818,7 +818,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 [1] Splines: 3
 [1] Min Knot: 22.897
 [1] 50% Knot: 23.354
-[1] Max Knot: 25.461
+[1] Max Knot: 25.46
 [1] Coefficient[1]: 0
 [1] Coefficient[2]: 0
 [1] Coefficient[3]: 0
@@ -826,7 +826,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 [1] 
 [1] Predictor 12: bio8
 [1] Splines: 3
-[1] Min Knot: 15.425
+[1] Min Knot: 15.423
 [1] 50% Knot: 17.728
 [1] Max Knot: 18.157
 [1] Coefficient[1]: 0
@@ -846,9 +846,9 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 [1] 
 [1] Predictor 14: bio12
 [1] Splines: 3
-[1] Min Knot: 699.39
-[1] 50% Knot: 868.324
-[1] Max Knot: 894.967
+[1] Min Knot: 699.392
+[1] 50% Knot: 868.332
+[1] Max Knot: 894.965
 [1] Coefficient[1]: 0
 [1] Coefficient[2]: 0
 [1] Coefficient[3]: 0
@@ -866,7 +866,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 [1] 
 [1] Predictor 16: bio14
 [1] Splines: 3
-[1] Min Knot: 31.893
+[1] Min Knot: 31.895
 [1] 50% Knot: 47.5
 [1] Max Knot: 51
 [1] Coefficient[1]: 0
@@ -886,8 +886,8 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 [1] 
 [1] Predictor 18: bio17
 [1] Splines: 3
-[1] Min Knot: 101.893
-[1] 50% Knot: 169.586
+[1] Min Knot: 101.895
+[1] 50% Knot: 169.587
 [1] Max Knot: 174
 [1] Coefficient[1]: 0
 [1] Coefficient[2]: 0
@@ -896,9 +896,9 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 [1] 
 [1] Predictor 19: bio18
 [1] Splines: 3
-[1] Min Knot: 208.392
-[1] 50% Knot: 234.903
-[1] Max Knot: 245.588
+[1] Min Knot: 208.394
+[1] 50% Knot: 234.904
+[1] Max Knot: 245.589
 [1] Coefficient[1]: 0
 [1] Coefficient[2]: 0
 [1] Coefficient[3]: 0
@@ -906,9 +906,9 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 [1] 
 [1] Predictor 20: bio19
 [1] Splines: 3
-[1] Min Knot: 101.893
-[1] 50% Knot: 176.446
-[1] Max Knot: 204.367
+[1] Min Knot: 101.895
+[1] 50% Knot: 176.447
+[1] Max Knot: 204.364
 [1] Coefficient[1]: 0
 [1] Coefficient[2]: 0
 [1] Coefficient[3]: 0
@@ -1009,14 +1009,14 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>gdmRast.sp_trans</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
-dimensions  : 500, 700, 7  (nrow, ncol, nlyr)
+size        : 500, 700, 7  (nrow, ncol, nlyr)
 resolution  : 1000, 1000  (x, y)
 extent      : -100055.4, 599944.6, 5500177, 6000177  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 21S (EPSG:32721) 
-source      : spat_183429d35181_6196_o8up7yuDdJ6XHBX.tif 
+source      : spat_33949411eaa_13204_o8up7yuDdJ6XHBX.tif 
 names       : xCoord, yCoord,     bio1,      bio5,     bio10,     bio11, ... 
 min values  :      0,      0, 0.000000, 0.0000000, 0.0000000, 0.0000000, ... 
-max values  :      0,      0, 1.603295, 0.1485767, 0.9152355, 0.4735476, ... </code></pre>
+max values  :      0,      0, 1.603679, 0.1486189, 0.9148425, 0.4739809, ... </code></pre>
 </div>
 </div>
 </section>
@@ -1048,14 +1048,14 @@ max values  :      0,      0, 1.603295, 0.1485767, 0.9152355, 0.4735476, ... </c
 <span id="cb26-10"><a></a>pca.rast</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
-dimensions  : 500, 700, 3  (nrow, ncol, nlyr)
+size        : 500, 700, 3  (nrow, ncol, nlyr)
 resolution  : 1000, 1000  (x, y)
 extent      : -100055.4, 599944.6, 5500177, 6000177  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 21S (EPSG:32721) 
 source(s)   : memory
 names       : PC1,       PC2,       PC3 
-min values  :   0,  91.78841,  67.39197 
-max values  : 255, 206.29877, 207.57428 </code></pre>
+min values  :   0,  91.84477,  67.43302 
+max values  : 255, 206.32022, 207.53671 </code></pre>
 </div>
 </div>
 </section>
@@ -1481,7 +1481,7 @@ max values  : 255, 206.29877, 207.57428 </code></pre>
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/dinilu\.github\.io\/AEMeR\/");
+          var filterRegex = new RegExp("https:\/\/dinilu\.github\.io\/AEMeR-UCO\/");
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
@@ -1579,7 +1579,7 @@ max values  : 255, 206.29877, 207.57428 </code></pre>
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false});
+    <script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {

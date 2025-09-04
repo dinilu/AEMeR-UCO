@@ -512,8 +512,8 @@ Diego Nieto Lugilde
 <section id="cargando-de-datos-en-r" class="slide level2">
 <h2>Cargando de datos en R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(xlsx)</span>
-<span id="cb1-2"><a></a>com <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/Inventarios.xlsx"</span>, <span class="at">sheetIndex =</span> <span class="dv">1</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb1-2"><a></a>com <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/Inventarios.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb1-3"><a></a><span class="fu">head</span>(com)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Sp_1 Sp_2 Sp_3 Sp_4 Sp_5 Sp_6
@@ -524,7 +524,7 @@ Site_4    2    1    0    1    5    0
 Site_5    1    2    0    0    6    0
 Site_6    0    4    0    2    3    0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/Variables.xlsx"</span>, <span class="at">sheetIndex =</span> <span class="dv">1</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/Variables.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb3-2"><a></a><span class="fu">head</span>(env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              v1         v2         v3
@@ -657,10 +657,15 @@ Site_6    0    1    0    1    1    0</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: rda(X = com)
 
+-- Model Summary --
+
               Inertia Rank
 Total           25.54     
 Unconstrained   25.54    6
-Inertia is variance 
+
+Inertia is variance
+
+-- Eigenvalues --
 
 Eigenvalues for unconstrained axes:
    PC1    PC2    PC3    PC4    PC5    PC6 
@@ -676,11 +681,16 @@ Eigenvalues for unconstrained axes:
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: rda(X = com, Y = env)
 
+-- Model Summary --
+
               Inertia Proportion Rank
 Total         25.5395     1.0000     
 Constrained   14.2138     0.5565    3
 Unconstrained 11.3256     0.4435    6
-Inertia is variance 
+
+Inertia is variance
+
+-- Eigenvalues --
 
 Eigenvalues for constrained axes:
  RDA1  RDA2  RDA3 
@@ -714,10 +724,15 @@ Eigenvalues for unconstrained axes:
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: cca(X = com)
 
+-- Model Summary --
+
               Inertia Rank
 Total           1.336     
 Unconstrained   1.336    5
-Inertia is scaled Chi-square 
+
+Inertia is scaled Chi-square
+
+-- Eigenvalues --
 
 Eigenvalues for unconstrained axes:
    CA1    CA2    CA3    CA4    CA5 
@@ -756,11 +771,16 @@ Axis lengths         2.8105 1.6228 1.09955 1.12945</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: cca(X = com, Y = env)
 
+-- Model Summary --
+
               Inertia Proportion Rank
 Total          1.3356     1.0000     
 Constrained    0.6556     0.4909    3
 Unconstrained  0.6800     0.5091    5
-Inertia is scaled Chi-square 
+
+Inertia is scaled Chi-square
+
+-- Eigenvalues --
 
 Eigenvalues for constrained axes:
   CCA1   CCA2   CCA3 
@@ -783,10 +803,15 @@ Eigenvalues for unconstrained axes:
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: rda(X = com_hel)
 
+-- Model Summary --
+
               Inertia Rank
 Total          0.3778     
 Unconstrained  0.3778    6
-Inertia is variance 
+
+Inertia is variance
+
+-- Eigenvalues --
 
 Eigenvalues for unconstrained axes:
     PC1     PC2     PC3     PC4     PC5     PC6 
@@ -803,11 +828,16 @@ Eigenvalues for unconstrained axes:
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: rda(X = com_hel, Y = env)
 
+-- Model Summary --
+
               Inertia Proportion Rank
 Total          0.3778     1.0000     
 Constrained    0.1657     0.4387    3
 Unconstrained  0.2120     0.5613    6
-Inertia is variance 
+
+Inertia is variance
+
+-- Eigenvalues --
 
 Eigenvalues for constrained axes:
    RDA1    RDA2    RDA3 
@@ -1512,7 +1542,7 @@ Site_11 Site_12 Site_13 Site_14 Site_15 Site_16 Site_17 Site_18 Site_19 Site_20
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/dinilu\.github\.io\/AEMeR\/");
+          var filterRegex = new RegExp("https:\/\/dinilu\.github\.io\/AEMeR-UCO\/");
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
@@ -1610,7 +1640,7 @@ Site_11 Site_12 Site_13 Site_14 Site_15 Site_16 Site_17 Site_18 Site_19 Site_20
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","openEffect":"zoom"});
+    <script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {
