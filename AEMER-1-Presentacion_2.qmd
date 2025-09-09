@@ -462,7 +462,7 @@ species == ("Bromus diandrus")
 #| echo: true
 #| eval: false
 
-a <- c(3,2,7,8)
+a <- c(3, 2, 7, 8)
 
 a[3]
 # ????
@@ -498,7 +498,7 @@ A
 ```
 
 
-## Matrices
+## Matrices {auto-animate=true}
 
 ```{r}
 #| echo: true
@@ -506,6 +506,17 @@ A
 
 A <- matrix(data = 1:30, nrow = 6, ncol = 5)
 # ????
+```
+
+
+## Matrices {auto-animate=true}
+
+```{r}
+#| echo: true
+#| eval: false
+
+A <- matrix(data = 1:30, nrow = 6, ncol = 5)
+A
 ```
 
 
