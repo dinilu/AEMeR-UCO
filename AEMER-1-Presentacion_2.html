@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.34">
+
+  <meta name="author" content="Diego Nieto Lugilde">
+  <title>Sesión 1: Introducción a R</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Sesión 1: Introducción a R</h1>
+  <p class="subtitle">Análisis Espaciales y Multivariantes en R</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Diego Nieto Lugilde 
+</div>
+        <p class="quarto-title-affiliation">
+            Programa de Doctorado Recursos Naturales y Gestión Sostenible
+          </p>
+    </div>
+</div>
+
+</section>
+<section id="la-estructura-de-r" class="slide level2">
+<h2>La estructura de R</h2>
+<ul>
+<li><strong>Funciones:</strong> ¿qué deseas hacer?</li>
+<li><strong>Objetos:</strong> ¿con qué o sobre qué quieres hacerlo?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">sqrt</span>(<span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Aquí, 16 es el objeto sobre el que aplicamos la función <code>sqrt()</code> (raíz cuadrada)</p>
+</div>
+</div>
+</div>
+</section>
+<section id="la-estructura-de-r-1" class="slide level2">
+<h2>La estructura de R</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 402.05 44.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-40 398.05,-40 398.05,4 -4,4"></polygon>
+<!-- Objeto -->
+<g id="node1" class="node">
+<title>Objeto</title>
+<ellipse fill="none" stroke="black" cx="37.32" cy="-18" rx="37.14" ry="18"></ellipse>
+<text text-anchor="middle" x="37.32" y="-13.8" font-family="Times,serif" font-size="14.00">Objeto</text>
+</g>
+<!-- Función -->
+<g id="node2" class="node">
+<title>Función</title>
+<polygon fill="none" stroke="black" points="171.01,-36 110.77,-18 171.01,0 231.26,-18 171.01,-36"></polygon>
+<text text-anchor="middle" x="171.01" y="-13.8" font-family="Times,serif" font-size="14.00">Función</text>
+</g>
+<!-- Objeto&#45;&gt;Función -->
+<g id="edge1" class="edge">
+<title>Objeto-&gt;Función</title>
+<path fill="none" stroke="black" d="M74.65,-18C82.73,-18 91.55,-18 100.47,-18"></path>
+<polygon fill="black" stroke="black" points="100.53,-21.5 110.53,-18 100.53,-14.5 100.53,-21.5"></polygon>
+</g>
+<!-- Nuevo objeto -->
+<g id="node3" class="node">
+<title>Nuevo objeto</title>
+<ellipse fill="none" stroke="black" cx="330.72" cy="-18" rx="63.17" ry="18"></ellipse>
+<text text-anchor="middle" x="330.72" y="-13.8" font-family="Times,serif" font-size="14.00">Nuevo objeto</text>
+</g>
+<!-- Función&#45;&gt;Nuevo objeto -->
+<g id="edge2" class="edge">
+<title>Función-&gt;Nuevo objeto</title>
+<path fill="none" stroke="black" d="M231.63,-18C239.88,-18 248.43,-18 256.88,-18"></path>
+<polygon fill="black" stroke="black" points="257.12,-21.5 267.12,-18 257.12,-14.5 257.12,-21.5"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="llamar-a-una-función" class="slide level2">
+<h2>Llamar a una función</h2>
+<ul>
+<li><em>Call</em>: Una función con un conjunto particular de objetos
+<ul>
+<li>función( argumento 1 )</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">sqrt</span>(<span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>El resultado de la función se imprime directamente en pantalla</p>
+</div>
+</div>
+</div>
+</section>
+<section id="asignación-de-valores-a-objetos" class="slide level2">
+<h2>Asignación de valores a objetos</h2>
+<ul>
+<li><em>Assign</em>: Una función especial para crear/modificar un objeto
+<ul>
+<li>Valor específico</li>
+<li>El resultado de una llamada a una función</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Fijaros que el resultado no se imprime en pantalla como antes</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+</section>
+<section id="múltiples-asignaciones-para-crear-objetos" class="slide level2">
+<h2>Múltiples asignaciones para crear objetos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>a <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb8-2"><a></a></span>
+<span id="cb8-3"><a></a>a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb8-4"><a></a></span>
+<span id="cb8-5"><a></a><span class="dv">10</span> <span class="ot">-&gt;</span> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="{callout-note}">
+<p>Estas tres líneas hacen lo mismo</p>
+</div>
+</section>
+<section>
+<section id="qué-información-puede-contener-un-objeto" class="title-slide slide level1 center">
+<h1>¿Qué información puede contener un objeto?</h1>
+
+</section>
+<section id="números-de-cualquier-tipo" class="slide level2">
+<h2>Números de cualquier tipo</h2>
+<ul>
+<li>0, 0.2, Inf</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>numeric_object <span class="ot">&lt;-</span> <span class="fl">0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="caracteres-texto" class="slide level2">
+<h2>Caracteres (texto)</h2>
+<ul>
+<li>Texto libre</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>character_object <span class="ot">&lt;-</span> <span class="st">"Bromus diandrus"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning</strong></p>
+</div>
+<div class="callout-content">
+<p>Las cadenas de texto se ponen entre comillas para poder usar espacios y para distinguirlos de los objetos</p>
+</div>
+</div>
+</div>
+</section>
+<section id="valores-lógicos" class="slide level2">
+<h2>Valores lógicos</h2>
+<ul>
+<li>TRUE (T), FALSE (F)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>logical_object <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="factores" class="slide level2">
+<h2>Factores</h2>
+<ul>
+<li>Categorías (e.g., “Planta”, “Animal”, “Hongo”)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>factor_object <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="st">"Plant"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="no-data" class="slide level2">
+<h2>No data</h2>
+<ul>
+<li>NA</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>na_object <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="qué-hace-interesantes-a-los-objetos" class="slide level2">
+<h2>¿Qué hace interesantes a los objetos?</h2>
+<ul>
+<li>Entidad con información</li>
+<li>Se puede reutilizar tantas veces como se quiera</li>
+<li>Pertenece a una clase, lo que le dota de propiedades propias</li>
+<li>Cada clase tiene una estructura propia</li>
+</ul>
+</section>
+<section id="class-te-dice-la-clase-de-un-objeto" class="slide level2">
+<h2><em>class()</em> te dice la clase de un objeto</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">class</span>(numeric_object)</span>
+<span id="cb14-2"><a></a><span class="fu">class</span>(logical_object)</span>
+<span id="cb14-3"><a></a><span class="fu">class</span>(factor_object)</span>
+<span id="cb14-4"><a></a><span class="fu">class</span>(character_object)</span>
+<span id="cb14-5"><a></a><span class="fu">class</span>(<span class="st">"x"</span>)</span>
+<span id="cb14-6"><a></a><span class="fu">class</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cómo-se-reutilizan-los-objetos" class="slide level2">
+<h2>¿Cómo se reutilizan los objetos?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb15-2"><a></a>b <span class="ot">&lt;-</span> a <span class="sc">*</span> a</span>
+<span id="cb15-3"><a></a>x <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(b)</span>
+<span id="cb15-4"><a></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11</code></pre>
+</div>
+</div>
+</section>
+<section id="muchas-funciones-aceptan-varios-objetos" class="slide level2">
+<h2>Muchas funciones aceptan varios objetos</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 411.71 152.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 148)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-148 407.71,-148 407.71,4 -4,4"></polygon>
+<!-- Objeto1 -->
+<g id="node1" class="node">
+<title>Objeto1</title>
+<ellipse fill="none" stroke="black" cx="42.15" cy="-126" rx="42.3" ry="18"></ellipse>
+<text text-anchor="middle" x="42.15" y="-121.8" font-family="Times,serif" font-size="14.00">Objeto1</text>
+</g>
+<!-- Función -->
+<g id="node2" class="node">
+<title>Función</title>
+<polygon fill="none" stroke="black" points="180.67,-90 120.42,-72 180.67,-54 240.92,-72 180.67,-90"></polygon>
+<text text-anchor="middle" x="180.67" y="-67.8" font-family="Times,serif" font-size="14.00">Función</text>
+</g>
+<!-- Objeto1&#45;&gt;Función -->
+<g id="edge1" class="edge">
+<title>Objeto1-&gt;Función</title>
+<path fill="none" stroke="black" d="M73.79,-113.88C94.78,-105.58 122.69,-94.54 144.58,-85.88"></path>
+<polygon fill="black" stroke="black" points="146.16,-89.02 154.17,-82.09 143.58,-82.51 146.16,-89.02"></polygon>
+</g>
+<!-- Nuevo objeto -->
+<g id="node5" class="node">
+<title>Nuevo objeto</title>
+<ellipse fill="none" stroke="black" cx="340.38" cy="-72" rx="63.17" ry="18"></ellipse>
+<text text-anchor="middle" x="340.38" y="-67.8" font-family="Times,serif" font-size="14.00">Nuevo objeto</text>
+</g>
+<!-- Función&#45;&gt;Nuevo objeto -->
+<g id="edge4" class="edge">
+<title>Función-&gt;Nuevo objeto</title>
+<path fill="none" stroke="black" d="M241.29,-72C249.54,-72 258.09,-72 266.54,-72"></path>
+<polygon fill="black" stroke="black" points="266.78,-75.5 276.78,-72 266.78,-68.5 266.78,-75.5"></polygon>
+</g>
+<!-- Objeto2 -->
+<g id="node3" class="node">
+<title>Objeto2</title>
+<ellipse fill="none" stroke="black" cx="42.15" cy="-72" rx="42.3" ry="18"></ellipse>
+<text text-anchor="middle" x="42.15" y="-67.8" font-family="Times,serif" font-size="14.00">Objeto2</text>
+</g>
+<!-- Objeto2&#45;&gt;Función -->
+<g id="edge2" class="edge">
+<title>Objeto2-&gt;Función</title>
+<path fill="none" stroke="black" d="M84.48,-72C92.6,-72 101.33,-72 110.09,-72"></path>
+<polygon fill="black" stroke="black" points="110.35,-75.5 120.35,-72 110.35,-68.5 110.35,-75.5"></polygon>
+</g>
+<!-- Objeto3 -->
+<g id="node4" class="node">
+<title>Objeto3</title>
+<ellipse fill="none" stroke="black" cx="42.15" cy="-18" rx="42.3" ry="18"></ellipse>
+<text text-anchor="middle" x="42.15" y="-13.8" font-family="Times,serif" font-size="14.00">Objeto3</text>
+</g>
+<!-- Objeto3&#45;&gt;Función -->
+<g id="edge3" class="edge">
+<title>Objeto3-&gt;Función</title>
+<path fill="none" stroke="black" d="M73.79,-30.12C94.78,-38.42 122.69,-49.46 144.58,-58.12"></path>
+<polygon fill="black" stroke="black" points="143.58,-61.49 154.17,-61.91 146.16,-54.98 143.58,-61.49"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="se-pasan-varios-objetos-a-las-funciones-separados-por-comas" class="slide level2">
+<h2>Se pasan varios objetos a las funciones separados por comas</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">sum</span>(<span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">24</span>, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 82</code></pre>
+</div>
+</div>
+</section>
+<section id="algunos-objetos-no-son-datos-si-no-opciones-que-modifican-el-comportamiento-de-las-funciones" class="slide level2">
+<h2>Algunos objetos no son datos, si no opciones que modifican el comportamiento de las funciones</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 485.27 219.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 215.8)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-215.8 481.27,-215.8 481.27,4 -4,4"></polygon>
+<!-- Objeto1 -->
+<g id="node1" class="node">
+<title>Objeto1</title>
+<ellipse fill="none" stroke="black" cx="78.93" cy="-193.8" rx="42.3" ry="18"></ellipse>
+<text text-anchor="middle" x="78.93" y="-189.6" font-family="Times,serif" font-size="14.00">Objeto1</text>
+</g>
+<!-- Función -->
+<g id="node2" class="node">
+<title>Función</title>
+<polygon fill="none" stroke="black" points="254.23,-130.8 193.99,-112.8 254.23,-94.8 314.48,-112.8 254.23,-130.8"></polygon>
+<text text-anchor="middle" x="254.23" y="-108.6" font-family="Times,serif" font-size="14.00">Función</text>
+</g>
+<!-- Objeto1&#45;&gt;Función -->
+<g id="edge1" class="edge">
+<title>Objeto1-&gt;Función</title>
+<path fill="none" stroke="black" d="M113.82,-183.55C127.7,-178.97 143.77,-173.17 157.86,-166.8 181.4,-156.16 206.8,-141.62 225.47,-130.3"></path>
+<polygon fill="black" stroke="black" points="227.35,-133.25 234.05,-125.04 223.7,-127.28 227.35,-133.25"></polygon>
+</g>
+<!-- Nuevo objeto -->
+<g id="node5" class="node">
+<title>Nuevo objeto</title>
+<ellipse fill="none" stroke="black" cx="413.94" cy="-112.8" rx="63.17" ry="18"></ellipse>
+<text text-anchor="middle" x="413.94" y="-108.6" font-family="Times,serif" font-size="14.00">Nuevo objeto</text>
+</g>
+<!-- Función&#45;&gt;Nuevo objeto -->
+<g id="edge4" class="edge">
+<title>Función-&gt;Nuevo objeto</title>
+<path fill="none" stroke="black" d="M314.86,-112.8C323.1,-112.8 331.65,-112.8 340.1,-112.8"></path>
+<polygon fill="black" stroke="black" points="340.34,-116.3 350.34,-112.8 340.34,-109.3 340.34,-116.3"></polygon>
+</g>
+<!-- Objeto2 -->
+<g id="node3" class="node">
+<title>Objeto2</title>
+<ellipse fill="none" stroke="black" cx="78.93" cy="-139.8" rx="42.3" ry="18"></ellipse>
+<text text-anchor="middle" x="78.93" y="-135.6" font-family="Times,serif" font-size="14.00">Objeto2</text>
+</g>
+<!-- Objeto2&#45;&gt;Función -->
+<g id="edge2" class="edge">
+<title>Objeto2-&gt;Función</title>
+<path fill="none" stroke="black" d="M118.82,-133.74C144.04,-129.81 177.11,-124.66 204.14,-120.45"></path>
+<polygon fill="black" stroke="black" points="204.83,-123.88 214.17,-118.89 203.75,-116.97 204.83,-123.88"></polygon>
+</g>
+<!-- Objeto3 -->
+<g id="node4" class="node">
+<title>Objeto3</title>
+<ellipse fill="none" stroke="black" cx="78.93" cy="-85.8" rx="42.3" ry="18"></ellipse>
+<text text-anchor="middle" x="78.93" y="-81.6" font-family="Times,serif" font-size="14.00">Objeto3</text>
+</g>
+<!-- Objeto3&#45;&gt;Función -->
+<g id="edge3" class="edge">
+<title>Objeto3-&gt;Función</title>
+<path fill="none" stroke="black" d="M118.82,-91.86C144.04,-95.79 177.11,-100.94 204.14,-105.15"></path>
+<polygon fill="black" stroke="black" points="203.75,-108.63 214.17,-106.71 204.83,-101.72 203.75,-108.63"></polygon>
+</g>
+<!-- Opción -->
+<g id="node6" class="node">
+<title>Opción</title>
+<polygon fill="none" stroke="black" points="78.93,-49.4 0.07,-12.5 157.79,-12.5 78.93,-49.4"></polygon>
+<text text-anchor="middle" x="78.93" y="-20.6" font-family="Times,serif" font-size="14.00">Opción</text>
+</g>
+<!-- Opción&#45;&gt;Función -->
+<g id="edge5" class="edge">
+<title>Opción-&gt;Función</title>
+<path fill="none" stroke="black" d="M107.66,-36.07C122.69,-42.39 141.49,-50.62 157.86,-58.8 180.83,-70.27 206.08,-84.65 224.82,-95.69"></path>
+<polygon fill="black" stroke="black" points="223.08,-98.72 233.47,-100.81 226.65,-92.7 223.08,-98.72"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="{callout-note}">
+<p>Las opciones en realidad también son objetos. El número de objetos que requiere una función se conocen como argumentos</p>
+</div>
+</section>
+<section id="las-opciones-también-se-separan-por-comas" class="slide level2">
+<h2>Las opciones también se separan por comas</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>several_data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">24</span>, <span class="dv">10</span>, <span class="cn">NA</span>)</span>
+<span id="cb19-2"><a></a><span class="fu">mean</span>(several_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">mean</span>(several_data, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 16.4</code></pre>
+</div>
+</div>
+</section>
+<section id="cómo-se-cuales-son-los-argumentos-de-una-función" class="slide level2">
+<h2>¿Cómo se cuales son los argumentos de una función?</h2>
+<ul>
+<li>Muchas funciones tendrán valores predeterminados para los argumentos
+<ul>
+<li>Si no se especifica, el argumento tomará ese valor</li>
+</ul></li>
+<li>Para encontrar estos valores y una lista de todos los argumentos, puedes usar cualquiera de las siguientes opciones:
+<ul>
+<li><code>?funcion</code></li>
+<li><code>help(funcion)</code></li>
+<li>Usar la pestaña <code>Help</code> de Rstudio</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">help</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="qué-forma-tienen-los-objetos" class="title-slide slide level1 center">
+<h1>¿Qué forma tienen los objetos?</h1>
+
+</section>
+<section id="los-objetos-pueden-tener-muchos-datos-organizados-en-dimensiones" class="slide level2">
+<h2>Los objetos pueden tener muchos datos organizados en dimensiones</h2>
+<p><a href="img/Tema1/objetos_1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="img/Tema1/objetos_1.png"></a></p>
+</section>
+<section id="vectores-numéricos" class="slide level2">
+<h2>Vectores numéricos</h2>
+<p>Se pueden crear secuencias de números de forma sencilla</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>a <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb24-2"><a></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4</code></pre>
+</div>
+</div>
+</section>
+<section id="vectores-numéricos-1" class="slide level2">
+<h2>Vectores numéricos</h2>
+<p>Se pueden crear secuencias con la función <code>seq()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>a <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)</span>
+<span id="cb26-2"><a></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Como veremos más adelante. Esta función es muy flexible y permite crear secuencias más complejas.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="vectores-numéricos-2" class="slide level2">
+<h2>Vectores numéricos</h2>
+<p>Se pueden crear secuencias de números no consecutivos con la función <code>c()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb28-2"><a></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  4  2  5 10</code></pre>
+</div>
+</div>
+</section>
+<section id="vectores-de-texto-y-factores" class="slide level2">
+<h2>Vectores de texto y factores</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Bromus diandrus"</span>, <span class="st">"Bromus carinatu"</span>, <span class="st">"Bison biso"</span>)</span>
+<span id="cb30-2"><a></a></span>
+<span id="cb30-3"><a></a>kingdom <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Plant"</span>, <span class="st">"Plant"</span>, <span class="st">"Animal"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="vectores-lógicos" class="slide level2">
+<h2>Vectores lógicos</h2>
+<p>Operadores condicionales: <code>&lt;</code> <code>&gt;</code> <code>&lt;=</code> <code>&gt;=</code> <code>==</code> <code>!=</code> <code>%in%</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="dv">3</span> <span class="sc">&lt;</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="dv">3</span> <span class="sc">&gt;</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb35-2"><a></a>x <span class="sc">==</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>x <span class="sc">!=</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="vectores-lógicos-1" class="slide level2">
+<h2>Vectores lógicos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb39-2"><a></a>x <span class="sc">&lt;</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a>x <span class="sc">==</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>species <span class="sc">==</span> (<span class="st">"Bromus diandrus"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="extrayendo-valores-de-vectores" class="slide level2">
+<h2>Extrayendo valores de vectores</h2>
+<ul>
+<li>R usa [ ] para referirse a elementos de objetos
+<ul>
+<li>V[5] devuelve el 5º elemento de un vector llamado V</li>
+</ul></li>
+<li>El número entre corchetes se denomina índice (i)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
+<span id="cb45-2"><a></a></span>
+<span id="cb45-3"><a></a>a[<span class="dv">3</span>]</span>
+<span id="cb45-4"><a></a><span class="co"># ????</span></span>
+<span id="cb45-5"><a></a></span>
+<span id="cb45-6"><a></a>a[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb45-7"><a></a><span class="co"># ????</span></span>
+<span id="cb45-8"><a></a></span>
+<span id="cb45-9"><a></a>a[<span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">4</span>)]</span>
+<span id="cb45-10"><a></a><span class="co"># ???</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section id="vamos-a-probar-cosas" class="title-slide slide level1 center">
+<h1>Vamos a probar cosas</h1>
+<ul>
+<li>Ejercicios de clase</li>
+<li>Parte 1: Trabajando con vectores</li>
+</ul>
+</section>
+
+<section>
+<section id="qué-forma-tienen-los-objetos-1" class="title-slide slide level1 center">
+<h1>¿Qué forma tienen los objetos?</h1>
+
+</section>
+<section id="los-objetos-pueden-tener-muchos-datos-organizados-en-dimensiones-1" class="slide level2">
+<h2>Los objetos pueden tener muchos datos organizados en dimensiones</h2>
+<p><a href="img/Tema1/objetos_1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="img/Tema1/objetos_1.png"></a></p>
+</section>
+<section id="matrices" class="slide level2">
+<h2>Matrices</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="dv">0</span>, <span class="at">nrow =</span> <span class="dv">6</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb46-2"><a></a>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4] [,5]
+[1,]    0    0    0    0    0
+[2,]    0    0    0    0    0
+[3,]    0    0    0    0    0
+[4,]    0    0    0    0    0
+[5,]    0    0    0    0    0
+[6,]    0    0    0    0    0</code></pre>
+</div>
+</div>
+</section>
+<section id="matrices-1" class="slide level2">
+<h2>Matrices</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">nrow =</span> <span class="dv">6</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb48-2"><a></a><span class="co"># ????</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="extrayendo-valores-de-matrices" class="slide level2">
+<h2>Extrayendo valores de matrices</h2>
+<ul>
+<li>R usa [ ] para referirse a elementos de objetos</li>
+<li>El orden es siempre [filas, columnas]
+<ul>
+<li>M[2,3] devuelve el elemento de la 2ª fila, 3ª columna de la matriz M</li>
+<li>M[2,] devuelve todos los elementos de la 2ª fila de la matriz M</li>
+</ul></li>
+<li>Los números entre corchetes se denominan índices (i y j)</li>
+</ul>
+</section>
+<section id="extrayendo-valores-de-matrices-1" class="slide level2">
+<h2>Extrayendo valores de matrices</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">nrow =</span> <span class="dv">6</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb49-2"><a></a></span>
+<span id="cb49-3"><a></a>A[<span class="dv">3</span>, <span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a>A[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), <span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 19 20 21</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a><span class="co"># ???</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="pueden-los-objetos-mezclar-tipos-de-datos" class="slide level2">
+<h2>¿Pueden los objetos mezclar tipos de datos?</h2>
+<p><a href="img/Tema1/objetos_2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="img/Tema1/objetos_2.png"></a></p>
+</section>
+<section id="data-frame" class="slide level2">
+<h2><em>Data frame</em></h2>
+<ul>
+<li>Un data frame es una lista de vectores de la misma longitud</li>
+<li>Son equivalente a matrices con diferentes tipos de datos en cada columna</li>
+<li>Se usan para almacenar diferentes variables a partir de las mismas mediciones</li>
+</ul>
+</section>
+<section id="data-frame-1" class="slide level2">
+<h2><em>Data frame</em></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb54-2"><a></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Diego"</span>, <span class="st">"Lucía"</span>, <span class="st">"Paco"</span>),</span>
+<span id="cb54-3"><a></a>    <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">27</span>, <span class="dv">23</span>, <span class="dv">24</span>)</span>
+<span id="cb54-4"><a></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="extrayendo-información-de-un-data-frame" class="slide level2">
+<h2>Extrayendo información de un <em>data frame</em></h2>
+<ul>
+<li>Extracción de columnas
+<ul>
+<li><code>Data$columnname</code></li>
+<li><code>Data[,”columnname”]</code></li>
+<li><code>Data[,3]</code></li>
+</ul></li>
+<li>Nombre de filas
+<ul>
+<li><code>rownames(Data)</code></li>
+</ul></li>
+<li>Nombre de columnas
+<ul>
+<li><code>colnames(Data)</code></li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="probamos-cosas" class="title-slide slide level1 center">
+<h1>¿Probamos cosas?</h1>
+<ul>
+<li>Ejercicios de clase</li>
+<li>Parte 2: Trabajando con matrices y data frames</li>
+</ul>
+</section>
+<section id="archivos-objetos-y-proyectos" class="slide level2">
+<h2>Archivos, objetos y proyectos</h2>
+<blockquote>
+<p>Los tres son cosas diferentes en R…</p>
+</blockquote>
+<div class="columns">
+<div class="column" style="width:65%;">
+<ul>
+<li>Los archivos son scripts (e.g., un archivo de texto) o archivos de datos (e.g., Excel) en el disco duro</li>
+<li>Los objetos son datos en la sesión de R. Sólo existen en la memoria temporal del ordenador</li>
+<li>Un proyecto es una carpeta con un montón de archivos y objetos de R
+<ul>
+<li>Es recomendable usar una estructura de carpetas lógica</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:35%;">
+<div style="background-color: #FADA7A">
+<ul>
+<li>Carpeta/
+<ul>
+<li>Datos/</li>
+<li>Figuras/</li>
+<li>Tablas/</li>
+<li>Script_1</li>
+<li>Script_2</li>
+<li>Script_3</li>
+</ul></li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="entorno-sesión-o-environment-de-r" class="slide level2">
+<h2>Entorno, sesión o <em>environment</em> de R</h2>
+<ul>
+<li>El espacio temporal en la memoria del equipo donde R guarda objetos mientras ejecuta un análisis</li>
+<li>Está limitado en tamaño por la memoria RAM del ordenador</li>
+</ul>
+</section>
+<section id="funciones-útiles-para-controlar-la-sesión-de-trabajo" class="slide level2">
+<h2>Funciones útiles para controlar la sesión de trabajo</h2>
+<ul>
+<li>Para enumerar objetos en la sesión de R: <code>ls()</code></li>
+<li>Para eliminar objetos de la sesión de R: <code>rm()</code></li>
+<li>Para guardar la sesión de R: <code>save.image()</code></li>
+<li>Para salir de la sesión de R: <code>q()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="fu">ls</span>()</span>
+<span id="cb55-2"><a></a><span class="fu">rm</span>(numeric_object, character_object)</span>
+<span id="cb55-3"><a></a><span class="fu">save.image</span>()</span>
+<span id="cb55-4"><a></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="directorio-de-trabajo-carpeta-del-proyecto" class="slide level2">
+<h2>Directorio de trabajo (= carpeta del proyecto)</h2>
+<ul>
+<li>Es el directorio donde R busca archivos o escribe archivos</li>
+<li>En una sesión de R, las referencias a archivos se hacen desde el directorio de trabajo
+<ul>
+<li>Es conveniente usar rutas relativas a los ficheros</li>
+</ul></li>
+</ul>
+<p><code>getwd()</code> obtener el directorio de trabajo</p>
+<p><code>setwd()</code> lo cambia</p>
+</section>
+<section id="trabajar-con-datos" class="slide level2">
+<h2>Trabajar con datos</h2>
+<ul>
+<li>Lectura de datos del disco duro</li>
+<li>R lo almacena como un objeto (guardado en la memoria de su computadora)</li>
+<li>Trata ese objeto como cualquier otro objeto</li>
+<li>Los cambios en el objeto están restringidos al objeto, no afectan a los datos del disco duro</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>myData <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"some data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="escribir-un-archivo-de-datos" class="slide level2">
+<h2>Escribir un archivo de datos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a><span class="fu">write.csv</span>(myData, <span class="st">"updated data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mucho-más-conveniente-usar-ficheros-excel" class="slide level2">
+<h2>¿Mucho más conveniente usar ficheros excel?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a><span class="fu">install.packages</span>(<span class="st">"openxlsx"</span>)</span>
+<span id="cb58-2"><a></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb58-3"><a></a>data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data"</span>, <span class="at">sheet =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="scripts" class="slide level2">
+<h2>Scripts</h2>
+<ul>
+<li>Archivos de texto</li>
+<li>Con llamadas a funciones (código)</li>
+<li>Ordenado y secuencial:
+<ul>
+<li>Cargar datos</li>
+<li>Modificar datos</li>
+<li>Análisis de datos</li>
+<li>Guardar/trazar resultados</li>
+</ul></li>
+<li>Puede/debe contener comentarios legibles por humanos
+<ul>
+<li>Usar # antes del comentario</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>No se manejan desde la consola de R, si no desde la interfaz de Rstudio.</p>
+</blockquote>
+</section>
+<section id="seguimos-practicando" class="slide level2">
+<h2>Seguimos practicando</h2>
+<ul>
+<li>Ejercicios de clase</li>
+<li>Parte 3</li>
+</ul>
+</section>
+<section id="ejercicios-de-casa-homeworks" class="slide level2">
+<h2>Ejercicios de casa (Homeworks)</h2>
+<ul>
+<li>En la web de la asignatura (enlace en Moodle)</li>
+<li>Entregar antes de la siguiente clase</li>
+</ul>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="img/R-logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p><a href="https://dnietolugilde.com/AEMeR-UCO">Análisis Espaciales y Multivariantes en R</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/dinilu\.github\.io\/AEMeR-UCO\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+    (function() {
+      let previousOnload = window.onload;
+      window.onload = () => {
+        if (previousOnload) {
+          previousOnload();
+        }
+        lightboxQuarto.on('slide_before_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          const href = trigger.getAttribute('href');
+          if (href !== null) {
+            const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+            if (imgEl !== null) {
+              const srcAttr = imgEl.getAttribute("src");
+              if (srcAttr && srcAttr.startsWith("data:")) {
+                slideConfig.href = srcAttr;
+              }
+            }
+          } 
+        });
+      
+        lightboxQuarto.on('slide_after_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(slideNode);
+          }
+        });
+      
+      };
+      
+    })();
+              </script>
+    
+
+</body></html>
