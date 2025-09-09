@@ -222,7 +222,9 @@ sum(15, 16, 17, 24, 10)
 ```
 
 
-## Algunos objetos no son datos, si no opciones que modifican el comportamiento de las funciones
+## Algunos objetos no son datos, si no opciones
+
+Las opciones modifican el comportamiento de las funciones
 
 ```{dot}
 digraph {
@@ -240,7 +242,7 @@ digraph {
 ```
 
 :::{.callout-note}
-Las opciones en realidad también son objetos. El número de objetos que requiere una función se conocen como argumentos
+Las opciones en realidad también son objetos. Todos los objetos que requiere una función (i.e. datos y/u opciones) se conocen como **argumentos**.
 :::
 
 
@@ -338,10 +340,33 @@ kingdom <- factor(c("Planta", "Planta", "Animal"))
 ```
 
 
-## Vectores lógicos
+## Vectores lógicos {auto-animate=true}
 
 Operadores condicionales: `<` `>` `<=` `>=` `==` `!=` `%in%`
 
+```{r}
+#| echo: true
+
+3 < 5
+```
+
+
+## Vectores lógicos {auto-animate=true}
+
+Operadores condicionales: `<` `>` `<=` `>=` `==` `!=` `%in%`
+
+```{r}
+#| echo: true
+
+3 < 5
+
+3 > 5
+```
+
+
+## Vectores lógicos {auto-animate=true}
+
+Operadores condicionales: `<` `>` `<=` `>=` `==` `!=` `%in%`
 
 ```{r}
 #| echo: true
@@ -357,7 +382,63 @@ x != 5
 ```
 
 
-## Vectores lógicos
+## Vectores lógicos {auto-animate=true}
+
+Operadores condicionales: `<` `>` `<=` `>=` `==` `!=` `%in%`
+
+```{r}
+#| echo: true
+
+3 < 5
+
+3 > 5
+
+x <- 5
+x == 5
+```
+
+
+## Vectores lógicos {auto-animate=true}
+
+Operadores condicionales: `<` `>` `<=` `>=` `==` `!=` `%in%`
+
+```{r}
+#| echo: true
+
+3 < 5
+
+3 > 5
+
+x <- 5
+x == 5
+
+x != 5
+```
+
+
+## Vectores lógicos {auto-animate=true}
+
+```{r}
+#| echo: true
+
+x <- 1:10
+x < 5
+```
+
+
+## Vectores lógicos {auto-animate=true}
+
+```{r}
+#| echo: true
+
+x <- 1:10
+x < 5
+
+x == 2
+```
+
+
+## Vectores lógicos {auto-animate=true}
 
 ```{r}
 #| echo: true
