@@ -507,7 +507,7 @@ A
 * Los números entre corchetes se denominan índices (i y j)
 
 
-## Extrayendo valores de matrices
+## Extrayendo valores de matrices {auto-animate=true}
 
 ```{r}
 #| echo: true
@@ -517,11 +517,32 @@ A <- matrix(data = 1:30, nrow = 6, ncol = 5)
 A[3, 4]
 ```
 
+
+## Extrayendo valores de matrices {auto-animate=true}
+
+```{r}
+#| echo: true
+#| eval: false
+
+A <- matrix(data = 1:30, nrow = 6, ncol = 5)
+
+A[3, 4]
+
+A[c(1:3), 4]
+???
+```
+
+
+## Extrayendo valores de matrices {auto-animate=true}
+
 ```{r}
 #| echo: true
 
+A <- matrix(data = 1:30, nrow = 6, ncol = 5)
+
+A[3, 4]
+
 A[c(1:3), 4]
-# ???
 ```
 
 
@@ -754,7 +775,17 @@ Si. Puedes encontrar paquetes sin organizar en internet. Algunos sitios frecuent
 ![](img/Tema_1/GitHub.png)
 
 
-## ¿Cómo puedo instalar paquetes de GitHub?
+## ¿Cómo puedo instalar paquetes de GitHub?  {auto-animate=true}
+
+```{r}
+#| echo: true
+
+install.packages("devtools")
+library(devtools)
+```
+
+
+## ¿Cómo puedo instalar paquetes de GitHub?  {auto-animate=true}
 
 ```{r}
 #| echo: true
@@ -1043,11 +1074,5 @@ plot(hbin)
 ## Vamos a practicar
 
 * Ejercicios de clase
-
-
-## Ejercicios de casa (Homeworks)	
-
-* En la web de la asignatura (enlace en Moodle)
-* Entregar antes de la siguiente clase
 
 
