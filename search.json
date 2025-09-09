@@ -669,7 +669,7 @@
     "href": "AEMER-1-Presentacion_2.html#múltiples-asignaciones-para-crear-objetos",
     "title": "Sesión 1: Introducción a R",
     "section": "Múltiples asignaciones para crear objetos",
-    "text": "Múltiples asignaciones para crear objetos\n\na = 10\n\na &lt;- 10\n\n10 -&gt; a\n\n\nEstas tres líneas hacen lo mismo"
+    "text": "Múltiples asignaciones para crear objetos\n\na = 10\n\na &lt;- 10\n\n10 -&gt; a\n\n\n\n\n\n\n\nNote\n\n\nEstas tres líneas hacen lo mismo"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#números-de-cualquier-tipo",
@@ -746,7 +746,7 @@
     "href": "AEMER-1-Presentacion_2.html#algunos-objetos-no-son-datos-si-no-opciones-que-modifican-el-comportamiento-de-las-funciones",
     "title": "Sesión 1: Introducción a R",
     "section": "Algunos objetos no son datos, si no opciones que modifican el comportamiento de las funciones",
-    "text": "Algunos objetos no son datos, si no opciones que modifican el comportamiento de las funciones\n\n\n\n\n\n\n\n\n\n\nObjeto1\n\nObjeto1\n\n\n\nFunción\n\nFunción\n\n\n\nObjeto1-&gt;Función\n\n\n\n\n\nNuevo objeto\n\nNuevo objeto\n\n\n\nFunción-&gt;Nuevo objeto\n\n\n\n\n\nObjeto2\n\nObjeto2\n\n\n\nObjeto2-&gt;Función\n\n\n\n\n\nObjeto3\n\nObjeto3\n\n\n\nObjeto3-&gt;Función\n\n\n\n\n\nOpción\n\nOpción\n\n\n\nOpción-&gt;Función\n\n\n\n\n\n\n\n\n\n\n\nLas opciones en realidad también son objetos. El número de objetos que requiere una función se conocen como argumentos"
+    "text": "Algunos objetos no son datos, si no opciones que modifican el comportamiento de las funciones\n\n\n\n\n\n\n\n\n\n\nObjeto1\n\nObjeto1\n\n\n\nFunción\n\nFunción\n\n\n\nObjeto1-&gt;Función\n\n\n\n\n\nNuevo objeto\n\nNuevo objeto\n\n\n\nFunción-&gt;Nuevo objeto\n\n\n\n\n\nObjeto2\n\nObjeto2\n\n\n\nObjeto2-&gt;Función\n\n\n\n\n\nObjeto3\n\nObjeto3\n\n\n\nObjeto3-&gt;Función\n\n\n\n\n\nOpción\n\nOpción\n\n\n\nOpción-&gt;Función\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nLas opciones en realidad también son objetos. El número de objetos que requiere una función se conocen como argumentos"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#las-opciones-también-se-separan-por-comas",
