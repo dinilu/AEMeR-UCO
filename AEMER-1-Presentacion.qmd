@@ -45,19 +45,17 @@ frecuentes?
   + ¿Qué son los Modelos Jerárquicos de Comunidades de Especies?
   + ¿Cómo se calibran los HMSC en R?
 
+<style>
+.slide-background {
+  background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), url("img/Tema_1/Código.png");
+  background-size: cover;
+}
+</style>
 
-## ¿Qué es R?
-:::: {.columns}
 
-::: {.column}
+## ¿Qué es R? {.slide-background}
+
 R es un lenguaje de programación estadística
-:::
-
-::: {.column}
-![](img/Tema_1/Código.png)
-:::
-
-::::
 
 ## ¿Por qué usar R?
 
@@ -77,6 +75,9 @@ R es un lenguaje de programación estadística
 
 Interfaz gráfica
 
+##
+
+![](img/Tema_1/RStudio_GUI.png)
 
 # R
 
