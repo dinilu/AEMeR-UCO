@@ -10,7 +10,7 @@ website:
         text: Autor
     right:
       - href: index.qmd
-        text: "![https://uco.es](img/logo-UCO.png){height=1in}"
+        text: "![https://uco.es](img/logo-UCO.jpg){height=1in}"
 
 format:
   html:
