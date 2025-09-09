@@ -742,11 +742,11 @@
     "text": "Se pasan varios objetos a las funciones separados por comas\n\nsum(15, 16, 17, 24, 10)\n\n[1] 82"
   },
   {
-    "objectID": "AEMER-1-Presentacion_2.html#algunos-objetos-no-son-datos-si-no-opciones-que-modifican-el-comportamiento-de-las-funciones",
-    "href": "AEMER-1-Presentacion_2.html#algunos-objetos-no-son-datos-si-no-opciones-que-modifican-el-comportamiento-de-las-funciones",
+    "objectID": "AEMER-1-Presentacion_2.html#algunos-objetos-no-son-datos-si-no-opciones",
+    "href": "AEMER-1-Presentacion_2.html#algunos-objetos-no-son-datos-si-no-opciones",
     "title": "Sesión 1: Introducción a R",
-    "section": "Algunos objetos no son datos, si no opciones que modifican el comportamiento de las funciones",
-    "text": "Algunos objetos no son datos, si no opciones que modifican el comportamiento de las funciones\n\n\n\n\n\n\n\n\n\n\nObjeto1\n\nObjeto1\n\n\n\nFunción\n\nFunción\n\n\n\nObjeto1-&gt;Función\n\n\n\n\n\nNuevo objeto\n\nNuevo objeto\n\n\n\nFunción-&gt;Nuevo objeto\n\n\n\n\n\nObjeto2\n\nObjeto2\n\n\n\nObjeto2-&gt;Función\n\n\n\n\n\nObjeto3\n\nObjeto3\n\n\n\nObjeto3-&gt;Función\n\n\n\n\n\nOpción\n\nOpción\n\n\n\nOpción-&gt;Función\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nLas opciones en realidad también son objetos. El número de objetos que requiere una función se conocen como argumentos"
+    "section": "Algunos objetos no son datos, si no opciones",
+    "text": "Algunos objetos no son datos, si no opciones\nLas opciones modifican el comportamiento de las funciones\n\n\n\n\n\n\n\n\n\n\nObjeto1\n\nObjeto1\n\n\n\nFunción\n\nFunción\n\n\n\nObjeto1-&gt;Función\n\n\n\n\n\nNuevo objeto\n\nNuevo objeto\n\n\n\nFunción-&gt;Nuevo objeto\n\n\n\n\n\nObjeto2\n\nObjeto2\n\n\n\nObjeto2-&gt;Función\n\n\n\n\n\nObjeto3\n\nObjeto3\n\n\n\nObjeto3-&gt;Función\n\n\n\n\n\nOpción\n\nOpción\n\n\n\nOpción-&gt;Función\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nLas opciones en realidad también son objetos. Todos los objetos que requiere una función (i.e. datos y/u opciones) se conocen como argumentos."
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#las-opciones-también-se-separan-por-comas",
@@ -809,11 +809,53 @@
     "href": "AEMER-1-Presentacion_2.html#vectores-lógicos",
     "title": "Sesión 1: Introducción a R",
     "section": "Vectores lógicos",
-    "text": "Vectores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE\n\n3 &gt; 5\n\n[1] FALSE\n\nx &lt;- 5\nx == 5\n\n[1] TRUE\n\nx != 5\n\n[1] FALSE"
+    "text": "Vectores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos-1",
     "href": "AEMER-1-Presentacion_2.html#vectores-lógicos-1",
+    "title": "Sesión 1: Introducción a R",
+    "section": "Vectores lógicos",
+    "text": "Vectores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE\n\n3 &gt; 5\n\n[1] FALSE"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos-2",
+    "href": "AEMER-1-Presentacion_2.html#vectores-lógicos-2",
+    "title": "Sesión 1: Introducción a R",
+    "section": "Vectores lógicos",
+    "text": "Vectores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE\n\n3 &gt; 5\n\n[1] FALSE\n\nx &lt;- 5\nx == 5\n\n[1] TRUE\n\nx != 5\n\n[1] FALSE"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos-3",
+    "href": "AEMER-1-Presentacion_2.html#vectores-lógicos-3",
+    "title": "Sesión 1: Introducción a R",
+    "section": "Vectores lógicos",
+    "text": "Vectores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE\n\n3 &gt; 5\n\n[1] FALSE\n\nx &lt;- 5\nx == 5\n\n[1] TRUE"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos-4",
+    "href": "AEMER-1-Presentacion_2.html#vectores-lógicos-4",
+    "title": "Sesión 1: Introducción a R",
+    "section": "Vectores lógicos",
+    "text": "Vectores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE\n\n3 &gt; 5\n\n[1] FALSE\n\nx &lt;- 5\nx == 5\n\n[1] TRUE\n\nx != 5\n\n[1] FALSE"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos-5",
+    "href": "AEMER-1-Presentacion_2.html#vectores-lógicos-5",
+    "title": "Sesión 1: Introducción a R",
+    "section": "Vectores lógicos",
+    "text": "Vectores lógicos\n\nx &lt;- 1:10\nx &lt; 5\n\n [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos-6",
+    "href": "AEMER-1-Presentacion_2.html#vectores-lógicos-6",
+    "title": "Sesión 1: Introducción a R",
+    "section": "Vectores lógicos",
+    "text": "Vectores lógicos\n\nx &lt;- 1:10\nx &lt; 5\n\n [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE\n\nx == 2\n\n [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos-7",
+    "href": "AEMER-1-Presentacion_2.html#vectores-lógicos-7",
     "title": "Sesión 1: Introducción a R",
     "section": "Vectores lógicos",
     "text": "Vectores lógicos\n\nx &lt;- 1:10\nx &lt; 5\n\n [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE\n\nx == 2\n\n [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n\nspecies == (\"Bromus diandrus\")\n\n[1]  TRUE FALSE FALSE"
@@ -823,7 +865,7 @@
     "href": "AEMER-1-Presentacion_2.html#extrayendo-valores-de-vectores",
     "title": "Sesión 1: Introducción a R",
     "section": "Extrayendo valores de vectores",
-    "text": "Extrayendo valores de vectores\n\nR usa [ ] para referirse a elementos de objetos\n\nV[5] devuelve el 5º elemento de un vector llamado V\n\nEl número entre corchetes se denomina índice (i)\n\n\na &lt;- c(3,2,7,8)\n\na[3]\n# ????\n\na[1:3]\n# ????\n\na[seq(2, 4)]\n# ???"
+    "text": "Extrayendo valores de vectores\n\nR usa [ ] para referirse a elementos de objetos\n\nV[5] devuelve el 5º elemento de un vector llamado V\n\nEl número entre corchetes se denomina índice (i)\n\n\na &lt;- c(3, 2, 7, 8)\n\na[3]\n# ????\n\na[1:3]\n# ????\n\na[seq(2, 4)]\n# ???"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#los-objetos-pueden-tener-muchos-datos-organizados-en-dimensiones-1",
@@ -845,6 +887,13 @@
     "title": "Sesión 1: Introducción a R",
     "section": "Matrices",
     "text": "Matrices\n\nA &lt;- matrix(data = 1:30, nrow = 6, ncol = 5)\n# ????"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#matrices-2",
+    "href": "AEMER-1-Presentacion_2.html#matrices-2",
+    "title": "Sesión 1: Introducción a R",
+    "section": "Matrices",
+    "text": "Matrices\n\nA &lt;- matrix(data = 1:30, nrow = 6, ncol = 5)\nA"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#extrayendo-valores-de-matrices",
