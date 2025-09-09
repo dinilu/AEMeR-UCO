@@ -753,6 +753,13 @@
     "href": "AEMER-1-Presentacion_2.html#las-opciones-también-se-separan-por-comas",
     "title": "Sesión 1: Introducción a R",
     "section": "Las opciones también se separan por comas",
+    "text": "Las opciones también se separan por comas\n\nseveral_data &lt;- c(15, 16, 17, 24, 10, NA)\nmean(several_data)\n\n[1] NA"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#las-opciones-también-se-separan-por-comas-1",
+    "href": "AEMER-1-Presentacion_2.html#las-opciones-también-se-separan-por-comas-1",
+    "title": "Sesión 1: Introducción a R",
+    "section": "Las opciones también se separan por comas",
     "text": "Las opciones también se separan por comas\n\nseveral_data &lt;- c(15, 16, 17, 24, 10, NA)\nmean(several_data)\n\n[1] NA\n\nmean(several_data, na.rm = TRUE)\n\n[1] 16.4"
   },
   {
