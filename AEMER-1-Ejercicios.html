@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul class="collapse">
   <li><a href="#parte-1-trabajando-con-vectores" id="toc-parte-1-trabajando-con-vectores" class="nav-link active" data-scroll-target="#parte-1-trabajando-con-vectores">Parte 1: Trabajando con vectores</a></li>
-  <li><a href="#parte-2-trabajando-con-matrices-data.frames-y-listas" id="toc-parte-2-trabajando-con-matrices-data.frames-y-listas" class="nav-link" data-scroll-target="#parte-2-trabajando-con-matrices-data.frames-y-listas">Parte 2: Trabajando con matrices, data.frames y listas</a></li>
+  <li><a href="#parte-2-trabajando-con-matrices-y-data.frames" id="toc-parte-2-trabajando-con-matrices-y-data.frames" class="nav-link" data-scroll-target="#parte-2-trabajando-con-matrices-y-data.frames">Parte 2: Trabajando con matrices y data.frames</a></li>
   <li><a href="#parte-3-usando-ficheros-de-datos" id="toc-parte-3-usando-ficheros-de-datos" class="nav-link" data-scroll-target="#parte-3-usando-ficheros-de-datos">Parte 3: Usando ficheros de datos</a></li>
   <li><a href="#parte-4-gráficas-y-figuras" id="toc-parte-4-gráficas-y-figuras" class="nav-link" data-scroll-target="#parte-4-gráficas-y-figuras">Parte 4: Gráficas y figuras</a></li>
   </ul>
@@ -198,18 +198,20 @@ Nota
 <div class="callout-body-container callout-body">
 <p>Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre <code>ejercicios_s1_[tu_nombre]_[tu_apellidos].R</code>. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla <code>#</code> delante) y justo detrás el enunciado del ejercicio. A continuación, en las siguientes líneas del fichero escribe el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado usa los comentarios (con la <code>#</code>) para indicar tus reflexiones debajo del código. Una vez los tengáis completos podéis mandármelos por email (bv2nilud@uco.es).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 1. Ejecuta las dos líneas de código siguientes y explica que resultado dan y por qué.</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PARTE 1</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="sc">-</span><span class="dv">2</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Este código da error porque especifiqué algo mal :)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 1. Ejecuta las dos líneas de código siguientes y explica que resultado dan y por qué.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Este código da error porque especifiqué algo mal :)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <section id="parte-1-trabajando-con-vectores" class="level1">
 <h1>Parte 1: Trabajando con vectores</h1>
-<p><strong>1. Como muchas funciones en R, <code>seq()</code> es flexible y puede trabajar de formas muy diferentes. Merece la pena entender cómo y porqué funciona de la forma en la que lo hace. Prueba los siguientes comandos:</strong></p>
+<p><strong>Ejercicio 1. Como muchas funciones en R, <code>seq()</code> es flexible y puede trabajar de formas muy diferentes. Merece la pena entender cómo y porqué funciona de la forma en la que lo hace. Prueba los siguientes comandos:</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">5</span>)</span>
@@ -223,7 +225,7 @@ Nota
 <blockquote class="blockquote">
 <p>¿Tienen sentido el resultado de todos estos comandos?</p>
 </blockquote>
-<p><strong>2. Fijaros que se pueden pasar argumentos a una función en R ya sea por su nombre (por ejemplo, <code>to = 5</code> o <code>by = 0.1</code>), o simplemente colocando los parámetros en el orden correcto. La función <code>seq</code> espera que le des argumentos en el orden <code>from</code>, <code>to</code> y <code>by</code>. Puedes averiguarlo revisando el archivo de ayuda ejecutando el código <code>?seq</code>. En caso de duda, es más seguro especificar argumentos por su nombre, en cuyo caso cualquier orden está bien. Puedes probar por ejemplo con los siguientes comandos:</strong></p>
+<p><strong>Ejercicio 2. Fijaros que se pueden pasar argumentos a una función en R ya sea por su nombre (por ejemplo, <code>to = 5</code> o <code>by = 0.1</code>), o simplemente colocando los parámetros en el orden correcto. La función <code>seq</code> espera que le des argumentos en el orden <code>from</code>, <code>to</code> y <code>by</code>. Puedes averiguarlo revisando el archivo de ayuda ejecutando el código <code>?seq</code>. En caso de duda, es más seguro especificar argumentos por su nombre, en cuyo caso cualquier orden está bien. Puedes probar por ejemplo con los siguientes comandos:</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">1</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">by =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">8</span>, <span class="at">from =</span> <span class="dv">4</span>)</span>
@@ -232,14 +234,14 @@ Nota
 <blockquote class="blockquote">
 <p>¿Se interpretan y devuelven el mismo resultado todos estos comandos?</p>
 </blockquote>
-<p><strong>3. Si se está interesado en generar una secuencia entera, a menudo es más rápido usar un operador (un símbolo reservado para una tarea especial). Aquí, podríamos generar la secuencia anterior usando el operador <code>:</code>.</strong></p>
+<p><strong>Ejercicio 3. Si se está interesado en generar una secuencia entera, a menudo es más rápido usar un operador (un símbolo reservado para una tarea especial). Aquí, podríamos generar la secuencia anterior usando el operador <code>:</code>.</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">:</span><span class="dv">8</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <blockquote class="blockquote">
 <p>Otros operadores comunes son <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>, entre otros. Prueba todos ellos y explica que hace cada uno.</p>
 </blockquote>
-<p><strong>4. Usa <code>seq()</code> y <code>c()</code> para crear un vector llamado <code>a</code> que contenga los enteros del 1 al 10, seguido de los enteros pares del 20 al 30, seguidos de los múltiplos de 5 del 150 al 100 (cuenta regresiva).</strong></p>
+<p><strong>Ejercicio 4. Usa <code>seq()</code> y <code>c()</code> para crear un vector llamado <code>a</code> que contenga los enteros del 1 al 10, seguido de los enteros pares del 20 al 30, seguidos de los múltiplos de 5 del 150 al 100 (cuenta regresiva).</strong></p>
 <blockquote class="blockquote">
 <p>¿Cuál es el decimocuarto elemento del vector “a”?</p>
 </blockquote>
@@ -262,7 +264,7 @@ Pista
 <blockquote class="blockquote">
 <p>Usa <code>length()</code> para averiguar la longitud de <code>a</code> y en una sola línea de código R encuentra los elementos 2º, 23º y 10º de <code>a</code>, en ese mismo orden.</p>
 </blockquote>
-<p><strong>5. Crea cuatro vectores diferentes. El primero llamado “nombres” con los nombres de 15 personas ficticias. El segundo llamado “sexo” con el sexo biológico de esas mismas 15 personas ficticias. El tercero llamado “peso” con el peso en kilogramos de cada una de esas 15 personas. Finalmente, el cuarto vector llamado “altura” deberá tener la estatura en metros de cada uno de ellos. Tened en cuenta, que los 4 vectores se ordenarán de forma correlativa: El primer peso que especifiquéis en el vector “peso” corresponderá al peso de la persona cuyo nombre aparezca en primera posición en el vector “nombres”. Una vez que hayas creado los cuatro vectores, calcula el índice de masa corporal (IMC), usando la siguiente fórmula: IMC = peso / estatura^2. Con esta información crear un vector con los nombres de las personas que hayan obtenido un IMC superior a 25.</strong></p>
+<p><strong>Ejercicio 5. Crea cuatro vectores diferentes. El primero llamado “nombres” con los nombres de 15 personas ficticias. El segundo llamado “sexo” con el sexo biológico de esas mismas 15 personas ficticias. El tercero llamado “peso” con el peso en kilogramos de cada una de esas 15 personas. Finalmente, el cuarto vector llamado “altura” deberá tener la estatura en metros de cada uno de ellos. Tened en cuenta, que los 4 vectores se ordenarán de forma correlativa: El primer peso que especifiquéis en el vector “peso” corresponderá al peso de la persona cuyo nombre aparezca en primera posición en el vector “nombres”. Una vez que hayas creado los cuatro vectores, calcula el índice de masa corporal (IMC), usando la siguiente fórmula: IMC = peso / estatura^2. Con esta información crea un vector con los nombres de las personas que hayan obtenido un IMC superior a 25.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -280,9 +282,9 @@ Pista
 </div>
 </div>
 </section>
-<section id="parte-2-trabajando-con-matrices-data.frames-y-listas" class="level1">
-<h1>Parte 2: Trabajando con matrices, data.frames y listas</h1>
-<p><strong>1. Crea una matriz llamada “A” que tenga 12 filas y 8 columnas, donde cada elemento en la matriz sea un número diferente generado aleatoriamente de una distribución normal con una media de 3 y una desviación estándar de 2. Establece una nueva variable “b” que sea igual al elemento en la quinta fila y la sexta columna de “A”.</strong></p>
+<section id="parte-2-trabajando-con-matrices-y-data.frames" class="level1">
+<h1>Parte 2: Trabajando con matrices y data.frames</h1>
+<p><strong>Ejercicio 1. Crea una matriz llamada “A” que tenga 12 filas y 8 columnas, donde cada elemento en la matriz sea un número diferente generado aleatoriamente de una distribución normal con una media de 3 y una desviación estándar de 2. Establece una nueva variable “b” que sea igual al elemento en la quinta fila y la sexta columna de “A”.</strong></p>
 <blockquote class="blockquote">
 <p>Tened en cuenta que, una vez que se establece, “b” es independiente de “A”. Mantendrá su valor como esté definido, incluso si los elementos de “A” cambian posteriormente.</p>
 </blockquote>
@@ -319,7 +321,10 @@ Pista
 </div>
 </div>
 </div>
-<p><strong>3. Crea 10 matrices como “A”, pero con diferentes valores (solo tendrás que ejecutar 10 veces el mismo comando) y guarda cada una de ellas como un elemento dentro de una lista, llamada “matrix_list”.</strong></p>
+</section>
+<section id="parte-3-usando-ficheros-de-datos" class="level1">
+<h1>Parte 3: Usando ficheros de datos</h1>
+<p><strong>1. Lee en R un fichero de datos de ejemplo (“Abundancia.csv”) que incluye información sobre la abundancia de varias especies en diferentes sitios y llama al <em>data frame</em> resultante “abundancia”. Usa <code>head()</code>, <code>names()</code> y <code>str()</code> para explorar la estructura del <em>data frame</em> “abundancia”.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -332,14 +337,14 @@ Pista
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Aquí deberás usar la función <code>list()</code>, la cual acepta también múltiples argumentos. Cada argumento es un objeto de la sesión de R, con un nombre. En este sentido funciona parecido a <code>data.frame()</code>, pero a diferencia de esta, los objetos no tienen que ser todos vectores de la misma longitud. Si no que cada objeto puede ser de una clase y tipo diferente.</p>
+<p>Usa la función <code>read.csv(path)</code>, donde <code>path</code> indica la ubicación del archivo en el disco duro y este argumento se introduce como una cadena de texto (entre comillas). Ten en cuenta que los datos se leen en la memoria RAM del ordenador para que R trabaje con ellos. Los cambios que realices en los datos se almacenan solo en la memoria (NO alteran el archivo de datos original). Esta y otras funciones relacionadas (<code>read.delim()</code>, <code>read.table()</code> y otras) devuelven un <em>data frame</em>. A menudo es una buena idea usar la opción <code>as.is = T</code>, que impide la conversión de variables de tipo <code>character</code> en variables de tipo <code>factor</code>.</p>
 </div>
 </div>
 </div>
-</section>
-<section id="parte-3-usando-ficheros-de-datos" class="level1">
-<h1>Parte 3: Usando ficheros de datos</h1>
-<p><strong>1. Lee en R un fichero de datos de ejemplo (“Abundancia.csv”) que incluye información sobre la abundancia de varias especies en diferentes sitios y llama al <em>data frame</em> resultante “abundancia”. Usa <code>head()</code>, <code>names()</code> y <code>str()</code> para explorar la estructura del <em>data frame</em> “abundancia”.</strong></p>
+<p><strong>2. Usa la función <code>apply()</code> para calcular la abundancia promedio de cada especie en los 10 sitios.</strong></p>
+<blockquote class="blockquote">
+<p>Ten en cuenta que ahora estamos trabajando con un <em>data frame</em>, por lo que no todas las columnas son numéricas. La columna con el nombre de especie no puede realizar operaciones numéricas, por lo que tendrás que excluir esa columna de alguna manera. Para ello puedes usar los corchetes <code>[]</code> de forma similar a como hacíamos para seleccionar elementos dentro de un vector o de una matriz.</p>
+</blockquote>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -352,14 +357,14 @@ Pista
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Usa la función <code>read.csv(path)</code>, donde <code>path</code> indica la ubicación del archivo en el disco duro y este argumento se introduce como una cadena de texto (entre comillas). Ten en cuenta que los datos se leen en la memoria RAM del ordenador para que R trabaje con ellos. Los cambios que realices en los datos se almacenan solo en la memoria (NO alteran el archivo de datos original). Esta y otras funciones relacionadas (<code>read.delim()</code>, <code>read.table()</code> y otras) devuelven un <em>data frame</em>. A menudo es una buena idea usar la opción <code>as.is = T</code>, que impide la conversión de variables de tipo <code>character</code> en variables de tipo <code>factor</code>.</p>
-</div>
-</div>
-</div>
-<p><strong>2. Usa la función <code>apply()</code> para calcular la abundancia promedio de cada especie en los 10 sitios.</strong></p>
+<p>La función <code>apply(X, MARGIN, FUN)</code> realiza alguna función (<code>FUN</code>) en cada fila o columna de una matriz o marco de datos (<code>X</code>). <code>MARGIN</code> permite especificar si se debe realizar la función en filas (<code>MARGIN = 1</code>) o en columnas (<code>MARGIN = 2</code>). <code>FUN</code> permite especificar la función a realizar (e.g.&nbsp;<code>FUN = mean</code>, <code>FUN = sd</code> o <code>FUN = sum</code>)</p>
 <blockquote class="blockquote">
-<p>Ten en cuenta que ahora estamos trabajando con un <em>data frame</em>, por lo que no todas las columnas son numéricas. La columna con el nombre de especie no puede realizar operaciones numéricas, por lo que tendrás que excluir esa columna de alguna manera. Para ello puedes usar los corchetes <code>[]</code> de forma similar a como hacíamos para seleccionar elementos dentro de un vector o de una matriz.</p>
+<p>Algunas funciones útiles para usar aquí son <code>max</code>, <code>min</code>, <code>mean</code>, <code>sum</code>, entre otras. Explora con todas ellas e intenta averiguar que hace cada una.</p>
 </blockquote>
+</div>
+</div>
+</div>
+<p><strong>3. Usa la función <code>which()</code> para determinar qué sitios tienen al menos 10 individuos de <em>Lupinus bicolor</em>. Usa la función <code>which()</code> para determinar qué especies tienen una abundancia de al menos 5 en el <em>Site5</em>.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -372,14 +377,11 @@ Pista
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>La función <code>apply(X, MARGIN, FUN)</code> realiza alguna función (<code>FUN</code>) en cada fila o columna de una matriz o marco de datos (<code>X</code>). <code>MARGIN</code> permite especificar si se debe realizar la función en filas (<code>MARGIN = 1</code>) o en columnas (<code>MARGIN = 2</code>). <code>FUN</code> permite especificar la función a realizar (e.g.&nbsp;<code>FUN = mean</code>, <code>FUN = sd</code> o <code>FUN = sum</code>)</p>
-<blockquote class="blockquote">
-<p>Algunas funciones útiles para usar aquí son <code>max</code>, <code>min</code>, <code>mean</code>, <code>sum</code>, entre otras. Explora con todas ellas e intenta averiguar que hace cada una.</p>
-</blockquote>
+<p>La función <code>which(x)</code> devuelve los índices de los elementos de <code>x</code> que son <code>TRUE</code>. Nota que <code>x</code> debe ser un vector o matriz de tipo <em>logic</em> (i.e.&nbsp;todos los valores son <code>TRUE</code> o <code>FALSE</code>).</p>
 </div>
 </div>
 </div>
-<p><strong>3. Usa la función <code>which()</code> para determinar qué sitios tienen al menos 10 individuos de <em>Lupinus bicolor</em>. Usa la función <code>which()</code> para determinar qué especies tienen una abundancia de al menos 5 en el <em>Site5</em>.</strong></p>
+<p><strong>4. Crea una nueva matriz llamada “presencia” donde cada elemento de “presencia” es 1, si el valor correspondiente de “abundancia” es mayor que 0, y 0 en el caso contrario.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -392,11 +394,12 @@ Pista
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>La función <code>which(x)</code> devuelve los índices de los elementos de <code>x</code> que son <code>TRUE</code>. Nota que <code>x</code> debe ser un vector o matriz de tipo <em>logic</em> (i.e.&nbsp;todos los valores son <code>TRUE</code> o <code>FALSE</code>).</p>
+<p>La función <code>ifelse(test, yes, no)</code> comprueba una condición (<code>test</code>) y si se cumple devuelve el valor especificado en el argumento <code>yes</code>. Si la condición no se cumple, devuelve el valor especificado en el argumento <code>no</code>. Las condiciones se especifican con los operadores lógicos (v.gr. <code>&gt;</code>) de la siguiente manera: <code>vector &gt; 25</code> lo que comparará cada valor del objeto <code>vector</code> y lo compara con 25, devolviendo <code>TRUE</code> o <code>FALSE</code> en cada caso dependiendo del resultado de la comparación. Por tanto, el resultado de la función es otro vector de la misma longitud pero de tipo lógico.</p>
 </div>
 </div>
 </div>
-<p><strong>4. Crea una nueva matriz llamada “presencia” donde cada elemento de “presencia” es 1, si el valor correspondiente de “abundancia” es mayor que 0, y 0 en el caso contrario.</strong></p>
+<p><strong>5. Usando la matriz “presencia” que creaste y la función <code>apply()</code>, calcula la riqueza de especies (i.e.&nbsp;el número de especies) de cada sitio.</strong></p>
+<p><strong>6. Escribe la matriz “presencia” que creaste en un archivo “Presencia.csv”.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -408,24 +411,6 @@ Pista
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>La función <code>ifelse(test, yes, no)</code> comprueba una condición (<code>test</code>) y si se cumple devuelve el valor especificado en el argumento <code>yes</code>. Si la condición no se cumple, devuelve el valor especificado en el argumento <code>no</code>. Las condiciones se especifican con los operadores lógicos (v.gr. <code>&gt;</code>) de la siguiente manera: <code>vector &gt; 25</code> lo que comparará cada valor del objeto <code>vector</code> y lo compara con 25, devolviendo <code>TRUE</code> o <code>FALSE</code> en cada caso dependiendo del resultado de la comparación. Por tanto, el resultado de la función es otro vector de la misma longitud pero de tipo lógico.</p>
-</div>
-</div>
-</div>
-<p><strong>5. Usando la matriz “presencia” que creaste y la función <code>apply()</code>, calcula la riqueza de especies (i.e.&nbsp;el número de especies) de cada sitio.</strong></p>
-<p><strong>6. Escribe la matriz “presencia” que creaste en un archivo “Presencia.csv”.</strong></p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Pista
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>La función <code>write.csv(x, file)</code> te permitirá guardar el objeto <code>x</code> con el nombre especificado en <code>file</code>. Al tratarse de un nombre de fichero se especifica entre comillas <code>file = "fichero.csv"</code>.</p>
 </div>
@@ -439,6 +424,24 @@ Pista
 <p>Aquí deberás usar la función <code>mean</code> para calcular la media antes.</p>
 </blockquote>
 <div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>La función <code>hist (x)</code> dibuja un histograma de los valores almacenados en <code>x</code>. Se puede personalizar de varias maneras, incluido el uso de puntos de cambio para cambiar la definición de la anchura de las barras. Explora las posibilidades con <code>?hist</code></p>
+<p>La función <code>abline (a, b)</code> dibuja una línea en la gráfica ya existente con la pendiente especificada <code>b</code> e intercepto <code>a</code>. También puede dibujar líneas horizontales o verticales. Para ello, en lugar de especificar los argumentos <code>a</code> y <code>b</code>, deberás especificar un valor concreto usando <code>h = valor</code> o <code>v = valor</code>, dependiendo si quieres dibujar una línea horizontal o vertical.</p>
+</div>
+</div>
+</div>
+<p><strong>2. Crea dos variables correlacionadas “x” e “y”, usando <code>x &lt;- rnorm (200)</code> e <code>y = x + rnorm (200)</code>. Dibuja “x” vs.&nbsp;“y” y juega con los parámetros de trazado. Usa la <code>abline</code> para incluir una recta de regresión entre las dos variables.</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -450,12 +453,12 @@ Pista
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>La función <code>hist (x)</code> dibuja un histograma de los valores almacenados en <code>x</code>. Se puede personalizar de varias maneras, incluido el uso de puntos de cambio para cambiar la definición de la anchura de las barras. Explora las posibilidades con <code>?hist</code></p>
-<p>La función <code>abline (a, b)</code> dibuja una línea en la gráfica ya existente con la pendiente especificada <code>b</code> e intercepto <code>a</code>. También puede dibujar líneas horizontales o verticales. Para ello, en lugar de especificar los argumentos <code>a</code> y <code>b</code>, deberás especificar un valor concreto usando <code>h = valor</code> o <code>v = valor</code>, dependiendo si quieres dibujar una línea horizontal o vertical.</p>
+<p>La función <code>plot (x, y,...)</code> dibuja los datos de <code>x</code> contra los datos de <code>y</code>. Es personalizable utilizando una amplia gama de opciones. Puedes consultar todas las opciones con <code>?plot</code></p>
+<p>Recuerda, además, que la función <code>abline (a, b)</code> dibuja una línea en la gráfica ya existente con la pendiente especificada <code>b</code> e intercepto <code>a</code>. Para calcular los valores de la pendiente, puedes usar la función <code>lm(x, y)</code>, que genera un modelo lineal entre las dos variables.</p>
 </div>
 </div>
 </div>
-<p><strong>2. Crea dos variables correlacionadas “x” e “y”, usando <code>x &lt;- rnorm (200)</code> e <code>y = x + rnorm (200)</code>. Dibuja “x” vs.&nbsp;“y” y juega con los parámetros de trazado. Usa la <code>abline</code> para incluir una recta de regresión entre las dos variables.</strong></p>
+<p><strong>3. Genera un nuevo conjunto de datos “w” correlacionado con “x”, usando <code>w &lt;- 2*x * rnorm(200)</code>. Añade esta nuevo conjunto de datos al gráfico anterior pero cambiando el color para que se distingan bien los datos de “y” y “w”. Además, añade otra recta de regresión entre “w” y “x”.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -467,24 +470,6 @@ Pista
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>La función <code>plot (x, y,...)</code> dibuja los datos de <code>x</code> contra los datos de <code>y</code>. Es personalizable utilizando una amplia gama de opciones. Puedes consultar todas las opciones con <code>?plot</code></p>
-<p>Recuerda, además, que la función <code>abline (a, b)</code> dibuja una línea en la gráfica ya existente con la pendiente especificada <code>b</code> e intercepto <code>a</code>. Para calcular los valores de la pendiente, puedes usar la función <code>lm(x, y)</code>, que genera un modelo lineal entre las dos variables.</p>
-</div>
-</div>
-</div>
-<p><strong>3. Genera un nuevo conjunto de datos “w” correlacionado con “x”, usando <code>w &lt;- 2*x * rnorm(200)</code>. Añade esta nuevo conjunto de datos al gráfico anterior pero cambiando el color para que se distingan bien los datos de “y” y “w”. Además, añade otra recta de regresión entre “w” y “x”.</strong></p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Pista
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Hay varias funciones (<code>points(x, y)</code>, <code>segments(x0, y0, x1, y1)</code>, <code>arrows(x0, y0, x1, y1)</code>, <code>polygons(x, y)</code>, que en lugar de generar gráficos nuevos, dibuja puntos, segmentos de línea, flechas o polígonos en el último gráfico que se haya generado.</p>
 </div>
