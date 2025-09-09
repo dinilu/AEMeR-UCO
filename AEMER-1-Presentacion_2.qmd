@@ -244,7 +244,16 @@ Las opciones en realidad también son objetos. El número de objetos que requier
 :::
 
 
-## Las opciones también se separan por comas
+## Las opciones también se separan por comas {auto-animate=true}
+
+```{r}
+#| echo: true 
+
+several_data <- c(15, 16, 17, 24, 10, NA)
+mean(several_data)
+```
+
+## Las opciones también se separan por comas {auto-animate=true}
 
 ```{r}
 #| echo: true 
