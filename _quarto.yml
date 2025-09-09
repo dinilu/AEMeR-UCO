@@ -9,8 +9,8 @@ website:
       - href: https://dnietolugilde.com
         text: Autor
     right:
-      - href: index.qmd
-        text: "![https://uco.es](img/logo-UCO.jpg){height=1in}"
+      - href: "https://www.uco.es"
+        text: "![https://www.uco.es](img/logo-UCO.jpg){height=1in}"
 
 format:
   html:
