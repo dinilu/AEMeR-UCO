@@ -9,7 +9,7 @@ lightbox: auto
 
 **Materiales del curso:**
 
-* **Tema 1:** Introducción a R. [Presentación](AEMER-1-Presentacion.qmd){target="_blank"} - [Ejercicios](AEMER-1-Ejercicios.qmd){target="_blank"} - [Abundance.csv](data/Abundance.csv){target="_blank"}
+* **Tema 1:** Introducción a R. [Presentación 1](AEMER-1-Presentacion_1.pdf){target="_blank"} -[Presentación 2](AEMER-1-Presentacion_2.qmd){target="_blank"} - [Ejercicios](AEMER-1-Ejercicios.qmd){target="_blank"} - [Abundance.csv](data/Abundance.csv){target="_blank"}
 * **Tema 2:** Manejo de datos espaciales en R. [Presentación](AEMER-2-Presentacion.qmd){target="_blank"} - [Ejercicios](AEMER-2-Ejercicios.qmd){target="_blank"}
 * **Tema 3:** Análisis multivariantes en R. [Presentación 1](AEMER-3-Analisis_multivariante.pdf){target="_blank"} - [Presentación 2](AEMER-3-Analisis_multivariante.qmd){target="_blank"} - [Ejercicios](AEMER-3-Ejercicios.qmd){target="_blank"} 
 * **Tema 4:** Modelos generalizados de dissimilitud. [Presentación 1](AEMER-4-GDM.pdf){target="_blank"} - [Presentación 2](AEMER-4-GDM.qmd){target="_blank"} 
