@@ -742,11 +742,11 @@
     "text": "Se pasan varios objetos a las funciones separados por comas\n\nsum(15, 16, 17, 24, 10)\n\n[1] 82"
   },
   {
-    "objectID": "AEMER-1-Presentacion_2.html#algunos-objetos-no-son-datos-si-no-opciones",
-    "href": "AEMER-1-Presentacion_2.html#algunos-objetos-no-son-datos-si-no-opciones",
+    "objectID": "AEMER-1-Presentacion_2.html#algunos-objetos-son-opciones",
+    "href": "AEMER-1-Presentacion_2.html#algunos-objetos-son-opciones",
     "title": "Sesión 1: Introducción a R",
-    "section": "Algunos objetos no son datos, si no opciones",
-    "text": "Algunos objetos no son datos, si no opciones\nLas opciones modifican el comportamiento de las funciones\n\n\n\n\n\n\n\n\n\n\nObjeto1\n\nObjeto1\n\n\n\nFunción\n\nFunción\n\n\n\nObjeto1-&gt;Función\n\n\n\n\n\nNuevo objeto\n\nNuevo objeto\n\n\n\nFunción-&gt;Nuevo objeto\n\n\n\n\n\nObjeto2\n\nObjeto2\n\n\n\nObjeto2-&gt;Función\n\n\n\n\n\nObjeto3\n\nObjeto3\n\n\n\nObjeto3-&gt;Función\n\n\n\n\n\nOpción\n\nOpción\n\n\n\nOpción-&gt;Función\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nLas opciones en realidad también son objetos. Todos los objetos que requiere una función (i.e. datos y/u opciones) se conocen como argumentos."
+    "section": "Algunos objetos son opciones",
+    "text": "Algunos objetos son opciones\nLas opciones modifican el comportamiento de las funciones\n\n\n\n\n\n\n\n\n\n\nObjeto1\n\nObjeto1\n\n\n\nFunción\n\nFunción\n\n\n\nObjeto1-&gt;Función\n\n\n\n\n\nNuevo objeto\n\nNuevo objeto\n\n\n\nFunción-&gt;Nuevo objeto\n\n\n\n\n\nObjeto2\n\nObjeto2\n\n\n\nObjeto2-&gt;Función\n\n\n\n\n\nObjeto3\n\nObjeto3\n\n\n\nObjeto3-&gt;Función\n\n\n\n\n\nOpción\n\nOpción\n\n\n\nOpción-&gt;Función\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nLas opciones en realidad también son objetos. Todos los objetos que requiere una función (i.e. datos y/u opciones) se conocen como argumentos."
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#las-opciones-también-se-separan-por-comas",
@@ -805,57 +805,50 @@
     "text": "Vectores de texto y factores\n\nspecies &lt;- c(\"Bromus diandrus\", \"Bromus carinatus\", \"Bison bison\")\n\nkingdom &lt;- factor(c(\"Planta\", \"Planta\", \"Animal\"))"
   },
   {
+    "objectID": "AEMER-1-Presentacion_2.html#valores-lógicos-1",
+    "href": "AEMER-1-Presentacion_2.html#valores-lógicos-1",
+    "title": "Sesión 1: Introducción a R",
+    "section": "Valores lógicos",
+    "text": "Valores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#valores-lógicos-2",
+    "href": "AEMER-1-Presentacion_2.html#valores-lógicos-2",
+    "title": "Sesión 1: Introducción a R",
+    "section": "Valores lógicos",
+    "text": "Valores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE\n\n3 &gt; 5\n\n[1] FALSE"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#valores-lógicos-3",
+    "href": "AEMER-1-Presentacion_2.html#valores-lógicos-3",
+    "title": "Sesión 1: Introducción a R",
+    "section": "Valores lógicos",
+    "text": "Valores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE\n\n3 &gt; 5\n\n[1] FALSE\n\nx &lt;- 5\nx == 5\n\n[1] TRUE"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#valores-lógicos-4",
+    "href": "AEMER-1-Presentacion_2.html#valores-lógicos-4",
+    "title": "Sesión 1: Introducción a R",
+    "section": "Valores lógicos",
+    "text": "Valores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE\n\n3 &gt; 5\n\n[1] FALSE\n\nx &lt;- 5\nx == 5\n\n[1] TRUE\n\nx != 5\n\n[1] FALSE"
+  },
+  {
     "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos",
     "href": "AEMER-1-Presentacion_2.html#vectores-lógicos",
     "title": "Sesión 1: Introducción a R",
     "section": "Vectores lógicos",
-    "text": "Vectores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE"
+    "text": "Vectores lógicos\n\nx &lt;- 1:10\nx &lt; 5\n\n [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos-1",
     "href": "AEMER-1-Presentacion_2.html#vectores-lógicos-1",
     "title": "Sesión 1: Introducción a R",
     "section": "Vectores lógicos",
-    "text": "Vectores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE\n\n3 &gt; 5\n\n[1] FALSE"
+    "text": "Vectores lógicos\n\nx &lt;- 1:10\nx &lt; 5\n\n [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE\n\nx == 2\n\n [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos-2",
     "href": "AEMER-1-Presentacion_2.html#vectores-lógicos-2",
-    "title": "Sesión 1: Introducción a R",
-    "section": "Vectores lógicos",
-    "text": "Vectores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE\n\n3 &gt; 5\n\n[1] FALSE\n\nx &lt;- 5\nx == 5\n\n[1] TRUE\n\nx != 5\n\n[1] FALSE"
-  },
-  {
-    "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos-3",
-    "href": "AEMER-1-Presentacion_2.html#vectores-lógicos-3",
-    "title": "Sesión 1: Introducción a R",
-    "section": "Vectores lógicos",
-    "text": "Vectores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE\n\n3 &gt; 5\n\n[1] FALSE\n\nx &lt;- 5\nx == 5\n\n[1] TRUE"
-  },
-  {
-    "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos-4",
-    "href": "AEMER-1-Presentacion_2.html#vectores-lógicos-4",
-    "title": "Sesión 1: Introducción a R",
-    "section": "Vectores lógicos",
-    "text": "Vectores lógicos\nOperadores condicionales: &lt; &gt; &lt;= &gt;= == != %in%\n\n3 &lt; 5\n\n[1] TRUE\n\n3 &gt; 5\n\n[1] FALSE\n\nx &lt;- 5\nx == 5\n\n[1] TRUE\n\nx != 5\n\n[1] FALSE"
-  },
-  {
-    "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos-5",
-    "href": "AEMER-1-Presentacion_2.html#vectores-lógicos-5",
-    "title": "Sesión 1: Introducción a R",
-    "section": "Vectores lógicos",
-    "text": "Vectores lógicos\n\nx &lt;- 1:10\nx &lt; 5\n\n [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE"
-  },
-  {
-    "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos-6",
-    "href": "AEMER-1-Presentacion_2.html#vectores-lógicos-6",
-    "title": "Sesión 1: Introducción a R",
-    "section": "Vectores lógicos",
-    "text": "Vectores lógicos\n\nx &lt;- 1:10\nx &lt; 5\n\n [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE\n\nx == 2\n\n [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE"
-  },
-  {
-    "objectID": "AEMER-1-Presentacion_2.html#vectores-lógicos-7",
-    "href": "AEMER-1-Presentacion_2.html#vectores-lógicos-7",
     "title": "Sesión 1: Introducción a R",
     "section": "Vectores lógicos",
     "text": "Vectores lógicos\n\nx &lt;- 1:10\nx &lt; 5\n\n [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE\n\nx == 2\n\n [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n\nspecies == (\"Bromus diandrus\")\n\n[1]  TRUE FALSE FALSE"
@@ -893,7 +886,7 @@
     "href": "AEMER-1-Presentacion_2.html#matrices-2",
     "title": "Sesión 1: Introducción a R",
     "section": "Matrices",
-    "text": "Matrices\n\nA &lt;- matrix(data = 1:30, nrow = 6, ncol = 5)\nA"
+    "text": "Matrices\n\nA &lt;- matrix(data = 1:30, nrow = 6, ncol = 5)\nA\n\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    1    7   13   19   25\n[2,]    2    8   14   20   26\n[3,]    3    9   15   21   27\n[4,]    4   10   16   22   28\n[5,]    5   11   17   23   29\n[6,]    6   12   18   24   30"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#extrayendo-valores-de-matrices",
@@ -942,7 +935,7 @@
     "href": "AEMER-1-Presentacion_2.html#archivos-objetos-y-proyectos",
     "title": "Sesión 1: Introducción a R",
     "section": "Archivos, objetos y proyectos",
-    "text": "Archivos, objetos y proyectos\n\nLos tres son cosas diferentes en R…\n\n\n\n\nLos archivos son scripts (e.g., un archivo de texto) o archivos de datos (e.g., Excel) en el disco duro\nLos objetos son datos en la sesión de R. Sólo existen en la memoria temporal del ordenador\nUn proyecto es una carpeta con un montón de archivos y objetos de R\n\nEs recomendable usar una estructura de carpetas lógica\n\n\n\n\n\nCarpeta/\n\nDatos/\nFiguras/\nTablas/\nScript_1\nScript_2\nScript_3"
+    "text": "Archivos, objetos y proyectos\n\nLos tres son cosas diferentes en R…\n\n\n\n\nLos archivos son scripts (e.g., un archivo de texto) o archivos de datos (e.g., Excel) en el disco duro\nLos objetos son datos en la sesión de R. Sólo existen en la memoria temporal del ordenador\nUn proyecto es una carpeta con un montón de archivos y objetos de R\n\nEs recomendable usar una estructura de carpetas lógica\n\n\n\n\n\nCarpeta/\n\nDatos/\nFiguras/\nTablas/\nScript_1.R\nScript_2.R\nScript_3.R"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#entorno-sesión-o-environment-de-r",
@@ -991,7 +984,7 @@
     "href": "AEMER-1-Presentacion_2.html#scripts",
     "title": "Sesión 1: Introducción a R",
     "section": "Scripts",
-    "text": "Scripts\n\nArchivos de texto\nCon llamadas a funciones (código)\nOrdenado y secuencial:\n\nCargar datos\nModificar datos\nAnálisis de datos\nGuardar/trazar resultados\n\nPuede/debe contener comentarios legibles por humanos\n\nUsar # antes del comentario\n\n\n\nNo se manejan desde la consola de R, si no desde la interfaz de Rstudio."
+    "text": "Scripts\n\nArchivos de texto\nCon llamadas a funciones (código)\nOrdenado y secuencial:\n\nCargar datos\nModificar datos\nAnálisis de datos\nGuardar/trazar resultados\n\nPuede/debe contener comentarios legibles por humanos\n\nUsar # antes del comentario\n\n\n\n\n\n\n\n\nNote\n\n\nNo se manejan desde la consola de R, si no desde la interfaz de Rstudio."
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#seguimos-practicando",
@@ -999,13 +992,6 @@
     "title": "Sesión 1: Introducción a R",
     "section": "Seguimos practicando",
     "text": "Seguimos practicando\n\nEjercicios de clase\nParte 3"
-  },
-  {
-    "objectID": "AEMER-1-Presentacion_2.html#ejercicios-de-casa-homeworks",
-    "href": "AEMER-1-Presentacion_2.html#ejercicios-de-casa-homeworks",
-    "title": "Sesión 1: Introducción a R",
-    "section": "Ejercicios de casa (Homeworks)",
-    "text": "Ejercicios de casa (Homeworks)\n\nEn la web de la asignatura (enlace en Moodle)\nEntregar antes de la siguiente clase"
   },
   {
     "objectID": "AEMER-2-Ejercicios.html",
