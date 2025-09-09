@@ -3,6 +3,10 @@ title: "Análisis Espaciales y Multivariantes en R (AEMeR) aplicados a estudios 
 lightbox: auto
 ---
 
+Carga lectiva: 24h (6 sesiones de 4 horas)
+
+Fechas: 10, 17 y 24 de septiembre, y 1, 8 y 15 de octubre de 2025 de 16 a 20h.
+
 Esta es la web con los materiales del curso:
 
 * **Tema 1:** Introducción a R. [Presentación](AEMER-1_Intro.pdf){target="_blank"} - [Ejercicios](AEMER-1-Ejercicios.qmd){target="_blank"} - [Abundance.csv](data/Abundance.csv){target="_blank"}
