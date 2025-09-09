@@ -14,6 +14,14 @@ lightbox: auto
 editor: source
 ---
 
+<style>
+.slide-background {
+  background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.75)), url("img/Tema_1/Código.png");
+  background-size: cover;
+}
+</style>
+
+
 # El plan del curso...
 
 ---
@@ -45,17 +53,20 @@ frecuentes?
   + ¿Qué son los Modelos Jerárquicos de Comunidades de Especies?
   + ¿Cómo se calibran los HMSC en R?
 
-<style>
-.slide-background {
-  background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), url("img/Tema_1/Código.png");
-  background-size: cover;
-}
-</style>
 
+## ¿Qué es R?
 
-## ¿Qué es R? {.slide-background}
+:::: {.columns}
 
+::: {.column width="30%"}
 R es un lenguaje de programación estadística
+:::
+
+::: {.column width="70%"}
+![](img/Tema_1/RStudio_GUI.png)
+:::
+
+::::
 
 ## ¿Por qué usar R?
 
