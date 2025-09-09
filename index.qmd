@@ -13,3 +13,6 @@ Esta es la web con los materiales del curso:
 
 
 Para saber más sobre páginas web creadas con Quarto visita <https://quarto.org/docs/websites>.
+
+
+Este curso está promovido en el marco del convenio ceiA3 con Banco Santander Universidades. CEI financiado por el Gobierno de España y la Junta de Andalucía en el programa del Marco del Programa Campus de Excelencia Universitaria. ![https://www.ceia3.es/formacion/formacion-especializada/](img/logos.png){height=2in}
