@@ -694,3 +694,360 @@ No se manejan desde la consola de R, si no desde la interfaz de Rstudio.
 * Ejercicios de clase
 * Parte 3
 
+# Paquetes en R
+
+## ¿Qué son los paquetes en R?
+
+Conjuntos de funciones para un objetivo concreto
+
+![](img/Tema_1/Pestaña_paquetes.png)
+
+## ¿Donde se encuentran esos paquetes?
+
+Se encuentran recopilados en un repositorio llamado CRAN (Comprehensive R Archive Network)
+
+![](img/Tema_1/CRAN.png)
+
+
+## ¿Cómo instalo paquetes de CRAN?
+
+```{r}
+#| echo: false
+
+r = getOption("repos")
+r["CRAN"] = "http://cran.es.r-project.org"
+options(repos = r)
+```
+
+```{r}
+#| echo: true
+
+install.packages("openxlsx")
+```
+
+
+## ¿Cómo uso las funciones de una librería? {.smaller}
+
+Tienes dos opciones, dependiendo de si...
+
+* Vas usar sus funciones de forma continuada
+* Sólo quieres usar una función de forma puntual
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Uso intensivo de sus funciones
+library(openxlsx)
+read.xlsx()
+write.xlsx()
+
+# Uso puntual de una función
+openxlsx::read.xlsx()
+```
+
+
+## ¿Puedo encontrar paquetes en algún otro sitio? {.smaller}
+
+Si. Puedes encontrar paquetes sin organizar en internet. Algunos sitios frecuentes son GitHub, GitLab, o similares.
+
+![](img/Tema_1/GitHub.png)
+
+
+## ¿Cómo puedo instalar paquetes de GitHub?
+
+```{r}
+#| echo: true
+
+install.packages("devtools")
+library(devtools)
+
+install_github("colearendt/xlsx")
+## o
+devtools::install_github("colearendt/xlsx")
+```
+
+
+# Graficado
+
+## Generación de gráficos nuevos {.smaller}
+
+`plot()` es una función genérica que funciona con muchos objetos diferentes
+
+```{r}
+#| echo: true
+
+# plot(x, y)
+plot(5, 1)
+```
+
+
+# También con funciones specíficas para gráficos concretos...
+
+## Histogramas 
+
+```{r}
+#| echo: true
+
+x <- rnorm(10, 5, 3)
+
+hist(x)
+```
+
+
+## Gráficas de barras 
+
+```{r}
+#| echo: true
+
+x <- rnorm(10, 5, 3)
+names(x) <- paste0("tr_", 1:10)
+
+barplot(x)
+```
+
+
+## Gráficas de barras apiladas o paralelas
+
+```{r}
+#| echo: true
+
+x <- matrix(rnorm(30, 5, 3), nrow = 3, ncol = 10)
+colnames(x) <- paste0("tr_", 1:10)
+rownames(x) <- c("high", "med", "low")
+
+barplot(x, legend = TRUE)
+```
+
+
+## Boxplots
+
+```{r}
+#| echo: true
+
+x <- rnorm(30, 5, 3)
+y <- rep(c("high", "med", "low"), 10)
+dat <- data.frame(size = x, group = y)
+
+boxplot(size ~ group, dat)
+```
+
+
+## Puedo pasarle múltiples valores
+
+```{r}
+#| echo: true
+
+x <- 1:10
+y <- 10:1
+
+plot(x, y)
+```
+
+
+## Puedo pasarle múltiples valores
+
+```{r}
+#| echo: true
+
+x <- 1:10
+y <- 10:1
+
+plot(x, y, main = "A plot", xlab = "Temperature",
+	ylab = "Pirates")
+```
+
+
+## Puedo cambiar la conexión entre puntos...
+
+```{r}
+#| output-location: column
+#| results: hold
+#| echo: true
+#| fig-width: 6
+#| fig-height: 5
+
+x <- 1:10
+y <- 10:1
+
+par(mfrow = c(2, 3))
+plot(x, y)
+plot(x, y, type = "l")
+plot(x, y, type = "b")
+plot(x, y, type = "h")
+plot(x, y, type = "o")
+plot(x, y, type = "s")
+```
+
+
+## ... pero cuidado con el orden de los datos
+
+```{r}
+#| output-location: column
+#| results: hold
+#| echo: true
+#| fig-width: 6
+#| fig-height: 5
+
+x <- sample(1:10, 10)
+y <- sample(1:10, 10)
+
+par(mfrow = c(2, 3))
+plot(x, y)
+plot(x, y, type = "l")
+plot(x, y, type = "b")
+plot(x, y, type = "h")
+plot(x, y, type = "o")
+plot(x, y, type = "s")
+```
+
+
+## Puedo cambiar el tipo de puntos
+
+```{r}
+#| output-location: column
+#| results: hold
+#| echo: true
+#| fig-width: 4
+#| fig-height: 6
+
+x <- 1:10
+
+par(mfrow = c(3, 1))
+plot(x, rep(1, 10))
+plot(x, rep(1, 10), pch = 2)
+plot(x, rep(1, 10), pch = 1:10)
+```
+
+
+## Puedo cambiar el tamaño de puntos
+
+```{r}
+#| output-location: column
+#| results: hold
+#| echo: true
+#| fig-width: 4
+#| fig-height: 6
+
+x <- 1:10
+y <- 1:10
+
+par(mfrow = c(3, 1))
+plot(x, y)
+plot(x, y, cex = 2)
+plot(x, y, 
+     cex = seq(1, 3, 
+               length.out = 10))
+```
+
+
+## Puedo cambiar los colores {.smaller}
+
+* Usando el nombre
+* Usando funciones para generar colores
+
+```{r}
+#| output-location: column
+#| results: hold
+#| echo: true
+#| fig-width: 5
+#| fig-height: 6
+
+x <- rep(1:10, 10)
+y <- rep(1:10, each = 10)
+
+par(mfrow = c(2, 2))
+plot(x, y, pch = 15)
+plot(x, y, pch = 15,
+     col = "dark green")
+plot(x, y, pch = 15,
+     col = "#352575")
+plot(x, y, pch = 15,
+     col = rgb(0.8,0.1,0.2))
+```
+
+
+## Muchas más opciones en la función `par()`
+
+70 opciones diferentes para controlar los gráficos!
+
+```{r}
+#| echo: true
+#| eval: false
+
+?par
+```
+
+## Añadiendo información a gráficos existentes
+
+* `points(x, y)` añade puntos a gráficos (opciones similares a `plot()`)
+ 
+* `segments(x0, y0, x1, y1)` añade líneas, desde un punto a otro
+
+* `polygon(x, y)` añade polígonos
+
+
+## Guardando gráficos en el disco duro
+
+```{r}
+#| echo: true
+
+x <- rep(1:10, 10)
+y <- rep(1:10, each = 10)
+
+pdf("figures/Figure_1.pdf") 
+
+plot(x, y, pch = 15, cex = 2, col = rgb(0.8, 0.1, 0.2))
+
+dev.off()
+
+```
+
+
+## Algunos ejemplos de figuras
+
+![](img/Tema_1/Example_figures.png)
+
+
+## ¿Como visualizo cuando tengo grandes cantidades de datos?
+
+```{r}
+#| output-location: column
+#| results: hold
+#| echo: true
+
+x <- rnorm(20000)
+y <- rnorm(20000)
+
+plot(x, y)
+
+```
+
+
+## ¿Como visualizo cuando tengo grandes cantidades de datos?
+
+```{r}
+#| output-location: column
+#| results: hold
+#| echo: true
+
+install.packages("hexbin") 
+library(hexbin)
+
+hbin <- hexbin(x, y, xbins = 40)
+
+plot(hbin)
+```
+
+
+## Vamos a practicar
+
+* Ejercicios de clase
+
+
+## Ejercicios de casa (Homeworks)	
+
+* En la web de la asignatura (enlace en Moodle)
+* Entregar antes de la siguiente clase
+
+

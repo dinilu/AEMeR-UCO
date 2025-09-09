@@ -21,6 +21,8 @@ Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ell
 #| echo: true
 #| eval: false
 
+# PARTE 1
+
 # Ejercicio 1. Ejecuta las dos líneas de código siguientes y explica que resultado dan y por qué.
 
 seq(1, 40, by = 2)
@@ -32,7 +34,7 @@ seq(1, 40, by = -2)
 
 # Parte 1: Trabajando con vectores
 
-**1. Como muchas funciones en R, `seq()` es flexible y puede trabajar de formas muy diferentes. Merece la pena entender cómo y porqué funciona de la forma en la que lo hace. Prueba los siguientes comandos:**
+**Ejercicio 1. Como muchas funciones en R, `seq()` es flexible y puede trabajar de formas muy diferentes. Merece la pena entender cómo y porqué funciona de la forma en la que lo hace. Prueba los siguientes comandos:**
 
 ```{r, eval = FALSE}
 seq()
@@ -48,7 +50,7 @@ seq(from = 5, to = 1, by = 2)
 > ¿Tienen sentido el resultado de todos estos comandos?
 
 
-**2. Fijaros que se pueden pasar argumentos a una función en R ya sea por su nombre (por ejemplo, `to = 5` o `by = 0.1`), o simplemente colocando los parámetros en el orden correcto. La función `seq` espera que le des argumentos en el orden `from`, `to` y `by`. Puedes averiguarlo revisando el archivo de ayuda ejecutando el código `?seq`. En caso de duda, es más seguro especificar argumentos por su nombre, en cuyo caso cualquier orden está bien. Puedes probar por ejemplo con los siguientes comandos:**
+**Ejercicio 2. Fijaros que se pueden pasar argumentos a una función en R ya sea por su nombre (por ejemplo, `to = 5` o `by = 0.1`), o simplemente colocando los parámetros en el orden correcto. La función `seq` espera que le des argumentos en el orden `from`, `to` y `by`. Puedes averiguarlo revisando el archivo de ayuda ejecutando el código `?seq`. En caso de duda, es más seguro especificar argumentos por su nombre, en cuyo caso cualquier orden está bien. Puedes probar por ejemplo con los siguientes comandos:**
 
 ```{r}
 seq(4, 8, 1)
@@ -58,7 +60,7 @@ seq(to = 8, by = 1, from = 4)
 
 > ¿Se interpretan y devuelven el mismo resultado todos estos comandos?
 
-**3. Si se está interesado en generar una secuencia entera, a menudo es más rápido usar un operador (un símbolo reservado para una tarea especial). Aquí, podríamos generar la secuencia anterior usando el operador `:`.**
+**Ejercicio 3. Si se está interesado en generar una secuencia entera, a menudo es más rápido usar un operador (un símbolo reservado para una tarea especial). Aquí, podríamos generar la secuencia anterior usando el operador `:`.**
 
 ```{r}
 4:8
@@ -66,7 +68,7 @@ seq(to = 8, by = 1, from = 4)
 
 > Otros operadores comunes son `+`, `-`, `*`, `/`, `^`, entre otros. Prueba todos ellos y explica que hace cada uno.
 
-**4. Usa `seq()` y `c()` para crear un vector llamado `a` que contenga los enteros del 1 al 10, seguido de los enteros pares del 20 al 30, seguidos de los múltiplos de 5 del 150 al 100 (cuenta regresiva).**
+**Ejercicio 4. Usa `seq()` y `c()` para crear un vector llamado `a` que contenga los enteros del 1 al 10, seguido de los enteros pares del 20 al 30, seguidos de los múltiplos de 5 del 150 al 100 (cuenta regresiva).**
 
 > ¿Cuál es el decimocuarto elemento del vector "a"?
 
@@ -79,7 +81,7 @@ Aquí deberás usar primero la función `seq()` para generar las secuencias que 
 > Usa `length()` para averiguar la longitud de `a` y en una sola línea de código R encuentra los elementos 2º, 23º y 10º de `a`, en ese mismo orden.
 
 
-**5. Crea cuatro vectores diferentes. El primero llamado "nombres" con los nombres de 15 personas ficticias. El segundo llamado "sexo" con el sexo biológico de esas mismas 15 personas ficticias. El tercero llamado "peso" con el peso en kilogramos de cada una de esas 15 personas. Finalmente, el cuarto vector llamado "altura" deberá tener la estatura en metros de cada uno de ellos. Tened en cuenta, que los 4 vectores se ordenarán de forma correlativa: El primer peso que especifiquéis en el vector "peso" corresponderá al peso de la persona cuyo nombre aparezca en primera posición en el vector "nombres". Una vez que hayas creado los cuatro vectores, calcula el índice de masa corporal (IMC), usando la siguiente fórmula: IMC = peso / estatura\^2. Con esta información crear un vector con los nombres de las personas que hayan obtenido un IMC superior a 25.**
+**Ejercicio 5. Crea cuatro vectores diferentes. El primero llamado "nombres" con los nombres de 15 personas ficticias. El segundo llamado "sexo" con el sexo biológico de esas mismas 15 personas ficticias. El tercero llamado "peso" con el peso en kilogramos de cada una de esas 15 personas. Finalmente, el cuarto vector llamado "altura" deberá tener la estatura en metros de cada uno de ellos. Tened en cuenta, que los 4 vectores se ordenarán de forma correlativa: El primer peso que especifiquéis en el vector "peso" corresponderá al peso de la persona cuyo nombre aparezca en primera posición en el vector "nombres". Una vez que hayas creado los cuatro vectores, calcula el índice de masa corporal (IMC), usando la siguiente fórmula: IMC = peso / estatura\^2. Con esta información crea un vector con los nombres de las personas que hayan obtenido un IMC superior a 25.**
 
 ::: {.callout-tip collapse="true"}
 ## Pista
@@ -87,9 +89,9 @@ Aquí deberás usar primero la función `seq()` para generar las secuencias que 
 Aquí tendrás que combinar el uso de varias funciones. Por un lado los operadores condicionales (`<`, `<=`, `>`, `>=`, `==`, `!=`...) permiten realizar una comprobación sobre todos los valores de un vector. El resultado es un vector de valores lógicos (`TRUE` o `FALSE`) dependiendo de si cada elemento cumple la condición, o no. Posteriormente, podrás usar la función `which()`, que al pasarle un vector de valores lógicos, nos dice que posiciones de dicho vector son `TRUE`. Esto nos permite generar un índice, al que solemos llamar `i`, con las posiciones de los valores que nos interesan. Una vez que tengas ese índice, sólo necesitas usarlo dentro de un corchete (`[]`) para extraer los valores de las posiciones de interés.
 :::
 
-# Parte 2: Trabajando con matrices, data.frames y listas
+# Parte 2: Trabajando con matrices y data.frames
 
-**1. Crea una matriz llamada "A" que tenga 12 filas y 8 columnas, donde cada elemento en la matriz sea un número diferente generado aleatoriamente de una distribución normal con una media de 3 y una desviación estándar de 2. Establece una nueva variable "b" que sea igual al elemento en la quinta fila y la sexta columna de "A".**
+**Ejercicio 1. Crea una matriz llamada "A" que tenga 12 filas y 8 columnas, donde cada elemento en la matriz sea un número diferente generado aleatoriamente de una distribución normal con una media de 3 y una desviación estándar de 2. Establece una nueva variable "b" que sea igual al elemento en la quinta fila y la sexta columna de "A".**
 
 > Tened en cuenta que, una vez que se establece, "b" es independiente de "A". Mantendrá su valor como esté definido, incluso si los elementos de "A" cambian posteriormente.
 
@@ -105,15 +107,6 @@ Aquí necesitas usar la función `matrix()`. Esta función admite una serie de v
 ## Pista
 
 Aquí deberás usar la función `data.frame()`. Esta función acepta como argumentos vectores con un nombre. La forma de especificarlos es la siguiente: `data.frame(nombre = vector)`. Puedes especificar tantos argumentos como necesites: `data.frame(nombre1 = vector1, nombre2 = vector2, nombre3 = vector3)`. Recuerda que para extraer la información de las columnas de un *data frame*, puedes usar tanto corchetes (`[]`), como `$`. 
-:::
-
-
-**3. Crea 10 matrices como "A", pero con diferentes valores (solo tendrás que ejecutar 10 veces el mismo comando) y guarda cada una de ellas como un elemento dentro de una lista, llamada "matrix_list".**
-
-::: {.callout-tip collapse="true"}
-## Pista
-
-Aquí deberás usar la función `list()`, la cual acepta también múltiples argumentos. Cada argumento es un objeto de la sesión de R, con un nombre. En este sentido funciona parecido a `data.frame()`, pero a diferencia de esta, los objetos no tienen que ser todos vectores de la misma longitud. Si no que cada objeto puede ser de una clase y tipo diferente.
 :::
 
 
