@@ -95,7 +95,7 @@ a <- 10
 10 -> a
 ```
 
-:::{callout-note}
+:::{.callout-note}
 Estas tres líneas hacen lo mismo
 :::
 
@@ -239,7 +239,7 @@ digraph {
 }
 ```
 
-:::{callout-note}
+:::{.callout-note}
 Las opciones en realidad también son objetos. El número de objetos que requiere una función se conocen como argumentos
 :::
 
@@ -285,7 +285,7 @@ help(mean)
 
 ## Los objetos pueden tener muchos datos organizados en dimensiones
 
-![](img/Tema1/objetos_1.png)
+![](img/Tema_1/objetos_1.png)
 
 
 ## Vectores numéricos
@@ -404,7 +404,7 @@ a[seq(2, 4)]
 
 ## Los objetos pueden tener muchos datos organizados en dimensiones
 
-![](img/Tema1/objetos_1.png)
+![](img/Tema_1/objetos_1.png)
 
 
 ## Matrices
@@ -457,7 +457,7 @@ A[c(1:3), 4]
 
 ## ¿Pueden los objetos mezclar tipos de datos?
 
-![](img/Tema1/objetos_2.png)
+![](img/Tema_1/objetos_2.png)
 
 
 ## *Data frame*
