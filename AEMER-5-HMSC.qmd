@@ -1,0 +1,334 @@
+---
+title: "Modelos Jerárquicos de Comunidades de Especies en R"
+subtitle: "Hierarchical Models of Species Communities (HMSC)"
+author: "Diego Nieto Lugilde"
+date: 10/18/2024
+institute: "Universidad de Córdoba (España)"
+slide-number: true
+format:
+  revealjs:
+    logo: img/logos.png
+    footer: "[AEMeR](https://dnietolugilde.com/AEMeR)"
+    scrollable: true
+    chalkboard: true
+include-in-header: 
+  text: |
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+lightbox: auto
+editor: source
+---
+
+## Cargamos algunos datos
+
+```{r}
+#| echo: true
+
+library(openxlsx)
+env <- read.xlsx("data/sciberras_ambiente.xlsx", sheet = 1, rowNames = TRUE)
+com <- read.xlsx("data/sciberras_especies.xlsx", sheet = 1, rowNames = TRUE)
+```
+
+## Preparamos un poco los datos
+
+```{r}
+#| echo: true
+
+comm <- as.matrix(com)
+
+envm <- scale(env[, 4:7])
+envm <- as.data.frame(envm)
+
+sites <- env[, 1:3]
+```
+
+## Simulamos unos datos filogenéticos
+
+```{r}
+#| echo: true
+
+phy <- ape::rcoal(n = ncol(comm), 
+                 tip.label = colnames(comm), 
+                 br = "coalescent")
+plot(phy, no.margin = TRUE)
+```
+
+## Definimos el diseño experimental
+
+```{r}
+#| echo: true
+
+library(Hmsc)
+studyDesign <- data.frame(rio = as.factor(sites$rio),
+                         mes = as.factor(sites$mes))
+rioL <- HmscRandomLevel(units = levels(sites$rio))
+mesL <- HmscRandomLevel(units = levels(sites$mes))
+
+rioL$nfMin <- 2
+mesL$nfMin <- 2
+```
+
+## Especificamos la estructura del modelo
+
+```{r}
+#| echo: true
+
+m0 <- Hmsc(Y = comm, 
+         XData = envm, 
+         XFormula = ~1,
+         studyDesign = studyDesign, 
+         ranLevels = list(rio = rioL, mes = mesL),
+         distr = "lognormal poisson")
+
+m1 <- Hmsc(Y = comm, 
+           XData = envm,
+           XFormula = ~materia_org + poly(temperatura ,degree = 2, raw = TRUE) + salinidad + ph,
+           distr = "lognormal poisson")
+
+
+m_env <- Hmsc(Y = comm, 
+          XData = envm,
+          XFormula = ~materia_org + poly(temperatura ,degree = 2, raw = TRUE)  + salinidad + ph,
+          studyDesign = studyDesign, 
+          ranLevels = list(rio = rioL, mes = mesL),
+          distr = "lognormal poisson")
+
+m_env_phy <- Hmsc(Y = comm,
+         XData = envm, 
+         XFormula = ~materia_org + poly(temperatura ,degree = 2, raw = TRUE)  + salinidad + ph,
+         phyloTree = phy,
+         studyDesign = studyDesign, 
+         ranLevels = list(rio = rioL, mes = mesL),
+         distr = "lognormal poisson")
+```
+
+## Definimos los parámetros para las Cadenas de Markov Monte Carlo
+
+```{r}
+#| echo: true
+
+samples <- 100 # Este valor debería ser más alto. Del orden de 100000 hacia arriba.
+thin <- 1 # Este valor también suele ser más alto. Del orden de 50-100 hacia arriba.
+transient <- 500*thin
+nChains <- 4
+```
+
+## Se calibran y estiman los parámetros del modelos con las MCMC
+
+```{r}
+#| echo: true
+
+m0 <- sampleMcmc(m0, 
+               thin = thin, 
+               samples = samples, 
+               transient = transient, 
+               nChains = nChains, 
+               nParallel = nChains)
+m1 <- sampleMcmc(m1, 
+               thin = thin, 
+               samples = samples, 
+               transient = transient, 
+               nChains = nChains, 
+               nParallel = nChains)
+m_env <- sampleMcmc(m_env, 
+               thin = thin, 
+               samples = samples, 
+               transient = transient, 
+               nChains = nChains, 
+               nParallel = nChains)
+m_env_phy <- sampleMcmc(m_env_phy, 
+               thin = thin, 
+               samples = samples, 
+               transient = transient, 
+               nChains = nChains, 
+               nParallel = nChains)
+```
+
+## Convertimos los resultados en objetos CODA, son un tipo de datos de análisis bayesianos en R
+
+```{r}
+#| echo: true
+
+mpost_m0 <- convertToCodaObject(m0)
+mpost_m1 <- convertToCodaObject(m1)
+mpost_m_env <- convertToCodaObject(m_env)
+mpost_m_env_phy <- convertToCodaObject(m_env_phy)
+```
+
+## Calculamos dos estadísticos de calibración de MCMC
+
+```{r}
+#| echo: true
+
+es_m0 <- effectiveSize(mpost_m0$Beta)
+es_m1 <- effectiveSize(mpost_m1$Beta)
+es_m_env <- effectiveSize(mpost_m_env$Beta)
+es_m_env_phy <- effectiveSize(mpost_m_env_phy$Beta)
+```
+
+```{r}
+#| echo: true
+
+gd_m0 <- gelman.diag(mpost_m0$Beta, multivariate=FALSE)$psrf
+gd_m_env <- gelman.diag(mpost_m_env$Beta, multivariate=FALSE)$psrf
+gd_m_env_phy <- gelman.diag(mpost_m_env_phy$Beta, multivariate=FALSE)$psrf
+```
+
+## Dibujamos las gráficas de esos dos parámetros
+
+Effective size debería estar entorno al número de muestras de las MCMC (samples * nChains). El diagnóstico de Gelman debería estar entorno a 1.
+
+```{r}
+#| echo: true
+
+par(mfrow=c(3,2))
+hist(es_m0, main="ess(beta)")
+hist(gd_m0, main="psrf(beta)")
+hist(es_m_env, main="ess(beta)")
+hist(gd_m_env, main="psrf(beta)")
+hist(es_m_env_phy, main="ess(beta)")
+hist(gd_m_env_phy, main="psrf(beta)")
+```
+
+## ... lo mismo pero con los valores de Omega, que son los coeficientes de interacciones entre especies
+
+```{r}
+#| echo: true
+
+par(mfrow=c(3,2))
+hist(effectiveSize(mpost_m0$Omega[[1]]), main="ess(omega)")
+hist(gelman.diag(mpost_m0$Omega[[1]], multivariate=FALSE)$psrf, main="psrf(omega)")
+hist(effectiveSize(mpost_m_env$Omega[[1]]), main="ess(omega)")
+hist(gelman.diag(mpost_m_env$Omega[[1]], multivariate=FALSE)$psrf, main="psrf(omega)")
+hist(effectiveSize(mpost_m_env_phy$Omega[[1]]), main="ess(omega)")
+hist(gelman.diag(mpost_m_env_phy$Omega[[1]], multivariate=FALSE)$psrf, main="psrf(omega)")
+```
+
+## Tambien podemos dibujar algunas de las cadenas para visulizar su forma y ver si se han estabilizado
+
+```{r}
+#| echo: true
+
+plot(mpost_m0$Beta[[1]][,2])
+```
+
+## Para evaluar el modelo en términos de la distribución/abundancia de las especies, debemos hacer predicciones primero.
+
+```{r}
+#| echo: true
+
+preds_m0 <- computePredictedValues(m0)
+evaluateModelFit(hM = m0, predY = preds_m0)
+```
+```{r}
+#| echo: true
+
+preds_m1 <- computePredictedValues(m1)
+evaluateModelFit(hM = m1, predY = preds_m1)
+```
+
+```{r}
+#| echo: true
+
+preds_m_env <- computePredictedValues(m_env)
+evaluateModelFit(hM = m_env, predY = preds_m_env)
+```
+
+```{r}
+#| echo: true
+
+preds_m_env_phy <- computePredictedValues(m_env_phy)
+evaluateModelFit(hM = m_env_phy, predY = preds_m_env_phy)
+```
+
+## También es posible realizar evaluación por validación cruzada
+
+```{r}
+#| echo: true
+
+partition_env <- createPartition(m_env, nfolds = 4)
+preds_m_env = computePredictedValues(m_env, 
+                               partition = partition_env,
+                               nParallel = nChains)
+
+evaluateModelFit(hM = m_env, predY = preds_m_env)
+```
+
+## Una vez que tengamos un modelo sólido. Nos interesa ver que papel juegan las variables ambientales en las especies/comunidades.
+
+```{r}
+#| echo: true
+
+postBeta <- getPostEstimate(m_env, parName = "Beta")
+plotBeta(m_env, 
+         post = postBeta, 
+         param = "Support", 
+         supportLevel = 0.9)
+```
+
+## También podemos ver su relación con la información filogenética, si la hemos incluido en el modelo
+
+```{r}
+#| echo: true
+
+postBeta <- getPostEstimate(m_env_phy, parName = "Beta")
+plotBeta(m_env_phy, 
+         post = postBeta, 
+         param = "Support", 
+         supportLevel = 0.9,
+         plotTree = TRUE)
+```
+
+## Otro aspecto importante/novedoso es estimar las correlaciones entre especies
+
+```{r}
+#| echo: true
+
+library(corrplot)
+OmegaCor <- computeAssociations(m_env)
+supportLevel <- 0.95
+toPlot <- ((OmegaCor[[1]]$support > supportLevel) +
+           (OmegaCor[[1]]$support < (1-supportLevel)
+            ) > 0) * OmegaCor[[1]]$mean
+corrplot(toPlot)
+```
+
+## Cuando especificamos un modelo sin variables ambientales, estamos haciendo un modelo "unconstrained" o indirecto. Por lo que se puede usar para generar gráficos de ordenación.
+
+```{r}
+#| echo: true
+
+etaPost <- getPostEstimate(m0, "Eta")
+lambdaPost <- getPostEstimate(m0, "Lambda")
+biPlot(m0, 
+       etaPost = etaPost, 
+       lambdaPost = lambdaPost, 
+       factors = c(1,2), 
+       "ph")
+```
+
+## En este tipo de modelos, la importancia de cada variable se mide en términos de variación explicada y se calcula con análisis de particionado de la varianza
+
+```{r}
+#| echo: true
+
+VP = computeVariancePartitioning(m_env)
+plotVariancePartitioning(m_env, VP = VP)
+```
+
+## Como en los Modelos de Distribución de Especies, podemos calcular curvas de respuesta de cada especie/comunidad a las variables ambientales
+
+```{r}
+#| echo: true
+
+Gradient = constructGradient(m1, focalVariable = "temperatura",
+non.focalVariables = list("habitat"=list(3,"open")))
+Gradient$XDataNew
+
+predY <- predict(m1, 
+                XData=Gradient$XDataNew, 
+                studyDesign=Gradient$studyDesignNew,
+                ranLevels=Gradient$rLNew, 
+                expected=TRUE)
+plotGradient(m1, Gradient, pred=predY, measure="S")
+plotGradient(m1, Gradient, pred=predY, measure="Y", index = 3)
+```

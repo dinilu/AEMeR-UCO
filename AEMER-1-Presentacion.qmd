@@ -1,0 +1,684 @@
+---
+title: "Sesión 1: Introducción a R"
+subtitle: "Análisis Espaciales y Multivariantes en R"
+author: "Diego Nieto Lugilde"
+institute: "Programa de Doctorado Recursos Naturales y Gestión Sostenible"
+slide-number: true
+format:
+  revealjs:
+    logo: img/R-logo.png
+    footer: "[Análisis Espaciales y Multivariantes en R](https://dnietolugilde.com/AEMeR-UCO)"
+    scrollable: true
+    chalkboard: true
+lightbox: auto
+editor: source
+---
+
+# El plan del curso...
+
+---
+
+* Sesión 1: Introducción a R y programación
+  + La estructura de R
+  + Funciones, objetos y programación básica
+  + Entorno (sesión de R) y directorio de trabajo
+  + Trabajar con archivos (scripts y datos)
+  + Instalación de paquetes
+  + CRAN
+  + GitHub
+  + Graficado
+* Sesión 2: Manejo de datos espaciales en R.
+  + Introducción a los datos espaciales
+  + Manejando datos espaciales 
+  + Manejando datos vectoriales
+  + Manejando datos raster
+  + Graficando datos espaciales
+* Sesión 3: Análisis multivariantes en R
+  + ¿Qué son los análisis multivariantes?
+  + ¿Cuáles son los análisis multivariantes más
+frecuentes?
+  + ¿Cómo se realizan en R?
+* Sesión 4: Modelos generalizados de disimilitud
+  + ¿Cómo funcionan los modelos generalizados de disimilitud?
+  + ¿Cómo se calibran los GDM en R?
+* Sesión 5: Modelos jerarquicos de comunidades de especies.
+  + ¿Qué son los Modelos Jerárquicos de Comunidades de Especies?
+  + ¿Cómo se calibran los HMSC en R?
+
+
+## ¿Qué es R?
+:::: {.columns}
+
+::: {.column}
+R es un lenguaje de programación estadística
+:::
+
+::: {.column}
+![](img/Tema_1/Código.png)
+:::
+
+::::
+
+## ¿Por qué usar R?
+
+* Scripts
+	+ Documentado
+	+ Reproducible
+* Flexible
+* Libre (i.e. gratis y libre)
+* Muchas extensiones disponibles
+* Enorme soporte de la comunidad
+	+ Foros
+	+ Tutoriales
+  + …
+
+
+# RStudio
+
+Interfaz gráfica
+
+
+# R
+
+La línea de comandos
+  
+  
+## La estructura de R
+
+* **Funciones:** ¿qué deseas hacer?
+* **Objetos:** ¿con qué o sobre qué quieres hacerlo?
+
+```{r}
+#| echo: true
+
+sqrt(16)
+```
+
+:::{.callout-note}
+Aquí, 16 es el objeto sobre el que aplicamos la función `sqrt()` (raíz cuadrada)
+:::
+
+## La estructura de R
+
+```{dot}
+digraph {
+
+  Objeto -> Función 
+  Función -> "Nuevo objeto"
+
+  Función [shape=diamond];
+  rankdir="LR";
+}
+```
+
+  
+## Llamar a una función
+
+* *Call*: Una función con un conjunto particular de objetos
+  + función( argumento 1 )
+
+```{r}
+#| echo: true
+
+sqrt(16)
+```
+
+:::{.callout-note}
+El resultado de la función se imprime directamente en pantalla
+:::
+
+
+## Asignación de valores a objetos
+
+* *Assign*: Una función especial para crear/modificar un objeto
+  + Valor específico
+  + El resultado de una llamada a una función
+  
+```{r}
+#| echo: true
+
+x <- 2
+```
+
+:::{.callout-note}
+Fijaros que el resultado no se imprime en pantalla como antes
+:::
+
+
+```{r}
+#| echo: true
+
+x
+```
+
+
+## Múltiples asignaciones para crear objetos
+
+```{r}
+#| echo: true
+
+a = 10
+
+a <- 10
+
+10 -> a
+```
+
+:::{callout-note}
+Estas tres líneas hacen lo mismo
+:::
+
+
+# ¿Qué información puede contener un objeto?
+
+## Números de cualquier tipo
+
+* 0, 0.2, Inf
+
+```{r}
+#| echo: true
+
+numeric_object <- 0.5
+```
+
+
+## Caracteres (texto)
+
+* Texto libre
+
+```{r}
+#| echo: true
+
+character_object <- "Bromus diandrus"
+```
+
+:::{.callout-warning}
+Las cadenas de texto se ponen entre comillas para poder usar espacios y para distinguirlos de los objetos
+:::
+
+
+## Valores lógicos
+
+* TRUE (T), FALSE (F)
+
+```{r}
+#| echo: true
+
+logical_object <- TRUE
+```
+
+
+## Factores
+
+* Categorías (e.g., "Planta", "Animal", "Hongo")
+
+```{r}
+#| echo: true
+
+factor_object <- factor("Plant")
+```
+
+
+## No data
+
+* NA
+
+
+```{r}
+#| echo: true
+
+na_object <- NA
+```
+
+
+## ¿Qué hace interesantes a los objetos?
+
+* Entidad con información
+* Se puede reutilizar tantas veces como se quiera
+* Pertenece a una clase, lo que le dota de propiedades propias
+* Cada clase tiene una estructura propia
+
+
+## *class()* te dice la clase de un objeto
+
+```{r}
+#| echo: true
+#| eval: false
+
+class(numeric_object)
+class(logical_object)
+class(factor_object)
+class(character_object)
+class("x")
+class(x)
+```
+
+
+## ¿Cómo se reutilizan los objetos?
+
+```{r}
+#| echo: true
+
+a <- a + 1
+b <- a * a
+x <- sqrt(b)
+x
+```
+
+
+## Muchas funciones aceptan varios objetos
+
+```{dot}
+digraph {
+
+  Objeto1 -> Función 
+  Objeto2 -> Función
+  Objeto3 -> Función
+  Función -> "Nuevo objeto"
+
+  Función [shape=diamond];
+  rankdir="LR";
+}
+```
+
+
+## Se pasan varios objetos a las funciones separados por comas
+
+```{r}
+#| echo: true
+
+sum(15, 16, 17, 24, 10)
+```
+
+
+## Algunos objetos no son datos, si no opciones que modifican el comportamiento de las funciones
+
+```{dot}
+digraph {
+
+  Objeto1 -> Función 
+  Objeto2 -> Función
+  Objeto3 -> Función
+  Función -> "Nuevo objeto"
+  Opción -> Función
+
+  Función [shape=diamond];
+  Opción [shape=triangle];
+  rankdir="LR";
+}
+```
+
+:::{callout-note}
+Las opciones en realidad también son objetos. El número de objetos que requiere una función se conocen como argumentos
+:::
+
+
+## Las opciones también se separan por comas
+
+```{r}
+#| echo: true 
+
+several_data <- c(15, 16, 17, 24, 10, NA)
+mean(several_data)
+
+mean(several_data, na.rm = TRUE)
+```
+
+
+## ¿Cómo se cuales son los argumentos de una función?
+
+* Muchas funciones tendrán valores predeterminados para los argumentos
+  + Si no se especifica, el argumento tomará ese valor
+* Para encontrar estos valores y una lista de todos los argumentos, puedes usar cualquiera de las siguientes opciones:
+  + `?funcion`
+  + `help(funcion)`
+  + Usar la pestaña `Help` de Rstudio
+
+```{r}
+#| echo: true
+#| eval: false
+
+help(mean)
+```
+
+# ¿Qué forma tienen los objetos?
+
+## Los objetos pueden tener muchos datos organizados en dimensiones
+
+![](img/Tema1/objetos_1.png)
+
+
+## Vectores numéricos
+
+Se pueden crear secuencias de números de forma sencilla
+
+```{r}
+#| echo: true
+
+a <- 1:4
+a
+```
+
+
+## Vectores numéricos
+
+Se pueden crear secuencias con la función `seq()`
+
+```{r}
+#| echo: true
+
+a <- seq(1, 10)
+a
+```
+
+:::{.callout-note}
+Como veremos más adelante. Esta función es muy flexible y permite crear secuencias más complejas.
+:::
+
+## Vectores numéricos
+
+Se pueden crear secuencias de números no consecutivos con la función `c()`
+
+```{r}
+#| echo: true
+
+a <- c(4, 2, 5, 10)
+a
+```
+
+
+## Vectores de texto y factores
+
+```{r}
+#| echo: true
+
+species <- c("Bromus diandrus", "Bromus carinatu", "Bison biso")
+
+kingdom <- factor(c("Plant", "Plant", "Animal"))
+```
+
+
+## Vectores lógicos
+
+Operadores condicionales: `<` `>` `<=` `>=` `==` `!=` `%in%`
+
+
+```{r}
+#| echo: true
+
+3 < 5
+
+3 > 5
+
+x <- 5
+x == 5
+
+x != 5
+```
+
+
+## Vectores lógicos
+
+```{r}
+#| echo: true
+
+x <- 1:10
+x < 5
+
+x == 2
+
+species == ("Bromus diandrus")
+```
+
+
+## Extrayendo valores de vectores
+
+* R usa [ ] para referirse a elementos de objetos
+  + V[5] devuelve el 5º elemento de un vector llamado V
+* El número entre corchetes se denomina índice (i)
+
+```{r}
+#| echo: true
+#| eval: false
+
+a <- c(3,2,7,8)
+
+a[3]
+# ????
+
+a[1:3]
+# ????
+
+a[seq(2, 4)]
+# ???
+```
+
+
+# Vamos a probar cosas
+
+* Ejercicios de clase
+* Parte 1: Trabajando con vectores
+
+
+# ¿Qué forma tienen los objetos?
+
+## Los objetos pueden tener muchos datos organizados en dimensiones
+
+![](img/Tema1/objetos_1.png)
+
+
+## Matrices
+
+```{r}
+#| echo: true
+
+A <- matrix(data = 0, nrow = 6, ncol = 5)
+A
+```
+
+
+## Matrices
+
+```{r}
+#| echo: true
+#| eval: false
+
+A <- matrix(data = 1:30, nrow = 6, ncol = 5)
+# ????
+```
+
+
+## Extrayendo valores de matrices
+
+* R usa [ ] para referirse a elementos de objetos
+* El orden es siempre [filas, columnas]
+  + M[2,3] devuelve el elemento de la 2ª fila, 3ª columna de la matriz M
+  + M[2,] devuelve todos los elementos de la 2ª fila de la matriz M
+* Los números entre corchetes se denominan índices (i y j)
+
+
+## Extrayendo valores de matrices
+
+```{r}
+#| echo: true
+
+A <- matrix(data = 1:30, nrow = 6, ncol = 5)
+
+A[3, 4]
+```
+
+```{r}
+#| echo: true
+
+A[c(1:3), 4]
+# ???
+```
+
+
+## ¿Pueden los objetos mezclar tipos de datos?
+
+![](img/Tema1/objetos_2.png)
+
+
+## *Data frame*
+
+* Un data frame es una lista de vectores de la misma longitud
+* Son equivalente a matrices con diferentes tipos de datos en cada columna
+* Se usan para almacenar diferentes variables a partir de las mismas mediciones
+
+
+## *Data frame*
+
+```{r}
+#| echo: true
+
+df <- data.frame(
+	name = c("Diego", "Lucía", "Paco"),
+	age = c(27, 23, 24)
+	)
+```
+
+
+## Extrayendo información de un *data frame*
+
+* Extracción de columnas
+  + `Data$columnname`
+  + `Data[,”columnname”]`
+  + `Data[,3]`
+* Nombre de filas
+  + `rownames(Data)`
+* Nombre de columnas
+  +  `colnames(Data)`
+  
+  
+# ¿Probamos cosas?
+
+* Ejercicios de clase
+* Parte 2: Trabajando con matrices y data frames
+
+
+## Archivos, objetos y proyectos
+
+> Los tres son cosas diferentes en R...
+
+:::: {.columns}
+
+::: {.column width="65%"}
+* Los archivos son scripts (e.g., un archivo de texto) o archivos de datos (e.g., Excel) en el disco duro
+* Los objetos son datos en la sesión de R.  Sólo existen en la memoria temporal del ordenador
+* Un proyecto es una carpeta con un montón de archivos y objetos de R
+  + Es recomendable usar una estructura de carpetas lógica
+:::
+
+::: {.column width="35%"}
+:::: {style="background-color: #FADA7A"}
+* Carpeta/
+  + Datos/
+  + Figuras/
+  + Tablas/
+  + Script_1
+  + Script_2
+  + Script_3
+::::
+:::
+
+::::
+
+
+## Entorno, sesión o *environment* de R
+
+* El espacio temporal en la memoria del equipo donde R guarda objetos mientras ejecuta un análisis
+* Está limitado en tamaño por la memoria RAM del ordenador
+
+
+## Funciones útiles para controlar la sesión de trabajo
+
+* Para enumerar objetos en la sesión de R: `ls()`
+* Para eliminar objetos de la sesión de R: `rm()`
+* Para guardar la sesión de R: `save.image()`
+* Para salir de la sesión de R: `q()`
+
+
+```{r}
+#| echo: true
+#| eval: false
+
+ls()
+rm(numeric_object, character_object)
+save.image()
+rm(list=ls())
+```
+
+
+## Directorio de trabajo (= carpeta del proyecto)
+
+* Es el directorio donde R busca archivos o escribe archivos
+* En una sesión de R, las referencias a archivos se hacen desde el directorio de trabajo
+  + Es conveniente usar rutas relativas a los ficheros
+
+`getwd()` obtener el directorio de trabajo
+
+`setwd()` lo cambia
+
+## Trabajar con datos
+
+* Lectura de datos del disco duro
+* R lo almacena como un objeto (guardado en la memoria de su computadora)
+* Trata ese objeto como cualquier otro objeto
+* Los cambios en el objeto están restringidos al objeto, no afectan a los datos del disco duro
+
+```{r}
+#| echo: true
+#| eval: false
+
+myData <- read.csv("some data.csv")
+```
+
+
+## Escribir un archivo de datos
+
+```{r}
+#| echo: true
+#| eval: false
+
+write.csv(myData, "updated data.csv")
+```
+
+
+## ¿Mucho más conveniente usar ficheros excel?
+
+```{r}
+#| echo: true
+#| eval: false
+
+install.packages("openxlsx")
+library(openxlsx)
+data <- read.xlsx("data", sheet = 1)
+```
+
+
+## Scripts
+
+* Archivos de texto
+* Con llamadas a funciones (código)
+* Ordenado y secuencial:
+  + Cargar datos
+  + Modificar datos
+  + Análisis de datos
+  + Guardar/trazar resultados
+* Puede/debe contener comentarios legibles por humanos
+  + Usar # antes del comentario
+
+> No se manejan desde la consola de R, si no desde la interfaz de Rstudio.
+
+
+## Seguimos practicando
+
+* Ejercicios de clase
+* Parte 3
+
+## Ejercicios de casa (Homeworks)	
+
+* En la web de la asignatura (enlace en Moodle)
+* Entregar antes de la siguiente clase
+

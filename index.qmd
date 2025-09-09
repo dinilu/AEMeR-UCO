@@ -9,11 +9,11 @@ lightbox: auto
 
 **Materiales del curso:**
 
-* **Tema 1:** Introducción a R. [Presentación](AEMER-1_Intro.pdf){target="_blank"} - [Ejercicios](AEMER-1-Ejercicios.qmd){target="_blank"} - [Abundance.csv](data/Abundance.csv){target="_blank"}
-* **Tema 2:** Manejo de datos espaciales en R. [Presentación](AEMER-2_Analisis_espacial.qmd){target="_blank"} - [Ejercicios](AEMER-2_Ejercicios.qmd){target="_blank"}
-* **Tema 3:** Análisis multivariantes en R. [Presentación 1](AEMER-3_Analisis_multivariante.pdf){target="_blank"} - [Presentación 2](AEMER-3_Analisis_multivariante.qmd){target="_blank"} - [Ejercicios](AEMER-3_Ejercicios.qmd){target="_blank"} - [Datos ambiente](data/sciberras_ambiente.xlsx){target="_blank"} - [datos comunidades](data/sciberras_especies.xlsx){target="_blank"}
-* **Tema 4:** Modelos generalizados de dissimilitud. [Presentación 1](AEMER-4_GDM.pdf){target="_blank"} - [Presentación 2](AEMER-4_GDM.qmd){target="_blank"} - [Coordenadas](data/sciberras_coords.xlsx){target="_blank"}
-* **Tema 5:** Modelos jerarquicos de comunidades de especies. [Presentación 1](AEMER-5_HMSC.pdf){target="_blank"} - [Presentación 2](AEMER-5_HMSC.qmd){target="_blank"}
+* **Tema 1:** Introducción a R. [Presentación](AEMER-1-Presentacion.qmd){target="_blank"} - [Ejercicios](AEMER-1-Ejercicios.qmd){target="_blank"} - [Abundance.csv](data/Abundance.csv){target="_blank"}
+* **Tema 2:** Manejo de datos espaciales en R. [Presentación](AEMER-2-Presentacion.qmd){target="_blank"} - [Ejercicios](AEMER-2-Ejercicios.qmd){target="_blank"}
+* **Tema 3:** Análisis multivariantes en R. [Presentación 1](AEMER-3-Analisis_multivariante.pdf){target="_blank"} - [Presentación 2](AEMER-3-Analisis_multivariante.qmd){target="_blank"} - [Ejercicios](AEMER-3-Ejercicios.qmd){target="_blank"} 
+* **Tema 4:** Modelos generalizados de dissimilitud. [Presentación 1](AEMER-4-GDM.pdf){target="_blank"} - [Presentación 2](AEMER-4-GDM.qmd){target="_blank"} 
+* **Tema 5:** Modelos jerarquicos de comunidades de especies. [Presentación 1](AEMER-5-HMSC.pdf){target="_blank"} - [Presentación 2](AEMER-5-HMSC.qmd){target="_blank"}
 
 
 Este curso está promovido en el marco del convenio ceiA3 con Banco Santander Universidades. CEI financiado por el Gobierno de España y la Junta de Andalucía en el programa del Marco del Programa Campus de Excelencia Universitaria. ![https://www.ceia3.es/formacion/formacion-especializada/](img/logos.png){height=2in}
