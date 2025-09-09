@@ -222,7 +222,7 @@ sum(15, 16, 17, 24, 10)
 ```
 
 
-## Algunos objetos no son datos, si no opciones
+## Algunos objetos son opciones
 
 Las opciones modifican el comportamiento de las funciones
 
@@ -340,7 +340,7 @@ kingdom <- factor(c("Planta", "Planta", "Animal"))
 ```
 
 
-## Vectores lógicos {auto-animate=true}
+## Valores lógicos {auto-animate=true}
 
 Operadores condicionales: `<` `>` `<=` `>=` `==` `!=` `%in%`
 
@@ -351,20 +351,7 @@ Operadores condicionales: `<` `>` `<=` `>=` `==` `!=` `%in%`
 ```
 
 
-## Vectores lógicos {auto-animate=true}
-
-Operadores condicionales: `<` `>` `<=` `>=` `==` `!=` `%in%`
-
-```{r}
-#| echo: true
-
-3 < 5
-
-3 > 5
-```
-
-
-## Vectores lógicos {auto-animate=true}
+## Valores lógicos {auto-animate=true}
 
 Operadores condicionales: `<` `>` `<=` `>=` `==` `!=` `%in%`
 
@@ -374,15 +361,10 @@ Operadores condicionales: `<` `>` `<=` `>=` `==` `!=` `%in%`
 3 < 5
 
 3 > 5
-
-x <- 5
-x == 5
-
-x != 5
 ```
 
 
-## Vectores lógicos {auto-animate=true}
+## Valores lógicos {auto-animate=true}
 
 Operadores condicionales: `<` `>` `<=` `>=` `==` `!=` `%in%`
 
@@ -398,7 +380,7 @@ x == 5
 ```
 
 
-## Vectores lógicos {auto-animate=true}
+## Valores lógicos {auto-animate=true}
 
 Operadores condicionales: `<` `>` `<=` `>=` `==` `!=` `%in%`
 
@@ -502,8 +484,6 @@ A
 
 ```{r}
 #| echo: true
-#| eval: false
-
 A <- matrix(data = 1:30, nrow = 6, ncol = 5)
 # ????
 ```
@@ -513,8 +493,6 @@ A <- matrix(data = 1:30, nrow = 6, ncol = 5)
 
 ```{r}
 #| echo: true
-#| eval: false
-
 A <- matrix(data = 1:30, nrow = 6, ncol = 5)
 A
 ```
@@ -596,22 +574,28 @@ df <- data.frame(
 :::: {.columns}
 
 ::: {.column width="65%"}
+
 * Los archivos son scripts (e.g., un archivo de texto) o archivos de datos (e.g., Excel) en el disco duro
 * Los objetos son datos en la sesión de R.  Sólo existen en la memoria temporal del ordenador
 * Un proyecto es una carpeta con un montón de archivos y objetos de R
   + Es recomendable usar una estructura de carpetas lógica
+
 :::
 
 ::: {.column width="35%"}
+
 :::: {style="background-color: #FADA7A"}
+
 * Carpeta/
   + Datos/
   + Figuras/
   + Tablas/
-  + Script_1
-  + Script_2
-  + Script_3
+  + Script_1.R
+  + Script_2.R
+  + Script_3.R
+
 ::::
+
 :::
 
 ::::
@@ -701,16 +685,12 @@ data <- read.xlsx("data", sheet = 1)
 * Puede/debe contener comentarios legibles por humanos
   + Usar # antes del comentario
 
-> No se manejan desde la consola de R, si no desde la interfaz de Rstudio.
-
+:::{.callout-note} 
+No se manejan desde la consola de R, si no desde la interfaz de Rstudio.
+:::
 
 ## Seguimos practicando
 
 * Ejercicios de clase
 * Parte 3
-
-## Ejercicios de casa (Homeworks)	
-
-* En la web de la asignatura (enlace en Moodle)
-* Entregar antes de la siguiente clase
 
