@@ -883,7 +883,7 @@ Diego Nieto Lugilde
 <section id="vamos-a-probar-cosas" class="title-slide slide level1 center">
 <h1>Vamos a probar cosas</h1>
 <ul>
-<li>Ejercicios de clase</li>
+<li>Ejercicios</li>
 <li>Parte 1: Trabajando con vectores</li>
 </ul>
 </section>
@@ -1029,8 +1029,8 @@ Diego Nieto Lugilde
 <section id="probamos-cosas" class="title-slide slide level1 center">
 <h1>¿Probamos cosas?</h1>
 <ul>
-<li>Ejercicios de clase</li>
-<li>Parte 2: Trabajando con matrices y data frames</li>
+<li>Ejercicios</li>
+<li>Parte 2: Trabajando con matrices y data.frames</li>
 </ul>
 </section>
 <section id="archivos-objetos-y-proyectos" class="slide level2">
@@ -1158,8 +1158,8 @@ Diego Nieto Lugilde
 <section id="seguimos-practicando" class="slide level2">
 <h2>Seguimos practicando</h2>
 <ul>
-<li>Ejercicios de clase</li>
-<li>Parte 3</li>
+<li>Ejercicios</li>
+<li>Parte 3: Usando ficheros de datos</li>
 </ul>
 </section></section>
 <section>
@@ -1185,7 +1185,7 @@ Diego Nieto Lugilde
 <pre><code>package 'openxlsx' successfully unpacked and MD5 sums checked
 
 The downloaded binary packages are in
-    C:\Users\diego\AppData\Local\Temp\RtmpCARjWW\downloaded_packages</code></pre>
+    C:\Users\diego\AppData\Local\Temp\RtmpUbERGM\downloaded_packages</code></pre>
 </div>
 </div>
 </section>
@@ -1214,25 +1214,37 @@ The downloaded binary packages are in
 <section id="cómo-puedo-instalar-paquetes-de-github" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">¿Cómo puedo instalar paquetes de GitHub?</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb86-1" class="hljs-ln-code"><a></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>package 'devtools' successfully unpacked and MD5 sums checked
 
 The downloaded binary packages are in
-    C:\Users\diego\AppData\Local\Temp\RtmpCARjWW\downloaded_packages</code></pre>
+    C:\Users\diego\AppData\Local\Temp\RtmpUbERGM\downloaded_packages</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a></a><span class="fu">library</span>(devtools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="cómo-puedo-instalar-paquetes-de-github-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">¿Cómo puedo instalar paquetes de GitHub?</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb89-1" class="hljs-ln-code"><a></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
-<span id="cb89-2" class="hljs-ln-code"><a></a><span class="fu">library</span>(devtools)</span>
-<span id="cb89-3" class="hljs-ln-code"><a></a></span>
-<span id="cb89-4" class="hljs-ln-code"><a></a><span class="fu">install_github</span>(<span class="st">"colearendt/xlsx"</span>)</span>
-<span id="cb89-5" class="hljs-ln-code"><a></a><span class="do">## o</span></span>
-<span id="cb89-6" class="hljs-ln-code"><a></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"colearendt/xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>package 'devtools' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+    C:\Users\diego\AppData\Local\Temp\RtmpUbERGM\downloaded_packages</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a></a><span class="fu">library</span>(devtools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cómo-puedo-instalar-paquetes-de-github-2" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">¿Cómo puedo instalar paquetes de GitHub?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb91-1" class="hljs-ln-code"><a></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb91-2" class="hljs-ln-code"><a></a><span class="fu">library</span>(devtools)</span>
+<span id="cb91-3" class="hljs-ln-code"><a></a></span>
+<span id="cb91-4" class="hljs-ln-code"><a></a><span class="fu">install_github</span>(<span class="st">"colearendt/xlsx"</span>)</span>
+<span id="cb91-5" class="hljs-ln-code"><a></a><span class="do">## o</span></span>
+<span id="cb91-6" class="hljs-ln-code"><a></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"colearendt/xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -1244,12 +1256,12 @@ The downloaded binary packages are in
 <h2>Generación de gráficos nuevos</h2>
 <p><code>plot()</code> es una función genérica que funciona con muchos objetos diferentes</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a></a><span class="co"># plot(x, y)</span></span>
-<span id="cb90-2"><a></a><span class="fu">plot</span>(<span class="dv">5</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a></a><span class="co"># plot(x, y)</span></span>
+<span id="cb92-2"><a></a><span class="fu">plot</span>(<span class="dv">5</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-48-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-48-1.png" width="960"></a></p>
+<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-49-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-49-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1263,13 +1275,13 @@ The downloaded binary packages are in
 <section id="histogramas" class="slide level2">
 <h2>Histogramas</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">3</span>)</span>
-<span id="cb91-2"><a></a></span>
-<span id="cb91-3"><a></a><span class="fu">hist</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">3</span>)</span>
+<span id="cb93-2"><a></a></span>
+<span id="cb93-3"><a></a><span class="fu">hist</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-49-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-49-1.png" width="960"></a></p>
+<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-50-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-50-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1278,14 +1290,14 @@ The downloaded binary packages are in
 <section id="gráficas-de-barras" class="slide level2">
 <h2>Gráficas de barras</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">3</span>)</span>
-<span id="cb92-2"><a></a><span class="fu">names</span>(x) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"tr_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb92-3"><a></a></span>
-<span id="cb92-4"><a></a><span class="fu">barplot</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">3</span>)</span>
+<span id="cb94-2"><a></a><span class="fu">names</span>(x) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"tr_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb94-3"><a></a></span>
+<span id="cb94-4"><a></a><span class="fu">barplot</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-50-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-50-1.png" width="960"></a></p>
+<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-51-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-51-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1294,15 +1306,15 @@ The downloaded binary packages are in
 <section id="gráficas-de-barras-apiladas-o-paralelas" class="slide level2">
 <h2>Gráficas de barras apiladas o paralelas</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">5</span>, <span class="dv">3</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">10</span>)</span>
-<span id="cb93-2"><a></a><span class="fu">colnames</span>(x) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"tr_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb93-3"><a></a><span class="fu">rownames</span>(x) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"high"</span>, <span class="st">"med"</span>, <span class="st">"low"</span>)</span>
-<span id="cb93-4"><a></a></span>
-<span id="cb93-5"><a></a><span class="fu">barplot</span>(x, <span class="at">legend =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">5</span>, <span class="dv">3</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">10</span>)</span>
+<span id="cb95-2"><a></a><span class="fu">colnames</span>(x) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"tr_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb95-3"><a></a><span class="fu">rownames</span>(x) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"high"</span>, <span class="st">"med"</span>, <span class="st">"low"</span>)</span>
+<span id="cb95-4"><a></a></span>
+<span id="cb95-5"><a></a><span class="fu">barplot</span>(x, <span class="at">legend =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-51-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-51-1.png" width="960"></a></p>
+<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-52-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-52-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1311,15 +1323,15 @@ The downloaded binary packages are in
 <section id="boxplots" class="slide level2">
 <h2>Boxplots</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">5</span>, <span class="dv">3</span>)</span>
-<span id="cb94-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"high"</span>, <span class="st">"med"</span>, <span class="st">"low"</span>), <span class="dv">10</span>)</span>
-<span id="cb94-3"><a></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">size =</span> x, <span class="at">group =</span> y)</span>
-<span id="cb94-4"><a></a></span>
-<span id="cb94-5"><a></a><span class="fu">boxplot</span>(size <span class="sc">~</span> group, dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">5</span>, <span class="dv">3</span>)</span>
+<span id="cb96-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"high"</span>, <span class="st">"med"</span>, <span class="st">"low"</span>), <span class="dv">10</span>)</span>
+<span id="cb96-3"><a></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">size =</span> x, <span class="at">group =</span> y)</span>
+<span id="cb96-4"><a></a></span>
+<span id="cb96-5"><a></a><span class="fu">boxplot</span>(size <span class="sc">~</span> group, dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-52-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-52-1.png" width="960"></a></p>
+<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-53-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-53-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1328,14 +1340,14 @@ The downloaded binary packages are in
 <section id="puedo-pasarle-múltiples-valores" class="slide level2">
 <h2>Puedo pasarle múltiples valores</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb95-2"><a></a>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
-<span id="cb95-3"><a></a></span>
-<span id="cb95-4"><a></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb97-2"><a></a>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb97-3"><a></a></span>
+<span id="cb97-4"><a></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-53-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-53-1.png" width="960"></a></p>
+<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-54-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-54-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1344,15 +1356,15 @@ The downloaded binary packages are in
 <section id="puedo-pasarle-múltiples-valores-1" class="slide level2">
 <h2>Puedo pasarle múltiples valores</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb96-2"><a></a>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
-<span id="cb96-3"><a></a></span>
-<span id="cb96-4"><a></a><span class="fu">plot</span>(x, y, <span class="at">main =</span> <span class="st">"A plot"</span>, <span class="at">xlab =</span> <span class="st">"Temperature"</span>,</span>
-<span id="cb96-5"><a></a>    <span class="at">ylab =</span> <span class="st">"Pirates"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb98-2"><a></a>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb98-3"><a></a></span>
+<span id="cb98-4"><a></a><span class="fu">plot</span>(x, y, <span class="at">main =</span> <span class="st">"A plot"</span>, <span class="at">xlab =</span> <span class="st">"Temperature"</span>,</span>
+<span id="cb98-5"><a></a>    <span class="at">ylab =</span> <span class="st">"Pirates"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-54-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-54-1.png" width="960"></a></p>
+<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-55-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-55-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1362,21 +1374,21 @@ The downloaded binary packages are in
 <h2>Puedo cambiar la conexión entre puntos…</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb97-2"><a></a>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
-<span id="cb97-3"><a></a></span>
-<span id="cb97-4"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
-<span id="cb97-5"><a></a><span class="fu">plot</span>(x, y)</span>
-<span id="cb97-6"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb97-7"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"b"</span>)</span>
-<span id="cb97-8"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"h"</span>)</span>
-<span id="cb97-9"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"o"</span>)</span>
-<span id="cb97-10"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"s"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb99-2"><a></a>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb99-3"><a></a></span>
+<span id="cb99-4"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb99-5"><a></a><span class="fu">plot</span>(x, y)</span>
+<span id="cb99-6"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb99-7"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"b"</span>)</span>
+<span id="cb99-8"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"h"</span>)</span>
+<span id="cb99-9"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"o"</span>)</span>
+<span id="cb99-10"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"s"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-55-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-55-1.png" width="576"></a></p>
+<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-56-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-56-1.png" width="576"></a></p>
 </figure>
 </div>
 </div>
@@ -1386,21 +1398,21 @@ The downloaded binary packages are in
 <h2>… pero cuidado con el orden de los datos</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb98-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb98-3"><a></a></span>
-<span id="cb98-4"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
-<span id="cb98-5"><a></a><span class="fu">plot</span>(x, y)</span>
-<span id="cb98-6"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb98-7"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"b"</span>)</span>
-<span id="cb98-8"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"h"</span>)</span>
-<span id="cb98-9"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"o"</span>)</span>
-<span id="cb98-10"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"s"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb100-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb100-3"><a></a></span>
+<span id="cb100-4"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb100-5"><a></a><span class="fu">plot</span>(x, y)</span>
+<span id="cb100-6"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"l"</span>)</span>
+<span id="cb100-7"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"b"</span>)</span>
+<span id="cb100-8"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"h"</span>)</span>
+<span id="cb100-9"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"o"</span>)</span>
+<span id="cb100-10"><a></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"s"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-56-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-56-1.png" width="576"></a></p>
+<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-57-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-57-1.png" width="576"></a></p>
 </figure>
 </div>
 </div>
@@ -1410,17 +1422,17 @@ The downloaded binary packages are in
 <h2>Puedo cambiar el tipo de puntos</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb99-2"><a></a></span>
-<span id="cb99-3"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</span>
-<span id="cb99-4"><a></a><span class="fu">plot</span>(x, <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>))</span>
-<span id="cb99-5"><a></a><span class="fu">plot</span>(x, <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="at">pch =</span> <span class="dv">2</span>)</span>
-<span id="cb99-6"><a></a><span class="fu">plot</span>(x, <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb101-2"><a></a></span>
+<span id="cb101-3"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</span>
+<span id="cb101-4"><a></a><span class="fu">plot</span>(x, <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>))</span>
+<span id="cb101-5"><a></a><span class="fu">plot</span>(x, <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="at">pch =</span> <span class="dv">2</span>)</span>
+<span id="cb101-6"><a></a><span class="fu">plot</span>(x, <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-57-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-57-1.png" width="384"></a></p>
+<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-58-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-58-1.png" width="384"></a></p>
 </figure>
 </div>
 </div>
@@ -1430,20 +1442,20 @@ The downloaded binary packages are in
 <h2>Puedo cambiar el tamaño de puntos</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb100-2"><a></a>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb100-3"><a></a></span>
-<span id="cb100-4"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</span>
-<span id="cb100-5"><a></a><span class="fu">plot</span>(x, y)</span>
-<span id="cb100-6"><a></a><span class="fu">plot</span>(x, y, <span class="at">cex =</span> <span class="dv">2</span>)</span>
-<span id="cb100-7"><a></a><span class="fu">plot</span>(x, y, </span>
-<span id="cb100-8"><a></a>     <span class="at">cex =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">3</span>, </span>
-<span id="cb100-9"><a></a>               <span class="at">length.out =</span> <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb102-2"><a></a>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb102-3"><a></a></span>
+<span id="cb102-4"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))</span>
+<span id="cb102-5"><a></a><span class="fu">plot</span>(x, y)</span>
+<span id="cb102-6"><a></a><span class="fu">plot</span>(x, y, <span class="at">cex =</span> <span class="dv">2</span>)</span>
+<span id="cb102-7"><a></a><span class="fu">plot</span>(x, y, </span>
+<span id="cb102-8"><a></a>     <span class="at">cex =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">3</span>, </span>
+<span id="cb102-9"><a></a>               <span class="at">length.out =</span> <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-58-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-58-1.png" width="384"></a></p>
+<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-59-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-59-1.png" width="384"></a></p>
 </figure>
 </div>
 </div>
@@ -1457,22 +1469,22 @@ The downloaded binary packages are in
 </ul>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb101-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">each =</span> <span class="dv">10</span>)</span>
-<span id="cb101-3"><a></a></span>
-<span id="cb101-4"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb101-5"><a></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">15</span>)</span>
-<span id="cb101-6"><a></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">15</span>,</span>
-<span id="cb101-7"><a></a>     <span class="at">col =</span> <span class="st">"dark green"</span>)</span>
-<span id="cb101-8"><a></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">15</span>,</span>
-<span id="cb101-9"><a></a>     <span class="at">col =</span> <span class="st">"#352575"</span>)</span>
-<span id="cb101-10"><a></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">15</span>,</span>
-<span id="cb101-11"><a></a>     <span class="at">col =</span> <span class="fu">rgb</span>(<span class="fl">0.8</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb103-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">each =</span> <span class="dv">10</span>)</span>
+<span id="cb103-3"><a></a></span>
+<span id="cb103-4"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb103-5"><a></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">15</span>)</span>
+<span id="cb103-6"><a></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">15</span>,</span>
+<span id="cb103-7"><a></a>     <span class="at">col =</span> <span class="st">"dark green"</span>)</span>
+<span id="cb103-8"><a></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">15</span>,</span>
+<span id="cb103-9"><a></a>     <span class="at">col =</span> <span class="st">"#352575"</span>)</span>
+<span id="cb103-10"><a></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">15</span>,</span>
+<span id="cb103-11"><a></a>     <span class="at">col =</span> <span class="fu">rgb</span>(<span class="fl">0.8</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-59-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-59-1.png" width="480"></a></p>
+<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-60-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-60-1.png" width="480"></a></p>
 </figure>
 </div>
 </div>
@@ -1482,7 +1494,7 @@ The downloaded binary packages are in
 <h2>Muchas más opciones en la función <code>par()</code></h2>
 <p>70 opciones diferentes para controlar los gráficos!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a></a>?par</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a></a>?par</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="añadiendo-información-a-gráficos-existentes" class="slide level2">
@@ -1496,14 +1508,14 @@ The downloaded binary packages are in
 <section id="guardando-gráficos-en-el-disco-duro" class="slide level2">
 <h2>Guardando gráficos en el disco duro</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb103-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">each =</span> <span class="dv">10</span>)</span>
-<span id="cb103-3"><a></a></span>
-<span id="cb103-4"><a></a><span class="fu">pdf</span>(<span class="st">"figures/Figure_1.pdf"</span>) </span>
-<span id="cb103-5"><a></a></span>
-<span id="cb103-6"><a></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">15</span>, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="fl">0.8</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>))</span>
-<span id="cb103-7"><a></a></span>
-<span id="cb103-8"><a></a><span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb105-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">each =</span> <span class="dv">10</span>)</span>
+<span id="cb105-3"><a></a></span>
+<span id="cb105-4"><a></a><span class="fu">pdf</span>(<span class="st">"figures/Figure_1.pdf"</span>) </span>
+<span id="cb105-5"><a></a></span>
+<span id="cb105-6"><a></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">15</span>, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="fl">0.8</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>))</span>
+<span id="cb105-7"><a></a></span>
+<span id="cb105-8"><a></a><span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>png 
   2 </code></pre>
@@ -1518,15 +1530,15 @@ The downloaded binary packages are in
 <h2>¿Como visualizo cuando tengo grandes cantidades de datos?</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20000</span>)</span>
-<span id="cb105-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20000</span>)</span>
-<span id="cb105-3"><a></a></span>
-<span id="cb105-4"><a></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20000</span>)</span>
+<span id="cb107-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20000</span>)</span>
+<span id="cb107-3"><a></a></span>
+<span id="cb107-4"><a></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-62-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-62-1.png" width="960"></a></p>
+<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-63-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-63-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1536,17 +1548,17 @@ The downloaded binary packages are in
 <h2>¿Como visualizo cuando tengo grandes cantidades de datos?</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a></a><span class="fu">install.packages</span>(<span class="st">"hexbin"</span>) </span>
-<span id="cb106-2"><a></a><span class="fu">library</span>(hexbin)</span>
-<span id="cb106-3"><a></a></span>
-<span id="cb106-4"><a></a>hbin <span class="ot">&lt;-</span> <span class="fu">hexbin</span>(x, y, <span class="at">xbins =</span> <span class="dv">40</span>)</span>
-<span id="cb106-5"><a></a></span>
-<span id="cb106-6"><a></a><span class="fu">plot</span>(hbin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a></a><span class="fu">install.packages</span>(<span class="st">"hexbin"</span>) </span>
+<span id="cb108-2"><a></a><span class="fu">library</span>(hexbin)</span>
+<span id="cb108-3"><a></a></span>
+<span id="cb108-4"><a></a>hbin <span class="ot">&lt;-</span> <span class="fu">hexbin</span>(x, y, <span class="at">xbins =</span> <span class="dv">40</span>)</span>
+<span id="cb108-5"><a></a></span>
+<span id="cb108-6"><a></a><span class="fu">plot</span>(hbin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-63-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-63-1.png" width="960"></a></p>
+<p><a href="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-64-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img data-src="AEMER-1-Presentacion_2_files/figure-revealjs/unnamed-chunk-64-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1554,14 +1566,15 @@ The downloaded binary packages are in
 <pre><code>package 'hexbin' successfully unpacked and MD5 sums checked
 
 The downloaded binary packages are in
-    C:\Users\diego\AppData\Local\Temp\RtmpCARjWW\downloaded_packages</code></pre>
+    C:\Users\diego\AppData\Local\Temp\RtmpUbERGM\downloaded_packages</code></pre>
 </div>
 </div></div>
 </section>
 <section id="vamos-a-practicar" class="slide level2">
 <h2>Vamos a practicar</h2>
 <ul>
-<li>Ejercicios de clase</li>
+<li>Ejercicios</li>
+<li>Parte 4: Gráficas y figuras</li>
 </ul>
 
 

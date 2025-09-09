@@ -1005,7 +1005,7 @@
     "href": "AEMER-1-Presentacion_2.html#seguimos-practicando",
     "title": "Sesión 1: Introducción a R",
     "section": "Seguimos practicando",
-    "text": "Seguimos practicando\n\nEjercicios de clase\nParte 3"
+    "text": "Seguimos practicando\n\nEjercicios\nParte 3: Usando ficheros de datos"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#qué-son-los-paquetes-en-r",
@@ -1026,7 +1026,7 @@
     "href": "AEMER-1-Presentacion_2.html#cómo-instalo-paquetes-de-cran",
     "title": "Sesión 1: Introducción a R",
     "section": "¿Cómo instalo paquetes de CRAN?",
-    "text": "¿Cómo instalo paquetes de CRAN?\n\ninstall.packages(\"openxlsx\")\n\npackage 'openxlsx' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\diego\\AppData\\Local\\Temp\\RtmpCARjWW\\downloaded_packages"
+    "text": "¿Cómo instalo paquetes de CRAN?\n\ninstall.packages(\"openxlsx\")\n\npackage 'openxlsx' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\diego\\AppData\\Local\\Temp\\RtmpUbERGM\\downloaded_packages"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#cómo-uso-las-funciones-de-una-librería",
@@ -1047,11 +1047,18 @@
     "href": "AEMER-1-Presentacion_2.html#cómo-puedo-instalar-paquetes-de-github",
     "title": "Sesión 1: Introducción a R",
     "section": "¿Cómo puedo instalar paquetes de GitHub?",
-    "text": "¿Cómo puedo instalar paquetes de GitHub?\n\ninstall.packages(\"devtools\")\n\npackage 'devtools' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\diego\\AppData\\Local\\Temp\\RtmpCARjWW\\downloaded_packages\n\nlibrary(devtools)"
+    "text": "¿Cómo puedo instalar paquetes de GitHub?\n\ninstall.packages(\"devtools\")\n\npackage 'devtools' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\diego\\AppData\\Local\\Temp\\RtmpUbERGM\\downloaded_packages"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#cómo-puedo-instalar-paquetes-de-github-1",
     "href": "AEMER-1-Presentacion_2.html#cómo-puedo-instalar-paquetes-de-github-1",
+    "title": "Sesión 1: Introducción a R",
+    "section": "¿Cómo puedo instalar paquetes de GitHub?",
+    "text": "¿Cómo puedo instalar paquetes de GitHub?\n\ninstall.packages(\"devtools\")\n\npackage 'devtools' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\diego\\AppData\\Local\\Temp\\RtmpUbERGM\\downloaded_packages\n\nlibrary(devtools)"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#cómo-puedo-instalar-paquetes-de-github-2",
+    "href": "AEMER-1-Presentacion_2.html#cómo-puedo-instalar-paquetes-de-github-2",
     "title": "Sesión 1: Introducción a R",
     "section": "¿Cómo puedo instalar paquetes de GitHub?",
     "text": "¿Cómo puedo instalar paquetes de GitHub?\n\ninstall.packages(\"devtools\")\nlibrary(devtools)\n\ninstall_github(\"colearendt/xlsx\")\n## o\ndevtools::install_github(\"colearendt/xlsx\")"
@@ -1180,14 +1187,14 @@
     "href": "AEMER-1-Presentacion_2.html#como-visualizo-cuando-tengo-grandes-cantidades-de-datos-1",
     "title": "Sesión 1: Introducción a R",
     "section": "¿Como visualizo cuando tengo grandes cantidades de datos?",
-    "text": "¿Como visualizo cuando tengo grandes cantidades de datos?\n\n\ninstall.packages(\"hexbin\") \nlibrary(hexbin)\n\nhbin &lt;- hexbin(x, y, xbins = 40)\n\nplot(hbin)\n\n\n\n\n\n\n\n\n\npackage 'hexbin' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\diego\\AppData\\Local\\Temp\\RtmpCARjWW\\downloaded_packages"
+    "text": "¿Como visualizo cuando tengo grandes cantidades de datos?\n\n\ninstall.packages(\"hexbin\") \nlibrary(hexbin)\n\nhbin &lt;- hexbin(x, y, xbins = 40)\n\nplot(hbin)\n\n\n\n\n\n\n\n\n\npackage 'hexbin' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\diego\\AppData\\Local\\Temp\\RtmpUbERGM\\downloaded_packages"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#vamos-a-practicar",
     "href": "AEMER-1-Presentacion_2.html#vamos-a-practicar",
     "title": "Sesión 1: Introducción a R",
     "section": "Vamos a practicar",
-    "text": "Vamos a practicar\n\nEjercicios de clase"
+    "text": "Vamos a practicar\n\nEjercicios\nParte 4: Gráficas y figuras"
   },
   {
     "objectID": "AEMER-2-Ejercicios.html",
