@@ -900,7 +900,21 @@
     "href": "AEMER-1-Presentacion_2.html#extrayendo-valores-de-matrices-1",
     "title": "Sesión 1: Introducción a R",
     "section": "Extrayendo valores de matrices",
-    "text": "Extrayendo valores de matrices\n\nA &lt;- matrix(data = 1:30, nrow = 6, ncol = 5)\n\nA[3, 4]\n\n[1] 21\n\n\n\nA[c(1:3), 4]\n\n[1] 19 20 21\n\n# ???"
+    "text": "Extrayendo valores de matrices\n\nA &lt;- matrix(data = 1:30, nrow = 6, ncol = 5)\n\nA[3, 4]\n\n[1] 21"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#extrayendo-valores-de-matrices-2",
+    "href": "AEMER-1-Presentacion_2.html#extrayendo-valores-de-matrices-2",
+    "title": "Sesión 1: Introducción a R",
+    "section": "Extrayendo valores de matrices",
+    "text": "Extrayendo valores de matrices\n\nA &lt;- matrix(data = 1:30, nrow = 6, ncol = 5)\n\nA[3, 4]\n\nA[c(1:3), 4]\n???"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#extrayendo-valores-de-matrices-3",
+    "href": "AEMER-1-Presentacion_2.html#extrayendo-valores-de-matrices-3",
+    "title": "Sesión 1: Introducción a R",
+    "section": "Extrayendo valores de matrices",
+    "text": "Extrayendo valores de matrices\n\nA &lt;- matrix(data = 1:30, nrow = 6, ncol = 5)\n\nA[3, 4]\n\n[1] 21\n\nA[c(1:3), 4]\n\n[1] 19 20 21"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#pueden-los-objetos-mezclar-tipos-de-datos",
@@ -1012,7 +1026,7 @@
     "href": "AEMER-1-Presentacion_2.html#cómo-instalo-paquetes-de-cran",
     "title": "Sesión 1: Introducción a R",
     "section": "¿Cómo instalo paquetes de CRAN?",
-    "text": "¿Cómo instalo paquetes de CRAN?\n\ninstall.packages(\"openxlsx\")\n\npackage 'openxlsx' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\diego\\AppData\\Local\\Temp\\RtmpesZBcL\\downloaded_packages"
+    "text": "¿Cómo instalo paquetes de CRAN?\n\ninstall.packages(\"openxlsx\")\n\npackage 'openxlsx' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\diego\\AppData\\Local\\Temp\\RtmpCARjWW\\downloaded_packages"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#cómo-uso-las-funciones-de-una-librería",
@@ -1033,7 +1047,14 @@
     "href": "AEMER-1-Presentacion_2.html#cómo-puedo-instalar-paquetes-de-github",
     "title": "Sesión 1: Introducción a R",
     "section": "¿Cómo puedo instalar paquetes de GitHub?",
-    "text": "¿Cómo puedo instalar paquetes de GitHub?\n\ninstall.packages(\"devtools\")\n\npackage 'devtools' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\diego\\AppData\\Local\\Temp\\RtmpesZBcL\\downloaded_packages\n\nlibrary(devtools)\n\ninstall_github(\"colearendt/xlsx\")\n## o\ndevtools::install_github(\"colearendt/xlsx\")"
+    "text": "¿Cómo puedo instalar paquetes de GitHub?\n\ninstall.packages(\"devtools\")\n\npackage 'devtools' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\diego\\AppData\\Local\\Temp\\RtmpCARjWW\\downloaded_packages\n\nlibrary(devtools)"
+  },
+  {
+    "objectID": "AEMER-1-Presentacion_2.html#cómo-puedo-instalar-paquetes-de-github-1",
+    "href": "AEMER-1-Presentacion_2.html#cómo-puedo-instalar-paquetes-de-github-1",
+    "title": "Sesión 1: Introducción a R",
+    "section": "¿Cómo puedo instalar paquetes de GitHub?",
+    "text": "¿Cómo puedo instalar paquetes de GitHub?\n\ninstall.packages(\"devtools\")\nlibrary(devtools)\n\ninstall_github(\"colearendt/xlsx\")\n## o\ndevtools::install_github(\"colearendt/xlsx\")"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#generación-de-gráficos-nuevos",
@@ -1159,7 +1180,7 @@
     "href": "AEMER-1-Presentacion_2.html#como-visualizo-cuando-tengo-grandes-cantidades-de-datos-1",
     "title": "Sesión 1: Introducción a R",
     "section": "¿Como visualizo cuando tengo grandes cantidades de datos?",
-    "text": "¿Como visualizo cuando tengo grandes cantidades de datos?\n\n\ninstall.packages(\"hexbin\") \nlibrary(hexbin)\n\nhbin &lt;- hexbin(x, y, xbins = 40)\n\nplot(hbin)\n\n\n\n\n\n\n\n\n\npackage 'hexbin' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\diego\\AppData\\Local\\Temp\\RtmpesZBcL\\downloaded_packages"
+    "text": "¿Como visualizo cuando tengo grandes cantidades de datos?\n\n\ninstall.packages(\"hexbin\") \nlibrary(hexbin)\n\nhbin &lt;- hexbin(x, y, xbins = 40)\n\nplot(hbin)\n\n\n\n\n\n\n\n\n\npackage 'hexbin' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\diego\\AppData\\Local\\Temp\\RtmpCARjWW\\downloaded_packages"
   },
   {
     "objectID": "AEMER-1-Presentacion_2.html#vamos-a-practicar",
@@ -1167,13 +1188,6 @@
     "title": "Sesión 1: Introducción a R",
     "section": "Vamos a practicar",
     "text": "Vamos a practicar\n\nEjercicios de clase"
-  },
-  {
-    "objectID": "AEMER-1-Presentacion_2.html#ejercicios-de-casa-homeworks",
-    "href": "AEMER-1-Presentacion_2.html#ejercicios-de-casa-homeworks",
-    "title": "Sesión 1: Introducción a R",
-    "section": "Ejercicios de casa (Homeworks)",
-    "text": "Ejercicios de casa (Homeworks)\n\nEn la web de la asignatura (enlace en Moodle)\nEntregar antes de la siguiente clase"
   },
   {
     "objectID": "AEMER-2-Ejercicios.html",
