@@ -15,20 +15,18 @@ knitr::opts_chunk$set(echo = TRUE,
 ```
 
 ::: callout-note
-Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre `ejercicios_s1_[tu_nombre]_[tu_apellidos].R`. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla `#` delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado usa los comentarios (con la `#`) para indicar tus reflexiones debajo del código. Una vez los tengáis completos podéis mandármelos por email (bv2nilud@uco.es).
+Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre `ejercicios_s1_[tu_nombre]_[tu_apellidos].R`. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla `#` delante) y justo detrás el enunciado del ejercicio. A continuación, en las siguientes líneas del fichero escribe el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado usa los comentarios (con la `#`) para indicar tus reflexiones debajo del código. Una vez los tengáis completos podéis mandármelos por email (bv2nilud@uco.es).
 
 ```{r}
 #| echo: true
 #| eval: false
 
-# Ejercicio 1.
-# Parte 1
+# Ejercicio 1. Ejecuta las dos líneas de código siguientes y explica que resultado dan y por qué.
+
 seq(1, 40, by = 2)
-
-# Parte 2
 seq(1, 40, by = -2)
-# Este código da error porque especifiqué algo mal :)
 
+# Este código da error porque especifiqué algo mal :)
 ```
 :::
 
@@ -49,7 +47,8 @@ seq(from = 5, to = 1, by = 2)
 
 > ¿Tienen sentido el resultado de todos estos comandos?
 
-**2. Fijaros que se pueden pasar argumentos a una función en R ya sea por su nombre (por ejemplo, `to = 5` o `by = 0.1`), o simplemente colocando los parámetros en el orden correcto. La función `seq` espera que le des argumentos en el orden (`from`, `to`, `by`). Puede averiguarlo revisando el archivo de ayuda ejecutando el código `?seq`. En caso de duda, es más seguro especificar argumentos por su nombre, en cuyo caso cualquier orden está bien. Puedes probar por ejemplo con los siguientes comandos:**
+
+**2. Fijaros que se pueden pasar argumentos a una función en R ya sea por su nombre (por ejemplo, `to = 5` o `by = 0.1`), o simplemente colocando los parámetros en el orden correcto. La función `seq` espera que le des argumentos en el orden `from`, `to` y `by`. Puedes averiguarlo revisando el archivo de ayuda ejecutando el código `?seq`. En caso de duda, es más seguro especificar argumentos por su nombre, en cuyo caso cualquier orden está bien. Puedes probar por ejemplo con los siguientes comandos:**
 
 ```{r}
 seq(4, 8, 1)

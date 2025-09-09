@@ -146,7 +146,7 @@ logical_object <- TRUE
 ```{r}
 #| echo: true
 
-factor_object <- factor("Plant")
+factor_object <- factor("Planta")
 ```
 
 
@@ -332,9 +332,9 @@ a
 ```{r}
 #| echo: true
 
-species <- c("Bromus diandrus", "Bromus carinatu", "Bison biso")
+species <- c("Bromus diandrus", "Bromus carinatus", "Bison bison")
 
-kingdom <- factor(c("Plant", "Plant", "Animal"))
+kingdom <- factor(c("Planta", "Planta", "Animal"))
 ```
 
 
