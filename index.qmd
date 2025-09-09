@@ -1,5 +1,5 @@
 ---
-title: "Análisis Espacial y Multivariante en R (AEMeR) aplicados a estudios de Biodiversidad"
+title: "Análisis Espaciales y Multivariantes en R (AEMeR) aplicados a estudios de Biodiversidad"
 lightbox: auto
 ---
 
