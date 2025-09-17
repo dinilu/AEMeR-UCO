@@ -7,6 +7,8 @@ lightbox: auto
 
 **Fechas:** 10, 17 y 24 de septiembre, y 1, 8 y 15 de octubre de 2025 de 16 a 20h.
 
+**Tutorías:** <https://calendly.com/dnietolugilde/30min>
+
 **Materiales del curso:**
 
 * **Tema 1:** Introducción a R. [Presentación 1](AEMER-1-Presentacion_1.pdf){target="_blank"} -[Presentación 2](AEMER-1-Presentacion_2.qmd){target="_blank"} - [Ejercicios](AEMER-1-Ejercicios.qmd){target="_blank"} - [Abundancia.csv](data/Abundancia.csv){target="_blank"}
