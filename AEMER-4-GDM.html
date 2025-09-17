@@ -6,11 +6,11 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.34">
+  <meta name="generator" content="quarto-1.8.24">
 
   <meta name="author" content="Diego Nieto Lugilde">
   <meta name="dcterms.date" content="2024-10-17">
@@ -99,7 +99,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -222,13 +222,13 @@ Diego Nieto Lugilde
 <h1>Preparando los datos</h1>
 <p>Usaremos el paquete <code>gdm</code>. Éste tiene una forma particular de funcionar y especificar los datos. Así que necesitamos prepararlos un poco antes de empezar</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(gdm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(gdm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="cargamos-los-datos-de-michelle-incluyendo-las-coordenadas-geográficas" class="slide level2">
 <h2>Cargamos los datos de Michelle, incluyendo las coordenadas geográficas</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(openxlsx)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(openxlsx)</span>
 <span id="cb2-2"><a></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_ambiente.xlsx"</span>, </span>
 <span id="cb2-3"><a></a>                 <span class="at">sheet =</span> <span class="dv">1</span>, </span>
 <span id="cb2-4"><a></a>                 <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
@@ -238,7 +238,7 @@ Diego Nieto Lugilde
 <span id="cb2-8"><a></a>coords <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_coords.xlsx"</span>, </span>
 <span id="cb2-9"><a></a>                    <span class="at">sheet =</span> <span class="dv">1</span>, </span>
 <span id="cb2-10"><a></a>                    <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-11"><a></a><span class="fu">head</span>(coords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-11"><a></a><span class="fu">head</span>(coords)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  x         y
 chapad    -57.70311 -38.20977
@@ -267,11 +267,11 @@ moro      -58.40547 -38.50085</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="1-2|3-4|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(terra)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" data-code-line-numbers="1-2|3-4|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(terra)</span>
 <span id="cb4-2"><a></a>bioclim <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"arg_bio_utm.tif"</span>)</span>
 <span id="cb4-3"><a></a>bioclim <span class="ot">&lt;-</span> <span class="fu">crop</span>(bioclim, </span>
 <span id="cb4-4"><a></a>                <span class="fu">ext</span>(<span class="sc">-</span><span class="dv">100000</span>, <span class="dv">600000</span>, <span class="dv">5500000</span>, <span class="dv">6000000</span>))</span>
-<span id="cb4-5"><a></a><span class="fu">plot</span>(bioclim[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a></a><span class="fu">plot</span>(bioclim[[<span class="dv">1</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -297,7 +297,7 @@ moro      -58.40547 -38.50085</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="1-3|4-6|7-8|9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>utm <span class="ot">&lt;-</span> <span class="fu">project</span>(<span class="fu">as.matrix</span>(coords), </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" data-code-line-numbers="1-3|4-6|7-8|9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>utm <span class="ot">&lt;-</span> <span class="fu">project</span>(<span class="fu">as.matrix</span>(coords), </span>
 <span id="cb5-2"><a></a>               <span class="at">from =</span> <span class="st">"EPSG: 4326"</span>, </span>
 <span id="cb5-3"><a></a>               <span class="at">to =</span> <span class="st">"EPSG:32721"</span>)</span>
 <span id="cb5-4"><a></a>utm <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> utm[,<span class="dv">1</span>], </span>
@@ -305,7 +305,7 @@ moro      -58.40547 -38.50085</code></pre>
 <span id="cb5-6"><a></a>                  <span class="at">rio =</span> <span class="fu">rownames</span>(coords))</span>
 <span id="cb5-7"><a></a>com<span class="sc">$</span>rio <span class="ot">&lt;-</span> env<span class="sc">$</span>rio</span>
 <span id="cb5-8"><a></a>com <span class="ot">&lt;-</span> <span class="fu">merge</span>(com, utm)</span>
-<span id="cb5-9"><a></a><span class="fu">head</span>(com)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-9"><a></a><span class="fu">head</span>(com)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     rio emertonia sextonis_1 sextonis_2 sextonis_delamarei
 1 chapad         0          0          0                  0
@@ -334,9 +334,9 @@ moro      -58.40547 -38.50085</code></pre>
 <section id="genero-un-identificador-de-sitio-común-para-la-matriz-de-comunidades-y-la-de-variables-ambientales" class="slide level2">
 <h2>Genero un identificador de sitio común para la matriz de comunidades y la de variables ambientales</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>com<span class="sc">$</span>site_id <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(com))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>com<span class="sc">$</span>site_id <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(com))</span>
 <span id="cb7-2"><a></a>env<span class="sc">$</span>site_id <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(com))</span>
-<span id="cb7-3"><a></a><span class="fu">head</span>(env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a></a><span class="fu">head</span>(env)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              rio sitio     mes materia_org temperatura salinidad   ph site_id
 chapad_f_d chapad   des febrero   0.6026517        22.1      1.18 8.71       1
@@ -356,7 +356,7 @@ chapad_j_s chapad   sur   julio   0.7331378        12.4      0.98 9.07       6</
 <section id="creamos-la-tabla-de-disimilaridades" class="slide level2">
 <h2>Creamos la tabla de disimilaridades</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="1-8|10-16|18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">library</span>(gdm)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" data-code-line-numbers="1-8|10-16|18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">library</span>(gdm)</span>
 <span id="cb9-2"><a></a>gdmTab <span class="ot">&lt;-</span> <span class="fu">formatsitepair</span>(com[,<span class="sc">-</span><span class="dv">1</span>], <span class="co"># Quito la columna `río`</span></span>
 <span id="cb9-3"><a></a>               <span class="at">bioFormat =</span> <span class="dv">1</span>, </span>
 <span id="cb9-4"><a></a>               <span class="at">abundance =</span> <span class="cn">TRUE</span>, </span>
@@ -373,7 +373,7 @@ chapad_j_s chapad   sur   julio   0.7331378        12.4      0.98 9.07       6</
 <span id="cb9-15"><a></a>               <span class="at">siteColumn =</span> <span class="st">"site_id"</span>,</span>
 <span id="cb9-16"><a></a>               <span class="at">predData =</span> bioclim)</span>
 <span id="cb9-17"><a></a></span>
-<span id="cb9-18"><a></a><span class="fu">head</span>(gdmTab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-18"><a></a><span class="fu">head</span>(gdmTab)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              distance weights s1.xCoord s1.yCoord s2.xCoord s2.yCoord
 chapad_f_d   0.9047619       1  438444.6   5770677  438444.6   5770677
@@ -402,9 +402,9 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <section id="calibramos-los-modelos" class="slide level2">
 <h2>Calibramos los modelos</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Activo que incluya la distancia geográfica en el análisis</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" data-code-line-numbers="2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Activo que incluya la distancia geográfica en el análisis</span></span>
 <span id="cb11-2"><a></a>gdmTab.fit <span class="ot">&lt;-</span> <span class="fu">gdm</span>(<span class="at">data=</span>gdmTab, <span class="at">geo=</span><span class="cn">TRUE</span>)</span>
-<span id="cb11-3"><a></a>gdmRast.fit <span class="ot">&lt;-</span> <span class="fu">gdm</span>(<span class="at">data=</span>gdmRast, <span class="at">geo=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-3"><a></a>gdmRast.fit <span class="ot">&lt;-</span> <span class="fu">gdm</span>(<span class="at">data=</span>gdmRast, <span class="at">geo=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section></section>
 <section>
@@ -415,7 +415,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <section id="veamos-los-resultados-de-los-datos-de-michelle" class="slide level2">
 <h2>Veamos los resultados de los datos de Michelle</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">summary</span>(gdmTab.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">summary</span>(gdmTab.fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 
 [1] 
@@ -493,7 +493,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <section id="y-los-del-modelo-calibrado-con-variables-bioclimáticas" class="slide level2">
 <h2>… y los del modelo calibrado con variables bioclimáticas</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">summary</span>(gdmRast.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">summary</span>(gdmRast.fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 
 [1] 
@@ -734,7 +734,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <section id="podemos-graficar-los-resultados-del-modelo-y-las-curvas-i-spline" class="slide level2">
 <h2>Podemos graficar los resultados del modelo y las curvas i-spline</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">plot</span>(gdmTab.fit, <span class="at">plot.layout=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">plot</span>(gdmTab.fit, <span class="at">plot.layout=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -747,7 +747,7 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <section id="también-las-del-modelo-bioclimático" class="slide level2">
 <h2>… también las del modelo bioclimático</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">plot</span>(gdmRast.fit, <span class="at">plot.layout =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">plot</span>(gdmRast.fit, <span class="at">plot.layout =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -760,8 +760,8 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <section id="si-necesitamos-realizar-gráficos-independientes-podemos-extraer-los-valores-de-las-curvas-i-splines" class="slide level2">
 <h2>Si necesitamos realizar gráficos independientes, podemos extraer los valores de las curvas i-splines</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>gdmRast.splines <span class="ot">&lt;-</span> <span class="fu">isplineExtract</span>(gdmRast.fit)</span>
-<span id="cb18-2"><a></a><span class="fu">str</span>(gdmRast.splines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>gdmRast.splines <span class="ot">&lt;-</span> <span class="fu">isplineExtract</span>(gdmRast.fit)</span>
+<span id="cb18-2"><a></a><span class="fu">str</span>(gdmRast.splines)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 2
  $ x: num [1:200, 1:20] 13038 14530 16022 17514 19006 ...
@@ -778,12 +778,12 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <section id="y-posteriormente-graficarlas-a-mano" class="slide level2">
 <h2>… y posteriormente graficarlas a mano</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">plot</span>(gdmRast.splines[[<span class="st">"x"</span>]][,<span class="st">"bio1"</span>], </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">plot</span>(gdmRast.splines[[<span class="st">"x"</span>]][,<span class="st">"bio1"</span>], </span>
 <span id="cb20-2"><a></a>     gdmRast.splines[[<span class="st">"y"</span>]][,<span class="st">"bio1"</span>], </span>
 <span id="cb20-3"><a></a>     <span class="at">lwd=</span><span class="dv">3</span>,</span>
 <span id="cb20-4"><a></a>     <span class="at">type=</span><span class="st">"l"</span>, </span>
 <span id="cb20-5"><a></a>     <span class="at">xlab=</span><span class="st">"Mean Annual Temperature (ºC)"</span>, </span>
-<span id="cb20-6"><a></a>     <span class="at">ylab=</span><span class="st">"Partial ecological distance"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-6"><a></a>     <span class="at">ylab=</span><span class="st">"Partial ecological distance"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -801,14 +801,14 @@ chapad_f_d.5           17.2         2.49  8.90</code></pre>
 <section id="podemos-proyectar-el-modelo-para-transformar-cada-variable-ambiental-acorde-a-las-i-splines" class="slide level2">
 <h2>Podemos proyectar el modelo para transformar cada variable ambiental acorde a las i-splines</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>gdmRast.sp_trans <span class="ot">&lt;-</span> <span class="fu">gdm.transform</span>(gdmRast.fit, bioclim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>gdmRast.sp_trans <span class="ot">&lt;-</span> <span class="fu">gdm.transform</span>(gdmRast.fit, bioclim)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 |---------|---------|---------|---------|
 =========================================
                                           </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>gdmRast.sp_trans</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>gdmRast.sp_trans</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 size        : 500, 700, 7  (nrow, ncol, nlyr)
@@ -825,7 +825,7 @@ max values  :      0,      0, 1.602153, 0.147566, 0.9155284, 0.4720007, ... </co
 <section id="y-graficarlo-en-forma-de-mapa" class="slide level2">
 <h2>… y graficarlo en forma de mapa</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>terra<span class="sc">::</span><span class="fu">plot</span>(gdmRast.sp_trans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>terra<span class="sc">::</span><span class="fu">plot</span>(gdmRast.sp_trans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -838,7 +838,7 @@ max values  :      0,      0, 1.602153, 0.147566, 0.9155284, 0.4720007, ... </co
 <section id="para-reducir-la-dimensionalidad-de-las-distintas-capas-usamos-un-acp-para-seleccionar-los-tres-primeros-ejes" class="slide level2">
 <h2>Para reducir la dimensionalidad de las distintas capas, usamos un ACP para seleccionar los tres primeros ejes</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="1|3-4|6-8|10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>pca.rast <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(gdmRast.sp_trans)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26" data-code-line-numbers="1|3-4|6-8|10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>pca.rast <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(gdmRast.sp_trans)</span>
 <span id="cb26-2"><a></a></span>
 <span id="cb26-3"><a></a><span class="co"># note the use of the 'index' argument</span></span>
 <span id="cb26-4"><a></a>pca.rast <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">predict</span>(gdmRast.sp_trans, pca.rast, <span class="at">index=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
@@ -847,7 +847,7 @@ max values  :      0,      0, 1.602153, 0.147566, 0.9155284, 0.4720007, ... </co
 <span id="cb26-7"><a></a>mnmx <span class="ot">&lt;-</span> <span class="fu">range</span>(<span class="fu">values</span>(pca.rast), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb26-8"><a></a>pca.rast <span class="ot">&lt;-</span> ((pca.rast <span class="sc">-</span> mnmx[<span class="dv">1</span>]) <span class="sc">/</span> <span class="fu">diff</span>(mnmx)) <span class="sc">*</span> <span class="dv">255</span></span>
 <span id="cb26-9"><a></a></span>
-<span id="cb26-10"><a></a>pca.rast</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-10"><a></a>pca.rast</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 size        : 500, 700, 3  (nrow, ncol, nlyr)
@@ -864,7 +864,7 @@ max values  : 255.00000, 124.18582, 125.431 </code></pre>
 <section id="y-luego-representar-cada-eje-como-un-componente-de-color-rojo-azul-y-verde" class="slide level2">
 <h2>Y luego representar cada eje como un componente de color (rojo, azul y verde)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>terra<span class="sc">::</span><span class="fu">plotRGB</span>(pca.rast, <span class="at">r=</span><span class="dv">1</span>, <span class="at">g=</span><span class="dv">2</span>, <span class="at">b=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>terra<span class="sc">::</span><span class="fu">plotRGB</span>(pca.rast, <span class="at">r=</span><span class="dv">1</span>, <span class="at">g=</span><span class="dv">2</span>, <span class="at">b=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -878,18 +878,18 @@ max values  : 255.00000, 124.18582, 125.431 </code></pre>
 <h2>También podemos analizar cambios en cada pixel entre dos periodos concretos</h2>
 <p>Primero habrá que generar un objeto raster con los datos climáticos modificados</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>fut_bioclim <span class="ot">&lt;-</span> bioclim</span>
-<span id="cb29-2"><a></a>fut_bioclim[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> fut_bioclim[[<span class="dv">1</span>]] <span class="sc">+</span> <span class="fl">0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>fut_bioclim <span class="ot">&lt;-</span> bioclim</span>
+<span id="cb29-2"><a></a>fut_bioclim[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> fut_bioclim[[<span class="dv">1</span>]] <span class="sc">+</span> <span class="fl">0.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="posteriormente-hacemos-la-predicción-y-se-dibuja-el-mapa" class="slide level2">
 <h2>Posteriormente hacemos la predicción y se dibuja el mapa</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="1-4|5-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>timePred <span class="ot">&lt;-</span> <span class="fu">predict</span>(gdmRast.fit, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30" data-code-line-numbers="1-4|5-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>timePred <span class="ot">&lt;-</span> <span class="fu">predict</span>(gdmRast.fit, </span>
 <span id="cb30-2"><a></a>                    bioclim, </span>
 <span id="cb30-3"><a></a>                    <span class="at">time =</span> T, </span>
 <span id="cb30-4"><a></a>                    <span class="at">predRasts =</span> fut_bioclim)</span>
-<span id="cb30-5"><a></a>terra<span class="sc">::</span><span class="fu">plot</span>(timePred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-5"><a></a>terra<span class="sc">::</span><span class="fu">plot</span>(timePred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1093,7 +1093,7 @@ max values  : 255.00000, 124.18582, 125.431 </code></pre>
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1205,13 +1205,14 @@ max values  : 255.00000, 124.18582, 125.431 </code></pre>
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

@@ -6,11 +6,11 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.34">
+  <meta name="generator" content="quarto-1.8.24">
 
   <meta name="author" content="Diego Nieto Lugilde">
   <meta name="dcterms.date" content="2024-10-16">
@@ -99,7 +99,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -314,9 +314,9 @@ Diego Nieto Lugilde
 <section id="cargando-de-datos-en-r" class="slide level2">
 <h2>Cargando de datos en R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(openxlsx)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(openxlsx)</span>
 <span id="cb1-2"><a></a>com <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/Inventarios.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-3"><a></a><span class="fu">head</span>(com)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a></a><span class="fu">head</span>(com)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Sp_1 Sp_2 Sp_3 Sp_4 Sp_5 Sp_6
 Site_1    0    0    9    0    2    0
@@ -326,8 +326,8 @@ Site_4    2    1    0    1    5    0
 Site_5    1    2    0    0    6    0
 Site_6    0    4    0    2    3    0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/Variables.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-2"><a></a><span class="fu">head</span>(env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/Variables.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-2"><a></a><span class="fu">head</span>(env)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              v1         v2         v3
 Site_1 5.1789918 -0.4380167  2.8471131
@@ -414,8 +414,8 @@ Site_6 0.6951173  2.8438965 -1.2821121</code></pre>
 <h2>Datos de presencia-ausencia</h2>
 <p>Los análisis con datos de presencia-ausencia suelen ser más robustos que los de abundancia o cobertura</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>pres <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(com <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb5-2"><a></a><span class="fu">head</span>(pres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>pres <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(com <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb5-2"><a></a><span class="fu">head</span>(pres)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Sp_1 Sp_2 Sp_3 Sp_4 Sp_5 Sp_6
 Site_1    0    0    1    0    1    0
@@ -432,8 +432,8 @@ Site_6    0    1    0    1    1    0</code></pre>
 <h1>Análisis de ordenación en R</h1>
 <p>Para el análisis de vegetación en R hay un paquete muy útil: <code>vegan</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co">#install.packages("vegan")</span></span>
-<span id="cb7-2"><a></a><span class="fu">library</span>(vegan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co">#install.packages("vegan")</span></span>
+<span id="cb7-2"><a></a><span class="fu">library</span>(vegan)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="análisis-de-componentes-principales-pca" class="slide level2">
@@ -453,9 +453,9 @@ Site_6    0    1    0    1    1    0</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(vegan)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(vegan)</span>
 <span id="cb8-2"><a></a>com_pca <span class="ot">&lt;-</span> <span class="fu">rda</span>(com)</span>
-<span id="cb8-3"><a></a>com_pca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a></a>com_pca</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: rda(X = com)
 
@@ -478,8 +478,8 @@ Eigenvalues for unconstrained axes:
 <section id="análisis-de-redundancia-rda" class="slide level2">
 <h2>Análisis de redundancia (RDA)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>com_rda <span class="ot">&lt;-</span> <span class="fu">rda</span>(com, env)</span>
-<span id="cb10-2"><a></a>com_rda</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>com_rda <span class="ot">&lt;-</span> <span class="fu">rda</span>(com, env)</span>
+<span id="cb10-2"><a></a>com_rda</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: rda(X = com, Y = env)
 
@@ -521,8 +521,8 @@ Eigenvalues for unconstrained axes:
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>com_ca <span class="ot">&lt;-</span> <span class="fu">cca</span>(com)</span>
-<span id="cb12-2"><a></a>com_ca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>com_ca <span class="ot">&lt;-</span> <span class="fu">cca</span>(com)</span>
+<span id="cb12-2"><a></a>com_ca</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: cca(X = com)
 
@@ -546,8 +546,8 @@ Eigenvalues for unconstrained axes:
 <h2>Análisis de correspondencia sin tendencia (DCA)</h2>
 <p>Para DCA se usa la función <code>decorana</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>com_dca <span class="ot">&lt;-</span> <span class="fu">decorana</span>(com)</span>
-<span id="cb14-2"><a></a>com_dca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>com_dca <span class="ot">&lt;-</span> <span class="fu">decorana</span>(com)</span>
+<span id="cb14-2"><a></a>com_dca</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -568,8 +568,8 @@ Axis lengths         2.8105 1.6228 1.09955 1.12945</code></pre>
 <section id="análisis-de-correspondencia-canónica-cca" class="slide level2">
 <h2>Análisis de correspondencia canónica (CCA)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>com_cca <span class="ot">&lt;-</span> <span class="fu">cca</span>(com, env)</span>
-<span id="cb16-2"><a></a>com_cca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>com_cca <span class="ot">&lt;-</span> <span class="fu">cca</span>(com, env)</span>
+<span id="cb16-2"><a></a>com_cca</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: cca(X = com, Y = env)
 
@@ -598,10 +598,10 @@ Eigenvalues for unconstrained axes:
 <h2>PCA basado en transformaciones</h2>
 <p>Para ello se transforman los datos con la función <code>decostand</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>com_hel <span class="ot">&lt;-</span> <span class="fu">decostand</span>(com, <span class="st">'hellinger'</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>com_hel <span class="ot">&lt;-</span> <span class="fu">decostand</span>(com, <span class="st">'hellinger'</span>)</span>
 <span id="cb18-2"><a></a></span>
 <span id="cb18-3"><a></a>com_tbpca <span class="ot">&lt;-</span> <span class="fu">rda</span>(com_hel)</span>
-<span id="cb18-4"><a></a>com_tbpca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-4"><a></a>com_tbpca</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: rda(X = com_hel)
 
@@ -625,8 +625,8 @@ Eigenvalues for unconstrained axes:
 <h2>PCA basado en transformaciones</h2>
 <p>Para ello se transforman los datos con la función <code>decostand</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>com_tbrda <span class="ot">&lt;-</span> <span class="fu">rda</span>(com_hel, env)</span>
-<span id="cb20-2"><a></a>com_tbrda</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>com_tbrda <span class="ot">&lt;-</span> <span class="fu">rda</span>(com_hel, env)</span>
+<span id="cb20-2"><a></a>com_tbrda</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: rda(X = com_hel, Y = env)
 
@@ -656,7 +656,7 @@ Eigenvalues for unconstrained axes:
 <p>Es interesante observar como se disponen especies y sitios en el espacio bidimensional.</p>
 <p>Para ello usamos la función <code>plot</code> sobre cualquiera de los objetos de ordenación.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">plot</span>(com_ca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">plot</span>(com_ca)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -670,7 +670,7 @@ Eigenvalues for unconstrained axes:
 <h2>¿Gráficos sobrecargados?</h2>
 <p>Puedes representar solo ‘especies’ o ‘sitios’ con el argumento <code>display</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display =</span> <span class="st">"sites"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display =</span> <span class="st">"sites"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -678,7 +678,7 @@ Eigenvalues for unconstrained axes:
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display =</span> <span class="st">"species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display =</span> <span class="st">"species"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -697,8 +697,8 @@ Eigenvalues for unconstrained axes:
 <h2>Medida de disimilitud</h2>
 <p>Para calcular la disimilitud entre todos los ‘sitios’ usamos la función <code>vegdist</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(com)</span>
-<span id="cb25-2"><a></a>dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(com)</span>
+<span id="cb25-2"><a></a>dist</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Site_1     Site_2     Site_3     Site_4     Site_5     Site_6
 Site_2  0.14285714                                                       
@@ -788,10 +788,10 @@ Site_20 0.30434783</code></pre>
 <p>La disimilitud entre ‘sitios’ se puede calcular de varias maneras: <code>euclidean</code>, <code>manhattan</code>, <code>gower</code>, <code>canberra</code>, <code>bray</code>, <code>jaccard</code>…</p>
 <p>Para ello usamos el argumento <code>method</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(com, <span class="at">method=</span><span class="st">"euclidean"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(com, <span class="at">method=</span><span class="st">"euclidean"</span>)</span>
 <span id="cb27-2"><a></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(com, <span class="at">method=</span><span class="st">"bray"</span>)</span>
 <span id="cb27-3"><a></a>dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(com, <span class="at">method=</span><span class="st">"jaccard"</span>)</span>
-<span id="cb27-4"><a></a><span class="fu">head</span>(dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-4"><a></a><span class="fu">head</span>(dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2500000 0.4285714 0.8888889 0.8888889 0.8888889 0.8750000</code></pre>
 </div>
@@ -801,8 +801,8 @@ Site_20 0.30434783</code></pre>
 <h2>Clasificación jerárquica</h2>
 <p>Para ello usamos la función <code>hclust</code> sobre la matriz de distancias</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist)</span>
-<span id="cb29-2"><a></a>hc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist)</span>
+<span id="cb29-2"><a></a>hc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -819,11 +819,11 @@ Number of objects: 20 </code></pre>
 <p>Métodos para realizar la agrupación hay varios: <code>single</code>, <code>complete</code>, <code>average</code>, <code>centroid</code>…</p>
 <p>Especificamos el método con el argumento <code>method</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"single"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"single"</span>)</span>
 <span id="cb31-2"><a></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"centroid"</span>)</span>
 <span id="cb31-3"><a></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"average"</span>)</span>
 <span id="cb31-4"><a></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist, <span class="at">method=</span><span class="st">"complete"</span>)</span>
-<span id="cb31-5"><a></a>hc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-5"><a></a>hc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -839,7 +839,7 @@ Number of objects: 20 </code></pre>
 <h2>Visualizar clasificaciones</h2>
 <p>Las clasificaciones jerárquicas se pueden visualizar como un árbol filogenético con la función <code>plot</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -869,8 +869,8 @@ Number of objects: 20 </code></pre>
 <section id="visualizar-clasificaciones-con-un-umbral" class="slide level2">
 <h2>Visualizar clasificaciones con un umbral</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>) </span>
-<span id="cb34-2"><a></a><span class="fu">rect.hclust</span>(hc, <span class="at">h=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>) </span>
+<span id="cb34-2"><a></a><span class="fu">rect.hclust</span>(hc, <span class="at">h=</span><span class="fl">0.7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -883,8 +883,8 @@ Number of objects: 20 </code></pre>
 <section id="visualizar-clasificaciones-con-número-de-grupos" class="slide level2">
 <h2>Visualizar clasificaciones con número de grupos</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb35-2"><a></a><span class="fu">rect.hclust</span>(hc, <span class="at">k=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">plot</span>(hc, <span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb35-2"><a></a><span class="fu">rect.hclust</span>(hc, <span class="at">k=</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -899,9 +899,9 @@ Number of objects: 20 </code></pre>
 <p>En ocasiones es interesante extraer la asignación de cada sitio a un grupo</p>
 <p>Para ello podemos usar la función <code>cutree</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>grp <span class="ot">&lt;-</span> <span class="fu">cutree</span>(hc, <span class="at">h=</span><span class="fl">0.7</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>grp <span class="ot">&lt;-</span> <span class="fu">cutree</span>(hc, <span class="at">h=</span><span class="fl">0.7</span>)</span>
 <span id="cb36-2"><a></a>grp <span class="ot">&lt;-</span> <span class="fu">cutree</span>(hc, <span class="at">k=</span><span class="dv">4</span>)</span>
-<span id="cb36-3"><a></a>grp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-3"><a></a>grp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Site_1  Site_2  Site_3  Site_4  Site_5  Site_6  Site_7  Site_8  Site_9 Site_10 
       1       1       1       2       2       3       2       3       4       4 
@@ -919,8 +919,8 @@ Site_11 Site_12 Site_13 Site_14 Site_15 Site_16 Site_17 Site_18 Site_19 Site_20
 <h2>Dibujar agrupamientos sobre los gráficos de ordenación</h2>
 <p>Para ello usamos la función <code>ordihull</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display=</span><span class="st">"sites"</span>)</span>
-<span id="cb38-2"><a></a><span class="fu">ordihull</span>(com_ca, grp, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display=</span><span class="st">"sites"</span>)</span>
+<span id="cb38-2"><a></a><span class="fu">ordihull</span>(com_ca, grp, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -934,8 +934,8 @@ Site_11 Site_12 Site_13 Site_14 Site_15 Site_16 Site_17 Site_18 Site_19 Site_20
 <h2>Hay más opciones…</h2>
 <p>También se pueden usar las funciones <code>ordispider</code> y <code>ordiellipse</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display=</span><span class="st">"sites"</span>)</span>
-<span id="cb39-2"><a></a><span class="fu">ordispider</span>(com_ca, grp, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display=</span><span class="st">"sites"</span>)</span>
+<span id="cb39-2"><a></a><span class="fu">ordispider</span>(com_ca, grp, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -949,8 +949,8 @@ Site_11 Site_12 Site_13 Site_14 Site_15 Site_16 Site_17 Site_18 Site_19 Site_20
 <h2>… que elegirás en función de tu necesidad</h2>
 <p>Para ello usamos las funciones <code>ordispider</code> y <code>ordiellipse</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display=</span><span class="st">"sites"</span>)</span>
-<span id="cb40-2"><a></a><span class="fu">ordiellipse</span>(com_ca, grp, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">plot</span>(com_ca, <span class="at">display=</span><span class="st">"sites"</span>)</span>
+<span id="cb40-2"><a></a><span class="fu">ordiellipse</span>(com_ca, grp, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1154,7 +1154,7 @@ Site_11 Site_12 Site_13 Site_14 Site_15 Site_16 Site_17 Site_18 Site_19 Site_20
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1266,13 +1266,14 @@ Site_11 Site_12 Site_13 Site_14 Site_15 Site_16 Site_17 Site_18 Site_19 Site_20
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
