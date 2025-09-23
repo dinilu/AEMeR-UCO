@@ -277,7 +277,7 @@ crs(esp_falso_utm)
 #| echo: true
 
 esp_false_utm2 <- esp
-crs(esp_false_utm2) <- "EPSG:32719"
+crs(esp_false_utm2) <- "EPSG:3042"
 crs(esp_false_utm2)
 ```
 
@@ -607,7 +607,7 @@ plot(esp, "total", type = "continuous")
 ```{r}
 #| echo: true
 
-esp <- aggregate(esp, by = "NAME_1") 
+esp <- aggregate(esp, by = "COUNTRY") 
 plot(esp, col = "yellow", lwd = 2, border = "red")
 ```
 

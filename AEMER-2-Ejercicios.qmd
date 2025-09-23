@@ -110,7 +110,7 @@ writeVector(andalucia_utm, "Andalucia.gpkg", overwrite = TRUE)
 ```
 :::
 
-**4. Finalmente, dibuje dos mapas uno con el mapa de la comunidad autónoma de Andalucía en longitud-latitud (WGS84) y el otro en UTM21s. ¿Se aprecian diferencias entre ellos? ¿Por qué?**
+**4. Finalmente, dibuje dos mapas uno con el mapa de la comunidad autónoma de Andalucía en longitud-latitud (WGS84) y el otro en UTM30n. ¿Se aprecian diferencias entre ellos? ¿Por qué?**
 
 ::: {.callout-important collapse="true"}
 ## Solución: Mirar sólo en caso de extrema necesidad.
