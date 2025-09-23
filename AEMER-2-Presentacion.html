@@ -384,9 +384,9 @@ attr(,"package")
  coord. ref. : +proj=longlat +datum=WGS84 +no_defs 
  names       :    ID precip
  type        : &lt;int&gt;  &lt;int&gt;
- values      :     1     99
-                   2      4
-                   3     33</code></pre>
+ values      :     1     81
+                   2     61
+                   3     26</code></pre>
 </div>
 </div>
 </section>
@@ -559,10 +559,10 @@ attr(,"package")
 <h2>O se puede especificar con los códigos <a href="https://epsg.io/">EPSG</a></h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>esp_false_utm2 <span class="ot">&lt;-</span> esp</span>
-<span id="cb35-2"><a></a><span class="fu">crs</span>(esp_false_utm2) <span class="ot">&lt;-</span> <span class="st">"EPSG:32719"</span></span>
+<span id="cb35-2"><a></a><span class="fu">crs</span>(esp_false_utm2) <span class="ot">&lt;-</span> <span class="st">"EPSG:3042"</span></span>
 <span id="cb35-3"><a></a><span class="fu">crs</span>(esp_false_utm2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "PROJCRS[\"WGS 84 / UTM zone 19S\",\n    BASEGEOGCRS[\"WGS 84\",\n        ENSEMBLE[\"World Geodetic System 1984 ensemble\",\n            MEMBER[\"World Geodetic System 1984 (Transit)\"],\n            MEMBER[\"World Geodetic System 1984 (G730)\"],\n            MEMBER[\"World Geodetic System 1984 (G873)\"],\n            MEMBER[\"World Geodetic System 1984 (G1150)\"],\n            MEMBER[\"World Geodetic System 1984 (G1674)\"],\n            MEMBER[\"World Geodetic System 1984 (G1762)\"],\n            MEMBER[\"World Geodetic System 1984 (G2139)\"],\n            ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n                LENGTHUNIT[\"metre\",1]],\n            ENSEMBLEACCURACY[2.0]],\n        PRIMEM[\"Greenwich\",0,\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n        ID[\"EPSG\",4326]],\n    CONVERSION[\"UTM zone 19S\",\n        METHOD[\"Transverse Mercator\",\n            ID[\"EPSG\",9807]],\n        PARAMETER[\"Latitude of natural origin\",0,\n            ANGLEUNIT[\"degree\",0.0174532925199433],\n            ID[\"EPSG\",8801]],\n        PARAMETER[\"Longitude of natural origin\",-69,\n            ANGLEUNIT[\"degree\",0.0174532925199433],\n            ID[\"EPSG\",8802]],\n        PARAMETER[\"Scale factor at natural origin\",0.9996,\n            SCALEUNIT[\"unity\",1],\n            ID[\"EPSG\",8805]],\n        PARAMETER[\"False easting\",500000,\n            LENGTHUNIT[\"metre\",1],\n            ID[\"EPSG\",8806]],\n        PARAMETER[\"False northing\",10000000,\n            LENGTHUNIT[\"metre\",1],\n            ID[\"EPSG\",8807]]],\n    CS[Cartesian,2],\n        AXIS[\"(E)\",east,\n            ORDER[1],\n            LENGTHUNIT[\"metre\",1]],\n        AXIS[\"(N)\",north,\n            ORDER[2],\n            LENGTHUNIT[\"metre\",1]],\n    USAGE[\n        SCOPE[\"Navigation and medium accuracy spatial referencing.\"],\n        AREA[\"Between 72°W and 66°W, southern hemisphere between 80°S and equator, onshore and offshore. Argentina. Bolivia. Brazil. Chile. Colombia. Peru.\"],\n        BBOX[-80,-72,0,-66]],\n    ID[\"EPSG\",32719]]"</code></pre>
+<pre><code>[1] "PROJCRS[\"ETRS89 / UTM zone 30N (N-E)\",\n    BASEGEOGCRS[\"ETRS89\",\n        ENSEMBLE[\"European Terrestrial Reference System 1989 ensemble\",\n            MEMBER[\"European Terrestrial Reference Frame 1989\"],\n            MEMBER[\"European Terrestrial Reference Frame 1990\"],\n            MEMBER[\"European Terrestrial Reference Frame 1991\"],\n            MEMBER[\"European Terrestrial Reference Frame 1992\"],\n            MEMBER[\"European Terrestrial Reference Frame 1993\"],\n            MEMBER[\"European Terrestrial Reference Frame 1994\"],\n            MEMBER[\"European Terrestrial Reference Frame 1996\"],\n            MEMBER[\"European Terrestrial Reference Frame 1997\"],\n            MEMBER[\"European Terrestrial Reference Frame 2000\"],\n            MEMBER[\"European Terrestrial Reference Frame 2005\"],\n            MEMBER[\"European Terrestrial Reference Frame 2014\"],\n            ELLIPSOID[\"GRS 1980\",6378137,298.257222101,\n                LENGTHUNIT[\"metre\",1]],\n            ENSEMBLEACCURACY[0.1]],\n        PRIMEM[\"Greenwich\",0,\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n        ID[\"EPSG\",4258]],\n    CONVERSION[\"UTM zone 30N\",\n        METHOD[\"Transverse Mercator\",\n            ID[\"EPSG\",9807]],\n        PARAMETER[\"Latitude of natural origin\",0,\n            ANGLEUNIT[\"degree\",0.0174532925199433],\n            ID[\"EPSG\",8801]],\n        PARAMETER[\"Longitude of natural origin\",-3,\n            ANGLEUNIT[\"degree\",0.0174532925199433],\n            ID[\"EPSG\",8802]],\n        PARAMETER[\"Scale factor at natural origin\",0.9996,\n            SCALEUNIT[\"unity\",1],\n            ID[\"EPSG\",8805]],\n        PARAMETER[\"False easting\",500000,\n            LENGTHUNIT[\"metre\",1],\n            ID[\"EPSG\",8806]],\n        PARAMETER[\"False northing\",0,\n            LENGTHUNIT[\"metre\",1],\n            ID[\"EPSG\",8807]]],\n    CS[Cartesian,2],\n        AXIS[\"northing (N)\",north,\n            ORDER[1],\n            LENGTHUNIT[\"metre\",1]],\n        AXIS[\"easting (E)\",east,\n            ORDER[2],\n            LENGTHUNIT[\"metre\",1]],\n    USAGE[\n        SCOPE[\"Pan-European medium scale conformal mapping.\"],\n        AREA[\"Europe between 6°W and 0°W: Faroe Islands offshore; Ireland - offshore; Jan Mayen - offshore; Norway including Svalbard - offshore; Spain - onshore and offshore.\"],\n        BBOX[35.26,-6,80.49,0.01]],\n    ID[\"EPSG\",3042]]"</code></pre>
 </div>
 </div>
 </section>
@@ -660,9 +660,9 @@ resolution  : 7, 4  (x, y)
 extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
-name        :       lyr.1 
-min value   : 0.009747992 
-max value   : 0.975948570 </code></pre>
+name        :      lyr.1 
+min value   : 0.01535991 
+max value   : 0.99922492 </code></pre>
 </div>
 </div>
 </section>
@@ -711,9 +711,9 @@ resolution  : 7, 4  (x, y)
 extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
-names       :       lyr.1,        lyr.1,      lyr.1 
-min values  : 0.009747992, 9.502334e-05, 0.09873192 
-max values  : 0.975948570, 9.524756e-01, 0.98790109 </code></pre>
+names       :      lyr.1,        lyr.1,     lyr.1 
+min values  : 0.01535991, 0.0002359268, 0.1239351 
+max values  : 0.99922492, 0.9984504488, 0.9996124 </code></pre>
 </div>
 </div>
 </section>
@@ -743,8 +743,8 @@ extent      : -150, -80, 20, 60  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 source(s)   : memory
 name        :        lyr.1 
-min value   : 9.502334e-05 
-max value   : 9.524756e-01 </code></pre>
+min value   : 0.0002359268 
+max value   : 0.9984504488 </code></pre>
 </div>
 </div>
 </section>
@@ -811,9 +811,9 @@ size        : 2393, 2805, 12  (nrow, ncol, nlyr)
 resolution  : 814.2352, 814.2352  (x, y)
 extent      : -1041769, 1242161, 3041688, 4990152  (xmin, xmax, ymin, ymax)
 coord. ref. : ETRS89 / UTM zone 30N (N-E) (EPSG:3042) 
-source      : spat_6ac0688c1937_27328_o8up7yuDdJ6XHBX.tif 
+source      : spat_6abc64f9a9_27324_o8up7yuDdJ6XHBX.tif 
 names       : tavg_esp_1, tavg_esp_2, tavg_esp_3, tavg_esp_4, tavg_esp_5, tavg_esp_6, ... 
-min values  :  -9.648608,  -9.149931,  -7.476429,  -5.675694,  -1.142237,   3.456088, ... 
+min values  :  -9.649184,  -9.150451,  -7.476511,  -5.675769,  -1.142849,   3.455518, ... 
 max values  :  19.200001,  18.900000,  21.600000,  26.000000,  30.400000,  36.000000, ... </code></pre>
 </div>
 </div>
@@ -875,7 +875,7 @@ size        : 2436, 2855, 12  (nrow, ncol, nlyr)
 resolution  : 800, 800  (x, y)
 extent      : -1041769, 1242231, 3041688, 4990488  (xmin, xmax, ymin, ymax)
 coord. ref. : ETRS89 / UTM zone 30N (N-E) (EPSG:3042) 
-source      : spat_6ac057a729ee_27328_zxzxx9jyyx6UnnI.tif 
+source      : spat_6abc5cd96cab_27324_zxzxx9jyyx6UnnI.tif 
 names       : tavg_esp_1, tavg_esp_2, tavg_esp_3, tavg_esp_4, tavg_esp_5, tavg_esp_6, ... 
 min values  :  -9.669218,  -9.190617,  -7.505003,  -5.726402,  -1.185399,   3.409383, ... 
 max values  :  19.200001,  18.900000,  21.600000,  26.000000,  30.400000,  36.000000, ... </code></pre>
@@ -1128,7 +1128,7 @@ max values  :  19.200001,  18.900000,  21.600000,  26.000000,  30.400000,  36.00
 <section id="a-veces-necesitamos-fusionar-las-formas-de-varios-polígonos-o-líneas-en-uno-de-mayor-tamaño" class="slide level2">
 <h2>A veces necesitamos fusionar las formas de varios polígonos (o líneas) en uno de mayor tamaño</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a></a>esp <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(esp, <span class="at">by =</span> <span class="st">"NAME_1"</span>) </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a></a>esp <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(esp, <span class="at">by =</span> <span class="st">"COUNTRY"</span>) </span>
 <span id="cb90-2"><a></a><span class="fu">plot</span>(esp, <span class="at">col =</span> <span class="st">"yellow"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">border =</span> <span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
@@ -1279,27 +1279,27 @@ max values  :  19.200001,  18.900000,  21.600000,  26.000000,  30.400000,  36.00
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a></a>pnts_esp <span class="ot">&lt;-</span> <span class="fu">extract</span>(esp, pnts)</span>
 <span id="cb102-2"><a></a><span class="fu">head</span>(pnts_esp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  id.y             NAME_1 mean_perimetro mean_total mean_hombres mean_mujeres
-1    1 Castilla-La Mancha        2244559    2104433      1055223      1049210
-2    2    Castilla y León        2663559    2391682      1177504      1214178
-3    3 Castilla-La Mancha        2244559    2104433      1055223      1049210
-4    4    Castilla y León        2663559    2391682      1177504      1214178
-5    5          Andalucía        2589087    8631862      4249355      4382507
-6    6             Aragón        1440886    1351591       668275       683316
-    GID_1 GID_0 COUNTRY                        VARNAME_1 NL_NAME_1
-1 ESP.4_1   ESP   Spain Castela-La Mancha|Castela-Mancha      &lt;NA&gt;
-2 ESP.5_1   ESP   Spain Castile and Leon|Castela e Leão|      &lt;NA&gt;
-3 ESP.4_1   ESP   Spain Castela-La Mancha|Castela-Mancha      &lt;NA&gt;
-4 ESP.5_1   ESP   Spain Castile and Leon|Castela e Leão|      &lt;NA&gt;
-5 ESP.1_1   ESP   Spain Andalousie|Andaluc¡a|Andalusien|      &lt;NA&gt;
-6 ESP.2_1   ESP   Spain Aragão|Aragó|Aragón|Aragona|Arag      &lt;NA&gt;
-              TYPE_1            ENGTYPE_1 CC_1 HASC_1 ISO_1 agg_n
-1 Comunidad Autónoma Autonomous Community   08  ES.CM ES-CM     1
-2 Comunidad Autónoma Autonomous Community   07  ES.CL  &lt;NA&gt;     1
-3 Comunidad Autónoma Autonomous Community   08  ES.CM ES-CM     1
-4 Comunidad Autónoma Autonomous Community   07  ES.CL  &lt;NA&gt;     1
-5 Comunidad Autónoma Autonomous Community   01  ES.AN  &lt;NA&gt;     1
-6 Comunidad Autónoma Autonomous Community   15  ES.AR  &lt;NA&gt;     1</code></pre>
+<pre><code>  id.y COUNTRY mean_perimetro mean_total mean_hombres mean_mujeres NAME_1 GID_1
+1    1   Spain        1447895    2850031      1396568      1453463     NA    NA
+2    2   Spain        1447895    2850031      1396568      1453463     NA    NA
+3    3   Spain        1447895    2850031      1396568      1453463     NA    NA
+4    4   Spain        1447895    2850031      1396568      1453463     NA    NA
+5    5   Spain        1447895    2850031      1396568      1453463     NA    NA
+6    6   Spain        1447895    2850031      1396568      1453463     NA    NA
+  GID_0 VARNAME_1 NL_NAME_1             TYPE_1            ENGTYPE_1 CC_1 HASC_1
+1   ESP        NA      &lt;NA&gt; Comunidad Autónoma Autonomous Community   NA     NA
+2   ESP        NA      &lt;NA&gt; Comunidad Autónoma Autonomous Community   NA     NA
+3   ESP        NA      &lt;NA&gt; Comunidad Autónoma Autonomous Community   NA     NA
+4   ESP        NA      &lt;NA&gt; Comunidad Autónoma Autonomous Community   NA     NA
+5   ESP        NA      &lt;NA&gt; Comunidad Autónoma Autonomous Community   NA     NA
+6   ESP        NA      &lt;NA&gt; Comunidad Autónoma Autonomous Community   NA     NA
+  ISO_1 agg_n
+1    NA    17
+2    NA    17
+3    NA    17
+4    NA    17
+5    NA    17
+6    NA    17</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1307,11 +1307,11 @@ max values  :  19.200001,  18.900000,  21.600000,  26.000000,  30.400000,  36.00
 <span id="cb104-2"><a></a><span class="fu">head</span>(pnts_clip)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id.y Zona
-1    1   NA
+1    1    1
 2    2   NA
 3    3   NA
 4    4   NA
-5    5   NA
+5    5    1
 6    6   NA</code></pre>
 </div>
 </div>
@@ -1323,19 +1323,19 @@ max values  :  19.200001,  18.900000,  21.600000,  26.000000,  30.400000,  36.00
 <span id="cb106-2"><a></a><span class="fu">head</span>(pnts_tavg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  ID tavg_esp_1 tavg_esp_2 tavg_esp_3 tavg_esp_4 tavg_esp_5 tavg_esp_6
-1  1        5.4        7.3       10.1       12.1       16.6       21.9
-2  2        4.0        5.8        8.2        9.8       13.3       17.8
-3  3        3.2        4.3        6.9        8.7       13.0       17.9
-4  4        1.4        2.5        4.7        6.5       10.2       14.5
-5  5        5.6        6.7        9.0       11.2       14.9       19.7
-6  6        5.4        7.2        9.5       11.6       15.7       19.9
+1  1        3.6        5.6        7.8        9.7       13.4       17.9
+2  2       11.0       12.1       13.9       15.4       18.4       22.2
+3  3        3.7        4.9        7.4        9.5       13.7       19.0
+4  4        2.2        3.6        6.1        7.5       10.9       15.5
+5  5        3.5        5.1        7.3        9.0       12.8       17.5
+6  6        5.4        6.3        7.9        9.1       12.5       15.3
   tavg_esp_7 tavg_esp_8 tavg_esp_9 tavg_esp_10 tavg_esp_11 tavg_esp_12
-1       26.1       25.6       21.1        14.6         9.3         6.3
-2       21.3       21.1       17.9        12.4         7.8         4.9
-3       21.5       21.2       17.0        11.8         6.7         4.1
-4       18.0       17.9       14.6         9.5         4.9         2.4
-5       23.6       23.5       19.5        14.0         9.5         6.6
-6       23.4       23.3       19.5        14.3         9.2         6.2</code></pre>
+1       21.3       20.9       17.6        12.3         7.6         4.7
+2       25.4       25.2       23.0        18.8        14.8        12.1
+3       23.2       22.8       18.4        12.6         7.5         4.6
+4       18.7       18.4       15.4        10.3         5.9         3.3
+5       21.3       20.9       17.5        11.9         7.3         4.5
+6       17.8       18.3       16.5        12.9         8.7         6.5</code></pre>
 </div>
 </div>
 <div class="callout callout-warning callout-titled callout-style-default">
