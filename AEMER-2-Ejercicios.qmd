@@ -2,7 +2,6 @@
 title: "Análisis espaciales y multivariantes con R (AEMeR) aplicados a estudios de biodiversidad"
 subtitle: "Ejercicios de manipulación de datos espaciales"
 author: "Diego Nieto Lugilde"
-date: 10/15/2024
 toc: true
 toc-depth: 2
 format: html
@@ -11,18 +10,18 @@ editor: source
 ---
 
 ::: callout-note
-Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre `ejercicios_t2_[nombre]_[apellido].R`. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla `#` delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la `#`) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandármelos por email.
+Los ejercicios tendréis que entregarlos para la evaluación del curso. Para ello, crea un script de R con RStudio. Ponle el nombre `ejercicios_s3_[nombre]_[apellido].R`. Dicho script deberá estar organizado con comentarios en castellano (poniendo una almohadilla `#` delante) y justo detrás el código necesario para realizar el ejercicio (ver ejemplo debajo). Además, si el ejercicio pide reflexionar sobre el resultado use los comentarios (con la `#`) para indicar sus reflexiones debajo del código. Una vez los tengáis completos podéis mandármelos por email.
 
 ```{r}
 #| echo: true
 #| eval: false
 #| code-fold: false
 
-# Ejercicio 1.
 # Parte 1
+# Ejercicio 1.
 seq(1, 40, by = 2)
 
-# Parte 2
+# Ejercicio 2
 seq(1, 40, by = -2)
 # Este código da error porque especifiqué algo mal :)
 
@@ -59,7 +58,7 @@ Esta función se usa para guardar objetos vectoriales en el disco duro del orden
 
 ## Ejercicios
 
-**1. Cargue los límites administrativos de los departamentos de Argentina en un objeto llamado `departamentos` y filtre los departamentos para retener sólo los departamentos de la provincia de `"Buenos Aires"`.**
+**1. Cargue los límites administrativos de las provincias de España en un objeto llamado `provincias` y filtre las provincias para retener sólo las provincias de la comunidad de `"Andalucía"`.**
 
 ::: {.callout-important collapse="true"}
 ## Solución: Mirar sólo en caso de extrema necesidad.
@@ -70,9 +69,9 @@ Esta función se usa para guardar objetos vectoriales en el disco duro del orden
 #| warning: false
 
 library(geodata)
-departamentos <- gadm("ARG", 2, path = ".")
-i <- which(departamentos$NAME_1 == "Buenos Aires")
-ba <- departamentos[i]
+provincias <- gadm("ESP", 2, path = ".")
+i <- which(provincias$NAME_1 == "Andalucía")
+andalucia <- provincias[i]
 ```
 
 ```{r}
@@ -80,14 +79,14 @@ ba <- departamentos[i]
 #| eval: true
 #| warning: false
 library(terra)
-departamentos <- vect("data/gadm/gadm41_ARG_2.shp")
-i <- which(departamentos$NAME_1 == "Buenos Aires")
-ba <- departamentos[i]
+provincias <- vect("data/gadm/gadm41_ESP_2.shp")
+i <- which(provincias$NAME_1 == "Andalucía")
+andalucia <- provincias[i]
 ```
 :::
 
 
-**2. Ahora, proyecte los datos de estos municipios desde el sistema de coordenadas en longitud-latitud y WGS84 al sistema UTM21 sur. Para ello necesitaréis buscar el código EPSG en <https://epsg.io>.**
+**2. Ahora, proyecte los datos de estas provincias desde el sistema de coordenadas en longitud-latitud y WGS84 al sistema UTM30 norte con datum ETRS89. Para ello necesitaréis buscar el código EPSG en <https://epsg.io>.**
 
 ::: {.callout-important collapse="true"}
 ## Solución: Mirar sólo en caso de extrema necesidad.
@@ -95,11 +94,11 @@ ba <- departamentos[i]
 ```{r}
 #| warning: false
 
-ba_utm <- project(ba, "epsg:32721")
+andalucia_utm <- project(andalucia, "epsg:3042")
 ```
 :::
 
-**3. Guarda el objeto vectorial de Buenos Aires con las coordenadas en UTM21s como un fichero geopackage nuevo, llamado `BuenosAires.gpkg`**
+**3. Guarda el objeto vectorial de Andalucía con las coordenadas en UTM30n como un fichero geopackage nuevo, llamado `Andalucia.gpkg`**
 
 ::: {.callout-important collapse="true"}
 ## Solución: Mirar sólo en caso de extrema necesidad.
@@ -107,11 +106,11 @@ ba_utm <- project(ba, "epsg:32721")
 ```{r}
 #| warning: false
 
-writeVector(ba_utm, "BuenosAires.gpkg", overwrite = TRUE)
+writeVector(andalucia_utm, "Andalucia.gpkg", overwrite = TRUE)
 ```
 :::
 
-**4. Finalmente, dibuje dos mapas uno con el mapa de la provincia de Buenos Aires en longitud-latitud (WGS84) y el otro en UTM21s. Por último .**
+**4. Finalmente, dibuje dos mapas uno con el mapa de la comunidad autónoma de Andalucía en longitud-latitud (WGS84) y el otro en UTM21s. ¿Se aprecian diferencias entre ellos? ¿Por qué?**
 
 ::: {.callout-important collapse="true"}
 ## Solución: Mirar sólo en caso de extrema necesidad.
@@ -120,8 +119,8 @@ writeVector(ba_utm, "BuenosAires.gpkg", overwrite = TRUE)
 #| warning: false
 
 par(mfrow = c(1, 2))
-plot(ba)
-plot(ba_utm)
+plot(andalucia)
+plot(andalucia_utm)
 ```
 :::
 
@@ -129,6 +128,10 @@ plot(ba_utm)
 # Parte 2. Trabajando con datos ráster
 
 ## Funciones útiles
+
+**`paste0()`**
+
+Se utiliza para pegar cadenas o vectores sin dejar espacios entre ellos. Es muy útil cuando quieres generar un vector de nombres con un prefijo y una secuencia de números. Por ejemplo: "bio1", "bio2", "bio3"...
 
 **`rast()`**
 
@@ -148,7 +151,7 @@ Se usa para guardar objetos ráster en el disco duro del ordenador.
 
 ## Ejercicios
 
-**1. Carga las variables bioclimáticas (v.gr. `var = "bio"`) del proyecto WorldClim a 0.5 minutos de grado de resolución.**
+**1. Carga las variables bioclimáticas (v.gr. `var = "bio"`) del proyecto WorldClim a 0.5 minutos de grado de resolución para España.**
 
 ::: {.callout-important collapse="true"}
 ## Solución: Mirar sólo en caso de extrema necesidad.
@@ -159,7 +162,7 @@ Se usa para guardar objetos ráster en el disco duro del ordenador.
 #| warning: false
 
 library(geodata)
-arg_bio <- worldclim_country("ARG", var = "bio", path = ".")
+esp_bio <- worldclim_country("ESP", var = "bio", path = ".")
 ```
 
 ```{r}
@@ -167,7 +170,7 @@ arg_bio <- worldclim_country("ARG", var = "bio", path = ".")
 #| eval: true
 #| output: false
 
-arg_bio <- rast("data/climate/wc2.1_country/ARG_wc2.1_30s_bio.tif")
+esp_bio <- rast("climate/wc2.1_country/ESP_wc2.1_30s_bio.tif")
 ```
 :::
 
@@ -180,8 +183,8 @@ arg_bio <- rast("data/climate/wc2.1_country/ARG_wc2.1_30s_bio.tif")
 #| echo: true
 #| output: false
 
-names(arg_bio)
-names(arg_bio) <- paste0("bio", 1:19)
+names(esp_bio)
+names(esp_bio) <- paste0("bio", 1:19)
 ```
 :::
 
@@ -194,11 +197,11 @@ names(arg_bio) <- paste0("bio", 1:19)
 #| echo: true
 #| output: false
 
-arg_bio_utm <- project(arg_bio, "epsg:32721", res = 1000)
+esp_bio_utm <- project(esp_bio, "epsg:3042", res = 1000)
 ```
 :::
 
-**4. Guarde los dos objetos ráster (original y resultante) como un fichero en el disco duro de su ordenador, de modo que pueda reutilizarlos más adelante cuando los vuelva a necesitar.**
+**4. Guarde los dos objetos ráster (original y resultante) como ficheros en el disco duro de su ordenador, de modo que pueda reutilizarlos más adelante cuando los vuelva a necesitar.**
 
 ::: {.callout-important collapse="true"}
 ## Solución: Mirar sólo en caso de extrema necesidad.
@@ -207,12 +210,12 @@ arg_bio_utm <- project(arg_bio, "epsg:32721", res = 1000)
 #| echo: true
 #| output: false
 
-writeRaster(arg_bio, "arg_bio.tif", overwrite = TRUE) 
-writeRaster(arg_bio_utm, "arg_bio_utm.tif", overwrite = TRUE) 
+writeRaster(esp_bio, "esp_bio.tif", overwrite = TRUE) 
+writeRaster(esp_bio_utm, "esp_bio_utm.tif", overwrite = TRUE) 
 ```
 :::
 
-**5. Finalmente, para cerciorarnos que todo esté correcto, dibuje el mapa de la variable `"bio4"` en UTM19s con los polígonos de los municipios de la provincia de "Buenos Aires" superpuestos.**
+**5. Finalmente, para cerciorarnos que todo esté correcto, dibuje el mapa de la variable `"bio4"` en UTM30n con los polígonos de los municipios de la provincia de "Andalucía" superpuestos.**
 
 ::: {.callout-important collapse="true"}
 ## Solución: Mirar sólo en caso de extrema necesidad.
@@ -220,8 +223,8 @@ writeRaster(arg_bio_utm, "arg_bio_utm.tif", overwrite = TRUE)
 ```{r}
 #| echo: true
 
-plot(arg_bio_utm[["bio4"]])
-plot(ba_utm, add = TRUE)
+plot(esp_bio_utm[["bio4"]])
+plot(andalucia_utm, add = TRUE)
 ```
 :::
 
@@ -244,7 +247,7 @@ Se usa para eliminar la información de un ráster que queda fuera de la superfi
 
 ## Ejercicios
 
-**1. Añade una columna de atributos a la capa de los municipios de "Buenos Aires" en la que se recoja el área (superficie) de cada municipio. Posteriormente, dibuja un mapa de los municipios en los que se pueda observar con colores diferentes el área de cada uno de ellos. ¿Hay un patrón geográfico en el tamaño de los municipios de la provincia?**
+**1. Añade una columna de atributos a la capa de las provincias de "Andalucía" en la que se recoja el área (superficie) de cada provincia. Posteriormente, dibuja un mapa de las provincias en el que se pueda observar con colores diferentes el área de cada uno de ellos.**
 
 ::: {.callout-important collapse="true"}
 ## Solución: Mirar sólo en caso de extrema necesidad.
@@ -252,12 +255,12 @@ Se usa para eliminar la información de un ráster que queda fuera de la superfi
 ```{r}
 #| output: false
 
-ba$area <- expanse(ba)
-plot(ba, "area", type = "interval")
+andalucia$area <- expanse(andalucia)
+plot(andalucia, "area", type = "interval")
 ```
 :::
 
-**2. Agrega todos los municipios de la provincia de "Buenos Aires" para generar un polígono con la forma de la provincia. Dibuja el mapa del ejercicio anterior y adiciona el borde de la provincia con los colores de la bandera argentina.**
+**2. Agrega todos los municipios de la provincia de "Andalucía" para generar un polígono con la forma de la provincia. Dibuja el mapa del ejercicio anterior y adiciona el borde de la provincia con los colores de la bandera española.**
 
 ::: {.callout-important collapse="true"}
 ## Solución: Mirar sólo en caso de extrema necesidad.
@@ -265,14 +268,14 @@ plot(ba, "area", type = "interval")
 ```{r}
 #| output: false
 
-ba_borde <- aggregate(ba, "NAME_1")
-plot(ba, "area", type = "interval")
-plot(ba_borde, lwd = 4, border = "cyan", add = TRUE)
-plot(ba_borde, lwd = 2, border = "white", add = TRUE)
+andalucia_borde <- aggregate(andalucia, "NAME_1")
+plot(andalucia, "area", type = "interval")
+plot(andalucia_borde, lwd = 4, border = "red", add = TRUE)
+plot(andalucia_borde, lwd = 2, border = "yellow", add = TRUE)
 ```
 :::
 
-**3. Recorta el objeto ráster con las variables bioclimáticas de Argentina para quedarte sólo con los datos de la provincia de "Buenos Aires". Dibuja el mapa de la variable `bio4` de dichos datos. ¿Ves algo raro?**
+**3. Recorta el objeto ráster con las variables bioclimáticas de España para quedarte sólo con los datos de la comunidad autónoma de "Andalucía". Dibuja el mapa de la variable `bio4` de dichos datos. ¿Ves algo raro?**
 
 ::: {.callout-important collapse="true"}
 ## Solución: Mirar sólo en caso de extrema necesidad.
@@ -280,8 +283,8 @@ plot(ba_borde, lwd = 2, border = "white", add = TRUE)
 ```{r}
 #| output: false
 
-ba_bio <- mask(arg_bio, ba)
-plot(ba_bio[["bio4"]])
+andalucia_bio <- mask(esp_bio, andalucia)
+plot(andalucia_bio[["bio4"]])
 ```
 :::
 
@@ -293,7 +296,7 @@ plot(ba_bio[["bio4"]])
 ```{r}
 #| output: false
 
-ba_bio <- trim(ba_bio)
-plot(ba_bio[["bio4"]])
+andalucia_bio <- trim(andalucia_bio)
+plot(andalucia_bio[["bio4"]])
 ```
 :::

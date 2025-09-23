@@ -2,13 +2,12 @@
 title: "Análisis de datos espaciales en R"
 subtitle: "Manejo de datos espaciales en R"
 author: "Diego Nieto Lugilde"
-date: 10/15/2024
 institute: "Universidad de Córdoba (España)"
 slide-number: true
 format:
   revealjs:
     logo: img/logos.png
-    footer: "[AEMeR](https://dnietolugilde.com/AEMeR)"
+    footer: "[AEMeR-UCO](https://dnietolugilde.com/AEMeR-UCO)"
     scrollable: true
     chalkboard: true
 lightbox: auto
@@ -61,7 +60,7 @@ Para ello es necesario proyectar una esfera sobre un plano
 
 ## Cada proyección y cada datum genera mapas con propiedades diferentes
 
-Conformes, equidistantes, equivalentes y afiláticas
+Conformes, equidistantes, equivalentes y afilácticas
 
 ![](img/tipos_de_proyecciones.jpg)
 
@@ -210,8 +209,8 @@ Descargar datos de Internet (v.gr. [GADM](https://gadm.org)) y cargarlos desde e
 #| echo: true
 #| eval: false
 
-arg <- vect("gadm/gadm41_ARG_1.shp")
-arg
+esp <- vect("data/gadm/gadm41_ESP_1.shp")
+esp
 ```
 
 ## Lo más normal es usar datos generados con un SIG
@@ -223,8 +222,8 @@ Hay paquetes de R que dan acceso directo a datos vectoriales (v.gr. `geodata`)
 
 # install.packages("geodata")
 library(geodata)
-arg <- gadm("ARG", level = 1, path = ".")
-arg
+esp <- gadm("ESP", level = 1, path = ".")
+esp
 ```
 
 ## Veamos si se parece a lo que conocemos...
@@ -232,7 +231,7 @@ arg
 ```{r}
 #| echo: true
 
-plot(arg)
+plot(esp)
 ```
 
 ## Estos datos se pueden guardar para no tener que volver a descargarlos
@@ -241,7 +240,7 @@ plot(arg)
 #| echo: true
 #| eval: false
 
-writeVector(arg, "arg.shp", overwrite = TRUE)
+writeVector(esp, "esp.shp", overwrite = TRUE)
 ```
 
 ## Comprobemos el CRS de alguno de nuestros datos
@@ -249,7 +248,7 @@ writeVector(arg, "arg.shp", overwrite = TRUE)
 ```{r}
 #| echo: true
 
-crs(arg)
+crs(esp)
 ```
 
 ## Se puede borrar el CRS del conjunto de datos
@@ -257,9 +256,9 @@ crs(arg)
 ```{r}
 #| echo: true
 
-arg_sin_crs <- arg
-crs(arg_sin_crs) <- ""
-crs(arg_sin_crs)
+esp_sin_crs <- esp
+crs(esp_sin_crs) <- ""
+crs(esp_sin_crs)
 ```
 
 ## O se puede especificar a mano (estandar PROJ.4)
@@ -267,9 +266,9 @@ crs(arg_sin_crs)
 ```{r}
 #| echo: true
 
-arg_falso_utm <- arg
-crs(arg_falso_utm) <- "+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs +type=crs"
-crs(arg_falso_utm)
+esp_falso_utm <- esp
+crs(esp_falso_utm) <- "+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs +type=crs"
+crs(esp_falso_utm)
 ```
 
 ## O se puede especificar con los códigos [EPSG](https://epsg.io/)
@@ -277,9 +276,9 @@ crs(arg_falso_utm)
 ```{r}
 #| echo: true
 
-arg_false_utm2 <- arg
-crs(arg_false_utm2) <- "EPSG:32719"
-crs(arg_false_utm2)
+esp_false_utm2 <- esp
+crs(esp_false_utm2) <- "EPSG:32719"
+crs(esp_false_utm2)
 ```
 
 ## Cambia el CRS pero no las coordenadas en si
@@ -288,10 +287,10 @@ crs(arg_false_utm2)
 #| echo: true
 
 par(mfrow = c(1, 4))
-plot(arg)
-plot(arg_sin_crs)
-plot(arg_falso_utm)
-plot(arg_false_utm2)
+plot(esp)
+plot(esp_sin_crs)
+plot(esp_falso_utm)
+plot(esp_false_utm2)
 ```
 
 :::{.callout-note} 
@@ -304,12 +303,12 @@ Cambia la representación gráfica porque las unidades cambian entre CRS (grados
 #| echo: true
 #| code-line-numbers: '1|2|3-6'
 
-arg_utm19s <- project(arg, "+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs +type=crs")
-arg_4326 <- project(arg, "EPSG:32719")
+esp_utm30n <- project(esp, "+proj=utm +zone=30 +north +datum=WGS84 +units=m +no_defs +type=crs")
+esp_4326 <- project(esp, "EPSG:4326")
 par(mfrow = c(1, 3))
-plot(arg)
-plot(arg_utm19s)
-plot(arg_4326)
+plot(esp)
+plot(esp_utm30n)
+plot(esp_4326)
 ```
 
 ## También se puede filtrar la información para una o varias entidades de los datos
@@ -317,15 +316,15 @@ plot(arg_4326)
 ```{r}
 #| echo: true
 
-which(arg$NAME_1 == "Buenos Aires")
+which(esp$NAME_1 == "Andalucía")
 ```
 
 ```{r}
 #| echo: true
 #| code-line-numbers: '1|2|3'
 
-i <- which(arg$NAME_1 %in% c("Buenos Aires", "Río Negro"))
-g <- arg[i,]
+i <- which(esp$NAME_1 %in% c("Andalucía", "Región de Murcia"))
+g <- esp[i,]
 plot(g)
 ```
 
@@ -405,7 +404,7 @@ Para ello podemos descargar datos de distintas fuentes (v.gr. [WorldClim](https:
 ```{r}
 #| echo: true
 
-tavg <- rast("data/tavg_arg.tif")
+tavg <- rast("climate/tavg_esp.tif")
 tavg
 ```
 
@@ -417,7 +416,7 @@ tavg
 #| echo: true
 #| eval: false
 
-tavg <- worldclim_country("ARG", "tavg", path = ".")
+tavg <- worldclim_country("ESP", "tavg", path = ".")
 tavg
 ```
 
@@ -435,7 +434,7 @@ plot(tavg, range = c(-20, 30))
 #| echo: true
 #| eval: false
 
-writeRaster(tavg, "raster_tavg_arg.tif", overwrite = TRUE)
+writeRaster(tavg, "raster_tavg_esp.tif", overwrite = TRUE)
 ```
 
 ## Los datos ráster también se pueden proyectar
@@ -443,8 +442,8 @@ writeRaster(tavg, "raster_tavg_arg.tif", overwrite = TRUE)
 ```{r}
 #| echo: true
  
-tavg_utm19s <- project(tavg, "EPSG:32719")
-tavg_utm19s
+tavg_utm30n <- project(tavg, "EPSG:3042")
+tavg_utm30n
 ```
 
 ## Ahora las coordenadas si aparecen "desplazadas"
@@ -454,7 +453,7 @@ tavg_utm19s
 
 par(mfrow = c(1, 2))
 plot(tavg[[1]])
-plot(tavg_utm19s[[1]])
+plot(tavg_utm30n[[1]])
 ```
 
 :::{.callout-warning}
@@ -466,7 +465,7 @@ No hay una correspondencia exacta de píxeles. Lo veréis más claro si revisái
 ```{r}
 #| echo: true
 
-plantilla <- rast(tavg_utm19s)
+plantilla <- rast(tavg_utm30n)
 res(plantilla) <- 800
 plantilla
 ```
@@ -474,8 +473,8 @@ plantilla
 ```{r}
 #| echo: true
 
-tavg_utm19s_plantilla <- project(tavg, plantilla)
-tavg_utm19s_plantilla
+tavg_utm30n_plantilla <- project(tavg, plantilla)
+tavg_utm30n_plantilla
 ```
 
 ## Veamos el resultado
@@ -485,8 +484,8 @@ tavg_utm19s_plantilla
 
 par(mfrow = c(1, 3))
 plot(tavg[[2]])
-plot(tavg_utm19s[[2]])
-plot(tavg_utm19s_plantilla[[2]])
+plot(tavg_utm30n[[2]])
+plot(tavg_utm30n_plantilla[[2]])
 ```
 
 ## Momento de practicar por vuestra cuenta
@@ -502,7 +501,7 @@ Parte 2. Manejo de datos ráster
 ```{r}
 #| echo: true
 
-plot(arg, "NAME_1")
+plot(esp, "NAME_1")
 ```
 
 ## Podemos combinar información ráster y vectorial en el mismo gráfico
@@ -511,7 +510,7 @@ plot(arg, "NAME_1")
 #| echo: true
 
 plot(tavg[[1]])
-plot(arg, add = TRUE)
+plot(esp, add = TRUE)
 ```
 
 ## También se puede extraer información de atributos para trabajar con ella
@@ -519,7 +518,7 @@ plot(arg, add = TRUE)
 ```{r}
 #| echo: true
 
-d <- as.data.frame(arg)
+d <- as.data.frame(esp)
 head(d)
 ```
 
@@ -528,8 +527,8 @@ head(d)
 ```{r}
 #| echo: true
 
-arg$NAME_1
-arg[, "NAME_1"]
+esp$NAME_1
+esp[, "NAME_1"]
 ```
 
 :::{.callout-warning}
@@ -541,7 +540,7 @@ Notad que en este caso, las dos formas de extraer información no se comportan e
 ```{r}
 #| echo: true
 
-g <- geom(arg_utm19s) 
+g <- geom(esp_utm30n) 
 head(g)
 ```
 
@@ -550,15 +549,15 @@ head(g)
 ```{r}
 #| echo: true
 
-perim(arg)
-arg$perimetro <- perim(arg)
+perim(esp)
+esp$perimetro <- perim(esp)
 ```
 
 ```{r}
 #| echo: true
 
-expanse(arg)
-arg$area <- expanse(arg)
+expanse(esp)
+esp$area <- expanse(esp)
 ```
 
 ## ¿Qué pasa si quiero borrar una columna?
@@ -566,21 +565,20 @@ arg$area <- expanse(arg)
 ```{r}
 #| echo: true
 
-arg$area <- NULL
+esp$area <- NULL
 ```
 
 ## A veces tenemos los datos en una tabla aparte
 
 :::{.callout-note}
-Me descargué datos del [censo poblacional del país](https://censo.gob.ar/index.php/datos_definitivos_total_pais/)
+Me descargué datos del [censo poblacional del país](https://www.ine.es/dyngs/INEbase/operacion.htm?c=Estadistica_C&cid=1254736177095&menu=resultados&idp=1254735572981#_tabs-1254736195796)
 :::
 
 ```{r}
 #| echo: true
 
-d <- read.csv("data/c2022_tp_c_resumen.csv", 
-              header = TRUE, 
-              encoding = "latin1")
+d <- openxlsx::read.xlsx("data/Censo_poblacional.xlsx",
+                         sheet = 1)
 d
 ```
 
@@ -590,18 +588,18 @@ Para vincularla necesitamos un campo en común
 
 ```{r}
 #| echo: true
-arg <- merge(arg, d, 
+esp <- merge(esp, d, 
              by.x = "NAME_1", 
-             by.y = "provincia")
-arg
+             by.y = "comunidad")
+esp
 ```
 
-## Veamos la población argentina por provincias
+## Veamos la población Española por provincias
 
 ```{r}
 #| echo: true
 
-plot(arg, "poblacion", type = "continuous")
+plot(esp, "total", type = "continuous")
 ```
 
 ## A veces necesitamos fusionar las formas de varios polígonos (o líneas) en uno de mayor tamaño
@@ -609,8 +607,8 @@ plot(arg, "poblacion", type = "continuous")
 ```{r}
 #| echo: true
 
-arg_0 <- aggregate(arg, by = "COUNTRY") 
-plot(arg_0, col = "white", lwd = 2, border = "cyan")
+esp <- aggregate(esp, by = "NAME_1") 
+plot(esp, col = "yellow", lwd = 2, border = "red")
 ```
 
 ## Los objetos ráster también se pueden agregar
@@ -623,10 +621,10 @@ La agregación aquí trabaja a nivel de píxel, por lo que se usan para cambiar 
 #| echo: true
 #| code-line-numbers: '1|2-5'
 
-tavg_10 <- aggregate(tavg, fact = 100, fun = "mean", na.rm = TRUE)
+tavg_20 <- aggregate(tavg, fact = 20, fun = "mean", na.rm = TRUE)
 par(mfrow = c(1, 2))
 plot(tavg[[1]])
-plot(tavg_10[[1]])
+plot(tavg_20[[1]])
 ```
 
 ## Podemos usar una capa vectorial como máscara para seleccionar objetos dentro de otra capa vectorial
@@ -634,7 +632,7 @@ plot(tavg_10[[1]])
 ```{r}
 #| echo: true
 #| code-line-numbers: '1|2|3|4-5' 
-clip <- rast(ext = c(-70, -60, -47, -30), nrow = 2, ncol = 2)
+clip <- rast(ext = c(-6, -4, 37, 41), nrow = 2, ncol = 2)
 values(clip) <- 1:4
 names(clip) <- "Zona"
 clip <- as.polygons(clip)
@@ -646,7 +644,7 @@ clip
 ```{r}
 #| echo: true
 
-plot(arg) 
+plot(esp) 
 plot(clip, add = TRUE, border = "blue", lwd = 5) 
 ```
  
@@ -655,8 +653,8 @@ plot(clip, add = TRUE, border = "blue", lwd = 5)
 ```{r}
 #| echo: true
 
-arg_clip <- intersect(arg, clip) 
-plot(arg_clip)
+esp_clip <- intersect(esp, clip) 
+plot(esp_clip)
 ```
 
 ## Los objetos ráster también se pueden cortar con un vectorial
@@ -664,10 +662,10 @@ plot(arg_clip)
 ```{r}
 #| echo: true
 
-tavg_arg <- mask(tavg, arg)
+tavg_esp <- mask(tavg, esp)
 par(mfrow = c(1, 2))
 plot(tavg[[1]])
-plot(tavg_arg[[1]])
+plot(tavg_esp[[1]])
 ```
 
 ## Otras veces necesitamos combinar las formas de dos objetos vectoriales diferentes
@@ -675,7 +673,7 @@ plot(tavg_arg[[1]])
 ```{r}
 #| echo: true
 
-u <- union(arg, clip)
+u <- union(esp, clip)
 plot(u, col = sample(rainbow(length(u))))
 ```
 
@@ -686,13 +684,13 @@ Para ello creamos una capa de puntos cualquiera
 ```{r}
 #| echo: true
 
-pnts <- spatSample(arg, 100)
+pnts <- spatSample(esp, 100)
 ```
 
 ```{r}
 #| echo: true
 
-plot(arg)
+plot(esp)
 plot(clip, add = TRUE, border = "cyan")
 plot(pnts, add = TRUE, col = "red")
 ```
@@ -702,8 +700,8 @@ plot(pnts, add = TRUE, col = "red")
 ```{r}
 #| echo: true
 
-pnts_arg <- extract(arg, pnts)
-head(pnts_arg)
+pnts_esp <- extract(esp, pnts)
+head(pnts_esp)
 ```
 
 ```{r}
@@ -732,8 +730,8 @@ Fijaros que extrae un valor de cada capa del ráster stack
 #| echo: true
 #| code-line-numbers: '1|2'
 
-prov_tavg <- extract(tavg, arg, fun = "mean", bind = TRUE, na.rm = TRUE)
-plot(prov_tavg, "ARG_wc2.1_30s_tavg_1")
+prov_tavg <- extract(tavg, esp, fun = "mean", bind = TRUE, na.rm = TRUE)
+plot(prov_tavg, "tavg_esp_1")
 ```
 
 ## Los objetos ráster se puede operar matemáticamente con ellos para generar estadísticos
@@ -758,9 +756,9 @@ El paquete `gdistance` ofrece análisis de distancias complejos (least cost path
 ```{r}
 #| echo: true
 
-arg_raster <- rasterize(arg, tavg, field = "NAME_1")
-class(arg_raster)
-plot(arg_raster)
+esp_raster <- rasterize(esp, tavg, field = "NAME_1")
+class(esp_raster)
+plot(esp_raster)
 ```
 
 ## ... y viceversa
