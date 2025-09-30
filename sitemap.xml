@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://dinilu.github.io/AEMeR-UCO/index.html</loc>
-    <lastmod>2025-09-30T22:04:11.574Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dinilu.github.io/AEMeR-UCO/AEMER-4-GDM.html</loc>
-    <lastmod>2025-09-04T16:11:12.057Z</lastmod>
-  </url>
-  <url>
     <loc>https://dinilu.github.io/AEMeR-UCO/AEMER-3-Analisis_multivariante.html</loc>
-    <lastmod>2025-09-30T21:35:34.550Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dinilu.github.io/AEMeR-UCO/AEMER-2-Ejercicios.html</loc>
-    <lastmod>2025-09-23T17:30:02.620Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dinilu.github.io/AEMeR-UCO/AEMER-1-Ejercicios.html</loc>
-    <lastmod>2025-09-09T18:23:04.289Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dinilu.github.io/AEMeR-UCO/AEMER-1-Presentacion_2.html</loc>
-    <lastmod>2025-09-09T19:53:01.918Z</lastmod>
+    <lastmod>2025-09-30T22:10:31.657Z</lastmod>
   </url>
   <url>
     <loc>https://dinilu.github.io/AEMeR-UCO/AEMER-2-Presentacion.html</loc>
-    <lastmod>2025-09-23T17:27:55.076Z</lastmod>
+    <lastmod>2025-09-30T22:10:31.648Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dinilu.github.io/AEMeR-UCO/AEMER-2-Ejercicios.html</loc>
+    <lastmod>2025-09-30T22:10:31.648Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dinilu.github.io/AEMeR-UCO/AEMER-1-Presentacion_2.html</loc>
+    <lastmod>2025-09-30T22:10:31.647Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dinilu.github.io/AEMeR-UCO/AEMER-4-GDM.html</loc>
+    <lastmod>2025-09-30T22:10:31.662Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dinilu.github.io/AEMeR-UCO/index.html</loc>
+    <lastmod>2025-09-30T22:10:31.957Z</lastmod>
   </url>
   <url>
     <loc>https://dinilu.github.io/AEMeR-UCO/AEMER-3-Ejercicios.html</loc>
-    <lastmod>2025-09-30T22:02:44.221Z</lastmod>
+    <lastmod>2025-09-30T22:10:31.657Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dinilu.github.io/AEMeR-UCO/AEMER-1-Ejercicios.html</loc>
+    <lastmod>2025-09-30T22:10:31.643Z</lastmod>
   </url>
   <url>
     <loc>https://dinilu.github.io/AEMeR-UCO/AEMER-5-HMSC.html</loc>
-    <lastmod>2025-09-04T16:12:56.167Z</lastmod>
+    <lastmod>2025-09-30T22:10:31.669Z</lastmod>
   </url>
 </urlset>
