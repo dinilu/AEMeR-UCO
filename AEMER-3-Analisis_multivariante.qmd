@@ -1,13 +1,12 @@
 ---
 title: "Análisis multivariante en R"
 author: "Diego Nieto Lugilde"
-date: 10/16/2024
 institute: "Universidad de Córdoba (España)"
 slide-number: true
 format:
   revealjs:
     logo: img/logos.png
-    footer: "[AEMeR](https://dnietolugilde.com/AEMeR)"
+    footer: "[AEMeR](https://dnietolugilde.com/AEMeR-UCO)"
     scrollable: true
     chalkboard: true
 include-in-header: 
@@ -47,10 +46,10 @@ editor: source
 #| echo: true
 
 library(openxlsx)
-com <- read.xlsx("data/Inventarios.xlsx", sheet = 1, rowNames = TRUE)
+com <- read.xlsx("data/Wilson_Latorre/Data_multi_bio_R_course.xlsx", sheet = 1, rowNames = TRUE)
 head(com)
 
-env <- read.xlsx("data/Variables.xlsx", sheet = 1, rowNames = TRUE)
+env <- read.xlsx("data/Wilson_Latorre/Data_multi_env_R_course.xlsx", sheet = 1, rowNames = TRUE)
 head(env)
 
 ```
@@ -94,6 +93,32 @@ pres <- ifelse(com > 0, 1, 0)
 head(pres)
 ```
 
+
+## Eliminar especies con pocas presencias
+
+Puede ser recomendable eliminar especies poco prevalentes que aportan "ruido" y poca señal al análisis.
+
+```{r}
+#| echo: true
+
+apply(com, MARGIN = 2, FUN = sum)
+species_abundance <- apply(com, MARGIN = 2, FUN = sum)
+
+which(species_abundance < 5)
+```
+
+
+## Estandarización de los datos ambientales
+
+Suele ser recomendable para evitar falsas dominancias de unas variables sobre otras por sus diferencias de rangos de valores.
+
+```{r}
+#| echo: true
+
+env <- scale(env)
+head(env)
+```
+
 # Análisis de ordenación en R
 
 Para el análisis de vegetación en R hay un paquete muy útil: `vegan`
@@ -119,7 +144,40 @@ Así se juntan la aproximación *unconstrained* y su equivalente *constrained* e
 
 library(vegan)
 com_pca <- rda(com)
-com_pca
+summary(com_pca)
+```
+
+
+## Análisis de componentes principales (PCA)
+
+Recordad que se puede aplicar sobre las variables ambientales.
+
+
+```{r}
+#| echo: true
+
+env_pca <- rda(env)
+summary(env_pca)
+```
+
+
+## Check also further results with the `summary()` function
+
+```{r}
+#| echo: true
+
+summary(env_pca)
+
+env_pca$CA$v
+```
+
+
+## Draw the biplot
+
+```{r}
+#| echo: true
+
+plot(env_pca)
 ```
 
 
@@ -129,7 +187,7 @@ com_pca
 #| echo: true
 
 com_rda <- rda(com, env)
-com_rda
+summary(com_rda)
 ```
 
 
@@ -145,7 +203,7 @@ Así se juntan la aproximación *unconstrained* y su equivalente *constrained* e
 #| echo: true
 
 com_ca <- cca(com)
-com_ca
+summary(com_ca)
 ```
 
 
@@ -157,7 +215,7 @@ Para DCA se usa la función `decorana`
 #| echo: true
 
 com_dca <- decorana(com)
-com_dca
+summary(com_dca)
 ```
 
 
@@ -167,7 +225,7 @@ com_dca
 #| echo: true
 
 com_cca <- cca(com, env)
-com_cca
+summary(com_cca)
 ```
 
 
@@ -181,7 +239,7 @@ Para ello se transforman los datos con la función `decostand`
 com_hel <- decostand(com, 'hellinger')
 
 com_tbpca <- rda(com_hel)
-com_tbpca
+summary(com_tbpca)
 ```
 
 
@@ -193,7 +251,7 @@ Para ello se transforman los datos con la función `decostand`
 #| echo: true
 
 com_tbrda <- rda(com_hel, env)
-com_tbrda
+summary(com_tbrda)
 ```
 
 
@@ -206,7 +264,7 @@ Para ello usamos la función `plot` sobre cualquiera de los objetos de ordenaci�
 ```{r}
 #| echo: true
 
-plot(com_ca)
+plot(com_cca)
 ```
 
 
@@ -217,8 +275,8 @@ Puedes representar solo 'especies' o 'sitios' con el argumento `display`
 ```{r}
 #| echo: true
 
-plot(com_ca, display = "sites")
-plot(com_ca, display = "species")
+plot(com_cca, display = "sites")
+plot(com_cca, display = "species")
 ```
 
 
@@ -311,7 +369,7 @@ plot(hc, hang=-1)
 #| echo: true
 
 plot(hc, hang=-1) 
-rect.hclust(hc, h=0.7)
+rect.hclust(hc, h=0.8)
 ```
 
 
@@ -349,8 +407,8 @@ Para ello usamos la función `ordihull`
 ```{r}
 #| echo: true
 
-plot(com_ca, display="sites")
-ordihull(com_ca, grp, lty=2, col="red")
+plot(com_cca, display="sites")
+ordihull(com_cca, grp, lty=2, col="red")
 ```
 
 ## Hay más opciones...
@@ -360,8 +418,8 @@ También se pueden usar las funciones `ordispider` y `ordiellipse`
 ```{r}
 #| echo: true
 
-plot(com_ca, display="sites")
-ordispider(com_ca, grp, lty=2, col="red")
+plot(com_cca, display="sites")
+ordispider(com_cca, grp, lty=2, col="red")
 ```
 
 ## ... que elegirás en función de tu necesidad
@@ -371,6 +429,6 @@ Para ello usamos las funciones `ordispider` y `ordiellipse`
 ```{r}
 #| echo: true
 
-plot(com_ca, display="sites")
-ordiellipse(com_ca, grp, lty=2, col="red")
+plot(com_cca, display="sites")
+ordiellipse(com_cca, grp, lty=2, col="red")
 ```
