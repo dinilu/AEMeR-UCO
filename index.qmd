@@ -15,7 +15,7 @@ lightbox: auto
 
 * **Tema 2:** Manejo de datos espaciales en R. [Presentación](AEMER-2-Presentacion.qmd){target="_blank"} - [Ejercicios](AEMER-2-Ejercicios.qmd){target="_blank"}
 
-* **Tema 3:** Análisis multivariantes en R. [Presentación 1](AEMER-3-Analisis_multivariante.pdf){target="_blank"} - [Presentación 2](AEMER-3-Analisis_multivariante.qmd){target="_blank"} - [Ejercicios](AEMER-3-Ejercicios.qmd){target="_blank"}
+* **Tema 3:** Análisis multivariantes en R. [Presentación 1](AEMER-3-Analisis_multivariante.pdf){target="_blank"} - [Presentación 2](AEMER-3-Analisis_multivariante.qmd){target="_blank"} - [Ejercicios](AEMER-3-Ejercicios.qmd){target="_blank"} - [Com.xlsx](data/Wilson_Latorre/Data_multi_bio_R_course.xlsx){target="_blank"} - [Env.xlsx](data/Wilson_Latorre/Data_multi_env_R_course.xlsx){target="_blank"} - [Sites.xlsx](data/Wilson_Latorre/Data_multi_site_R_course.xlsx){target="_blank"}
 
 :::{.content-hidden}
 
