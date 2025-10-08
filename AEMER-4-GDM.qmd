@@ -83,6 +83,8 @@ points(coords[,c("Long","Lat")])
 En UTM 18s y los recorto para la región de interés
 
 ```{r}
+#| echo: true
+
 bio <- project(bio, "EPSG:32718")
 bio <- crop(bio, 
                 ext(-250000, 499746.5, 9362131, 10231857))
