@@ -6,7 +6,7 @@ slide-number: true
 format:
   revealjs:
     logo: img/logos.png
-    footer: "[AEMeR](https://dnietolugilde.com/AEMeR-UCO)"
+    footer: "[AEMeR-UCO](https://dnietolugilde.com/AEMeR-UCO)"
     scrollable: true
     chalkboard: true
 include-in-header: 

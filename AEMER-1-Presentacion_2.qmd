@@ -7,7 +7,7 @@ slide-number: true
 format:
   revealjs:
     logo: img/R-logo.png
-    footer: "[Análisis Espaciales y Multivariantes en R](https://dnietolugilde.com/AEMeR-UCO)"
+    footer: "[AEMeR-UCO](https://dnietolugilde.com/AEMeR-UCO)"
     scrollable: true
     chalkboard: true
 lightbox: auto
@@ -1071,7 +1071,7 @@ plot(x, y)
 #| results: hold
 #| echo: true
 
-install.packages("hexbin") 
+# install.packages("hexbin") 
 library(hexbin)
 
 hbin <- hexbin(x, y, xbins = 40)

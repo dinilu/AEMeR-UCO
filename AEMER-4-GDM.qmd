@@ -2,13 +2,12 @@
 title: "Modelos Generalizados de Disimilitud en R"
 subtitle: "Generalized Dissimilarity Models (GDM)"
 author: "Diego Nieto Lugilde"
-date: 10/17/2024
 institute: "Universidad de Córdoba (España)"
 slide-number: true
 format:
   revealjs:
     logo: img/logos.png
-    footer: "[AEMeR](https://dnietolugilde.com/AEMeR)"
+    footer: "[AEMeR-UCO](https://dnietolugilde.com/AEMeR-UCO)"
     scrollable: true
     chalkboard: true
 include-in-header: 
@@ -36,46 +35,62 @@ source("gdm.transform.R")
 ```
 
 
-## Cargamos los datos de Michelle, incluyendo las coordenadas geográficas
+## Cargamos los datos de Wilson, incluyendo las coordenadas geográficas
 
 ```{r}
 #| echo: true
 
 library(openxlsx)
-env <- read.xlsx("data/sciberras_ambiente.xlsx", 
+env <- read.xlsx("data/Wilson_Latorre/Data_multi_env_R_course.xlsx", 
                  sheet = 1, 
                  rowNames = TRUE)
-com <- read.xlsx("data/sciberras_especies.xlsx", 
+com <- read.xlsx("data/Wilson_Latorre/Data_multi_bio_R_course.xlsx", 
                  sheet = 1, 
                  rowNames = TRUE)
-coords <- read.xlsx("data/sciberras_coords.xlsx", 
+coords <- read.xlsx("data/Wilson_Latorre/Data_multi_site_R_course.xlsx", 
                     sheet = 1, 
                     rowNames = TRUE)
-head(coords)
+summary(coords)
 ```
 
 
-## Cargamos los datos bioclimáticos 
+## Cargamos los datos bioclimáticos y los incorporamos a las variables ambientales
 
-En particular cargamos los datos de argentina en formato ráster y en UTM 21s y los recorto para la región de interés
+En particular cargamos los datos de Ecuador en formato ráster
 
 ::: {.callout-note}
-Estos datos los generamos durante la clase sobre análisis de datos espaciales en R.
+Estos datos aprendimos a generarlos durante la clase sobre datos espaciales en R.
 :::
 
 ```{r}
 #| echo: true
-#| code-line-numbers: '1-2|3-4|5'
+#| code-line-numbers: '1-3|5-6|8-9'
 
 library(terra)
-bioclim <- rast("arg_bio_utm.tif")
-bioclim <- crop(bioclim, 
-                ext(-100000, 600000, 5500000, 6000000))
-plot(bioclim[[1]])
+library(geodata)
+bio <- worldclim_country("ECU", "bio", path = ".")
+
+bio_data <- terra::extract(bio, as.matrix(coords[,c("Long", "Lat")]))
+env <- cbind(env, bio_data)
+
+plot(bio[[1]])
+points(coords[,c("Long","Lat")])
 ```
 
 
-## Reproyecto los datos de coordenadas a UTM 21s y los combino con los datos de comunidades
+## Reproyectamos los mapas
+
+En UTM 18s y los recorto para la región de interés
+
+```{r}
+bio <- project(bio, "EPSG:32718")
+bio <- crop(bio, 
+                ext(-250000, 499746.5, 9362131, 10231857))
+plot(bio[[1]])
+```
+
+
+## Reproyecto los datos de coordenadas a UTM 18s y los combino con los datos de comunidades
 
 ::: {.callout-important}
 El paquete `gdm` requiere que las coordenadas estén especificadas como columnas en la matriz de comunidades, en la matriz de variables ambientales, o en las dos; pero no se pueden especificar como un objeto independiente.
@@ -85,14 +100,14 @@ El paquete `gdm` requiere que las coordenadas estén especificadas como columnas
 #| echo: true
 #| code-line-numbers: '1-3|4-6|7-8|9'
 
-utm <- project(as.matrix(coords), 
+utm <- project(as.matrix(coords[,c("Long", "Lat")]), 
                from = "EPSG: 4326", 
-               to = "EPSG:32721")
+               to = "EPSG:32718")
 utm <- data.frame(x = utm[,1], 
                   y = utm[,2],
-                  rio = rownames(coords))
-com$rio <- env$rio
-com <- merge(com, utm)
+                    Sitio = rownames(coords))
+com$Sitio <- rownames(com)
+com <- merge(com, utm, by = "Sitio")
 head(com)
 ```
 
@@ -119,13 +134,13 @@ Usamos el paquete `gdm`
 #| code-line-numbers: '1-8|10-16|18'
 
 library(gdm)
-gdmTab <- formatsitepair(com[,-1], # Quito la columna `río`
+gdmTab <- formatsitepair(com[,-1], # Quito la columna `Sitio`
                bioFormat = 1, 
                abundance = TRUE, 
                XColumn = "x", # Nombre de la coordenada X
                YColumn = "y", # Nombre de la coordenada Y
                siteColumn = "site_id", # Nombre del identificador
-               predData = env[,-c(1:3)]) # Quito columnas de texto
+               predData = env) # Quito columnas de texto
 
 gdmRast <- formatsitepair(com[,-1],
                bioFormat = 1, 
@@ -133,7 +148,7 @@ gdmRast <- formatsitepair(com[,-1],
                XColumn = "x",
                YColumn = "y", 
                siteColumn = "site_id",
-               predData = bioclim)
+               predData = bio)
 
 head(gdmTab)
 ```
@@ -209,11 +224,11 @@ str(gdmRast.splines)
 ```{r}
 #| echo: true
 
-plot(gdmRast.splines[["x"]][,"bio1"], 
-     gdmRast.splines[["y"]][,"bio1"], 
+plot(gdmRast.splines[["x"]][,"wc2.1_30s_bio_3"], 
+     gdmRast.splines[["y"]][,"wc2.1_30s_bio_3"], 
      lwd=3,
      type="l", 
-     xlab="Mean Annual Temperature (ºC)", 
+     xlab="Isothermality", 
      ylab="Partial ecological distance")
 ```
 
@@ -226,7 +241,7 @@ plot(gdmRast.splines[["x"]][,"bio1"],
 ```{r}
 #| echo: true
 
-gdmRast.sp_trans <- gdm.transform(gdmRast.fit, bioclim)
+gdmRast.sp_trans <- gdm.transform(gdmRast.fit, bio)
 gdmRast.sp_trans
 ```
 
@@ -265,6 +280,7 @@ pca.rast
 #| echo: true
 
 terra::plotRGB(pca.rast, r=1, g=2, b=3)
+points(utm[,c("x", "y")])
 ```
 
 
@@ -276,8 +292,8 @@ Primero habrá que generar un objeto raster con los datos climáticos modificado
 #| echo: true
 #| code-line-numbers: '1|2'
 
-fut_bioclim <- bioclim
-fut_bioclim[[1]] <- fut_bioclim[[1]] + 0.5
+fut_bioclim <- bio
+fut_bioclim[[3]] <- fut_bioclim[[3]] + 1
 ```
 
 
@@ -288,7 +304,7 @@ fut_bioclim[[1]] <- fut_bioclim[[1]] + 0.5
 #| code-line-numbers: '1-4|5-7'
 
 timePred <- predict(gdmRast.fit, 
-                    bioclim, 
+                    bio, 
                     time = T, 
                     predRasts = fut_bioclim)
 terra::plot(timePred)
