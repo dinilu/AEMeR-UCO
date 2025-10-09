@@ -170,7 +170,7 @@ gdmRast.fit <- gdm(data=gdmRast, geo=TRUE)
 
 # Analicemos los resultados
 
-## Veamos los resultados de los datos de Michelle
+## Veamos los resultados de los datos de Wilson
 
 ```{r}
 #| echo: true
