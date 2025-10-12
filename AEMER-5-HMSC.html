@@ -14,7 +14,6 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Diego Nieto Lugilde">
-  <meta name="dcterms.date" content="2024-10-18">
   <title>Modelos Jerárquicos de Comunidades de Especies en R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -413,14 +412,20 @@ Diego Nieto Lugilde
     </div>
 </div>
 
-  <p class="date">2024-10-18</p>
 </section>
 <section id="cargamos-algunos-datos" class="slide level2">
 <h2>Cargamos algunos datos</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb1-2"><a></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_ambiente.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-3"><a></a>com <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/sciberras_especies.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/Wilson_Latorre/Data_multi_env_R_course.xlsx"</span>,</span>
+<span id="cb1-3"><a></a>                 <span class="at">sheet =</span> <span class="dv">1</span>, </span>
+<span id="cb1-4"><a></a>                 <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-5"><a></a>com <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/Wilson_Latorre/Data_multi_bio_R_course.xlsx"</span>,</span>
+<span id="cb1-6"><a></a>                 <span class="at">sheet =</span> <span class="dv">1</span>, </span>
+<span id="cb1-7"><a></a>                 <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-8"><a></a>sites <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/Wilson_Latorre/Data_multi_site_R_course.xlsx"</span>,</span>
+<span id="cb1-9"><a></a>                   <span class="at">sheet =</span> <span class="dv">1</span>,</span>
+<span id="cb1-10"><a></a>                   <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="preparamos-un-poco-los-datos" class="slide level2">
@@ -428,145 +433,156 @@ Diego Nieto Lugilde
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>comm <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(com)</span>
 <span id="cb2-2"><a></a></span>
-<span id="cb2-3"><a></a>envm <span class="ot">&lt;-</span> <span class="fu">scale</span>(env[, <span class="dv">4</span><span class="sc">:</span><span class="dv">7</span>])</span>
-<span id="cb2-4"><a></a>envm <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(envm)</span>
-<span id="cb2-5"><a></a></span>
-<span id="cb2-6"><a></a>sites <span class="ot">&lt;-</span> env[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="simulamos-unos-datos-filogenéticos" class="slide level2">
-<h2>Simulamos unos datos filogenéticos</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>phy <span class="ot">&lt;-</span> ape<span class="sc">::</span><span class="fu">rcoal</span>(<span class="at">n =</span> <span class="fu">ncol</span>(comm), </span>
-<span id="cb3-2"><a></a>                 <span class="at">tip.label =</span> <span class="fu">colnames</span>(comm), </span>
-<span id="cb3-3"><a></a>                 <span class="at">br =</span> <span class="st">"coalescent"</span>)</span>
-<span id="cb3-4"><a></a><span class="fu">plot</span>(phy, <span class="at">no.margin =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></a></p>
-</figure>
-</div>
-</div>
+<span id="cb2-3"><a></a>envm <span class="ot">&lt;-</span> <span class="fu">scale</span>(env)</span>
+<span id="cb2-4"><a></a>envm <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(envm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="definimos-el-diseño-experimental" class="slide level2">
 <h2>Definimos el diseño experimental</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(Hmsc)</span>
-<span id="cb4-2"><a></a>studyDesign <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">rio =</span> <span class="fu">as.factor</span>(sites<span class="sc">$</span>rio),</span>
-<span id="cb4-3"><a></a>                         <span class="at">mes =</span> <span class="fu">as.factor</span>(sites<span class="sc">$</span>mes))</span>
-<span id="cb4-4"><a></a>rioL <span class="ot">&lt;-</span> <span class="fu">HmscRandomLevel</span>(<span class="at">units =</span> <span class="fu">levels</span>(sites<span class="sc">$</span>rio))</span>
-<span id="cb4-5"><a></a>mesL <span class="ot">&lt;-</span> <span class="fu">HmscRandomLevel</span>(<span class="at">units =</span> <span class="fu">levels</span>(sites<span class="sc">$</span>mes))</span>
-<span id="cb4-6"><a></a></span>
-<span id="cb4-7"><a></a>rioL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb4-8"><a></a>mesL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(Hmsc)</span>
+<span id="cb3-2"><a></a>studyDesign <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sitio =</span> <span class="fu">as.factor</span>(sites<span class="sc">$</span>Sitio),</span>
+<span id="cb3-3"><a></a>                          <span class="at">parcela =</span> <span class="fu">as.factor</span>(sites<span class="sc">$</span>Parcela),</span>
+<span id="cb3-4"><a></a>                          año <span class="ot">=</span> <span class="fu">as.factor</span>(sites<span class="sc">$</span>Año),</span>
+<span id="cb3-5"><a></a>                         <span class="at">estacion =</span> <span class="fu">as.factor</span>(sites<span class="sc">$</span>Estacion))</span>
+<span id="cb3-6"><a></a>sitioL <span class="ot">&lt;-</span> <span class="fu">HmscRandomLevel</span>(<span class="at">units =</span> <span class="fu">levels</span>(sites<span class="sc">$</span>Sitio))</span>
+<span id="cb3-7"><a></a>parcelaL <span class="ot">&lt;-</span> <span class="fu">HmscRandomLevel</span>(<span class="at">units =</span> <span class="fu">levels</span>(sites<span class="sc">$</span>Parcela))</span>
+<span id="cb3-8"><a></a>añoL <span class="ot">&lt;-</span> <span class="fu">HmscRandomLevel</span>(<span class="at">units =</span> <span class="fu">levels</span>(sites<span class="sc">$</span>Año))</span>
+<span id="cb3-9"><a></a>estacionL <span class="ot">&lt;-</span> <span class="fu">HmscRandomLevel</span>(<span class="at">units =</span> <span class="fu">levels</span>(sites<span class="sc">$</span>Estacion))</span>
+<span id="cb3-10"><a></a></span>
+<span id="cb3-11"><a></a></span>
+<span id="cb3-12"><a></a>sitioL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb3-13"><a></a>parcelaL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb3-14"><a></a>añoL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb3-15"><a></a>estacionL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="especificamos-la-estructura-del-modelo" class="slide level2">
 <h2>Especificamos la estructura del modelo</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>m0 <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm, </span>
-<span id="cb5-2"><a></a>         <span class="at">XData =</span> envm, </span>
-<span id="cb5-3"><a></a>         <span class="at">XFormula =</span> <span class="sc">~</span><span class="dv">1</span>,</span>
-<span id="cb5-4"><a></a>         <span class="at">studyDesign =</span> studyDesign, </span>
-<span id="cb5-5"><a></a>         <span class="at">ranLevels =</span> <span class="fu">list</span>(<span class="at">rio =</span> rioL, <span class="at">mes =</span> mesL),</span>
-<span id="cb5-6"><a></a>         <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span>
-<span id="cb5-7"><a></a></span>
-<span id="cb5-8"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm, </span>
-<span id="cb5-9"><a></a>           <span class="at">XData =</span> envm,</span>
-<span id="cb5-10"><a></a>           <span class="at">XFormula =</span> <span class="sc">~</span>materia_org <span class="sc">+</span> <span class="fu">poly</span>(temperatura ,<span class="at">degree =</span> <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> salinidad <span class="sc">+</span> ph,</span>
-<span id="cb5-11"><a></a>           <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span>
-<span id="cb5-12"><a></a></span>
-<span id="cb5-13"><a></a></span>
-<span id="cb5-14"><a></a>m_env <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm, </span>
-<span id="cb5-15"><a></a>          <span class="at">XData =</span> envm,</span>
-<span id="cb5-16"><a></a>          <span class="at">XFormula =</span> <span class="sc">~</span>materia_org <span class="sc">+</span> <span class="fu">poly</span>(temperatura ,<span class="at">degree =</span> <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>)  <span class="sc">+</span> salinidad <span class="sc">+</span> ph,</span>
-<span id="cb5-17"><a></a>          <span class="at">studyDesign =</span> studyDesign, </span>
-<span id="cb5-18"><a></a>          <span class="at">ranLevels =</span> <span class="fu">list</span>(<span class="at">rio =</span> rioL, <span class="at">mes =</span> mesL),</span>
-<span id="cb5-19"><a></a>          <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span>
-<span id="cb5-20"><a></a></span>
-<span id="cb5-21"><a></a>m_env_phy <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm,</span>
-<span id="cb5-22"><a></a>         <span class="at">XData =</span> envm, </span>
-<span id="cb5-23"><a></a>         <span class="at">XFormula =</span> <span class="sc">~</span>materia_org <span class="sc">+</span> <span class="fu">poly</span>(temperatura ,<span class="at">degree =</span> <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>)  <span class="sc">+</span> salinidad <span class="sc">+</span> ph,</span>
-<span id="cb5-24"><a></a>         <span class="at">phyloTree =</span> phy,</span>
-<span id="cb5-25"><a></a>         <span class="at">studyDesign =</span> studyDesign, </span>
-<span id="cb5-26"><a></a>         <span class="at">ranLevels =</span> <span class="fu">list</span>(<span class="at">rio =</span> rioL, <span class="at">mes =</span> mesL),</span>
-<span id="cb5-27"><a></a>         <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>m0 <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm, </span>
+<span id="cb4-2"><a></a>         <span class="at">XData =</span> envm, </span>
+<span id="cb4-3"><a></a>         <span class="at">XFormula =</span> <span class="sc">~</span><span class="dv">1</span>,</span>
+<span id="cb4-4"><a></a>         <span class="at">studyDesign =</span> studyDesign, </span>
+<span id="cb4-5"><a></a>         <span class="at">ranLevels =</span> <span class="fu">list</span>(<span class="st">"sitio"</span> <span class="ot">=</span> sitioL, </span>
+<span id="cb4-6"><a></a>                          <span class="st">"parcela"</span> <span class="ot">=</span> parcelaL, </span>
+<span id="cb4-7"><a></a>                          <span class="st">"año"</span> <span class="ot">=</span> añoL, </span>
+<span id="cb4-8"><a></a>                          <span class="st">"estacion"</span> <span class="ot">=</span> estacionL),</span>
+<span id="cb4-9"><a></a>         <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span>
+<span id="cb4-10"><a></a></span>
+<span id="cb4-11"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm, </span>
+<span id="cb4-12"><a></a>           <span class="at">XData =</span> envm,</span>
+<span id="cb4-13"><a></a>           <span class="at">XFormula =</span> <span class="sc">~</span><span class="st">`</span><span class="at">N-NO3-</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">N-NH3</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">N-NO2-</span><span class="st">`</span> <span class="sc">+</span></span>
+<span id="cb4-14"><a></a>             <span class="st">`</span><span class="at">PO43-</span><span class="st">`</span> <span class="sc">+</span> pH <span class="sc">+</span> DO <span class="sc">+</span> EC <span class="sc">+</span> NTU <span class="sc">+</span> <span class="st">`</span><span class="at">T°C</span><span class="st">`</span> <span class="sc">+</span></span>
+<span id="cb4-15"><a></a>             Current.velocity <span class="sc">+</span> Average.depth <span class="sc">+</span> Average.width,</span>
+<span id="cb4-16"><a></a>           <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span>
+<span id="cb4-17"><a></a></span>
+<span id="cb4-18"><a></a></span>
+<span id="cb4-19"><a></a>m_env <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm, </span>
+<span id="cb4-20"><a></a>          <span class="at">XData =</span> envm,</span>
+<span id="cb4-21"><a></a>           <span class="at">XFormula =</span> <span class="sc">~</span><span class="st">`</span><span class="at">N-NO3-</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">N-NH3</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">N-NO2-</span><span class="st">`</span> <span class="sc">+</span></span>
+<span id="cb4-22"><a></a>            <span class="st">`</span><span class="at">PO43-</span><span class="st">`</span> <span class="sc">+</span> pH <span class="sc">+</span> DO <span class="sc">+</span> EC <span class="sc">+</span> NTU <span class="sc">+</span> <span class="st">`</span><span class="at">T°C</span><span class="st">`</span> <span class="sc">+</span></span>
+<span id="cb4-23"><a></a>             Current.velocity <span class="sc">+</span> Average.depth <span class="sc">+</span> Average.width,</span>
+<span id="cb4-24"><a></a>          <span class="at">studyDesign =</span> studyDesign, </span>
+<span id="cb4-25"><a></a>         <span class="at">ranLevels =</span> <span class="fu">list</span>(<span class="st">"sitio"</span> <span class="ot">=</span> sitioL, </span>
+<span id="cb4-26"><a></a>                          <span class="st">"parcela"</span> <span class="ot">=</span> parcelaL, </span>
+<span id="cb4-27"><a></a>                          <span class="st">"año"</span> <span class="ot">=</span> añoL, </span>
+<span id="cb4-28"><a></a>                          <span class="st">"estacion"</span> <span class="ot">=</span> estacionL),</span>
+<span id="cb4-29"><a></a>           <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="definimos-los-parámetros-para-las-cadenas-de-markov-monte-carlo" class="slide level2">
 <h2>Definimos los parámetros para las Cadenas de Markov Monte Carlo</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>samples <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># Este valor debería ser más alto. Del orden de 100000 hacia arriba.</span></span>
-<span id="cb6-2"><a></a>thin <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Este valor también suele ser más alto. Del orden de 50-100 hacia arriba.</span></span>
-<span id="cb6-3"><a></a>transient <span class="ot">&lt;-</span> <span class="dv">500</span><span class="sc">*</span>thin</span>
-<span id="cb6-4"><a></a>nChains <span class="ot">&lt;-</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>samples <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># Este valor debería ser más alto. Del orden de 10000 hacia arriba.</span></span>
+<span id="cb5-2"><a></a>thin <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Este valor también suele ser más alto. Del orden de 50-100 hacia arriba.</span></span>
+<span id="cb5-3"><a></a>transient <span class="ot">&lt;-</span> <span class="dv">500</span><span class="sc">*</span>thin</span>
+<span id="cb5-4"><a></a>nChains <span class="ot">&lt;-</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="se-calibran-y-estiman-los-parámetros-del-modelos-con-las-mcmc" class="slide level2">
 <h2>Se calibran y estiman los parámetros del modelos con las MCMC</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>m0 <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m0, </span>
-<span id="cb7-2"><a></a>               <span class="at">thin =</span> thin, </span>
-<span id="cb7-3"><a></a>               <span class="at">samples =</span> samples, </span>
-<span id="cb7-4"><a></a>               <span class="at">transient =</span> transient, </span>
-<span id="cb7-5"><a></a>               <span class="at">nChains =</span> nChains, </span>
-<span id="cb7-6"><a></a>               <span class="at">nParallel =</span> nChains)</span>
-<span id="cb7-7"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m1, </span>
-<span id="cb7-8"><a></a>               <span class="at">thin =</span> thin, </span>
-<span id="cb7-9"><a></a>               <span class="at">samples =</span> samples, </span>
-<span id="cb7-10"><a></a>               <span class="at">transient =</span> transient, </span>
-<span id="cb7-11"><a></a>               <span class="at">nChains =</span> nChains, </span>
-<span id="cb7-12"><a></a>               <span class="at">nParallel =</span> nChains)</span>
-<span id="cb7-13"><a></a>m_env <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m_env, </span>
-<span id="cb7-14"><a></a>               <span class="at">thin =</span> thin, </span>
-<span id="cb7-15"><a></a>               <span class="at">samples =</span> samples, </span>
-<span id="cb7-16"><a></a>               <span class="at">transient =</span> transient, </span>
-<span id="cb7-17"><a></a>               <span class="at">nChains =</span> nChains, </span>
-<span id="cb7-18"><a></a>               <span class="at">nParallel =</span> nChains)</span>
-<span id="cb7-19"><a></a>m_env_phy <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m_env_phy, </span>
-<span id="cb7-20"><a></a>               <span class="at">thin =</span> thin, </span>
-<span id="cb7-21"><a></a>               <span class="at">samples =</span> samples, </span>
-<span id="cb7-22"><a></a>               <span class="at">transient =</span> transient, </span>
-<span id="cb7-23"><a></a>               <span class="at">nChains =</span> nChains, </span>
-<span id="cb7-24"><a></a>               <span class="at">nParallel =</span> nChains)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>m0 <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m0, </span>
+<span id="cb6-2"><a></a>               <span class="at">thin =</span> thin, </span>
+<span id="cb6-3"><a></a>               <span class="at">samples =</span> samples, </span>
+<span id="cb6-4"><a></a>               <span class="at">transient =</span> transient, </span>
+<span id="cb6-5"><a></a>               <span class="at">nChains =</span> nChains, </span>
+<span id="cb6-6"><a></a>               <span class="at">nParallel =</span> nChains)</span>
+<span id="cb6-7"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m1, </span>
+<span id="cb6-8"><a></a>               <span class="at">thin =</span> thin, </span>
+<span id="cb6-9"><a></a>               <span class="at">samples =</span> samples, </span>
+<span id="cb6-10"><a></a>               <span class="at">transient =</span> transient, </span>
+<span id="cb6-11"><a></a>               <span class="at">nChains =</span> nChains, </span>
+<span id="cb6-12"><a></a>               <span class="at">nParallel =</span> nChains)</span>
+<span id="cb6-13"><a></a>m_env <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m_env, </span>
+<span id="cb6-14"><a></a>               <span class="at">thin =</span> thin, </span>
+<span id="cb6-15"><a></a>               <span class="at">samples =</span> samples, </span>
+<span id="cb6-16"><a></a>               <span class="at">transient =</span> transient, </span>
+<span id="cb6-17"><a></a>               <span class="at">nChains =</span> nChains, </span>
+<span id="cb6-18"><a></a>               <span class="at">nParallel =</span> nChains)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="convertimos-los-resultados-en-objetos-coda-son-un-tipo-de-datos-de-análisis-bayesianos-en-r" class="slide level2">
 <h2>Convertimos los resultados en objetos CODA, son un tipo de datos de análisis bayesianos en R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>mpost_m0 <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m0)</span>
-<span id="cb8-2"><a></a>mpost_m1 <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m1)</span>
-<span id="cb8-3"><a></a>mpost_m_env <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m_env)</span>
-<span id="cb8-4"><a></a>mpost_m_env_phy <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m_env_phy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>mpost_m0 <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m0)</span>
+<span id="cb7-2"><a></a>mpost_m1 <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m1)</span>
+<span id="cb7-3"><a></a>mpost_m_env <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="calculamos-dos-estadísticos-de-calibración-de-mcmc" class="slide level2">
 <h2>Calculamos dos estadísticos de calibración de MCMC</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>es_m0 <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m0<span class="sc">$</span>Beta)</span>
-<span id="cb9-2"><a></a>es_m1 <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m1<span class="sc">$</span>Beta)</span>
-<span id="cb9-3"><a></a>es_m_env <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m_env<span class="sc">$</span>Beta)</span>
-<span id="cb9-4"><a></a>es_m_env_phy <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m_env_phy<span class="sc">$</span>Beta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>es_m0 <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m0<span class="sc">$</span>Beta)</span>
+<span id="cb8-2"><a></a>es_m1 <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m1<span class="sc">$</span>Beta)</span>
+<span id="cb8-3"><a></a>es_m_env <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m_env<span class="sc">$</span>Beta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>gd_m0 <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m0<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span>
-<span id="cb10-2"><a></a>gd_m_env <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m_env<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span>
-<span id="cb10-3"><a></a>gd_m_env_phy <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m_env_phy<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>gd_m0 <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m0<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span>
+<span id="cb9-2"><a></a>gd_m1 <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m1<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span>
+<span id="cb9-3"><a></a>gd_m_env <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m_env<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="dibujamos-las-gráficas-de-esos-dos-parámetros" class="slide level2">
 <h2>Dibujamos las gráficas de esos dos parámetros</h2>
 <p>Effective size debería estar entorno al número de muestras de las MCMC (samples * nChains). El diagnóstico de Gelman debería estar entorno a 1.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb11-2"><a></a><span class="fu">hist</span>(es_m0, <span class="at">main=</span><span class="st">"ess(beta)"</span>)</span>
-<span id="cb11-3"><a></a><span class="fu">hist</span>(gd_m0, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span>
-<span id="cb11-4"><a></a><span class="fu">hist</span>(es_m_env, <span class="at">main=</span><span class="st">"ess(beta)"</span>)</span>
-<span id="cb11-5"><a></a><span class="fu">hist</span>(gd_m_env, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span>
-<span id="cb11-6"><a></a><span class="fu">hist</span>(es_m_env_phy, <span class="at">main=</span><span class="st">"ess(beta)"</span>)</span>
-<span id="cb11-7"><a></a><span class="fu">hist</span>(gd_m_env_phy, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<span id="cb10-2"><a></a></span>
+<span id="cb10-3"><a></a><span class="fu">hist</span>(es_m0, <span class="at">main=</span><span class="st">"ess(beta)"</span>)</span>
+<span id="cb10-4"><a></a><span class="fu">hist</span>(gd_m0, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span>
+<span id="cb10-5"><a></a></span>
+<span id="cb10-6"><a></a><span class="fu">hist</span>(es_m1, <span class="at">main=</span><span class="st">"ess(beta)"</span>)</span>
+<span id="cb10-7"><a></a><span class="fu">hist</span>(gd_m1, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span>
+<span id="cb10-8"><a></a></span>
+<span id="cb10-9"><a></a><span class="fu">hist</span>(es_m_env, <span class="at">main=</span><span class="st">"ess(beta)"</span>)</span>
+<span id="cb10-10"><a></a><span class="fu">hist</span>(gd_m_env, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="lo-mismo-pero-con-los-valores-de-omega-que-son-los-coeficientes-de-interacciones-entre-especies" class="slide level2">
+<h2>… lo mismo pero con los valores de Omega, que son los coeficientes de interacciones entre especies</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb11-2"><a></a></span>
+<span id="cb11-3"><a></a><span class="fu">hist</span>(<span class="fu">effectiveSize</span>(mpost_m0<span class="sc">$</span>Omega[[<span class="dv">1</span>]]),</span>
+<span id="cb11-4"><a></a>     <span class="at">main=</span><span class="st">"ess(omega)"</span>)</span>
+<span id="cb11-5"><a></a><span class="fu">hist</span>(<span class="fu">gelman.diag</span>(mpost_m0<span class="sc">$</span>Omega[[<span class="dv">1</span>]], </span>
+<span id="cb11-6"><a></a>                 <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf, </span>
+<span id="cb11-7"><a></a>     <span class="at">main=</span><span class="st">"psrf(omega)"</span>)</span>
+<span id="cb11-8"><a></a></span>
+<span id="cb11-9"><a></a><span class="fu">hist</span>(<span class="fu">effectiveSize</span>(mpost_m_env<span class="sc">$</span>Omega[[<span class="dv">1</span>]]),</span>
+<span id="cb11-10"><a></a>     <span class="at">main=</span><span class="st">"ess(omega)"</span>)</span>
+<span id="cb11-11"><a></a><span class="fu">hist</span>(<span class="fu">gelman.diag</span>(mpost_m_env<span class="sc">$</span>Omega[[<span class="dv">1</span>]],</span>
+<span id="cb11-12"><a></a>                 <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf, </span>
+<span id="cb11-13"><a></a>     <span class="at">main=</span><span class="st">"psrf(omega)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -576,16 +592,10 @@ Diego Nieto Lugilde
 </div>
 </div>
 </section>
-<section id="lo-mismo-pero-con-los-valores-de-omega-que-son-los-coeficientes-de-interacciones-entre-especies" class="slide level2">
-<h2>… lo mismo pero con los valores de Omega, que son los coeficientes de interacciones entre especies</h2>
+<section id="tambien-podemos-dibujar-algunas-de-las-cadenas-para-visulizar-su-forma-y-ver-si-se-han-estabilizado" class="slide level2">
+<h2>Tambien podemos dibujar algunas de las cadenas para visulizar su forma y ver si se han estabilizado</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb12-2"><a></a><span class="fu">hist</span>(<span class="fu">effectiveSize</span>(mpost_m0<span class="sc">$</span>Omega[[<span class="dv">1</span>]]), <span class="at">main=</span><span class="st">"ess(omega)"</span>)</span>
-<span id="cb12-3"><a></a><span class="fu">hist</span>(<span class="fu">gelman.diag</span>(mpost_m0<span class="sc">$</span>Omega[[<span class="dv">1</span>]], <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf, <span class="at">main=</span><span class="st">"psrf(omega)"</span>)</span>
-<span id="cb12-4"><a></a><span class="fu">hist</span>(<span class="fu">effectiveSize</span>(mpost_m_env<span class="sc">$</span>Omega[[<span class="dv">1</span>]]), <span class="at">main=</span><span class="st">"ess(omega)"</span>)</span>
-<span id="cb12-5"><a></a><span class="fu">hist</span>(<span class="fu">gelman.diag</span>(mpost_m_env<span class="sc">$</span>Omega[[<span class="dv">1</span>]], <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf, <span class="at">main=</span><span class="st">"psrf(omega)"</span>)</span>
-<span id="cb12-6"><a></a><span class="fu">hist</span>(<span class="fu">effectiveSize</span>(mpost_m_env_phy<span class="sc">$</span>Omega[[<span class="dv">1</span>]]), <span class="at">main=</span><span class="st">"ess(omega)"</span>)</span>
-<span id="cb12-7"><a></a><span class="fu">hist</span>(<span class="fu">gelman.diag</span>(mpost_m_env_phy<span class="sc">$</span>Omega[[<span class="dv">1</span>]], <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf, <span class="at">main=</span><span class="st">"psrf(omega)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta[[<span class="dv">1</span>]][,<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -594,11 +604,8 @@ Diego Nieto Lugilde
 </div>
 </div>
 </div>
-</section>
-<section id="tambien-podemos-dibujar-algunas-de-las-cadenas-para-visulizar-su-forma-y-ver-si-se-han-estabilizado" class="slide level2">
-<h2>Tambien podemos dibujar algunas de las cadenas para visulizar su forma y ver si se han estabilizado</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta[[<span class="dv">1</span>]][,<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta[[<span class="dv">2</span>]][,<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -607,131 +614,336 @@ Diego Nieto Lugilde
 </div>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta[[<span class="dv">3</span>]][,<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-2.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-3.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-4.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-5.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-5.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-6.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-6.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-7.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-7.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-8.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-8.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-9.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-9.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-10.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-10.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-11.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-11.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-12.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-15-12.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="para-evaluar-el-modelo-en-términos-de-la-distribuciónabundancia-de-las-especies-debemos-hacer-predicciones-primero." class="slide level2">
 <h2>Para evaluar el modelo en términos de la distribución/abundancia de las especies, debemos hacer predicciones primero.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>preds_m0 <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m0)</span>
-<span id="cb14-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m0, <span class="at">predY =</span> preds_m0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>preds_m0 <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m0, <span class="at">expected =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb16-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m0, <span class="at">predY =</span> preds_m0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 176.1891390 113.3819140  19.9669428  25.7011014   1.4737596   1.2348385
- [7]   0.6480730   0.3811005   0.4564347   0.6587788
+ [1]  2.3584953  0.9291293  1.2183493  0.5484353  1.0155048  1.9764235
+ [7]  7.4885329  4.1250000  1.9162137  0.4677072  6.9476277 11.0200457
+[13] 15.0052074  0.6731456  0.5994789  0.3535534  0.8291562 11.2763580
+[19]  0.4145781  1.6105123 16.9605471  7.1896736 12.4323168  0.8003905
+[25]  1.6250000  1.7139137  0.2795085  2.1176343  5.2179079  1.9162137
+[31]  2.0087698  2.2638463  2.3351927 25.1677963  0.3061862  1.4523688
+[37] 14.0668049  2.9606798  1.6817030 16.0259799  0.5191640  1.0825318
+[43]  8.6250000  1.6298006  1.1792476  0.5728220 44.5896656
 
 $SR2
- [1]  0.356940712  0.430461312  0.128924738  0.322763592 -0.002164043
- [6]  0.037958426  0.021168275 -0.011233670 -0.012729935  0.024952644
+ [1]            NA -1.584980e-03            NA -2.264572e-02            NA
+ [6]            NA            NA            NA  9.035439e-02 -8.755010e-03
+[11]  3.516704e-01  2.669578e-01            NA            NA            NA
+[16]            NA            NA  2.934766e-01            NA            NA
+[21]  1.355347e-01  2.428690e-01  1.333136e-01            NA  2.013428e-02
+[26]            NA            NA            NA  2.446343e-01            NA
+[31]  2.065663e-02  1.228064e-02 -7.373272e-03  5.634054e-01            NA
+[36]            NA            NA            NA  2.260579e-01  1.103135e-02
+[41] -4.234498e-06  1.387748e-02            NA            NA            NA
+[46]            NA  7.939611e-02
 
 $O.AUC
- [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
+ [1] 0.6229236 0.9207650 0.6915064 0.4210526 0.3387978 0.8660714 0.8897243
+ [8] 0.8545455 0.8981900 0.3045977 0.7416667 0.8219697 0.6322034 0.7349727
+[15] 0.7222222 0.5813559 0.7075321 0.8936652 0.6050847 0.7812500 0.7801136
+[22] 0.7436523 0.7252252 0.6929674 0.5586932 0.6982955 0.4101695 0.8220339
+[29] 0.7640693 0.8064815 0.5874867 0.6933667 0.6583610 0.8895089 0.6206897
+[36] 0.7354167 0.6262077 0.9791667 0.9223058 0.6017206 0.4406780 0.6017628
+[43] 0.9841270 0.9193548 0.7903226 0.4479167 0.8128911
 
 $O.TjurR2
- [1] 0 0 0 0 0 0 0 0 0 0
+ [1]  0.021591916  0.042513661  0.042644231 -0.006152882 -0.011967213
+ [6]  0.082767857  0.070701754  0.069590909  0.121858974 -0.015474138
+[11]  0.166088235  0.167061688  0.011644068  0.014986339  0.016838384
+[16]  0.005728814  0.024599359  0.166892911  0.007050847  0.033125000
+[21]  0.041715909  0.102578125  0.049124124  0.026959691  0.006575305
+[26]  0.033636364 -0.007686441  0.025669492  0.103744589  0.087092593
+[31]  0.017900318  0.039255319  0.024008859  0.142633929  0.011681034
+[36]  0.036750000  0.014528986  0.081875000  0.095895990  0.019185223
+[41] -0.003669492  0.016891026  0.057817460  0.033911290  0.036290323
+[46] -0.005333333  0.055904255
 
 $O.RMSE
- [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149
- [8] 0.9786452 0.9786452 0.9858149
+ [1] 0.4629882 0.4367514 0.4219596 0.4807219 0.4253280 0.3319691 0.3368437
+ [8] 0.3631526 0.3970736 0.4765818 0.4459536 0.4220933 0.3251220 0.3973986
+[15] 0.3998264 0.4514945 0.4237513 0.3502764 0.3117760 0.4321125 0.4771846
+[22] 0.4667801 0.4762953 0.4318912 0.4823924 0.4543683 0.3573329 0.3134581
+[29] 0.4491476 0.3556365 0.4969251 0.4649320 0.5440577 0.3000422 0.3794168
+[36] 0.3918658 0.4632095 0.2886849 0.4607343 0.4857534 0.4822614 0.5093317
+[43] 0.2040357 0.2230666 0.3157617 0.3736476 0.4426389
 
 $C.SR2
- [1] 0.29267547 0.37953646 0.06156373 0.18173214 0.03169014         NA
- [7]         NA         NA         NA         NA
+ [1]            NA            NA            NA            NA            NA
+ [6]            NA            NA            NA  3.113392e-02            NA
+[11]  3.691536e-01  4.658955e-01            NA            NA            NA
+[16]            NA            NA  7.188232e-02            NA            NA
+[21]  1.855445e-01  2.954791e-01  5.294375e-01            NA -5.660554e-03
+[26]            NA            NA            NA  1.933077e-01            NA
+[31] -1.474064e-03  1.441856e-01  9.858079e-05  4.572466e-01            NA
+[36]            NA            NA            NA -1.373626e-01 -2.364578e-02
+[41]  1.000000e+00  1.446634e-01            NA            NA            NA
+[46]            NA -4.645924e-03
 
 $C.RMSE
- [1] 213.9207373 135.6517973  44.6541693  42.3680914   3.4559702   5.7187362
- [7]   0.3292153   0.6491780   0.5500465   0.3267268</code></pre>
+ [1]  4.1173269  4.2426407  2.8136572  1.1952286  4.6904158  5.5901699
+ [7] 22.6431951 11.0000000  4.1146997  1.2247449  9.2833319 18.3753090
+[13] 53.6842621  3.1091264  1.5986105  1.2649111  1.9148542 12.2673908
+[19]  1.4832397  6.4420494 29.8651253  9.7198421 18.8306470  1.9306146
+[25]  2.8277831  3.0659419  1.0000000  7.5762788  8.4593217  4.8476799
+[31]  2.9272160  4.0152133  3.4478594 26.7519308  1.0000000  5.8094750
+[37] 26.5246217 11.8427193  4.5105190 20.4245885  0.8950885  1.5012425
+[43] 69.0000000  9.2195445  6.6708320  2.2912878 86.5101692</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>preds_m1 <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m1)</span>
-<span id="cb16-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m1, <span class="at">predY =</span> preds_m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>preds_m1 <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m1, <span class="at">expected =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m1, <span class="at">predY =</span> preds_m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 441.2060688 124.0995733  19.4937653  26.4232928   1.4626281   1.2348022
- [7]   0.3640992   0.2967474   0.2244434   0.3159712
+ [1]  2.2741757  0.9185587  1.2183493  0.4330127  1.0155048  1.5309311
+ [7]  7.1676356  4.1250000  1.0897247  0.3750000  6.7517359 11.0905365
+[13] 15.0052074  0.6731456  0.5994789  0.3535534  0.5863020 11.2268860
+[19]  0.4330127  1.5922174 16.7617729  5.8326264 10.3719875  0.7500000
+[25]  1.6345871  1.3707320  0.2795085  2.1176343  5.0377481  1.1608860
+[31]  2.1910685  2.3584953  2.3485368 32.0170853  0.3061862  1.2311072
+[37] 13.9295100  2.9606798  1.8413650 10.5558411  0.3535534  1.0968705
+[43]  8.6250000  1.6298006  1.1792476  0.5448624 43.5761277
 
 $SR2
- [1]  0.204591288  0.278270496  0.054234927  0.174222286  0.014584948
- [6]  0.002483611  0.000431332  0.016853408  0.016853408 -0.001397516
+ [1]  0.035496608           NA           NA -0.003955012           NA
+ [6]  0.056406250  0.599531981           NA  0.615566858           NA
+[11]  0.440935787  0.270857342           NA           NA           NA
+[16]           NA  0.072199663  0.317180455 -0.001343037  0.229925486
+[21]  0.408538725  0.314869096  0.234263261  0.100341460  0.001036953
+[26]  0.154227440           NA           NA  0.495844284  0.290751390
+[31]  0.008237587  0.013843791  0.245309859  0.266314381           NA
+[36]  0.074084483  0.295583786           NA  0.128727435  0.323935333
+[41]           NA           NA           NA           NA           NA
+[46]  0.101567156  0.284909239
 
 $O.AUC
- [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
+ [1] 0.8050941 0.8360656 0.6394231 0.7944862 0.9125683 0.8995536 0.7769424
+ [8] 0.8484848 0.9555053 0.5818966 0.7887255 0.8457792 0.8542373 0.9234973
+[15] 0.7252525 0.7745763 0.7836538 0.8453997 0.7457627 0.9000000 0.8511364
+[22] 0.8247070 0.8023023 0.7478559 0.7093023 0.7477273 0.6203390 0.6694915
+[29] 0.8739177 0.7925926 0.7147402 0.6871089 0.8621262 0.8906250 0.8864943
+[36] 0.8729167 0.8641304 0.9479167 0.7393484 0.7717611 0.8694915 0.7195513
+[43] 0.9206349 0.9717742 0.9838710 0.9541667 0.8629537
 
 $O.TjurR2
- [1] 0 0 0 0 0 0 0 0 0 0
+ [1] 0.11763566 0.13345628 0.04594551 0.10077694 0.12596995 0.23544643
+ [7] 0.22435464 0.12106061 0.49888386 0.02271552 0.19235784 0.20236472
+[13] 0.09648305 0.16632514 0.10984848 0.04840678 0.17605769 0.18547888
+[19] 0.08183898 0.21766667 0.24309091 0.20703125 0.20026276 0.12021870
+[25] 0.08562016 0.19809091 0.03174576 0.02956780 0.26403139 0.25914815
+[31] 0.07747879 0.06691176 0.21542913 0.19303571 0.12844828 0.26575000
+[37] 0.17558575 0.14779167 0.11201128 0.19370951 0.14945763 0.05783654
+[43] 0.10845238 0.25096774 0.20891129 0.26266667 0.20259387
 
 $O.RMSE
- [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149
- [8] 0.9786452 0.9786452 0.9858149
+ [1] 0.4286525 0.2168590 0.3872236 0.3177770 0.2542611 0.2960521 0.2929369
+ [8] 0.3400359 0.2579895 0.3050299 0.4310574 0.4039670 0.2862287 0.2114231
+[15] 0.3237057 0.2692445 0.3588975 0.3473489 0.2827455 0.2649318 0.3964370
+[22] 0.4261125 0.4324985 0.3551775 0.4458984 0.4173463 0.2791575 0.2880896
+[29] 0.3869352 0.3377898 0.4574845 0.4319339 0.3975524 0.2857409 0.2664451
+[36] 0.2366180 0.3914173 0.2527746 0.3041701 0.4303170 0.2666074 0.3757652
+[43] 0.1872975 0.1890349 0.2744004 0.2328144 0.3874293
 
 $C.SR2
- [1] 0.14628186 0.14101741 0.14107897 0.01455414 0.01528637 1.00000000
- [7]         NA         NA         NA         NA
+ [1]  5.232558e-02            NA            NA            NA            NA
+ [6]  4.375000e-01  7.159763e-01            NA  4.969778e-01            NA
+[11]  2.333953e-01  1.335745e-01            NA            NA            NA
+[16]            NA  5.309735e-01  1.146701e-01            NA -6.666667e-02
+[21]  3.505853e-02  2.308156e-01  1.345348e-01  1.955556e-01 -9.433009e-03
+[26]  1.248532e-01            NA            NA  1.284958e-01  4.842961e-01
+[31]  1.137742e-02  8.604614e-02  1.709567e-05  1.296054e-01            NA
+[36]  6.000000e-01  1.225923e-01            NA  0.000000e+00  1.195367e-01
+[41]            NA            NA            NA            NA            NA
+[46] -1.111111e-01  1.294475e-02
 
 $C.RMSE
- [1] 524.8324792 146.1360562  43.4599196  41.0280928   3.4745828   5.7682407
- [7]   0.6688393   0.7343398   0.7696891   0.7293591</code></pre>
+ [1]  3.843029  4.242641  2.813657  1.195229  4.690416  4.046122 21.068825
+ [8] 11.000000  2.219647  1.224745  8.985115 18.739361 53.684262  3.109126
+[15]  1.598611  1.264911  1.275548 12.116463  1.483240  6.304760 29.516946
+[22]  7.880267 15.590609  1.751862  2.828648  2.325742  1.000000  7.576279
+[29]  8.384669  2.547174  3.560407  4.453546  3.832633 33.835389  1.000000
+[36]  4.283996 26.069236 11.842719  5.530950 13.177407  1.264911  2.533114
+[43] 69.000000  9.219544  6.670832  2.072805 83.851162</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>preds_m_env <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m_env)</span>
-<span id="cb18-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>preds_m_env <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m_env, <span class="at">expected =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 214.2521043 130.1587942  19.5863620  25.1591691   1.4526257   1.2341329
- [7]   0.2062596   0.2163149   0.2065560   0.2045055
+ [1]  2.1442146  0.9185587  1.2183493  0.3952847  1.0155048  1.3169567
+ [7]  3.2433827  3.8850676  1.3110111  0.3750000  6.4201830 10.6332688
+[13] 15.0052074  0.3750000  0.5994789  0.3535534  0.6123724 11.5223967
+[19]  0.4145781  1.4142136 16.5553050  4.5345893 10.6927984  0.7288690
+[25]  1.6441183  1.4197271  0.2795085  2.1176343  5.0917366  1.3750000
+[31]  2.0425168  2.3217720  2.3393709 26.1205887  0.3061862  0.6731456
+[37] 13.5284711  2.8531781  1.7093493  9.9692888  0.2795085  1.0897247
+[43]  8.6250000  1.6298006  1.0077822  0.5728220 37.7442049
 
 $SR2
- [1]  0.353709265  0.465359210  0.105966862  0.356189004  0.004750754
- [6]  0.016176588  0.002915804  0.003373016  0.005147059 -0.022360248
+ [1]  0.116036695           NA           NA           NA           NA
+ [6]  0.029396864  0.393857097  0.591515759  0.397109846           NA
+[11]  0.511681641  0.589193274           NA  0.677303754           NA
+[16]           NA  0.253202948  0.465560539           NA  0.555543997
+[21]  0.417394236  0.655891586  0.265912259  0.228828183 -0.007409368
+[26]  0.187357598           NA           NA  0.444059268  0.407669514
+[31]  0.149279232  0.096129787  0.320536824  0.549699938           NA
+[36]  0.462200885  0.473133236  0.451562566  0.437035711  0.476388648
+[41]  0.213333333  0.053170755           NA           NA  0.999748047
+[46]           NA  0.450264299
 
 $O.AUC
- [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
+ [1] 0.8078627 0.8797814 0.7740385 0.7631579 0.8633880 0.9040179 0.8383459
+ [8] 0.9414141 0.9298643 0.5229885 0.8784314 0.9155844 0.8627119 0.7568306
+[15] 0.8191919 0.6406780 0.8798077 0.9577677 0.7830508 0.8916667 0.8704545
+[22] 0.9003906 0.7937938 0.7950257 0.7519380 0.7681818 0.5915254 0.8220339
+[29] 0.8760823 0.8175926 0.8457052 0.8035044 0.8792913 0.9397321 0.7097701
+[36] 0.8000000 0.8876812 0.9958333 0.9423559 0.8360324 0.8084746 0.8701923
+[43] 0.9841270 0.9758065 1.0000000 0.9625000 0.9155194
 
 $O.TjurR2
- [1] 0 0 0 0 0 0 0 0 0 0
+ [1] 0.15277685 0.19700820 0.09125000 0.03927318 0.14069672 0.22571429
+ [7] 0.44288847 0.23705051 0.38028281 0.02688218 0.30165196 0.29951840
+[13] 0.14372034 0.45035519 0.13205556 0.04648305 0.24483974 0.32335973
+[19] 0.04634746 0.31295833 0.27436364 0.35976563 0.21889890 0.17596055
+[25] 0.08554264 0.18257955 0.02563559 0.11828814 0.26370671 0.26041667
+[31] 0.16356310 0.13957760 0.23303710 0.22129464 0.03517241 0.52570833
+[37] 0.31360507 0.34183333 0.26921053 0.24669028 0.16825424 0.16923077
+[43] 0.20281746 0.19564516 0.53822581 0.28645833 0.38030976
 
 $O.RMSE
- [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149
- [8] 0.9786452 0.9786452 0.9858149
+ [1] 0.4199552 0.2150570 0.3687357 0.3088635 0.2294893 0.3032403 0.2624927
+ [8] 0.3005457 0.2911408 0.3015026 0.3967149 0.3651438 0.2821792 0.1829286
+[15] 0.3180524 0.2659860 0.3222083 0.2979895 0.2771135 0.2424370 0.3831097
+[22] 0.3720290 0.4279112 0.3266930 0.4395414 0.4094386 0.2772418 0.2736116
+[29] 0.3855664 0.3157696 0.4209272 0.4016031 0.3874220 0.2784136 0.3042601
+[36] 0.2270576 0.3655875 0.2118953 0.2696877 0.4076361 0.2438497 0.3427240
+[43] 0.1754973 0.1874797 0.1731701 0.2047405 0.3422606
 
 $C.SR2
- [1]  0.28616426  0.30685626  0.22043589  0.14748104  0.01155869 -0.25000000
- [7]          NA          NA          NA          NA
+ [1]  0.177858572           NA           NA           NA           NA
+ [6]  0.437500000  1.000000000  0.481150258  0.389351897           NA
+[11]  0.307346944  0.532134204           NA  1.000000000           NA
+[16]           NA  0.225610406  0.154154654           NA  0.040000000
+[21]  0.414807650  0.403367071  0.284996789 -0.004942810           NA
+[26]  0.189918606           NA           NA  0.095766986  0.484296069
+[31]  0.066378636  0.017716635  0.009037242  0.399813056           NA
+[36]  0.640000000  0.275244753 -0.544444444  0.376254181  0.464033921
+[41]  1.000000000 -0.079822616           NA           NA  1.000000000
+[46]           NA  0.643640638
 
 $C.RMSE
- [1] 262.2170394 156.1560598  43.8217146  41.5482601   3.4437496   5.8868526
- [7]   0.8418953   0.8935774   0.9144335   0.9133166</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>preds_m_env_phy <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m_env_phy)</span>
-<span id="cb20-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env_phy, <span class="at">predY =</span> preds_m_env_phy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$RMSE
- [1] 184.9757296 117.7430132  19.7549442  24.9857485   1.4323117   1.2353708
- [7]   0.2653488   0.2863802   0.2716157   0.4667680
-
-$SR2
- [1]  0.3622176245  0.4436959604  0.1096460500  0.3544545857  0.0018604838
- [6]  0.0906223152 -0.0008454106  0.0303571429 -0.0134920635 -0.0006211180
-
-$O.AUC
- [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
-
-$O.TjurR2
- [1] 0 0 0 0 0 0 0 0 0 0
-
-$O.RMSE
- [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149
- [8] 0.9786452 0.9786452 0.9858149
-
-$C.SR2
- [1] 0.28678724 0.29074706 0.18736919 0.08262324 0.34965035 1.00000000
- [7]         NA         NA         NA         NA
-
-$C.RMSE
- [1] 226.7265646 140.8851609  44.3244918  41.4678534   3.3803274   5.5956194
- [7]   0.7923804   0.7004086   0.8523164   0.6153267</code></pre>
+ [1]  3.5610846  4.2426407  2.8136572  1.1952286  4.6904158  3.5680326
+ [7]  8.1781100  9.8482896  2.6147233  1.2247449  8.5181351 17.7898440
+[13] 53.6842621  1.5440178  1.5986105  1.2649111  1.3709422 12.5968836
+[19]  1.4832397  5.1334678 29.0442639  6.1746401 16.2352010  1.7286550
+[25]  2.8619008  2.3921502  1.0000000  7.5762788  8.4715796  3.1214923
+[31]  3.0931381  4.3859087  3.7958117 27.7743002  1.0000000  2.5475065
+[37] 25.1638475 11.0907186  4.8638620 12.3022429  0.8988084  2.5264066
+[43] 69.0000000  9.2195445  5.2040632  2.2912878 72.1890750</code></pre>
 </div>
 </div>
 </section>
@@ -741,7 +953,8 @@ $C.RMSE
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>partition_env <span class="ot">&lt;-</span> <span class="fu">createPartition</span>(m_env, <span class="at">nfolds =</span> <span class="dv">4</span>)</span>
 <span id="cb22-2"><a></a>preds_m_env <span class="ot">=</span> <span class="fu">computePredictedValues</span>(m_env, </span>
 <span id="cb22-3"><a></a>                               <span class="at">partition =</span> partition_env,</span>
-<span id="cb22-4"><a></a>                               <span class="at">nParallel =</span> nChains)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-4"><a></a>                               <span class="at">nParallel =</span> nChains, </span>
+<span id="cb22-5"><a></a>                               <span class="at">expected =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Cross-validation, fold 1 out of 4
 Cross-validation, fold 2 out of 4
@@ -751,30 +964,77 @@ Cross-validation, fold 4 out of 4</code></pre>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1] 282.8160115 212.8376929  19.7716179  28.9426512   1.4990442   1.2413768
- [7]   0.2021352   0.3413352   0.2547289   0.2011618
+ [1]  2.3651110  0.9354143  1.2374369  0.4145781  1.0231691  2.0116846
+ [7]  6.9776429  4.1117211  1.2054563  0.3952847  8.0362946 11.2133082
+[13] 15.0052074  0.6027282  0.6373774  0.3750000  0.7500000 14.8827448
+[19]  0.4145781  1.5761900 16.8787033  6.1099944 12.3669481  0.8100926
+[25]  1.6583124  1.5958932  0.2795085  2.1176343  5.1754378  1.5625000
+[31]  2.2741757  2.3782872  2.3848480 34.5376832  0.3061862  1.4142136
+[37] 14.0323287  2.8476964  1.8413650 11.4945639  0.3535534  1.7853571
+[43]  8.6250000  1.6298006  1.1792476  0.5728220 41.7491579
 
 $SR2
- [1]  0.091806450  0.229641471  0.009505440  0.109193022 -0.001130670
- [6]  0.001379109  0.012577640 -0.078478058  0.001412232  0.004416839
+ [1]  2.658250e-05 -1.585379e-03 -1.120066e-02 -1.946117e-03 -7.802404e-04
+ [6]  1.577064e-02  3.647655e-01  1.578786e-02  4.546725e-01 -1.639827e-03
+[11]  1.994881e-01  1.370509e-01            NA  1.004391e-01 -8.005238e-03
+[16] -1.343747e-03  4.936390e-02  1.391185e-01            NA  2.299255e-01
+[21]  2.411575e-01  2.256930e-01  7.953965e-02  4.068651e-02 -3.111934e-02
+[26]  4.597969e-02            NA            NA  3.057190e-01  2.648552e-01
+[31] -1.893337e-03  9.859227e-04  2.017606e-01  2.696373e-01            NA
+[36]  3.059768e-01  1.437238e-01  2.174946e-01  5.228039e-02  1.813151e-01
+[41]            NA  1.414643e-05            NA            NA            NA
+[46]            NA  2.072043e-01
 
 $O.AUC
- [1] 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
+ [1] 0.5647841 0.3306011 0.4791667 0.6528822 0.4808743 0.6808036 0.7343358
+ [8] 0.7505051 0.9396682 0.4152299 0.7705882 0.7922078 0.6559322 0.6885246
+[15] 0.5151515 0.2898305 0.7171474 0.8401207 0.2949153 0.6083333 0.7727273
+[22] 0.7651367 0.6246246 0.5711835 0.6179402 0.5420455 0.4593220 0.6152542
+[29] 0.7451299 0.6944444 0.5371156 0.5369212 0.8067553 0.8013393 0.6393678
+[36] 0.9166667 0.7669082 0.9416667 0.7944862 0.6730769 0.7033898 0.6522436
+[43] 0.7301587 0.6129032 0.9677419 0.6395833 0.8573217
 
 $O.TjurR2
- [1] 0 0 0 0 0 0 0 0 0 0
+ [1]  0.031910299 -0.055819672 -0.013269231  0.025751880 -0.015860656
+ [6]  0.072991071  0.301979950  0.113550505  0.435697587 -0.030316092
+[11]  0.184534314  0.177359307  0.054084746  0.154289617  0.001030303
+[16] -0.073033898  0.142516026  0.210972851 -0.062262712  0.111958333
+[21]  0.179125000  0.197343750  0.096178679  0.071213551  0.030633998
+[26]  0.036227273 -0.025254237  0.012584746  0.185395022  0.182111111
+[31]  0.018263521  0.014846683  0.234166667  0.142812500  0.058419540
+[36]  0.260791667  0.122638889  0.268125000  0.121447368  0.131897773
+[41]  0.040711864  0.078942308  0.033690476 -0.006129032  0.233427419
+[46]  0.074791667  0.219687109
 
 $O.RMSE
- [1] 0.5814019 0.5566499 0.8960005 0.8049145 0.9115843 0.9786452 0.9858149
- [8] 0.9786452 0.9786452 0.9858149
+ [1] 0.4816739 0.2809352 0.4214357 0.3226338 0.2801801 0.3478788 0.3009231
+ [8] 0.3672952 0.2847139 0.3211287 0.4440161 0.4188074 0.3080930 0.2492739
+[15] 0.3740308 0.3231900 0.3671011 0.3589916 0.3183627 0.2748052 0.4270169
+[22] 0.4454367 0.4897611 0.3838109 0.4706498 0.4732950 0.3025739 0.3054449
+[29] 0.4267781 0.3648595 0.5016061 0.4649816 0.4087809 0.3200752 0.2996300
+[36] 0.2425984 0.4194294 0.2558658 0.3126098 0.4722289 0.2803137 0.4008684
+[43] 0.2293075 0.2408777 0.2252015 0.2670994 0.3903869
 
 $C.SR2
- [1]  0.075517452  0.099412806  0.034414750 -0.003949079  0.029590244
- [6]  0.250000000           NA           NA           NA           NA
+ [1]  0.1902232558            NA            NA            NA            NA
+ [6] -0.0803571429  0.5340236686  0.0189075630  0.2886176089            NA
+[11]  0.0757344823  0.0975414309            NA  0.7500000000            NA
+[16]            NA  0.0351422512  0.0053731600            NA -0.0666666667
+[21]  0.2824469099  0.2369813666  0.0853722536 -0.1680555556            NA
+[26]  0.2054445951            NA            NA  0.1074249407  0.3173731606
+[31]  0.0146340866 -0.0002241281 -0.0201194842  0.1478501231            NA
+[36]  0.0111111111 -0.0178364717  0.0111111111  0.0448717949  0.3124339322
+[41]            NA -0.0798226164            NA            NA            NA
+[46]            NA  0.1067361585
 
 $C.RMSE
- [1] 335.9812009 254.1607911  43.9448462  44.2574649   3.5478285   5.8558098
- [7]   0.8159360   0.9492204   0.8377288   0.8691425</code></pre>
+ [1]  4.000370  4.242641  2.813657  1.195229  4.690416  5.588141 20.502437
+ [8] 10.861121  2.427124  1.224745 10.986391 18.928780 53.684262  2.402333
+[15]  1.598611  1.264911  1.692590 16.608896  1.483240  6.235802 29.456456
+[22]  8.224242 18.797964  1.962029  2.861901  2.671937  1.000000  7.576279
+[29]  8.672143  3.379604  3.389409  4.469596  3.922322 36.577286  1.000000
+[36]  5.550259 26.413544 10.943376  5.446918 14.410779  1.264911  4.065406
+[43] 69.000000  9.219544  6.670832  2.291288 79.988964</code></pre>
 </div>
 </div>
 </section>
@@ -784,33 +1044,12 @@ $C.RMSE
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>postBeta <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m_env, <span class="at">parName =</span> <span class="st">"Beta"</span>)</span>
 <span id="cb26-2"><a></a><span class="fu">plotBeta</span>(m_env, </span>
 <span id="cb26-3"><a></a>         <span class="at">post =</span> postBeta, </span>
-<span id="cb26-4"><a></a>         <span class="at">param =</span> <span class="st">"Support"</span>, </span>
+<span id="cb26-4"><a></a>         <span class="at">param =</span> <span class="st">"Mean"</span>, </span>
 <span id="cb26-5"><a></a>         <span class="at">supportLevel =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></a></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="también-podemos-ver-su-relación-con-la-información-filogenética-si-la-hemos-incluido-en-el-modelo" class="slide level2">
-<h2>También podemos ver su relación con la información filogenética, si la hemos incluido en el modelo</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>postBeta <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m_env_phy, <span class="at">parName =</span> <span class="st">"Beta"</span>)</span>
-<span id="cb27-2"><a></a><span class="fu">plotBeta</span>(m_env_phy, </span>
-<span id="cb27-3"><a></a>         <span class="at">post =</span> postBeta, </span>
-<span id="cb27-4"><a></a>         <span class="at">param =</span> <span class="st">"Support"</span>, </span>
-<span id="cb27-5"><a></a>         <span class="at">supportLevel =</span> <span class="fl">0.9</span>,</span>
-<span id="cb27-6"><a></a>         <span class="at">plotTree =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3 1.0 0.0 1.0</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-20-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></a></p>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-20-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -819,17 +1058,33 @@ $C.RMSE
 <section id="otro-aspecto-importantenovedoso-es-estimar-las-correlaciones-entre-especies" class="slide level2">
 <h2>Otro aspecto importante/novedoso es estimar las correlaciones entre especies</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">library</span>(corrplot)</span>
-<span id="cb29-2"><a></a>OmegaCor <span class="ot">&lt;-</span> <span class="fu">computeAssociations</span>(m_env)</span>
-<span id="cb29-3"><a></a>supportLevel <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
-<span id="cb29-4"><a></a>toPlot <span class="ot">&lt;-</span> ((OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>support <span class="sc">&gt;</span> supportLevel) <span class="sc">+</span></span>
-<span id="cb29-5"><a></a>           (OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>support <span class="sc">&lt;</span> (<span class="dv">1</span><span class="sc">-</span>supportLevel)</span>
-<span id="cb29-6"><a></a>            ) <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">*</span> OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>mean</span>
-<span id="cb29-7"><a></a><span class="fu">corrplot</span>(toPlot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb27-2"><a></a>OmegaCor <span class="ot">&lt;-</span> <span class="fu">computeAssociations</span>(m0)</span>
+<span id="cb27-3"><a></a>supportLevel <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
+<span id="cb27-4"><a></a>toPlot <span class="ot">&lt;-</span> ((OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>support <span class="sc">&gt;</span> supportLevel) <span class="sc">+</span></span>
+<span id="cb27-5"><a></a>           (OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>support <span class="sc">&lt;</span> (<span class="dv">1</span><span class="sc">-</span>supportLevel)</span>
+<span id="cb27-6"><a></a>            ) <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">*</span> OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>mean</span>
+<span id="cb27-7"><a></a><span class="fu">corrplot</span>(toPlot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-21-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></a></p>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-21-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb28-2"><a></a>OmegaCor <span class="ot">&lt;-</span> <span class="fu">computeAssociations</span>(m_env)</span>
+<span id="cb28-3"><a></a>supportLevel <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
+<span id="cb28-4"><a></a>toPlot <span class="ot">&lt;-</span> ((OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>support <span class="sc">&gt;</span> supportLevel) <span class="sc">+</span></span>
+<span id="cb28-5"><a></a>           (OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>support <span class="sc">&lt;</span> (<span class="dv">1</span><span class="sc">-</span>supportLevel)</span>
+<span id="cb28-6"><a></a>            ) <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">*</span> OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>mean</span>
+<span id="cb28-7"><a></a><span class="fu">corrplot</span>(toPlot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-22-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -838,17 +1093,17 @@ $C.RMSE
 <section id="cuando-especificamos-un-modelo-sin-variables-ambientales-estamos-haciendo-un-modelo-unconstrained-o-indirecto.-por-lo-que-se-puede-usar-para-generar-gráficos-de-ordenación." class="slide level2">
 <h2>Cuando especificamos un modelo sin variables ambientales, estamos haciendo un modelo “unconstrained” o indirecto. Por lo que se puede usar para generar gráficos de ordenación.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>etaPost <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m0, <span class="st">"Eta"</span>)</span>
-<span id="cb30-2"><a></a>lambdaPost <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m0, <span class="st">"Lambda"</span>)</span>
-<span id="cb30-3"><a></a><span class="fu">biPlot</span>(m0, </span>
-<span id="cb30-4"><a></a>       <span class="at">etaPost =</span> etaPost, </span>
-<span id="cb30-5"><a></a>       <span class="at">lambdaPost =</span> lambdaPost, </span>
-<span id="cb30-6"><a></a>       <span class="at">factors =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), </span>
-<span id="cb30-7"><a></a>       <span class="st">"ph"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>etaPost <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m_env, <span class="st">"Eta"</span>)</span>
+<span id="cb29-2"><a></a>lambdaPost <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m_env, <span class="st">"Lambda"</span>)</span>
+<span id="cb29-3"><a></a><span class="fu">biPlot</span>(m_env, </span>
+<span id="cb29-4"><a></a>       <span class="at">etaPost =</span> etaPost, </span>
+<span id="cb29-5"><a></a>       <span class="at">lambdaPost =</span> lambdaPost, </span>
+<span id="cb29-6"><a></a>       <span class="at">factors =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), </span>
+<span id="cb29-7"><a></a>       <span class="st">"pH"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-22-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></a></p>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-23-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -857,12 +1112,12 @@ $C.RMSE
 <section id="en-este-tipo-de-modelos-la-importancia-de-cada-variable-se-mide-en-términos-de-variación-explicada-y-se-calcula-con-análisis-de-particionado-de-la-varianza" class="slide level2">
 <h2>En este tipo de modelos, la importancia de cada variable se mide en términos de variación explicada y se calcula con análisis de particionado de la varianza</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>VP <span class="ot">=</span> <span class="fu">computeVariancePartitioning</span>(m_env)</span>
-<span id="cb31-2"><a></a><span class="fu">plotVariancePartitioning</span>(m_env, <span class="at">VP =</span> VP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>VP <span class="ot">=</span> <span class="fu">computeVariancePartitioning</span>(m_env)</span>
+<span id="cb30-2"><a></a><span class="fu">plotVariancePartitioning</span>(m_env, <span class="at">VP =</span> VP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-23-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></a></p>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-24-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -871,65 +1126,110 @@ $C.RMSE
 <section id="como-en-los-modelos-de-distribución-de-especies-podemos-calcular-curvas-de-respuesta-de-cada-especiecomunidad-a-las-variables-ambientales" class="slide level2">
 <h2>Como en los Modelos de Distribución de Especies, podemos calcular curvas de respuesta de cada especie/comunidad a las variables ambientales</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>Gradient <span class="ot">=</span> <span class="fu">constructGradient</span>(m1, <span class="at">focalVariable =</span> <span class="st">"temperatura"</span>,</span>
-<span id="cb32-2"><a></a><span class="at">non.focalVariables =</span> <span class="fu">list</span>(<span class="st">"habitat"</span><span class="ot">=</span><span class="fu">list</span>(<span class="dv">3</span>,<span class="st">"open"</span>)))</span>
-<span id="cb32-3"><a></a>Gradient<span class="sc">$</span>XDataNew</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="co"># Gradient = constructGradient(m_env, focalVariable = "pH")</span></span>
+<span id="cb31-2"><a></a>Gradient <span class="ot">=</span> <span class="fu">constructGradient</span>(m_env, <span class="at">focalVariable =</span> <span class="st">"N-NO3-"</span>)</span>
+<span id="cb31-3"><a></a>Gradient<span class="sc">$</span>XDataNew</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    temperatura   materia_org    salinidad          ph
-1  -2.065315281 -0.1667234554 -0.501380262  0.37285247
-2  -1.878146837 -0.1516142030 -0.455942859  0.33906285
-3  -1.690978393 -0.1365049507 -0.410505456  0.30527323
-4  -1.503809949 -0.1213956984 -0.365068052  0.27148361
-5  -1.316641505 -0.1062864460 -0.319630649  0.23769400
-6  -1.129473060 -0.0911771937 -0.274193245  0.20390438
-7  -0.942304616 -0.0760679413 -0.228755842  0.17011476
-8  -0.755136172 -0.0609586890 -0.183318438  0.13632514
-9  -0.567967728 -0.0458494366 -0.137881035  0.10253552
-10 -0.380799284 -0.0307401843 -0.092443632  0.06874590
-11 -0.193630840 -0.0156309320 -0.047006228  0.03495628
-12 -0.006462395 -0.0005216796 -0.001568825  0.00116666
-13  0.180706049  0.0145875727  0.043868579 -0.03262296
-14  0.367874493  0.0296968251  0.089305982 -0.06641258
-15  0.555042937  0.0448060774  0.134743386 -0.10020220
-16  0.742211381  0.0599153298  0.180180789 -0.13399182
-17  0.929379825  0.0750245821  0.225618193 -0.16778144
-18  1.116548270  0.0901338344  0.271055596 -0.20157106
-19  1.303716714  0.1052430868  0.316492999 -0.23536068
-20  1.490885158  0.1203523391  0.361930403 -0.26915030</code></pre>
+<pre><code>       N-NO3-        N-NH3      N-NO2-        PO43-            pH           DO
+1  -0.8670817 -0.124331499 -0.27542798  0.107613107 -0.0116785746  0.094728129
+2  -0.6626868 -0.095023153 -0.21050205  0.082245745 -0.0089256141  0.072398110
+3  -0.4582918 -0.065714807 -0.14557611  0.056878382 -0.0061726536  0.050068090
+4  -0.2538969 -0.036406461 -0.08065018  0.031511020 -0.0034196931  0.027738071
+5  -0.0495019 -0.007098115 -0.01572425  0.006143658 -0.0006667326  0.005408052
+6   0.1548930  0.022210231  0.04920168 -0.019223704  0.0020862279 -0.016921968
+7   0.3592880  0.051518577  0.11412762 -0.044591066  0.0048391884 -0.039251987
+8   0.5636830  0.080826923  0.17905355 -0.069958429  0.0075921489 -0.061582006
+9   0.7680779  0.110135269  0.24397948 -0.095325791  0.0103451094 -0.083912026
+10  0.9724729  0.139443615  0.30890541 -0.120693153  0.0130980699 -0.106242045
+11  1.1768678  0.168751962  0.37383134 -0.146060515  0.0158510304 -0.128572065
+12  1.3812628  0.198060308  0.43875728 -0.171427877  0.0186039909 -0.150902084
+13  1.5856577  0.227368654  0.50368321 -0.196795240  0.0213569514 -0.173232103
+14  1.7900527  0.256677000  0.56860914 -0.222162602  0.0241099119 -0.195562123
+15  1.9944476  0.285985346  0.63353507 -0.247529964  0.0268628724 -0.217892142
+16  2.1988426  0.315293692  0.69846101 -0.272897326  0.0296158329 -0.240222161
+17  2.4032375  0.344602038  0.76338694 -0.298264688  0.0323687934 -0.262552181
+18  2.6076325  0.373910384  0.82831287 -0.323632050  0.0351217540 -0.284882200
+19  2.8120274  0.403218730  0.89323880 -0.348999413  0.0378747145 -0.307212219
+20  3.0164224  0.432527076  0.95816473 -0.374366775  0.0406276750 -0.329542239
+            EC         NTU          T°C Current.velocity Average.depth
+1  -0.40452804 -0.19248398 -0.064716439     0.0141457403   0.023325882
+2  -0.30916968 -0.14711022 -0.049460999     0.0108112011   0.017827331
+3  -0.21381132 -0.10173647 -0.034205558     0.0074766620   0.012328781
+4  -0.11845296 -0.05636271 -0.018950118     0.0041421228   0.006830231
+5  -0.02309460 -0.01098896 -0.003694677     0.0008075837   0.001331680
+6   0.07226376  0.03438480  0.011560764    -0.0025269554  -0.004166870
+7   0.16762211  0.07975855  0.026816204    -0.0058614946  -0.009665421
+8   0.26298047  0.12513231  0.042071645    -0.0091960337  -0.015163971
+9   0.35833883  0.17050606  0.057327085    -0.0125305729  -0.020662522
+10  0.45369719  0.21587982  0.072582526    -0.0158651120  -0.026161072
+11  0.54905555  0.26125357  0.087837967    -0.0191996512  -0.031659622
+12  0.64441391  0.30662733  0.103093407    -0.0225341903  -0.037158173
+13  0.73977226  0.35200109  0.118348848    -0.0258687294  -0.042656723
+14  0.83513062  0.39737484  0.133604288    -0.0292032686  -0.048155274
+15  0.93048898  0.44274860  0.148859729    -0.0325378077  -0.053653824
+16  1.02584734  0.48812235  0.164115170    -0.0358723469  -0.059152374
+17  1.12120570  0.53349611  0.179370610    -0.0392068860  -0.064650925
+18  1.21656406  0.57886986  0.194626051    -0.0425414252  -0.070149475
+19  1.31192241  0.62424362  0.209881491    -0.0458759643  -0.075648026
+20  1.40728077  0.66961737  0.225136932    -0.0492105034  -0.081146576
+   Average.width
+1    0.101588442
+2    0.077641259
+3    0.053694075
+4    0.029746892
+5    0.005799708
+6   -0.018147475
+7   -0.042094658
+8   -0.066041842
+9   -0.089989025
+10  -0.113936209
+11  -0.137883392
+12  -0.161830575
+13  -0.185777759
+14  -0.209724942
+15  -0.233672126
+16  -0.257619309
+17  -0.281566492
+18  -0.305513676
+19  -0.329460859
+20  -0.353408043</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>predY <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, </span>
-<span id="cb34-2"><a></a>                <span class="at">XData=</span>Gradient<span class="sc">$</span>XDataNew, </span>
-<span id="cb34-3"><a></a>                <span class="at">studyDesign=</span>Gradient<span class="sc">$</span>studyDesignNew,</span>
-<span id="cb34-4"><a></a>                <span class="at">ranLevels=</span>Gradient<span class="sc">$</span>rLNew, </span>
-<span id="cb34-5"><a></a>                <span class="at">expected=</span><span class="cn">TRUE</span>)</span>
-<span id="cb34-6"><a></a><span class="fu">plotGradient</span>(m1, Gradient, <span class="at">pred=</span>predY, <span class="at">measure=</span><span class="st">"S"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>predY <span class="ot">&lt;-</span> <span class="fu">predict</span>(m_env, </span>
+<span id="cb33-2"><a></a>                <span class="at">XData =</span> Gradient<span class="sc">$</span>XDataNew, </span>
+<span id="cb33-3"><a></a>                <span class="at">studyDesign =</span> Gradient<span class="sc">$</span>studyDesignNew,</span>
+<span id="cb33-4"><a></a>                <span class="at">ranLevels =</span> Gradient<span class="sc">$</span>rLNew, </span>
+<span id="cb33-5"><a></a>                <span class="at">expected =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb33-6"><a></a><span class="fu">plotGradient</span>(m_env, Gradient, <span class="at">pred=</span>predY, <span class="at">measure=</span><span class="st">"S"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-24-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></a></p>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-26-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9275</code></pre>
+<pre><code>[1] 0.8475</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">plotGradient</span>(m1, Gradient, <span class="at">pred=</span>predY, <span class="at">measure=</span><span class="st">"Y"</span>, <span class="at">index =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="co"># plotGradient(m1, Gradient, pred=predY, measure="Y", index = 34)</span></span>
+<span id="cb35-2"><a></a><span class="fu">plotGradient</span>(m_env, Gradient, <span class="at">pred=</span>predY, <span class="at">measure=</span><span class="st">"Y"</span>, <span class="at">index =</span> <span class="dv">34</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-24-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-24-2.png" width="960"></a></p>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-26-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-26-2.png" width="960"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.975</code></pre>
+<pre><code>[1] 0.575</code></pre>
 </div>
 </div>
 
 <div class="quarto-auto-generated-content">
 <p><img src="img/logos.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p><a href="https://dnietolugilde.com/AEMeR">AEMeR</a></p>
+<p><a href="https://dnietolugilde.com/AEMeR-UCO">AEMeR-UCO</a></p>
 </div>
 </div>
 </section>
@@ -1408,7 +1708,7 @@ $C.RMSE
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom"});
+    <script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {
