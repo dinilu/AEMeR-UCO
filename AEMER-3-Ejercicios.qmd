@@ -97,9 +97,9 @@ Los gráficos de ordenación se pueden realizar con la función `plot()` o, alte
 ```{r}
 #| echo: true
 
-comm_rda <- rda(comm)
-ordiplot(comm_rda, display = "sites", type = "n")
-points(comm_rda, col = factor(site$Sitio))
+comm_ca <- ca(comm)
+ordiplot(comm_ca, display = "sites", type = "n")
+points(comm_ca, col = factor(site$Sitio))
 ```
 :::
 
@@ -117,10 +117,10 @@ Para calibrar el modelo *constrained*, basta con incorporar un segundo argumento
 #| echo: true
 #| output: false
 
-comm_envm_rda <- rda(comm, envm)
-comm_envm_rda
-ordiplot(comm_envm_rda, type = "none")
-points(comm_envm_rda, pch = 20, col = factor(site$Sitio))
+comm_envm_cca <- cca(comm, envm)
+comm_envm_cca
+ordiplot(comm_envm_cca)
+points(comm_envm_cca, pch = 20, col = factor(site$Sitio))
 ```
 :::
 
@@ -192,7 +192,7 @@ Aquí deberás usar la función `cutree()`, especificando los grupos con el mism
 ```{r}
 #| echo: true
 
-grp <- cutree(com_hc, h=0.9)
+grp <- cutree(com_hc, h=0.7)
 ```
 :::
 
