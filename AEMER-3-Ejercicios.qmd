@@ -209,8 +209,8 @@ Para ello deberás dibujar el gráfico con la función `ordiplot`, `points` y `o
 ```{r}
 #| echo: true
 
-ordiplot(comm_envm_rda, display = "sites", type = "n")
-points(comm_envm_rda, col = as.numeric(as.factor(site[, "Sitio"])))
-ordihull(comm_envm_rda, grp, lty=2, col="red")
+ordiplot(comm_envm_cca, display = "sites", type = "n")
+points(comm_envm_cca, col = as.numeric(as.factor(site[, "Sitio"])))
+ordihull(comm_envm_cca, grp, lty=2, col="red")
 ```
 :::
