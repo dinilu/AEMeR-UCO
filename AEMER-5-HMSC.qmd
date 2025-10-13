@@ -341,7 +341,6 @@ plotVariancePartitioning(m_env, VP = VP)
 ```{r}
 #| echo: true
 
-# Gradient = constructGradient(m_env, focalVariable = "pH")
 Gradient = constructGradient(m_env, focalVariable = "N-NO3-")
 Gradient$XDataNew
 ```
@@ -355,6 +354,10 @@ predY <- predict(m_env,
                 ranLevels = Gradient$rLNew, 
                 expected = FALSE)
 plotGradient(m_env, Gradient, pred=predY, measure="S")
-# plotGradient(m1, Gradient, pred=predY, measure="Y", index = 34)
+```
+
+```{r}
+#| echo: true
+
 plotGradient(m_env, Gradient, pred=predY, measure="Y", index = 34)
 ```
