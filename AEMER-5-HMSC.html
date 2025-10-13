@@ -6,11 +6,12 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.25">
+  <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Diego Nieto Lugilde">
   <title>Modelos Jerárquicos de Comunidades de Especies en R</title>
@@ -32,9 +33,8 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -45,7 +45,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -98,13 +98,211 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -218,7 +416,7 @@ Diego Nieto Lugilde
 <section id="cargamos-algunos-datos" class="slide level2">
 <h2>Cargamos algunos datos</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(openxlsx)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(openxlsx)</span>
 <span id="cb1-2"><a></a>env <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/Wilson_Latorre/Data_multi_env_R_course.xlsx"</span>,</span>
 <span id="cb1-3"><a></a>                 <span class="at">sheet =</span> <span class="dv">1</span>, </span>
 <span id="cb1-4"><a></a>                 <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
@@ -227,22 +425,22 @@ Diego Nieto Lugilde
 <span id="cb1-7"><a></a>                 <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb1-8"><a></a>sites <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">"data/Wilson_Latorre/Data_multi_site_R_course.xlsx"</span>,</span>
 <span id="cb1-9"><a></a>                   <span class="at">sheet =</span> <span class="dv">1</span>,</span>
-<span id="cb1-10"><a></a>                   <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-10"><a></a>                   <span class="at">rowNames =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="preparamos-un-poco-los-datos" class="slide level2">
 <h2>Preparamos un poco los datos</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>comm <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(com)</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>comm <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(com)</span>
 <span id="cb2-2"><a></a></span>
 <span id="cb2-3"><a></a>envm <span class="ot">&lt;-</span> <span class="fu">scale</span>(env)</span>
-<span id="cb2-4"><a></a>envm <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(envm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-4"><a></a>envm <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(envm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="definimos-el-diseño-experimental" class="slide level2">
 <h2>Definimos el diseño experimental</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(Hmsc)</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(Hmsc)</span>
 <span id="cb3-2"><a></a>studyDesign <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sitio =</span> <span class="fu">as.factor</span>(sites<span class="sc">$</span>Sitio),</span>
 <span id="cb3-3"><a></a>                          <span class="at">parcela =</span> <span class="fu">as.factor</span>(sites<span class="sc">$</span>Parcela),</span>
 <span id="cb3-4"><a></a>                          año <span class="ot">=</span> <span class="fu">as.factor</span>(sites<span class="sc">$</span>Año),</span>
@@ -256,13 +454,13 @@ Diego Nieto Lugilde
 <span id="cb3-12"><a></a>sitioL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span>
 <span id="cb3-13"><a></a>parcelaL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span>
 <span id="cb3-14"><a></a>añoL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb3-15"><a></a>estacionL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-15"><a></a>estacionL<span class="sc">$</span>nfMin <span class="ot">&lt;-</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="especificamos-la-estructura-del-modelo" class="slide level2">
 <h2>Especificamos la estructura del modelo</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>m0 <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm, </span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>m0 <span class="ot">&lt;-</span> <span class="fu">Hmsc</span>(<span class="at">Y =</span> comm, </span>
 <span id="cb4-2"><a></a>         <span class="at">XData =</span> envm, </span>
 <span id="cb4-3"><a></a>         <span class="at">XFormula =</span> <span class="sc">~</span><span class="dv">1</span>,</span>
 <span id="cb4-4"><a></a>         <span class="at">studyDesign =</span> studyDesign, </span>
@@ -290,22 +488,22 @@ Diego Nieto Lugilde
 <span id="cb4-26"><a></a>                          <span class="st">"parcela"</span> <span class="ot">=</span> parcelaL, </span>
 <span id="cb4-27"><a></a>                          <span class="st">"año"</span> <span class="ot">=</span> añoL, </span>
 <span id="cb4-28"><a></a>                          <span class="st">"estacion"</span> <span class="ot">=</span> estacionL),</span>
-<span id="cb4-29"><a></a>           <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-29"><a></a>           <span class="at">distr =</span> <span class="st">"lognormal poisson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="definimos-los-parámetros-para-las-cadenas-de-markov-monte-carlo" class="slide level2">
 <h2>Definimos los parámetros para las Cadenas de Markov Monte Carlo</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>samples <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># Este valor debería ser más alto. Del orden de 10000 hacia arriba.</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>samples <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># Este valor debería ser más alto. Del orden de 10000 hacia arriba.</span></span>
 <span id="cb5-2"><a></a>thin <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Este valor también suele ser más alto. Del orden de 50-100 hacia arriba.</span></span>
 <span id="cb5-3"><a></a>transient <span class="ot">&lt;-</span> <span class="dv">500</span><span class="sc">*</span>thin</span>
-<span id="cb5-4"><a></a>nChains <span class="ot">&lt;-</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-4"><a></a>nChains <span class="ot">&lt;-</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="se-calibran-y-estiman-los-parámetros-del-modelos-con-las-mcmc" class="slide level2">
 <h2>Se calibran y estiman los parámetros del modelos con las MCMC</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>m0 <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m0, </span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>m0 <span class="ot">&lt;-</span> <span class="fu">sampleMcmc</span>(m0, </span>
 <span id="cb6-2"><a></a>               <span class="at">thin =</span> thin, </span>
 <span id="cb6-3"><a></a>               <span class="at">samples =</span> samples, </span>
 <span id="cb6-4"><a></a>               <span class="at">transient =</span> transient, </span>
@@ -322,35 +520,35 @@ Diego Nieto Lugilde
 <span id="cb6-15"><a></a>               <span class="at">samples =</span> samples, </span>
 <span id="cb6-16"><a></a>               <span class="at">transient =</span> transient, </span>
 <span id="cb6-17"><a></a>               <span class="at">nChains =</span> nChains, </span>
-<span id="cb6-18"><a></a>               <span class="at">nParallel =</span> nChains)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-18"><a></a>               <span class="at">nParallel =</span> nChains)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="convertimos-los-resultados-en-objetos-coda-son-un-tipo-de-datos-de-análisis-bayesianos-en-r" class="slide level2">
 <h2>Convertimos los resultados en objetos CODA, son un tipo de datos de análisis bayesianos en R</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>mpost_m0 <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m0)</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>mpost_m0 <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m0)</span>
 <span id="cb7-2"><a></a>mpost_m1 <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m1)</span>
-<span id="cb7-3"><a></a>mpost_m_env <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m_env)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-3"><a></a>mpost_m_env <span class="ot">&lt;-</span> <span class="fu">convertToCodaObject</span>(m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="calculamos-dos-estadísticos-de-calibración-de-mcmc" class="slide level2">
 <h2>Calculamos dos estadísticos de calibración de MCMC</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>es_m0 <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m0<span class="sc">$</span>Beta)</span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>es_m0 <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m0<span class="sc">$</span>Beta)</span>
 <span id="cb8-2"><a></a>es_m1 <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m1<span class="sc">$</span>Beta)</span>
-<span id="cb8-3"><a></a>es_m_env <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m_env<span class="sc">$</span>Beta)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-3"><a></a>es_m_env <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(mpost_m_env<span class="sc">$</span>Beta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>gd_m0 <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m0<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>gd_m0 <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m0<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span>
 <span id="cb9-2"><a></a>gd_m1 <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m1<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span>
-<span id="cb9-3"><a></a>gd_m_env <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m_env<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-3"><a></a>gd_m_env <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(mpost_m_env<span class="sc">$</span>Beta, <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="dibujamos-las-gráficas-de-esos-dos-parámetros" class="slide level2">
 <h2>Dibujamos las gráficas de esos dos parámetros</h2>
 <p>Effective size debería estar entorno al número de muestras de las MCMC (samples * nChains). El diagnóstico de Gelman debería estar entorno a 1.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
 <span id="cb10-2"><a></a></span>
 <span id="cb10-3"><a></a><span class="fu">hist</span>(es_m0, <span class="at">main=</span><span class="st">"ess(beta)"</span>)</span>
 <span id="cb10-4"><a></a><span class="fu">hist</span>(gd_m0, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span>
@@ -359,7 +557,7 @@ Diego Nieto Lugilde
 <span id="cb10-7"><a></a><span class="fu">hist</span>(gd_m1, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span>
 <span id="cb10-8"><a></a></span>
 <span id="cb10-9"><a></a><span class="fu">hist</span>(es_m_env, <span class="at">main=</span><span class="st">"ess(beta)"</span>)</span>
-<span id="cb10-10"><a></a><span class="fu">hist</span>(gd_m_env, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-10"><a></a><span class="fu">hist</span>(gd_m_env, <span class="at">main=</span><span class="st">"psrf(beta)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -372,7 +570,7 @@ Diego Nieto Lugilde
 <section id="lo-mismo-pero-con-los-valores-de-omega-que-son-los-coeficientes-de-interacciones-entre-especies" class="slide level2">
 <h2>… lo mismo pero con los valores de Omega, que son los coeficientes de interacciones entre especies</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb11-2"><a></a></span>
 <span id="cb11-3"><a></a><span class="fu">hist</span>(<span class="fu">effectiveSize</span>(mpost_m0<span class="sc">$</span>Omega[[<span class="dv">1</span>]]),</span>
 <span id="cb11-4"><a></a>     <span class="at">main=</span><span class="st">"ess(omega)"</span>)</span>
@@ -384,7 +582,7 @@ Diego Nieto Lugilde
 <span id="cb11-10"><a></a>     <span class="at">main=</span><span class="st">"ess(omega)"</span>)</span>
 <span id="cb11-11"><a></a><span class="fu">hist</span>(<span class="fu">gelman.diag</span>(mpost_m_env<span class="sc">$</span>Omega[[<span class="dv">1</span>]],</span>
 <span id="cb11-12"><a></a>                 <span class="at">multivariate=</span><span class="cn">FALSE</span>)<span class="sc">$</span>psrf, </span>
-<span id="cb11-13"><a></a>     <span class="at">main=</span><span class="st">"psrf(omega)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-13"><a></a>     <span class="at">main=</span><span class="st">"psrf(omega)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -397,7 +595,7 @@ Diego Nieto Lugilde
 <section id="tambien-podemos-dibujar-algunas-de-las-cadenas-para-visulizar-su-forma-y-ver-si-se-han-estabilizado" class="slide level2">
 <h2>Tambien podemos dibujar algunas de las cadenas para visulizar su forma y ver si se han estabilizado</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta[[<span class="dv">1</span>]][,<span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta[[<span class="dv">1</span>]][,<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -407,7 +605,7 @@ Diego Nieto Lugilde
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta[[<span class="dv">2</span>]][,<span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta[[<span class="dv">2</span>]][,<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -417,7 +615,7 @@ Diego Nieto Lugilde
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta[[<span class="dv">3</span>]][,<span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta[[<span class="dv">3</span>]][,<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -427,7 +625,7 @@ Diego Nieto Lugilde
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">plot</span>(mpost_m0<span class="sc">$</span>Beta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -517,337 +715,336 @@ Diego Nieto Lugilde
 <section id="para-evaluar-el-modelo-en-términos-de-la-distribuciónabundancia-de-las-especies-debemos-hacer-predicciones-primero." class="slide level2">
 <h2>Para evaluar el modelo en términos de la distribución/abundancia de las especies, debemos hacer predicciones primero.</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>preds_m0 <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m0, <span class="at">expected =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb16-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m0, <span class="at">predY =</span> preds_m0)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>preds_m0 <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m0, <span class="at">expected =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb16-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m0, <span class="at">predY =</span> preds_m0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1]  2.3584953  0.9291293  1.2183493  0.5484353  1.0155048  1.9764235
- [7]  7.4885329  4.1250000  1.9162137  0.4677072  6.9476277 11.0200457
-[13] 15.0052074  0.6731456  0.5994789  0.3535534  0.8291562 11.2763580
-[19]  0.4145781  1.6105123 16.9605471  7.1896736 12.4323168  0.8003905
-[25]  1.6250000  1.7139137  0.2795085  2.1176343  5.2179079  1.9162137
-[31]  2.0087698  2.2638463  2.3351927 25.1677963  0.3061862  1.4523688
-[37] 14.0668049  2.9606798  1.6817030 16.0259799  0.5191640  1.0825318
-[43]  8.6250000  1.6298006  1.1792476  0.5728220 44.5896656
+ [1]  2.2229274  1.1726039  1.2562345  0.3952847  1.3110111  1.9803724
+ [7]  7.4885329  4.1250000  1.8424254  0.3750000  7.2230101 11.1826107
+[13] 15.0052074  0.6731456  0.5994789  0.9682458  1.0307764 11.1483253
+[19]  1.4072913  1.6105123 17.2105527  7.6477632 12.4832701  1.0231691
+[25]  1.5000000  1.5411035  0.2795085  2.1176343  5.3710014  1.7093493
+[31]  2.2395591  2.0813532  2.3518610 25.5188350  0.3061862  1.4523688
+[37] 14.0668049  2.9606798  1.8791620 16.0620136  0.3535534  1.0968705
+[43]  8.6250000  1.6758860  1.1792476  0.5728220 44.3501691
 
 $SR2
- [1]            NA -1.584980e-03            NA -2.264572e-02            NA
- [6]            NA            NA            NA  9.035439e-02 -8.755010e-03
-[11]  3.516704e-01  2.669578e-01            NA            NA            NA
-[16]            NA            NA  2.934766e-01            NA            NA
-[21]  1.355347e-01  2.428690e-01  1.333136e-01            NA  2.013428e-02
-[26]            NA            NA            NA  2.446343e-01            NA
-[31]  2.065663e-02  1.228064e-02 -7.373272e-03  5.634054e-01            NA
-[36]            NA            NA            NA  2.260579e-01  1.103135e-02
-[41] -4.234498e-06  1.387748e-02            NA            NA            NA
-[46]            NA  7.939611e-02
+ [1]  0.0757583452  0.0001287721            NA            NA            NA
+ [6] -0.0022574956            NA            NA  0.3225817261            NA
+[11]  0.3524561366  0.2988146887            NA            NA            NA
+[16]            NA            NA  0.3210758121  0.0066752984            NA
+[21]  0.0119865075  0.1937992652  0.0906249360            NA            NA
+[26]            NA            NA            NA  0.0928566596  0.1399418860
+[31] -0.0083928912  0.1639345066  0.0008602151  0.5918670503            NA
+[36]            NA            NA            NA            NA  0.0049508896
+[41]            NA            NA            NA  0.0228392997            NA
+[46]            NA  0.2825531073
 
 $O.AUC
- [1] 0.6229236 0.9207650 0.6915064 0.4210526 0.3387978 0.8660714 0.8897243
- [8] 0.8545455 0.8981900 0.3045977 0.7416667 0.8219697 0.6322034 0.7349727
-[15] 0.7222222 0.5813559 0.7075321 0.8936652 0.6050847 0.7812500 0.7801136
-[22] 0.7436523 0.7252252 0.6929674 0.5586932 0.6982955 0.4101695 0.8220339
-[29] 0.7640693 0.8064815 0.5874867 0.6933667 0.6583610 0.8895089 0.6206897
-[36] 0.7354167 0.6262077 0.9791667 0.9223058 0.6017206 0.4406780 0.6017628
-[43] 0.9841270 0.9193548 0.7903226 0.4479167 0.8128911
+ [1] 0.5719823 0.5437158 0.6458333 0.6165414 0.4098361 0.8593750 0.8408521
+ [8] 0.7575758 0.9441931 0.6580460 0.7867647 0.8208874 0.4898305 0.4426230
+[15] 0.6424242 0.7542373 0.3798077 0.9042232 0.5322034 0.8708333 0.7187500
+[22] 0.7797852 0.7487487 0.5831904 0.4468439 0.6750000 0.7169492 0.7813559
+[29] 0.6709957 0.8555556 0.6468717 0.7334168 0.6943522 0.9174107 0.5833333
+[36] 0.8208333 0.6153382 0.9750000 0.9223058 0.6680162 0.5779661 0.4895833
+[43] 1.0000000 0.9516129 0.9596774 0.6583333 0.8041302
 
 $O.TjurR2
- [1]  0.021591916  0.042513661  0.042644231 -0.006152882 -0.011967213
- [6]  0.082767857  0.070701754  0.069590909  0.121858974 -0.015474138
-[11]  0.166088235  0.167061688  0.011644068  0.014986339  0.016838384
-[16]  0.005728814  0.024599359  0.166892911  0.007050847  0.033125000
-[21]  0.041715909  0.102578125  0.049124124  0.026959691  0.006575305
-[26]  0.033636364 -0.007686441  0.025669492  0.103744589  0.087092593
-[31]  0.017900318  0.039255319  0.024008859  0.142633929  0.011681034
-[36]  0.036750000  0.014528986  0.081875000  0.095895990  0.019185223
-[41] -0.003669492  0.016891026  0.057817460  0.033911290  0.036290323
-[46] -0.005333333  0.055904255
+ [1]  0.0150609081  0.0087568306  0.0146955128  0.0092669173 -0.0083743169
+ [6]  0.0515625000  0.1121867168  0.0403080808  0.1182993967  0.0127873563
+[11]  0.1229068627  0.1515854978  0.0006610169 -0.0056284153  0.0143535354
+[16]  0.0223305085 -0.0076121795  0.1272624434  0.0010423729  0.0574166667
+[21]  0.0337159091  0.0846093750  0.0573798799  0.0034691252 -0.0035741971
+[26]  0.0187272727  0.0153559322  0.0391271186  0.0268506494  0.1747129630
+[31]  0.0202836691  0.0424530663  0.0304346622  0.1364285714  0.0073994253
+[36]  0.0835833333  0.0111956522  0.1350000000  0.0668483709  0.0260981781
+[41]  0.0060423729 -0.0015224359  0.0834126984  0.0707258065  0.0809274194
+[46]  0.0152500000  0.1393585732
 
 $O.RMSE
- [1] 0.4629882 0.4367514 0.4219596 0.4807219 0.4253280 0.3319691 0.3368437
- [8] 0.3631526 0.3970736 0.4765818 0.4459536 0.4220933 0.3251220 0.3973986
-[15] 0.3998264 0.4514945 0.4237513 0.3502764 0.3117760 0.4321125 0.4771846
-[22] 0.4667801 0.4762953 0.4318912 0.4823924 0.4543683 0.3573329 0.3134581
-[29] 0.4491476 0.3556365 0.4969251 0.4649320 0.5440577 0.3000422 0.3794168
-[36] 0.3918658 0.4632095 0.2886849 0.4607343 0.4857534 0.4822614 0.5093317
-[43] 0.2040357 0.2230666 0.3157617 0.3736476 0.4426389
+ [1] 0.4806459 0.5074387 0.5863379 0.3525652 0.5720093 0.4071928 0.3634485
+ [8] 0.3598550 0.4292666 0.4099159 0.4523326 0.4262959 0.3208756 0.3307833
+[15] 0.3583709 0.6064963 0.6048047 0.3654081 0.7121635 0.3626395 0.4646673
+[22] 0.4649365 0.4727431 0.5471361 0.5416112 0.5585486 0.2948987 0.2759389
+[29] 0.4775029 0.3991648 0.4759982 0.6222913 0.5579392 0.2968000 0.4040072
+[36] 0.2608284 0.4655654 0.2683602 0.5659485 0.4812160 0.3416923 0.4463479
+[43] 0.2056682 0.5049940 0.3190741 0.3525429 0.4291663
 
 $C.SR2
- [1]            NA            NA            NA            NA            NA
- [6]            NA            NA            NA  3.113392e-02            NA
-[11]  3.691536e-01  4.658955e-01            NA            NA            NA
-[16]            NA            NA  7.188232e-02            NA            NA
-[21]  1.855445e-01  2.954791e-01  5.294375e-01            NA -5.660554e-03
-[26]            NA            NA            NA  1.933077e-01            NA
-[31] -1.474064e-03  1.441856e-01  9.858079e-05  4.572466e-01            NA
-[36]            NA            NA            NA -1.373626e-01 -2.364578e-02
-[41]  1.000000e+00  1.446634e-01            NA            NA            NA
-[46]            NA -4.645924e-03
+ [1]  0.1393819037 -0.2500000000 -0.1108540218            NA -0.2500000000
+ [6]            NA            NA            NA -0.1400003314            NA
+[11]  0.2386743173  0.3713367117            NA            NA            NA
+[16]  0.1250000000 -0.0002492833  0.0981911427 -0.0833333333            NA
+[21]  0.0676920612  0.1291305742  0.0132581462 -0.0621575342 -0.0542560104
+[26] -0.0041785249            NA            NA  0.0423040787  0.2763098418
+[31]            NA  0.2091853375 -0.1139593900  0.4653742140            NA
+[36]            NA            NA            NA -0.5698005698 -0.0657906052
+[41]            NA            NA            NA  1.0000000000            NA
+[46]            NA  0.4699578261
 
 $C.RMSE
- [1]  4.1173269  4.2426407  2.8136572  1.1952286  4.6904158  5.5901699
- [7] 22.6431951 11.0000000  4.1146997  1.2247449  9.2833319 18.3753090
-[13] 53.6842621  3.1091264  1.5986105  1.2649111  1.9148542 12.2673908
-[19]  1.4832397  6.4420494 29.8651253  9.7198421 18.8306470  1.9306146
-[25]  2.8277831  3.0659419  1.0000000  7.5762788  8.4593217  4.8476799
-[31]  2.9272160  4.0152133  3.4478594 26.7519308  1.0000000  5.8094750
-[37] 26.5246217 11.8427193  4.5105190 20.4245885  0.8950885  1.5012425
-[43] 69.0000000  9.2195445  6.6708320  2.2912878 86.5101692</code></pre>
+ [1]  3.6766902  4.0659627  1.6928772  1.1952286  3.6636041  5.5901699
+ [7] 22.6431951 11.0000000  3.8615525  1.2247449  9.5633656 18.7727109
+[13] 53.6842621  3.1091264  1.5986105  0.5221020  0.9542454 12.1350390
+[19]  1.0017941  6.4420494 30.7147161 10.5299178 18.9954646  0.8640044
+[25]  1.9008413  2.0149182  1.0000000  7.5762788  8.8989019  3.8703215
+[31]  3.7300192  2.9212406  3.5336611 26.9467174  1.0000000  5.8094750
+[37] 26.5246217 11.8427193  4.5986290 20.4860251  1.2649111  2.5331140
+[43] 69.0000000  7.9679843  6.6708320  2.2912878 85.7613186</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>preds_m1 <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m1, <span class="at">expected =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb18-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m1, <span class="at">predY =</span> preds_m1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>preds_m1 <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m1, <span class="at">expected =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m1, <span class="at">predY =</span> preds_m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1]  2.2741757  0.9185587  1.2183493  0.4330127  1.0155048  1.5309311
- [7]  7.1676356  4.1250000  1.0897247  0.3750000  6.7517359 11.0905365
-[13] 15.0052074  0.6731456  0.5994789  0.3535534  0.5863020 11.2268860
-[19]  0.4330127  1.5922174 16.7617729  5.8326264 10.3719875  0.7500000
-[25]  1.6345871  1.3707320  0.2795085  2.1176343  5.0377481  1.1608860
-[31]  2.1910685  2.3584953  2.3485368 32.0170853  0.3061862  1.2311072
-[37] 13.9295100  2.9606798  1.8413650 10.5558411  0.3535534  1.0968705
-[43]  8.6250000  1.6298006  1.1792476  0.5448624 43.5761277
+ [1]  2.2638463  0.9185587  1.1726039  0.3952847  1.0155048  1.7589059
+ [7]  6.7788734  3.9946253  0.8926786  0.3750000  6.9208697 11.0212862
+[13] 15.0058582  0.6731456  0.5994789  0.3535534  0.5728220 11.1682796
+[19]  0.4145781  1.6105123 16.4859078  6.1227675 10.7432755  0.7395100
+[25]  1.6225944  1.4630875  0.2795085  2.1176343  5.0898183  1.2374369
+[31]  2.1360009  2.2878757  2.2887292 31.6241971  0.3061862  1.1405180
+[37] 13.9216558  2.9659526  1.7809759  9.6661054  0.3535534  1.0897247
+[43]  8.6250000  1.6298006  1.0606602  0.5000000 43.7927024
 
 $SR2
- [1]  0.035496608           NA           NA -0.003955012           NA
- [6]  0.056406250  0.599531981           NA  0.615566858           NA
-[11]  0.440935787  0.270857342           NA           NA           NA
-[16]           NA  0.072199663  0.317180455 -0.001343037  0.229925486
-[21]  0.408538725  0.314869096  0.234263261  0.100341460  0.001036953
-[26]  0.154227440           NA           NA  0.495844284  0.290751390
-[31]  0.008237587  0.013843791  0.245309859  0.266314381           NA
-[36]  0.074084483  0.295583786           NA  0.128727435  0.323935333
-[41]           NA           NA           NA           NA           NA
-[46]  0.101567156  0.284909239
+ [1]  0.117868779           NA  0.012479748           NA           NA
+ [6]  0.054211470  0.472237132  0.154048188  0.529689252           NA
+[11]  0.388691397  0.283378170 -0.002727267           NA           NA
+[16]           NA  0.113094518  0.318238194           NA           NA
+[21]  0.449538311  0.364569503  0.206578588  0.150888370  0.024490933
+[26]  0.181195064           NA           NA  0.489745599  0.426850934
+[31]  0.038746325  0.050121130  0.274653807  0.271995276           NA
+[36]  0.499869961  0.306540219 -0.002147741  0.032749376  0.291346370
+[41]           NA  0.053170755           NA  0.226334739  0.197082948
+[46]  0.262295082  0.323666848
 
 $O.AUC
- [1] 0.8050941 0.8360656 0.6394231 0.7944862 0.9125683 0.8995536 0.7769424
- [8] 0.8484848 0.9555053 0.5818966 0.7887255 0.8457792 0.8542373 0.9234973
-[15] 0.7252525 0.7745763 0.7836538 0.8453997 0.7457627 0.9000000 0.8511364
-[22] 0.8247070 0.8023023 0.7478559 0.7093023 0.7477273 0.6203390 0.6694915
-[29] 0.8739177 0.7925926 0.7147402 0.6871089 0.8621262 0.8906250 0.8864943
-[36] 0.8729167 0.8641304 0.9479167 0.7393484 0.7717611 0.8694915 0.7195513
-[43] 0.9206349 0.9717742 0.9838710 0.9541667 0.8629537
+ [1] 0.7707641 0.8879781 0.7035256 0.5363409 0.7267760 0.8470982 0.8283208
+ [8] 0.8666667 0.9683258 0.6724138 0.7985294 0.8365801 0.9033898 0.7923497
+[15] 0.6585859 0.4932203 0.7083333 0.8378582 0.5203390 0.7708333 0.8562500
+[22] 0.8715820 0.7462462 0.7753002 0.7558140 0.7687500 0.6610169 0.7813559
+[29] 0.8690476 0.8527778 0.7486744 0.5569462 0.8593577 0.8861607 0.5948276
+[36] 0.8625000 0.8671498 0.9666667 0.9035088 0.7778340 0.8525424 0.8317308
+[43] 0.9841270 0.9879032 0.9677419 0.7937500 0.8998748
 
 $O.TjurR2
- [1] 0.11763566 0.13345628 0.04594551 0.10077694 0.12596995 0.23544643
- [7] 0.22435464 0.12106061 0.49888386 0.02271552 0.19235784 0.20236472
-[13] 0.09648305 0.16632514 0.10984848 0.04840678 0.17605769 0.18547888
-[19] 0.08183898 0.21766667 0.24309091 0.20703125 0.20026276 0.12021870
-[25] 0.08562016 0.19809091 0.03174576 0.02956780 0.26403139 0.25914815
-[31] 0.07747879 0.06691176 0.21542913 0.19303571 0.12844828 0.26575000
-[37] 0.17558575 0.14779167 0.11201128 0.19370951 0.14945763 0.05783654
-[43] 0.10845238 0.25096774 0.20891129 0.26266667 0.20259387
+ [1] 0.091052049 0.079371585 0.088413462 0.028120301 0.093879781 0.163839286
+ [7] 0.313283208 0.194191919 0.506730769 0.091221264 0.211960784 0.222483766
+[13] 0.147288136 0.108879781 0.039378788 0.001610169 0.165608974 0.173469080
+[19] 0.036423729 0.052875000 0.264000000 0.263906250 0.145965966 0.175480274
+[25] 0.092533223 0.156852273 0.049610169 0.070661017 0.249247835 0.238620370
+[31] 0.084064157 0.033473091 0.250102436 0.170133929 0.049784483 0.344625000
+[37] 0.197542271 0.237875000 0.208276942 0.183162955 0.138830508 0.147483974
+[43] 0.293690476 0.353306452 0.301209677 0.158041667 0.238961202
 
 $O.RMSE
- [1] 0.4286525 0.2168590 0.3872236 0.3177770 0.2542611 0.2960521 0.2929369
- [8] 0.3400359 0.2579895 0.3050299 0.4310574 0.4039670 0.2862287 0.2114231
-[15] 0.3237057 0.2692445 0.3588975 0.3473489 0.2827455 0.2649318 0.3964370
-[22] 0.4261125 0.4324985 0.3551775 0.4458984 0.4173463 0.2791575 0.2880896
-[29] 0.3869352 0.3377898 0.4574845 0.4319339 0.3975524 0.2857409 0.2664451
-[36] 0.2366180 0.3914173 0.2527746 0.3041701 0.4303170 0.2666074 0.3757652
-[43] 0.1872975 0.1890349 0.2744004 0.2328144 0.3874293
+ [1] 0.4360769 0.2188701 0.3856778 0.3327868 0.2278470 0.3066111 0.2820243
+ [8] 0.3318429 0.2743745 0.3000288 0.4332386 0.3985228 0.2873920 0.2752988
+[15] 0.3398430 0.2893234 0.3591630 0.3541272 0.3074235 0.2560775 0.3947586
+[22] 0.4034277 0.4469727 0.3468851 0.4398765 0.4158227 0.2829639 0.2798894
+[29] 0.3845849 0.3180318 0.4532557 0.4651193 0.3926409 0.2925372 0.3061599
+[36] 0.1970369 0.3892452 0.2574126 0.2862979 0.4311842 0.3005357 0.3540429
+[43] 0.1787208 0.1938145 0.3226943 0.2664496 0.3865664
 
 $C.SR2
- [1]  5.232558e-02            NA            NA            NA            NA
- [6]  4.375000e-01  7.159763e-01            NA  4.969778e-01            NA
-[11]  2.333953e-01  1.335745e-01            NA            NA            NA
-[16]            NA  5.309735e-01  1.146701e-01            NA -6.666667e-02
-[21]  3.505853e-02  2.308156e-01  1.345348e-01  1.955556e-01 -9.433009e-03
-[26]  1.248532e-01            NA            NA  1.284958e-01  4.842961e-01
-[31]  1.137742e-02  8.604614e-02  1.709567e-05  1.296054e-01            NA
-[36]  6.000000e-01  1.225923e-01            NA  0.000000e+00  1.195367e-01
-[41]            NA            NA            NA            NA            NA
-[46] -1.111111e-01  1.294475e-02
+ [1]  2.396302e-01            NA  2.058319e-01            NA            NA
+ [6]  4.375000e-01  9.245562e-01  1.109491e-01  4.969778e-01            NA
+[11]  1.573273e-01  1.862076e-01            NA            NA            NA
+[16]            NA  5.178454e-01  1.138834e-01            NA            NA
+[21]  4.693811e-01  1.700535e-01  2.707561e-01 -2.352941e-02  3.965362e-05
+[26]  1.660236e-01            NA            NA  2.223042e-01  5.928466e-01
+[31]  9.023262e-02  5.576177e-02  1.965159e-02  1.304753e-01            NA
+[36]  4.000000e-01  1.082427e-01            NA  4.038462e-01  2.280750e-01
+[41]            NA -7.982262e-02            NA -1.000000e+00  1.000000e+00
+[46]  1.000000e+00 -1.257624e-02
 
 $C.RMSE
- [1]  3.843029  4.242641  2.813657  1.195229  4.690416  4.046122 21.068825
- [8] 11.000000  2.219647  1.224745  8.985115 18.739361 53.684262  3.109126
-[15]  1.598611  1.264911  1.275548 12.116463  1.483240  6.304760 29.516946
-[22]  7.880267 15.590609  1.751862  2.828648  2.325742  1.000000  7.576279
-[29]  8.384669  2.547174  3.560407  4.453546  3.832633 33.835389  1.000000
-[36]  4.283996 26.069236 11.842719  5.530950 13.177407  1.264911  2.533114
-[43] 69.000000  9.219544  6.670832  2.072805 83.851162</code></pre>
+ [1]  3.811484  4.242641  2.592978  1.195229  4.690416  4.615398 19.713582
+ [8] 10.361191  1.769379  1.224745  9.220416 18.613084 53.684262  3.109126
+[15]  1.598611  1.264911  1.279076 12.113135  1.483240  6.442049 28.880036
+[22]  8.332130 16.026513  1.741432  2.786040  2.475250  1.000000  7.576279
+[29]  8.424392  2.721130  3.393866  4.207993  3.652295 33.464828  1.000000
+[36]  4.051905 26.066456 11.842719  5.165320 12.006962  1.264911  2.526607
+[43] 69.000000  9.209506  4.986946  1.804162 84.441998</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>preds_m_env <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m_env, <span class="at">expected =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb20-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>preds_m_env <span class="ot">&lt;-</span> <span class="fu">computePredictedValues</span>(m_env, <span class="at">expected =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-2"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1]  2.1442146  0.9185587  1.2183493  0.3952847  1.0155048  1.3169567
- [7]  3.2433827  3.8850676  1.3110111  0.3750000  6.4201830 10.6332688
-[13] 15.0052074  0.3750000  0.5994789  0.3535534  0.6123724 11.5223967
-[19]  0.4145781  1.4142136 16.5553050  4.5345893 10.6927984  0.7288690
-[25]  1.6441183  1.4197271  0.2795085  2.1176343  5.0917366  1.3750000
-[31]  2.0425168  2.3217720  2.3393709 26.1205887  0.3061862  0.6731456
-[37] 13.5284711  2.8531781  1.7093493  9.9692888  0.2795085  1.0897247
-[43]  8.6250000  1.6298006  1.0077822  0.5728220 37.7442049
+ [1]  2.0728905  0.9185587  1.2183493  0.4145781  1.0155048  1.9764235
+ [7]  5.0466573  3.8729833  1.1180340  0.3750000  6.0418463 10.6854896
+[13] 15.0052074  0.6731456  0.5590170  0.3535534  0.6614378 10.5478819
+[19]  0.4145781  1.6105123 16.9425730  4.7236109 11.0115351  0.6846532
+[25]  1.6441183  1.4960887  0.2795085  2.1176343  5.0729060  1.2869538
+[31]  2.1028255  2.3217720  2.2334460 24.5650444  0.3061862  1.0532687
+[37] 13.7090299  2.9606798  1.4415703  9.2356307  0.3535534  1.0968705
+[43]  8.6250000  1.6298006  0.9519716  0.5728220 34.4913939
 
 $SR2
- [1]  0.116036695           NA           NA           NA           NA
- [6]  0.029396864  0.393857097  0.591515759  0.397109846           NA
-[11]  0.511681641  0.589193274           NA  0.677303754           NA
-[16]           NA  0.253202948  0.465560539           NA  0.555543997
-[21]  0.417394236  0.655891586  0.265912259  0.228828183 -0.007409368
-[26]  0.187357598           NA           NA  0.444059268  0.407669514
-[31]  0.149279232  0.096129787  0.320536824  0.549699938           NA
-[36]  0.462200885  0.473133236  0.451562566  0.437035711  0.476388648
-[41]  0.213333333  0.053170755           NA           NA  0.999748047
-[46]           NA  0.450264299
+ [1]  0.109536148           NA           NA -0.001946117           NA
+ [6]           NA  0.599843994  0.577525021  0.623899318           NA
+[11]  0.450320843  0.440408761           NA           NA  0.114831162
+[16]           NA  0.253628589  0.467596401           NA           NA
+[21]  0.313244375  0.656663516  0.368517071  0.268292202 -0.007409368
+[26]  0.160775122           NA           NA  0.546682945  0.403770928
+[31]  0.073248269  0.096129787  0.443866014  0.551215252           NA
+[36]  0.562207412  0.477738623           NA  0.599531981  0.482389870
+[41]           NA           NA           NA           NA  0.998992443
+[46]           NA  0.547381211
 
 $O.AUC
- [1] 0.8078627 0.8797814 0.7740385 0.7631579 0.8633880 0.9040179 0.8383459
- [8] 0.9414141 0.9298643 0.5229885 0.8784314 0.9155844 0.8627119 0.7568306
-[15] 0.8191919 0.6406780 0.8798077 0.9577677 0.7830508 0.8916667 0.8704545
-[22] 0.9003906 0.7937938 0.7950257 0.7519380 0.7681818 0.5915254 0.8220339
-[29] 0.8760823 0.8175926 0.8457052 0.8035044 0.8792913 0.9397321 0.7097701
-[36] 0.8000000 0.8876812 0.9958333 0.9423559 0.8360324 0.8084746 0.8701923
-[43] 0.9841270 0.9758065 1.0000000 0.9625000 0.9155194
+ [1] 0.7729790 0.8524590 0.7604167 0.6027569 0.8907104 0.7890625 0.8395990
+ [8] 0.9090909 0.9472097 0.6896552 0.8799020 0.9123377 0.8881356 0.8032787
+[15] 0.8343434 0.4745763 0.8982372 0.9675716 0.8813559 0.7854167 0.8664773
+[22] 0.9174805 0.7907908 0.8456261 0.7513843 0.7471591 0.6694915 0.8898305
+[29] 0.8793290 0.9287037 0.7794274 0.8372966 0.8870432 0.9352679 0.8376437
+[36] 0.8812500 0.9003623 0.9937500 0.9298246 0.8360324 0.8915254 0.7732372
+[43] 0.9841270 0.9758065 1.0000000 0.8708333 0.9173967
 
 $O.TjurR2
- [1] 0.15277685 0.19700820 0.09125000 0.03927318 0.14069672 0.22571429
- [7] 0.44288847 0.23705051 0.38028281 0.02688218 0.30165196 0.29951840
-[13] 0.14372034 0.45035519 0.13205556 0.04648305 0.24483974 0.32335973
-[19] 0.04634746 0.31295833 0.27436364 0.35976563 0.21889890 0.17596055
-[25] 0.08554264 0.18257955 0.02563559 0.11828814 0.26370671 0.26041667
-[31] 0.16356310 0.13957760 0.23303710 0.22129464 0.03517241 0.52570833
-[37] 0.31360507 0.34183333 0.26921053 0.24669028 0.16825424 0.16923077
-[43] 0.20281746 0.19564516 0.53822581 0.28645833 0.38030976
+ [1]  0.1474916944  0.0841803279  0.0740064103  0.0445050125  0.1378551913
+ [6]  0.1141071429  0.4265726817  0.2487626263  0.4163046757  0.0420833333
+[11]  0.3339068627  0.2593939394  0.1559576271  0.1094672131  0.1234141414
+[16] -0.0003389831  0.2167788462  0.3125942685  0.1120084746  0.1556666667
+[21]  0.2312159091  0.3051562500  0.1997497497  0.1946740995  0.0771788483
+[26]  0.1253068182  0.0318050847  0.1204152542  0.2798430736  0.3153611111
+[31]  0.1390747614  0.1528598248  0.2470598007  0.2411607143  0.0990517241
+[36]  0.3976666667  0.2656159420  0.3038333333  0.3579573935  0.2366902834
+[41]  0.1356949153  0.0959775641  0.3102777778  0.1574193548  0.5594354839
+[46]  0.1161666667  0.4142334168
 
 $O.RMSE
- [1] 0.4199552 0.2150570 0.3687357 0.3088635 0.2294893 0.3032403 0.2624927
- [8] 0.3005457 0.2911408 0.3015026 0.3967149 0.3651438 0.2821792 0.1829286
-[15] 0.3180524 0.2659860 0.3222083 0.2979895 0.2771135 0.2424370 0.3831097
-[22] 0.3720290 0.4279112 0.3266930 0.4395414 0.4094386 0.2772418 0.2736116
-[29] 0.3855664 0.3157696 0.4209272 0.4016031 0.3874220 0.2784136 0.3042601
-[36] 0.2270576 0.3655875 0.2118953 0.2696877 0.4076361 0.2438497 0.3427240
-[43] 0.1754973 0.1874797 0.1731701 0.2047405 0.3422606
+ [1] 0.4258590 0.2164423 0.3690830 0.3309673 0.2240111 0.3073250 0.2462034
+ [8] 0.3090439 0.2795417 0.2859587 0.3894428 0.3770755 0.2827130 0.2577848
+[15] 0.3204648 0.2862370 0.3219122 0.2972780 0.2530326 0.2618757 0.3853515
+[22] 0.3793614 0.4295965 0.3212448 0.4445856 0.4222085 0.2822349 0.2651807
+[29] 0.3728193 0.2967077 0.4361315 0.3973019 0.3844535 0.2720118 0.2701360
+[36] 0.2147505 0.3614770 0.2257890 0.2560819 0.4082858 0.2539500 0.3629013
+[43] 0.1764463 0.1846782 0.1363661 0.2359878 0.3358782
 
 $C.SR2
- [1]  0.177858572           NA           NA           NA           NA
- [6]  0.437500000  1.000000000  0.481150258  0.389351897           NA
-[11]  0.307346944  0.532134204           NA  1.000000000           NA
-[16]           NA  0.225610406  0.154154654           NA  0.040000000
-[21]  0.414807650  0.403367071  0.284996789 -0.004942810           NA
-[26]  0.189918606           NA           NA  0.095766986  0.484296069
-[31]  0.066378636  0.017716635  0.009037242  0.399813056           NA
-[36]  0.640000000  0.275244753 -0.544444444  0.376254181  0.464033921
-[41]  1.000000000 -0.079822616           NA           NA  1.000000000
-[46]           NA  0.643640638
+ [1]  0.44582369          NA          NA          NA          NA          NA
+ [7]  1.00000000  0.61848739  0.54222874          NA  0.34864071  0.30960620
+[13]          NA          NA  0.16741071          NA  0.28830366  0.19872852
+[19]          NA          NA  0.02559622  0.51941354  0.42806385  0.18473251
+[25]          NA  0.28515312          NA          NA  0.24125106  0.33248408
+[31]  0.14420629  0.01771663  0.10681092  0.40335238          NA  1.00000000
+[37]  0.41505736          NA  0.92455621  0.60288522          NA          NA
+[43]          NA          NA -1.00000000          NA  0.50279572
 
 $C.RMSE
- [1]  3.5610846  4.2426407  2.8136572  1.1952286  4.6904158  3.5680326
- [7]  8.1781100  9.8482896  2.6147233  1.2247449  8.5181351 17.7898440
-[13] 53.6842621  1.5440178  1.5986105  1.2649111  1.3709422 12.5968836
-[19]  1.4832397  5.1334678 29.0442639  6.1746401 16.2352010  1.7286550
-[25]  2.8619008  2.3921502  1.0000000  7.5762788  8.4715796  3.1214923
-[31]  3.0931381  4.3859087  3.7958117 27.7743002  1.0000000  2.5475065
-[37] 25.1638475 11.0907186  4.8638620 12.3022429  0.8988084  2.5264066
-[43] 69.0000000  9.2195445  5.2040632  2.2912878 72.1890750</code></pre>
+ [1]  3.284800  4.242641  2.813657  1.195229  4.690416  5.590170 14.168994
+ [8]  9.751401  2.253295  1.224745  8.119385 17.752538 53.684262  3.109126
+[15]  1.453025  1.264911  1.396911 11.578162  1.483240  6.442049 29.954485
+[22]  6.147826 16.571853  1.524377  2.861901  2.454095  1.000000  7.576279
+[29]  8.396331  2.821792  3.309026  4.390095  3.528969 26.104394  1.000000
+[36]  3.820108 25.384468 11.842719  3.814926 11.322277  1.264911  2.533114
+[43] 69.000000  9.219544  4.715922  2.291288 65.961359</code></pre>
 </div>
 </div>
 </section>
 <section id="también-es-posible-realizar-evaluación-por-validación-cruzada" class="slide level2">
 <h2>También es posible realizar evaluación por validación cruzada</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>partition_env <span class="ot">&lt;-</span> <span class="fu">createPartition</span>(m_env, <span class="at">nfolds =</span> <span class="dv">4</span>)</span>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>partition_env <span class="ot">&lt;-</span> <span class="fu">createPartition</span>(m_env, <span class="at">nfolds =</span> <span class="dv">4</span>)</span>
 <span id="cb22-2"><a></a>preds_m_env <span class="ot">=</span> <span class="fu">computePredictedValues</span>(m_env, </span>
 <span id="cb22-3"><a></a>                               <span class="at">partition =</span> partition_env,</span>
 <span id="cb22-4"><a></a>                               <span class="at">nParallel =</span> nChains, </span>
-<span id="cb22-5"><a></a>                               <span class="at">expected =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-5"><a></a>                               <span class="at">expected =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Cross-validation, fold 1 out of 4
 Cross-validation, fold 2 out of 4
 Cross-validation, fold 3 out of 4
 Cross-validation, fold 4 out of 4</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">evaluateModelFit</span>(<span class="at">hM =</span> m_env, <span class="at">predY =</span> preds_m_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$RMSE
- [1]  2.3651110  0.9354143  1.2374369  0.4145781  1.0231691  2.0116846
- [7]  6.9776429  4.1117211  1.2054563  0.3952847  8.0362946 11.2133082
-[13] 15.0052074  0.6027282  0.6373774  0.3750000  0.7500000 14.8827448
-[19]  0.4145781  1.5761900 16.8787033  6.1099944 12.3669481  0.8100926
-[25]  1.6583124  1.5958932  0.2795085  2.1176343  5.1754378  1.5625000
-[31]  2.2741757  2.3782872  2.3848480 34.5376832  0.3061862  1.4142136
-[37] 14.0323287  2.8476964  1.8413650 11.4945639  0.3535534  1.7853571
-[43]  8.6250000  1.6298006  1.1792476  0.5728220 41.7491579
+ [1]  2.3782872  0.9270248  1.2500000  0.6846532  1.0155048  1.7853571
+ [7]  7.3813532  4.0677850  1.6213902  0.3952847  7.7964836 11.3123273
+[13] 15.0062487  0.7288690  0.5863020  0.3750000  0.8196798 12.3647369
+[19]  0.4145781  1.6153560 16.8939708  6.6158545 12.4586817  0.9354143
+[25]  1.6875000  1.6770510  0.3061862  2.1250000  5.3880655  1.8582586
+[31]  2.3318448  2.5070214  2.4566555 31.3187993  0.3061862  1.4469796
+[37] 13.9513664  3.2234492  1.9843135 13.3057495  0.3750000  1.1180340
+[43]  8.6288488  1.6345871  1.1924240  0.5728220 39.2203809
 
 $SR2
- [1]  2.658250e-05 -1.585379e-03 -1.120066e-02 -1.946117e-03 -7.802404e-04
- [6]  1.577064e-02  3.647655e-01  1.578786e-02  4.546725e-01 -1.639827e-03
-[11]  1.994881e-01  1.370509e-01            NA  1.004391e-01 -8.005238e-03
-[16] -1.343747e-03  4.936390e-02  1.391185e-01            NA  2.299255e-01
-[21]  2.411575e-01  2.256930e-01  7.953965e-02  4.068651e-02 -3.111934e-02
-[26]  4.597969e-02            NA            NA  3.057190e-01  2.648552e-01
-[31] -1.893337e-03  9.859227e-04  2.017606e-01  2.696373e-01            NA
-[36]  3.059768e-01  1.437238e-01  2.174946e-01  5.228039e-02  1.813151e-01
-[41]            NA  1.414643e-05            NA            NA            NA
-[46]            NA  2.072043e-01
+ [1] -8.642076e-03 -7.801073e-04 -1.930057e-02 -3.954015e-03            NA
+ [6]  2.680622e-02  1.745548e-01  9.506671e-03  4.569616e-01 -1.639827e-03
+[11]  1.904524e-01  1.827002e-01 -2.727955e-03 -1.584980e-03  8.625096e-02
+[16] -1.343747e-03  6.123847e-02  2.025905e-01            NA -1.056825e-03
+[21]  1.329695e-01  1.820560e-01  3.674799e-02  1.782863e-02 -9.560406e-03
+[26]  9.726636e-03 -1.345171e-03 -2.728243e-03  3.049611e-01  2.908392e-02
+[31]  1.771596e-02 -1.029779e-02  7.607182e-02  2.754739e-01            NA
+[36]  5.914430e-02  6.608283e-02  2.478009e-02  7.736789e-02  1.542803e-01
+[41] -1.343747e-03 -2.146524e-05 -5.119038e-04 -5.119038e-04 -1.040321e-03
+[46]            NA  1.353716e-01
 
 $O.AUC
- [1] 0.5647841 0.3306011 0.4791667 0.6528822 0.4808743 0.6808036 0.7343358
- [8] 0.7505051 0.9396682 0.4152299 0.7705882 0.7922078 0.6559322 0.6885246
-[15] 0.5151515 0.2898305 0.7171474 0.8401207 0.2949153 0.6083333 0.7727273
-[22] 0.7651367 0.6246246 0.5711835 0.6179402 0.5420455 0.4593220 0.6152542
-[29] 0.7451299 0.6944444 0.5371156 0.5369212 0.8067553 0.8013393 0.6393678
-[36] 0.9166667 0.7669082 0.9416667 0.7944862 0.6730769 0.7033898 0.6522436
-[43] 0.7301587 0.6129032 0.9677419 0.6395833 0.8573217
+ [1] 0.5293466 0.5027322 0.3661859 0.6453634 0.4535519 0.7310268 0.8671679
+ [8] 0.6262626 0.9426848 0.5287356 0.7563725 0.7397186 0.8084746 0.4836066
+[15] 0.6343434 0.7050847 0.6762821 0.7292609 0.3694915 0.5000000 0.8005682
+[22] 0.7192383 0.6241241 0.4974271 0.5276855 0.5585227 0.3711864 0.4457627
+[29] 0.7738095 0.6379630 0.6272534 0.5550688 0.6821705 0.6752232 0.6321839
+[36] 0.7812500 0.7506039 0.7479167 0.6967419 0.6751012 0.5813559 0.5264423
+[43] 0.6984127 0.8306452 0.9516129 0.7020833 0.8160200
 
 $O.TjurR2
- [1]  0.031910299 -0.055819672 -0.013269231  0.025751880 -0.015860656
- [6]  0.072991071  0.301979950  0.113550505  0.435697587 -0.030316092
-[11]  0.184534314  0.177359307  0.054084746  0.154289617  0.001030303
-[16] -0.073033898  0.142516026  0.210972851 -0.062262712  0.111958333
-[21]  0.179125000  0.197343750  0.096178679  0.071213551  0.030633998
-[26]  0.036227273 -0.025254237  0.012584746  0.185395022  0.182111111
-[31]  0.018263521  0.014846683  0.234166667  0.142812500  0.058419540
-[36]  0.260791667  0.122638889  0.268125000  0.121447368  0.131897773
-[41]  0.040711864  0.078942308  0.033690476 -0.006129032  0.233427419
-[46]  0.074791667  0.219687109
+ [1]  0.0017691030 -0.0032786885 -0.0613301282  0.0240914787 -0.0092759563
+ [6]  0.1234375000  0.2463596491  0.0411616162  0.4056184012 -0.0216666667
+[11]  0.1950294118  0.1540367965  0.0846016949 -0.0095628415  0.0493333333
+[16]  0.0925508475  0.1314583333  0.1258634992 -0.0588305085 -0.0022083333
+[21]  0.1764431818  0.1860937500  0.0689114114  0.0139108062 -0.0004291251
+[26]  0.0232500000 -0.0417627119 -0.0212966102  0.2002218615  0.0900092593
+[31]  0.0599708378  0.0149217772  0.1075885936  0.0511160714  0.0370402299
+[36]  0.1817083333  0.1304287440  0.2104583333  0.1556015038  0.1184615385
+[41]  0.0188474576  0.0298557692  0.0465873016  0.1518145161  0.2782661290
+[46]  0.0724583333  0.2220025031
 
 $O.RMSE
- [1] 0.4816739 0.2809352 0.4214357 0.3226338 0.2801801 0.3478788 0.3009231
- [8] 0.3672952 0.2847139 0.3211287 0.4440161 0.4188074 0.3080930 0.2492739
-[15] 0.3740308 0.3231900 0.3671011 0.3589916 0.3183627 0.2748052 0.4270169
-[22] 0.4454367 0.4897611 0.3838109 0.4706498 0.4732950 0.3025739 0.3054449
-[29] 0.4267781 0.3648595 0.5016061 0.4649816 0.4087809 0.3200752 0.2996300
-[36] 0.2425984 0.4194294 0.2558658 0.3126098 0.4722289 0.2803137 0.4008684
-[43] 0.2293075 0.2408777 0.2252015 0.2670994 0.3903869
+ [1] 0.4924789 0.2608808 0.4476430 0.3432742 0.2617271 0.3365561 0.3050991
+ [8] 0.3854224 0.3011125 0.3300749 0.4497148 0.4295565 0.3118867 0.2926399
+[15] 0.3504127 0.2887211 0.3815126 0.3821369 0.3181772 0.2913578 0.4234520
+[22] 0.4656642 0.4971419 0.3952469 0.4912704 0.4804421 0.3087873 0.3222599
+[29] 0.4190772 0.3707642 0.4733414 0.4653276 0.4520594 0.3345824 0.3021641
+[36] 0.2626073 0.4253288 0.2971040 0.3290187 0.4654599 0.3097807 0.4103315
+[43] 0.2270007 0.2244166 0.2246975 0.2814511 0.4008599
 
 $C.SR2
- [1]  0.1902232558            NA            NA            NA            NA
- [6] -0.0803571429  0.5340236686  0.0189075630  0.2886176089            NA
-[11]  0.0757344823  0.0975414309            NA  0.7500000000            NA
-[16]            NA  0.0351422512  0.0053731600            NA -0.0666666667
-[21]  0.2824469099  0.2369813666  0.0853722536 -0.1680555556            NA
-[26]  0.2054445951            NA            NA  0.1074249407  0.3173731606
-[31]  0.0146340866 -0.0002241281 -0.0201194842  0.1478501231            NA
-[36]  0.0111111111 -0.0178364717  0.0111111111  0.0448717949  0.3124339322
-[41]            NA -0.0798226164            NA            NA            NA
-[46]            NA  0.1067361585
+ [1] -2.393023e-02            NA            NA            NA            NA
+ [6]  4.375000e-01  2.211538e-01  3.025210e-01  1.832845e-03            NA
+[11]  8.286843e-02  6.205986e-02            NA            NA -6.026786e-02
+[16]            NA  2.704600e-01  7.606775e-02            NA            NA
+[21]  5.665273e-06  1.656962e-01  7.904331e-02 -7.638889e-02 -5.660554e-03
+[26]  8.788204e-03            NA            NA  7.421687e-02  4.159786e-02
+[31]  7.948363e-02  6.044564e-03  6.414527e-02  2.490352e-01            NA
+[36] -6.666667e-02  1.626267e-02 -6.000000e-01  1.730769e-01  1.789597e-01
+[41]            NA -7.982262e-02            NA            NA            NA
+[46]            NA  3.566962e-02
 
 $C.RMSE
- [1]  4.000370  4.242641  2.813657  1.195229  4.690416  5.588141 20.502437
- [8] 10.861121  2.427124  1.224745 10.986391 18.928780 53.684262  2.402333
-[15]  1.598611  1.264911  1.692590 16.608896  1.483240  6.235802 29.456456
-[22]  8.224242 18.797964  1.962029  2.861901  2.671937  1.000000  7.576279
-[29]  8.672143  3.379604  3.389409  4.469596  3.922322 36.577286  1.000000
-[36]  5.550259 26.413544 10.943376  5.446918 14.410779  1.264911  4.065406
-[43] 69.000000  9.219544  6.670832  2.291288 79.988964</code></pre>
+ [1]  4.116673  4.242641  2.813657  1.195229  4.690416  4.784737 22.114664
+ [8] 10.592032  3.576954  1.224745 10.658843 19.092977 53.684262  3.109126
+[15]  1.579514  1.264911  1.857552 13.642644  1.483240  6.442049 29.866147
+[22]  8.998339 18.794655  1.912197  2.827783  2.794554  1.000000  7.576279
+[29]  8.981643  4.550079  3.398270  4.639980  4.042097 33.297855  1.000000
+[36]  5.726709 26.114692 11.157367  5.114628 16.647973  1.264911  2.519651
+[43] 69.000000  9.219544  6.670832  2.291288 75.064499</code></pre>
 </div>
 </div>
 </section>
 <section id="una-vez-que-tengamos-un-modelo-sólido.-nos-interesa-ver-que-papel-juegan-las-variables-ambientales-en-las-especiescomunidades." class="slide level2">
 <h2>Una vez que tengamos un modelo sólido. Nos interesa ver que papel juegan las variables ambientales en las especies/comunidades.</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>postBeta <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m_env, <span class="at">parName =</span> <span class="st">"Beta"</span>)</span>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>postBeta <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m_env, <span class="at">parName =</span> <span class="st">"Beta"</span>)</span>
 <span id="cb26-2"><a></a><span class="fu">plotBeta</span>(m_env, </span>
 <span id="cb26-3"><a></a>         <span class="at">post =</span> postBeta, </span>
 <span id="cb26-4"><a></a>         <span class="at">param =</span> <span class="st">"Mean"</span>, </span>
-<span id="cb26-5"><a></a>         <span class="at">supportLevel =</span> <span class="fl">0.9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-5"><a></a>         <span class="at">supportLevel =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -860,13 +1057,13 @@ $C.RMSE
 <section id="otro-aspecto-importantenovedoso-es-estimar-las-correlaciones-entre-especies" class="slide level2">
 <h2>Otro aspecto importante/novedoso es estimar las correlaciones entre especies</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">library</span>(corrplot)</span>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">library</span>(corrplot)</span>
 <span id="cb27-2"><a></a>OmegaCor <span class="ot">&lt;-</span> <span class="fu">computeAssociations</span>(m0)</span>
 <span id="cb27-3"><a></a>supportLevel <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
 <span id="cb27-4"><a></a>toPlot <span class="ot">&lt;-</span> ((OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>support <span class="sc">&gt;</span> supportLevel) <span class="sc">+</span></span>
 <span id="cb27-5"><a></a>           (OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>support <span class="sc">&lt;</span> (<span class="dv">1</span><span class="sc">-</span>supportLevel)</span>
 <span id="cb27-6"><a></a>            ) <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">*</span> OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>mean</span>
-<span id="cb27-7"><a></a><span class="fu">corrplot</span>(toPlot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-7"><a></a><span class="fu">corrplot</span>(toPlot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -876,13 +1073,13 @@ $C.RMSE
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">library</span>(corrplot)</span>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">library</span>(corrplot)</span>
 <span id="cb28-2"><a></a>OmegaCor <span class="ot">&lt;-</span> <span class="fu">computeAssociations</span>(m_env)</span>
 <span id="cb28-3"><a></a>supportLevel <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
 <span id="cb28-4"><a></a>toPlot <span class="ot">&lt;-</span> ((OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>support <span class="sc">&gt;</span> supportLevel) <span class="sc">+</span></span>
 <span id="cb28-5"><a></a>           (OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>support <span class="sc">&lt;</span> (<span class="dv">1</span><span class="sc">-</span>supportLevel)</span>
 <span id="cb28-6"><a></a>            ) <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">*</span> OmegaCor[[<span class="dv">1</span>]]<span class="sc">$</span>mean</span>
-<span id="cb28-7"><a></a><span class="fu">corrplot</span>(toPlot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-7"><a></a><span class="fu">corrplot</span>(toPlot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -895,13 +1092,13 @@ $C.RMSE
 <section id="cuando-especificamos-un-modelo-sin-variables-ambientales-estamos-haciendo-un-modelo-unconstrained-o-indirecto.-por-lo-que-se-puede-usar-para-generar-gráficos-de-ordenación." class="slide level2">
 <h2>Cuando especificamos un modelo sin variables ambientales, estamos haciendo un modelo “unconstrained” o indirecto. Por lo que se puede usar para generar gráficos de ordenación.</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>etaPost <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m_env, <span class="st">"Eta"</span>)</span>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>etaPost <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m_env, <span class="st">"Eta"</span>)</span>
 <span id="cb29-2"><a></a>lambdaPost <span class="ot">&lt;-</span> <span class="fu">getPostEstimate</span>(m_env, <span class="st">"Lambda"</span>)</span>
 <span id="cb29-3"><a></a><span class="fu">biPlot</span>(m_env, </span>
 <span id="cb29-4"><a></a>       <span class="at">etaPost =</span> etaPost, </span>
 <span id="cb29-5"><a></a>       <span class="at">lambdaPost =</span> lambdaPost, </span>
 <span id="cb29-6"><a></a>       <span class="at">factors =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), </span>
-<span id="cb29-7"><a></a>       <span class="st">"pH"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb29-7"><a></a>       <span class="st">"pH"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -914,8 +1111,8 @@ $C.RMSE
 <section id="en-este-tipo-de-modelos-la-importancia-de-cada-variable-se-mide-en-términos-de-variación-explicada-y-se-calcula-con-análisis-de-particionado-de-la-varianza" class="slide level2">
 <h2>En este tipo de modelos, la importancia de cada variable se mide en términos de variación explicada y se calcula con análisis de particionado de la varianza</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>VP <span class="ot">=</span> <span class="fu">computeVariancePartitioning</span>(m_env)</span>
-<span id="cb30-2"><a></a><span class="fu">plotVariancePartitioning</span>(m_env, <span class="at">VP =</span> VP)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>VP <span class="ot">=</span> <span class="fu">computeVariancePartitioning</span>(m_env)</span>
+<span id="cb30-2"><a></a><span class="fu">plotVariancePartitioning</span>(m_env, <span class="at">VP =</span> VP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -928,9 +1125,8 @@ $C.RMSE
 <section id="como-en-los-modelos-de-distribución-de-especies-podemos-calcular-curvas-de-respuesta-de-cada-especiecomunidad-a-las-variables-ambientales" class="slide level2">
 <h2>Como en los Modelos de Distribución de Especies, podemos calcular curvas de respuesta de cada especie/comunidad a las variables ambientales</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="co"># Gradient = constructGradient(m_env, focalVariable = "pH")</span></span>
-<span id="cb31-2"><a></a>Gradient <span class="ot">=</span> <span class="fu">constructGradient</span>(m_env, <span class="at">focalVariable =</span> <span class="st">"N-NO3-"</span>)</span>
-<span id="cb31-3"><a></a>Gradient<span class="sc">$</span>XDataNew</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>Gradient <span class="ot">=</span> <span class="fu">constructGradient</span>(m_env, <span class="at">focalVariable =</span> <span class="st">"N-NO3-"</span>)</span>
+<span id="cb31-2"><a></a>Gradient<span class="sc">$</span>XDataNew</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       N-NO3-        N-NH3      N-NO2-        PO43-            pH           DO
 1  -0.8670817 -0.124331499 -0.27542798  0.107613107 -0.0116785746  0.094728129
@@ -998,12 +1194,12 @@ $C.RMSE
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>predY <span class="ot">&lt;-</span> <span class="fu">predict</span>(m_env, </span>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>predY <span class="ot">&lt;-</span> <span class="fu">predict</span>(m_env, </span>
 <span id="cb33-2"><a></a>                <span class="at">XData =</span> Gradient<span class="sc">$</span>XDataNew, </span>
 <span id="cb33-3"><a></a>                <span class="at">studyDesign =</span> Gradient<span class="sc">$</span>studyDesignNew,</span>
 <span id="cb33-4"><a></a>                <span class="at">ranLevels =</span> Gradient<span class="sc">$</span>rLNew, </span>
 <span id="cb33-5"><a></a>                <span class="at">expected =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb33-6"><a></a><span class="fu">plotGradient</span>(m_env, Gradient, <span class="at">pred=</span>predY, <span class="at">measure=</span><span class="st">"S"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-6"><a></a><span class="fu">plotGradient</span>(m_env, Gradient, <span class="at">pred=</span>predY, <span class="at">measure=</span><span class="st">"S"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1012,31 +1208,32 @@ $C.RMSE
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8475</code></pre>
+<pre><code>[1] 0.705</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="co"># plotGradient(m1, Gradient, pred=predY, measure="Y", index = 34)</span></span>
-<span id="cb35-2"><a></a><span class="fu">plotGradient</span>(m_env, Gradient, <span class="at">pred=</span>predY, <span class="at">measure=</span><span class="st">"Y"</span>, <span class="at">index =</span> <span class="dv">34</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">plotGradient</span>(m_env, Gradient, <span class="at">pred=</span>predY, <span class="at">measure=</span><span class="st">"Y"</span>, <span class="at">index =</span> <span class="dv">34</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-26-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-26-2.png" width="960"></a></p>
+<p><a href="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-27-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img data-src="AEMER-5-HMSC_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.575</code></pre>
+<pre><code>[1] 0.6375</code></pre>
 </div>
 </div>
 
-
-</section>
-    </div>
-  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="quarto-auto-generated-content">
 <p><img src="img/logos.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="https://dnietolugilde.com/AEMeR-UCO">AEMeR-UCO</a></p>
 </div>
-</div></div>
+</div>
+</section>
+    </div>
+  </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="site_libs/revealjs/dist/reveal.js"></script>
@@ -1066,8 +1263,7 @@ $C.RMSE
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
 'smaller': false,
  
@@ -1222,7 +1418,7 @@ $C.RMSE
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1249,212 +1445,269 @@ $C.RMSE
       });
     </script>
     
+
     <script>
+
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
       // slide changes (different for each slide format).
+
       (function () {
+
         // dispatch for htmlwidgets
+
         function fireSlideEnter() {
+
           const event = window.document.createEvent("Event");
+
           event.initEvent("slideenter", true, true);
+
           window.document.dispatchEvent(event);
+
         }
+
+    
 
         function fireSlideChanged(previousSlide, currentSlide) {
+
           fireSlideEnter();
 
+    
+
           // dispatch for shiny
+
           if (window.jQuery) {
+
             if (previousSlide) {
+
               window.jQuery(previousSlide).trigger("hidden");
+
             }
+
             if (currentSlide) {
+
               window.jQuery(currentSlide).trigger("shown");
+
             }
+
           }
+
         }
+
+    
 
         // hookup for slidy
+
         if (window.w3c_slidy) {
+
           window.w3c_slidy.add_observer(function (slide_num) {
+
             // slide_num starts at position 1
+
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
           });
+
         }
+
+    
 
       })();
+
     </script>
 
+    
+
     <script id="quarto-html-after-body" type="application/javascript">
-      window.document.addEventListener("DOMContentLoaded", function (event) {
-        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-        tabsets.forEach(function(tabset) {
-          const tabby = new Tabby('#' + tabset.id);
-        });
-        const isCodeAnnotation = (el) => {
-          for (const clz of el.classList) {
-            if (clz.startsWith('code-annotation-')) {                     
-              return true;
-            }
-          }
-          return false;
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
         }
-        const onCopySuccess = function(e) {
-          // button target
-          const button = e.trigger;
-          // don't keep focus
-          button.blur();
-          // flash "checked"
-          button.classList.add('code-copy-button-checked');
-          var currentTitle = button.getAttribute("title");
-          button.setAttribute("title", "Copied!");
-          let tooltip;
-          if (window.bootstrap) {
-            button.setAttribute("data-bs-toggle", "tooltip");
-            button.setAttribute("data-bs-placement", "left");
-            button.setAttribute("data-bs-title", "Copied!");
-            tooltip = new bootstrap.Tooltip(button, 
-              { trigger: "manual", 
-                customClass: "code-copy-button-tooltip",
-                offset: [0, -8]});
-            tooltip.show();    
-          }
-          setTimeout(function() {
-            if (tooltip) {
-              tooltip.hide();
-              button.removeAttribute("data-bs-title");
-              button.removeAttribute("data-bs-toggle");
-              button.removeAttribute("data-bs-placement");
-            }
-            button.setAttribute("title", currentTitle);
-            button.classList.remove('code-copy-button-checked');
-          }, 1000);
-          // clear code selection
-          e.clearSelection();
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
         }
-        const getTextToCopy = function(trigger) {
-          const outerScaffold = trigger.parentElement.cloneNode(true);
-          const codeEl = outerScaffold.querySelector('code');
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
           for (const childEl of codeEl.children) {
             if (isCodeAnnotation(childEl)) {
               childEl.remove();
             }
           }
           return codeEl.innerText;
-        }
-        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-          text: getTextToCopy
-        });
-        clipboard.on('success', onCopySuccess);
-        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-            text: getTextToCopy,
-            container: window.document.getElementById('quarto-embedded-source-code-modal')
-          });
-          clipboardModal.on('success', onCopySuccess);
-        }
-          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-          var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/dinilu\.github\.io\/AEMeR-UCO\/");
-          var isInternal = (href) => {
-              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-          }
-          // Inspect non-navigation links and adorn them if external
-         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-          for (var i=0; i<links.length; i++) {
-            const link = links[i];
-            if (!isInternal(link.href)) {
-              // undo the damage that might have been done by quarto-nav.js in the case of
-              // links that we want to consider external
-              if (link.dataset.originalHref !== undefined) {
-                link.href = link.dataset.originalHref;
-              }
-            }
-          }
-        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-          const config = {
-            allowHTML: true,
-            maxWidth: 500,
-            delay: 100,
-            arrow: false,
-            appendTo: function(el) {
-                return el.closest('section.slide') || el.parentElement;
-            },
-            interactive: true,
-            interactiveBorder: 10,
-            theme: 'light-border',
-            placement: 'bottom-start',
-          };
-          if (contentFn) {
-            config.content = contentFn;
-          }
-          if (onTriggerFn) {
-            config.onTrigger = onTriggerFn;
-          }
-          if (onUntriggerFn) {
-            config.onUntrigger = onUntriggerFn;
-          }
-            config['offset'] = [0,0];
-            config['maxWidth'] = 700;
-          window.tippy(el, config); 
-        }
-        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-        for (var i=0; i<noterefs.length; i++) {
-          const ref = noterefs[i];
-          tippyHover(ref, function() {
-            // use id or data attribute instead here
-            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-            try { href = new URL(href).hash; } catch {}
-            const id = href.replace(/^#\/?/, "");
-            const note = window.document.getElementById(id);
-            if (note) {
-              return note.innerHTML;
-            } else {
-              return "";
-            }
-          });
-        }
-        const findCites = (el) => {
-          const parentEl = el.parentElement;
-          if (parentEl) {
-            const cites = parentEl.dataset.cites;
-            if (cites) {
-              return {
-                el,
-                cites: cites.split(' ')
-              };
-            } else {
-              return findCites(el.parentElement)
-            }
-          } else {
-            return undefined;
-          }
-        };
-        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-        for (var i=0; i<bibliorefs.length; i++) {
-          const ref = bibliorefs[i];
-          const citeInfo = findCites(ref);
-          if (citeInfo) {
-            tippyHover(citeInfo.el, function() {
-              var popup = window.document.createElement('div');
-              citeInfo.cites.forEach(function(cite) {
-                var citeDiv = window.document.createElement('div');
-                citeDiv.classList.add('hanging-indent');
-                citeDiv.classList.add('csl-entry');
-                var biblioDiv = window.document.getElementById('ref-' + cite);
-                if (biblioDiv) {
-                  citeDiv.innerHTML = biblioDiv.innerHTML;
-                }
-                popup.appendChild(citeDiv);
-              });
-              return popup.innerHTML;
-            });
-          }
-        }
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
-      </script>
-    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/dinilu\.github\.io\/AEMeR-UCO\/");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    <script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {
